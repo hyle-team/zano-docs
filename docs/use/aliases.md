@@ -10,7 +10,7 @@ Each alias is assigned to a particular wallet. Only one alias can be created per
 
 To reduce possibility of phishing we set limitations on alias registrations. Users can use any combination of the lower-case Latin letters a-z and the Arabic numerals 0-9. Additionally, there is a length minimum of 6 characters, and a maximum length of 12.
 
-The comment section will be temporarily stored in the blockchain until passing a checkpoint. For more information on pruning mechanism please refer to the [whitepaper](https://docs.zano.org/docs/whitepaper).
+The comment section will be temporarily stored in the blockchain until passing a checkpoint. For more information on pruning mechanism please refer to the [whitepaper](https://github.com/hyle-team/docs/blob/master/zano/Zano%20WP_latest.pdf).
 
 ![alt alias-registration](../../static/img/use/aliases/alias-registration.png "alias-registration")_<figcaption style={{textAlign: "center" }} >Alias registration</figcaption>_
 
