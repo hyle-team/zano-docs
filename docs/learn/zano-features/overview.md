@@ -1,6 +1,6 @@
 # Overview
 
-## Zano's Values
+## Zano’s Values
 
 ### Privacy
 
