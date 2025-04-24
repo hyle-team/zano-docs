@@ -20,9 +20,9 @@ Proof-of-stake mining or staking is typically implemented in such a way that a r
 
 - Easy-to-use: Flip the switch and start staking.
 
-  The only requirement is to run a Zano node (currently, this can only be done on a desktop device). The Zano desktop wallet automatically functions as a Zano node.
+The only requirement is to run a Zano node (currently, this can only be done on a desktop device). The Zano desktop wallet automatically functions as a Zano node.
 
-  There is no "delegation" function in Zano Staking, as we believe that it goes against network decentralization, and running a Zano node takes very few resources.
+There is no "delegation" function in Zano Staking, as we believe that it goes against network decentralization, and running a Zano node takes very few resources.
 
 ## How to Stake Zano
 
