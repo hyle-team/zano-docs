@@ -47,13 +47,17 @@ Simply open the Zano desktop wallet, make sure the blockchain is synchronised, a
 </div>
 ```
 
+:::tip
+
 You can observe your progress in the `Staking` tab of your staking wallet. The amount of earnings depends on the wallet balance. You can switch `Staking` on and off without any limitations.
+
+:::
 
 ![Staking Tab on GUI wallet.](/img/stake/staking-zano/zano-staking.jpg)
 
 ## Estimating PoS Rewards
 
-Proof-of-stake earnings depend on the current PoS difficulty and the number of coins you have locked for staking. The more coins you stake, the better chance you have to “win” the right to sign the next PoS block. Of course, it’s important to estimate your chances and predict how much you can earn in some way. **The most straightforward way to do so is to use the community-made [Staking Simulator](https://zanostats.com/staking).**
+Proof-of-stake earnings depend on the current PoS difficulty and the number of coins being staked. The more coins you stake, the better chance you have to “win” the right to sign the next PoS block. Of course, it’s important to estimate your chances and predict how much you can earn in some way. **The most straightforward way to do so is to use the community-made [Staking Simulator](https://zanostats.com/staking).**
 
 :::note
 
