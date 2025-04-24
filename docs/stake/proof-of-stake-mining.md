@@ -18,9 +18,9 @@ Proof-of-stake mining or staking is typically implemented in such a way that a r
 
 - No slashing.
 
-- Easy-to-use: Simply flip the switch and start staking.
+- Easy-to-use: Flip the switch and start staking.
 
-  The only requirement is to run a Zano node (At the moment, this can only be done on a desktop device).
+  The only requirement is to run a Zano node (currently, this can only be done on a desktop device). The Zano desktop wallet automatically functions as a Zano node.
 
   There is no "delegation" function in Zano Staking, as we believe that it goes against network decentralization, and running a Zano node takes very few resources.
 
@@ -53,7 +53,7 @@ You can observe your progress in the `Staking` tab of your staking wallet. The a
 
 ## Estimating PoS Rewards
 
-Proof-of-stake earnings depend on the current PoS difficulty and the number of coins you have locked for staking. The more coins you stake, the better chance you have to “win” the right to sign the next PoS block. Of course, it’s important to estimate your chances and predict how much you can earn in some way. **The most straightforward way to do so is to use the community-made [Staking Simulator](https://wearezano.com/staking-simulator).**
+Proof-of-stake earnings depend on the current PoS difficulty and the number of coins you have locked for staking. The more coins you stake, the better chance you have to “win” the right to sign the next PoS block. Of course, it’s important to estimate your chances and predict how much you can earn in some way. **The most straightforward way to do so is to use the community-made [Staking Simulator](https://zanostats.com/staking).**
 
 :::note
 
@@ -78,7 +78,7 @@ $$
 where $C$ is the total amount of coins participating in PoS mining, and $D_{PoS} \thinspace$ is the current PoS difficulty.
 ```
 
-As you may know, the Zano network emits an average of 1 coin each minute with a 50-50 spread between PoS and PoW. That makes it 720 potential PoS reward coins per day. So if you owned all the coins in PoS, that could be your total day earnings. And if you divide C*C* by 720, you will get the number of coins you need to mine 1 Zano coin a day. Now, you can estimate the number of coins you will earn as:
+As you may know, the Zano network emits an average of 1 coin each minute with a 50-50 spread between PoS and PoW. That makes it 720 potential PoS reward coins per day. So if you owned all the coins in PoS, that could be your total daily earnings. And if you divide C*C* by 720, you will get the number of coins you need to mine 1 Zano coin a day. Now, you can estimate the number of coins you will earn as:
 
 ```mdx-code-block
 $$
