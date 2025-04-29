@@ -1,3 +1,7 @@
+---
+slug: /use/zano-passwords.md
+---
+
 # Different Password Types in Zano Wallets
 
 When managing Zano wallets, utilizing multiple password types enhances security and convenience. Each password serves a unique purpose:
@@ -6,6 +10,7 @@ When managing Zano wallets, utilizing multiple password types enhances security 
 
 - **Purpose:** This is the basic level of security for your Zano wallet file.
 - **Use Case:**
+
   - If you run your Zano wallet on a remote server for staking, the wallet password protects the wallet file from unauthorized access.
   - When opening your wallet locally on a GUI wallet, the wallet password is required on the first launch. If the master password is enabled, the wallet password will be stored and not required for subsequent launches.
 
@@ -18,6 +23,7 @@ When managing Zano wallets, utilizing multiple password types enhances security 
 
 - **Feature:** This is primarily a feature in Zano GUI wallets.
 - **Benefit:**
+
   - Allows users to bypass entering individual wallet passwords every time they open the application, and it secures all GUI data, including secrets and ports that allow connections to the Zano browser extension.
   - Particularly useful for users operating multiple Zano wallets, as it eliminates the need to enter each wallet password repeatedly on every launch.
 - **Convenience:** Simplifies access and enhances usability, especially when managing multiple wallets.

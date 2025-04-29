@@ -1,5 +1,6 @@
 ---
 sidebar_position: 5
+slug: /use/auditable-wallets.md
 ---
 
 # Auditable wallets FAQ
@@ -58,8 +59,7 @@ aZxb9v1DFtaK6Z4bW7UUuaZcmq7MZBzz875eZ5N3vSRa2vWz9wBVE3vVKFGNH8414TTjhiwPz7PTV5tt
 Anyone having this tracking seed is able to watch your balance and transaction history, but unable to spend coins.
 ```
 
-Tracking seed technically is an auditable address, secret view key and a creation timestamp combined with a colon:
-aZxawNXAuekCXcnzutthLaPZQxAyaofb59FpzNBSCQb7iT7D1nsaxdTCvK4Xhn6nfuRpqDiNjeUNx2J9KWfTXHmDWNQ85v2bpbi:1be5866b6fda704c0c4a08f9c79c774911fda72dcd8cc8c7ca31bc1a6fda4d0b:1593998615
+Tracking seed technically is an auditable address, secret view key and a creation timestamp combined with a colon: aZxawNXAuekCXcnzutthLaPZQxAyaofb59FpzNBSCQb7iT7D1nsaxdTCvK4Xhn6nfuRpqDiNjeUNx2J9KWfTXHmDWNQ85v2bpbi:1be5866b6fda704c0c4a08f9c79c774911fda72dcd8cc8c7ca31bc1a6fda4d0b:1593998615
 
 ### I got a tracking seed. How can I track the wallet it is bound to?
 
@@ -89,8 +89,7 @@ Or in GUI wallet:
 
 Only one: you cannot use mixins when you send coins from an auditable wallet.
 
-**_Obsolete_**<br/>
-The following limitations were effective until hardfork 2:
+***Obsolete***<br /> The following limitations were effective until hardfork 2:
 
 1. An alias cannot be assigned to an auditable address.
 2. When sending coins from an auditable address the sender address is always hidden.

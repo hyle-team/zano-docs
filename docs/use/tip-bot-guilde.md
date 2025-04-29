@@ -1,5 +1,5 @@
 ---
-sidebar_position: 9
+sidebar_label: none
 ---
 
 # Tip Bot Guide
@@ -10,15 +10,11 @@ Using Zano’s Discord TipBot is fairly straightforward and intuitive, but here 
 
 #### Get Discord
 
-In order to use the Discord TipBot, we must first have Discord installed, head over to their website (or your package manager) and get signed up!<br/>
-https://discord.com/download/
+In order to use the Discord TipBot, we must first have Discord installed, head over to their website (or your package manager) and get signed up!<br /> [https://discord.com/download/](https://discord.com/download/)
 
 #### Join Zano’s Discord Channel
 
-Now that we have Discord, head over to our discord
-channel and join the rest of the community! Simply click
-the link below.<br/>
-https://discord.gg/wE3rmYY
+Now that we have Discord, head over to our discord channel and join the rest of the community! Simply click the link below.<br /> [https://discord.gg/wE3rmYY](https://discord.gg/wE3rmYY)
 
 ### The Tip Bot
 
@@ -44,7 +40,7 @@ Before we can begin tipping, we must have some Zano in our tip bot wallet, to do
 
 #### Register alias
 
-Before you can withdraw Zano others have tipped you, you must register an alias, more on aliases can be found here: https://docs.zano.org/docs/aliases
+Before you can withdraw Zano others have tipped you, you must register an alias, more on aliases can be found here: [https://docs.zano.org/docs/aliases](https://docs.zano.org/docs/aliases)
 
 Click ‘register alias’ and enter your alias.
 
@@ -88,7 +84,6 @@ If you want to know the current price of Zano, click ‘Rate’, to see the curr
 
 #### Redeem coupon
 
-If you have a coupon code, the ‘Redeem Coupon’ button allows you to exchange your coupon for Zano coins.
-Simply click the button and enter your coupon code.
+If you have a coupon code, the ‘Redeem Coupon’ button allows you to exchange your coupon for Zano coins. Simply click the button and enter your coupon code.
 
 ![alt tip-bot-redeem-coupon](../../static/img/use/tip-bot-guide/tip-bot-redeem-coupon.png "tip-bot-redeem-coupon")

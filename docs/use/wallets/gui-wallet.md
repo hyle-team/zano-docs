@@ -43,8 +43,8 @@ When the wallet file is created you can continue with `Create wallet`. This file
 
 ![alt createwallet-4](/img/use/gui-wallet/seedphrase.png "create-wallet-4")
 
-To finalise wallet creation store wallet's seed phrase. IMPORTANT: using the seed phrase anyone can restore and take full control of the wallet. Keep it in a secured location and avoid unauthorized access to it by any means. Note that you can review the seed phrase later in wallet details menu.
+To finalise wallet creation, store the wallet's seed phrase. IMPORTANT: Using the seed phrase, anyone can restore and take full control of the wallet. Keep it in a secure location and avoid unauthorized access to it by any means. Note that you can review the seed phrase later in wallet details menu.
 
 ![alt createwallet-5](/img/use/gui-wallet/wallet.png "create-wallet-5")
 
-Now the wallet has been created. You can copy wallet address and use it to receive ZANO from exchanges, mining pools and other sources.
+Now the wallet has been created. You can copy your wallet address and use it to receive ZANO from exchanges, mining pools and other sources.
