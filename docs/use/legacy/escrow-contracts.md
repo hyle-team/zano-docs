@@ -1,5 +1,5 @@
 ---
-sidebar_position: 7
+slug: /use/escrow-contracts
 ---
 
 # Escrow contracts
