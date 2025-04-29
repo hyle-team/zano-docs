@@ -1,5 +1,6 @@
 ---
 sidebar_position: 5
+slug: /use/wallets/using-zano-cli-wallet-ubuntu
 ---
 
 # Using a Zano CLI Wallet (Ubuntu)
