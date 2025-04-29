@@ -1,5 +1,6 @@
 ---
 sidebar_position: 8
+slug: /use/locked-balance
 ---
 
 # Locked balance
