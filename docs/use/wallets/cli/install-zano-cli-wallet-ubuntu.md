@@ -1,6 +1,6 @@
 ---
 sidebar_position: 4
-slug: /use/install-zano-cli-wallet-ubuntu
+slug: /use/wallets/install-zano-cli-wallet-ubuntu
 ---
 
 # Install a Zano CLI Wallet (Ubuntu)
