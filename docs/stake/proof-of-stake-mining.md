@@ -67,7 +67,6 @@ Please keep in mind that this is just an estimation and can vary heavily. Simila
 
 You can calculate your estimation manually using the following approach:
 
-\
 First, we need to get the current PoS difficulty, which can be found in the [block explorer](https://explorer.zano.org/). This value is then divided by `1000000000000=10¹²`, which in the Zano network is one coin basis.
 
 Second, we again divide it by 288. This operation lets us take the PoS mining timestamp frame into account. Without further details, this factor provides hash variety in PoS mining and can be somewhere between 256 and 320. It’s reasonable to use the value of 288 here.

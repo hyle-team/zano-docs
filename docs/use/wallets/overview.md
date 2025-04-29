@@ -6,20 +6,24 @@ sidebar_position: 1
 
 ### Desktop Apps
 
-Zano GUI Wallets available for Windows, Mac OS and Linux
+Zano GUI Wallet is available for Windows, Mac OS and Linux
 
 ### Mobile Apps
 
-Zano supports App Store and Play Store apps, for Android we also provide APK
+Zano is available in both App Store and Play Store, for Android we also provide an APK.
 
-### Browser extension
+### Browser Extension
 
-Currently Zano Companion only available for Zarcanum Testnet and works with Testnet Build provided below
+You can use Zano Companion on Chrome (Connects to your desktop wallet)
 
-### Download links
+### Download Links
 
 Available on the [Zano Website](https://new.zano.org/downloads) and [Github](https://github.com/hyle-team/zano/releases)
 
-### Testnet builds and resources
+### Third-Party Wallets
+
+Zano has also been integrated into other multi-coin wallets [available here](https://zano.org/ecosystem/wallets)
+
+### Testnet builds and Resources
 
 For development purposes we provide a pre-built Testnet apps available [Testnet Resources](https://docs.zano.org/docs/build/testnet-resources/testnet-builds) section
