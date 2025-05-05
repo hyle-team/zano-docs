@@ -147,4 +147,4 @@ URL: ```http:://127.0.0.1:11211/json_rpc```
     "status": Status of the call.
 
 ```
-<sub>Auto-doc built with: 2.1.5.397[2872515]</sub>
+<sub>Auto-doc built with: 2.1.6.402[ef0a47c]</sub>

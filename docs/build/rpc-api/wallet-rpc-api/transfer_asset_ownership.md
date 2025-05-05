@@ -1,4 +1,4 @@
-Transfer asset ownership to new public key.
+Transfer asset ownership to a new public key.
 
 URL: ```http:://127.0.0.1:11211/json_rpc```
 ### Request: 
@@ -16,9 +16,9 @@ URL: ```http:://127.0.0.1:11211/json_rpc```
 ```
 ### Request description: 
 ```
-    "asset_id": Own asset id, that would be transfered to someone else
-    "new_owner": Public key of the new owner(default Ed25519 public key, 32 bytes)
-    "new_owner_eth_pub_key": Public key of the new owner(ECDSA public key, 33 bytes) Used only if 'owner' field is empty
+    "asset_id": The ID of the asset, owned by the wallet, that is to be transferred to someone else.
+    "new_owner": Public key of the new owner. Standard Ed25519 public key, 32 bytes.
+    "new_owner_eth_pub_key": Public key of the new owner. ECDSA public key, 33 bytes. Either new_owner or new_owner_eth_pub_key must be specified.
 
 ```
 ### Response: 
@@ -35,7 +35,7 @@ URL: ```http:://127.0.0.1:11211/json_rpc```
 ### Response description: 
 ```
     "status": Status of the call
-    "tx_id": Id of transaction that carries asset transfer ownership operation
+    "tx_id": Id of the transaction that carries asset transfer ownership operation
 
 ```
-<sub>Auto-doc built with: 2.1.5.397[2872515]</sub>
+<sub>Auto-doc built with: 2.1.6.402[ef0a47c]</sub>

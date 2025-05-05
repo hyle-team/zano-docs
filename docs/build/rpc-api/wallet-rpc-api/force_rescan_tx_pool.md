@@ -1,4 +1,4 @@
-Retrieves the cost of registering an alias on the blockchain.
+Force wallet to fetch tx pool from daemon and go through it's transactions
 
 URL: ```http:://127.0.0.1:11211/json_rpc```
 ### Request: 
@@ -6,15 +6,13 @@ URL: ```http:://127.0.0.1:11211/json_rpc```
 {
   "id": 0,
   "jsonrpc": "2.0",
-  "method": "get_alias_reward",
+  "method": "force_rescan_tx_pool",
   "params": {
-    "alias": "zxdya6q6whzwqjkmtcsjpc3ku"
   }
 }
 ```
 ### Request description: 
 ```
-    "alias": The alias name for which the registration cost is being queried.
 
 ```
 ### Response: 
@@ -23,15 +21,13 @@ URL: ```http:://127.0.0.1:11211/json_rpc```
   "id": 0,
   "jsonrpc": "2.0",
   "result": {
-    "reward": 100000000000,
     "status": "OK"
   }
 }
 ```
 ### Response description: 
 ```
-    "reward": The registration cost for the specified alias.
-    "status": Status of the call.
+    "status": Operation status
 
 ```
 <sub>Auto-doc built with: 2.1.6.402[ef0a47c]</sub>
