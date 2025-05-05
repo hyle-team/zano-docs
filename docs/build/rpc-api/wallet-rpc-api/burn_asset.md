@@ -26,9 +26,9 @@ URL: ```http:://127.0.0.1:11211/json_rpc```
 ```
     "asset_id": Id of the asset to burn
     "burn_amount": Amount to burn
-    "native_amount": Optional, if we need this transaction to be seen by particular wallet
-    "point_tx_to_address": Optional, if we need this transaction to be seen by particular wallet
-    "service_entries": Optional, if we need to include service entries for burn transaction
+    "native_amount": [optional] Used when this transaction needs to be visible to a particular wallet.
+    "point_tx_to_address": [optional] Used when this transaction needs to be visible to a particular wallet.
+    "service_entries": [optional] Used when service entries need to be included for a burn transaction.
       "body": Hex-encoded body of the attachment
       "flags": Flags that help wallet to automatically process some properties of the attachment(combination of TX_SERVICE_ATTACHMENT_ENCRYPT_BODY=1, TX_SERVICE_ATTACHMENT_DEFLATE_BODY=2, TX_SERVICE_ATTACHMENT_ENCRYPT_BODY_ISOLATE_AUDITABLE=4,TX_SERVICE_ATTACHMENT_ENCRYPT_ADD_PROOF=8 )
       "instruction": Instruction that make sence for this particular service
@@ -51,4 +51,4 @@ URL: ```http:://127.0.0.1:11211/json_rpc```
     "tx_id": Id of transaction that carries asset burn operation
 
 ```
-<sub>Auto-doc built with: 2.1.5.397[2872515]</sub>
+<sub>Auto-doc built with: 2.1.6.402[ef0a47c]</sub>
