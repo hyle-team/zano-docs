@@ -30,6 +30,6 @@ The comment section will be temporarily stored in the blockchain until passing a
   />
 </div>
 
-![alt alias-registration](../../static/img/use/aliases/alias-registration.png)*<figcaption style={{textAlign: "center" }}>Alias registration</figcaption>*
+![alt alias-registration](/img/use/aliases/alias-registration.png)*<figcaption style={{textAlign: "center" }}>Alias registration</figcaption>*
 
 Aliases can be used for more than just Zano transactions. Think of them as a decentralised address book with universal IDs that can be used for various services based on the Zano platform.
