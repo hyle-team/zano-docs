@@ -27,6 +27,12 @@ Zano app is available for mobile (Android/iOS) and desktop (Windows, Linux and M
 </div>
 ```
 
+:::info
+
+Some antivirus programs do not recognize wallet software and automatically flag it as a virus, resulting in a false positive. In that case, you will need to add zano.exe to your exclusion list.
+
+:::
+
 ### Create new wallet
 
 ![alt createwallet-1](/img/use/gui-wallet/create.png "create-wallet-1")
@@ -43,8 +49,14 @@ When the wallet file is created you can continue with `Create wallet`. This file
 
 ![alt createwallet-4](/img/use/gui-wallet/seedphrase.png "create-wallet-4")
 
-To finalise wallet creation, store the wallet's seed phrase. IMPORTANT: Using the seed phrase, anyone can restore and take full control of the wallet. Keep it in a secure location and avoid unauthorized access to it by any means. Note that you can review the seed phrase later in wallet details menu.
+To finalise wallet creation, store the wallet's seed phrase.
+
+:::danger
+
+IMPORTANT: Using the seed phrase, anyone can restore and take full control of the wallet. Keep it in a secure location and avoid unauthorized access to it by any means. Note that you can review the seed phrase later in the wallet details menu.
+
+:::
 
 ![alt createwallet-5](/img/use/gui-wallet/wallet.png "create-wallet-5")
 
-Now the wallet has been created. You can copy your wallet address and use it to receive ZANO from exchanges, mining pools and other sources.
+Now the wallet has been created. You can copy your wallet address and use it to receive ZANO or Confidential Assets from exchanges, mining pools and other sources.
