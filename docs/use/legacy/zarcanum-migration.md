@@ -1,6 +1,4 @@
 ---
-sidebar_label: ''
-sidebar_position: null
 slug: /use/zarcanum-migration
 ---
 
