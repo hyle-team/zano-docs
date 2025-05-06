@@ -5,13 +5,19 @@ slug: /use/aliases
 
 # Aliases
 
-Each Zano user can register with an alias, for example: @easytouse, a human-readable name associated with a payment address and text comment, which is stored in the blockchain. This alias provides a short, easy-to-remember name rather than a long and confusing string of random characters. Blockchain storage ensures that aliases are protected from being altered or commandeered.
+Each Zano user can register with an alias, for example, @easytouse, a human-readable name associated with a payment address and text comment stored in the blockchain. This alias provides a short, easy-to-remember name rather than a long, confusing string of random characters. Blockchain storage ensures that aliases are protected from being altered.
 
-Each alias is assigned to a particular wallet. Only one alias can be created per wallet. To register an alias choose `Register an alias` from wallet main window.
+Each alias is assigned to a particular wallet. Only one alias can be created per wallet. To register an alias, select `Register an alias` from the wallet main window.
 
-To reduce possibility of phishing we set limitations on alias registrations. Users can use any combination of the lower-case Latin letters a-z and the Arabic numerals 0-9. Additionally, there is a length minimum of 6 characters, and a maximum length of 12.
+To reduce the possibility of phishing, we set limitations on alias registrations. Users can use any combination of the lower-case Latin letters a-z and the Arabic numerals 0-9. Additionally, the length must be a minimum of 6 characters and a maximum of 12.
 
-The comment section will be temporarily stored in the blockchain until passing a checkpoint. For more information on pruning mechanism please refer to the [whitepaper](https://docs.zano.org/docs/whitepaper).\\
+:::note
+
+Aliases shorter than 6 characters can only be issued by the Zano Core Team. Users can win one by participating in our monthly community events.
+
+:::
+
+The comment section will be temporarily stored in the blockchain until it passes a checkpoint. For more information on the pruning mechanism please refer to the [whitepaper](https://docs.zano.org/docs/whitepaper).
 
 <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0 }}>
   <iframe
@@ -30,6 +36,12 @@ The comment section will be temporarily stored in the blockchain until passing a
   />
 </div>
 
-![alt alias-registration](/img/use/aliases/alias-registration.png)*<figcaption style={{textAlign: "center" }}>Alias registration</figcaption>*
+![alt alias-registration](/img/use/wallet-features/aliases/aliascreation.png)*<figcaption style={{textAlign: "center" }}>Alias registration</figcaption>*
 
 Aliases can be used for more than just Zano transactions. Think of them as a decentralised address book with universal IDs that can be used for various services based on the Zano platform.
+
+:::note
+
+You will be able to trade your aliases on a upcoming Alias Auction Platform.
+
+:::
