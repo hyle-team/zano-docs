@@ -3,7 +3,7 @@ sidebar_position: 5
 slug: /use/auditable-wallets.md
 ---
 
-# Auditable wallets
+# Auditable Wallets
 
 ### What is an auditable wallet?
 
