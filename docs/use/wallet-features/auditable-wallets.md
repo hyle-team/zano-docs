@@ -3,13 +3,13 @@ sidebar_position: 5
 slug: /use/auditable-wallets.md
 ---
 
-# Auditable wallets FAQ
+# Auditable wallets
 
 ### What is an auditable wallet?
 
 Auditable is the type of wallet that allows 3rd party to see the balance and transaction history without permission to spend it or interact in any other way.
 
-### How can I tell if wallet is auditable
+### How can I tell if a wallet is auditable
 
 It's a wallet with an address in a special format that starts with "aZx", for instance: aZxawNXAuekCXcnzutthLaPZQxAyaofb59FpzNBSCQb7iT7D1nsaxdTCvK4Xhn6nfuRpqDiNjeUNx2J9KWfTXHmDWNQ85v2bpbi
 
@@ -83,17 +83,11 @@ your wallet again. Your wallet keys is NOT under risk anyway.
 
 Or in GUI wallet:
 
-![alt auditable-wallets-gui-wallet](/img/use/auditable-wallets-faq/auditable-wallets-gui-wallet.png "auditable-wallets-gui-wallet")
+![alt auditable-wallets-gui-wallet](/img/use/wallet-features/auditablewallet.png "auditable-wallets-gui-wallet")
 
-### Are there any restrictions of using auditable wallets?
+### Are there any restrictions on using auditable wallets?
 
 Only one: you cannot use mixins when you send coins from an auditable wallet.
-
-***Obsolete***<br /> The following limitations were effective until hardfork 2:
-
-1. An alias cannot be assigned to an auditable address.
-2. When sending coins from an auditable address the sender address is always hidden.
-3. When sending coins to an auditable address the receiver address is always hidden. Once the blockchain passed hardfork 2 these limitations were removed.
 
 ### Can I use integrated addresses with the auditable feature?
 
@@ -101,4 +95,4 @@ Yes. An integrated address for an auditable wallet can be generated as usual. Su
 
 ### Can I mine PoS with my auditable wallet?
 
-Yes, you can. Also, you can use a corresponding watch-only wallet to monitor your balance without the risk of leaking your spend key. The only tradeoff is you can not use mixins but only directly spend coins from your auditable wallet.
+Yes, you can. Also, you can use a corresponding watch-only wallet to monitor your balance without the risk of leaking your spend key.
