@@ -1,8 +1,9 @@
 ---
-sidebar_position: 8
+sidebar_position: 4
+slug: /use/locked-balance
 ---
 
-# Locked balance
+# Locked Balance
 
 On occasion, you may notice that part of your wallet balance is temporarily locked. The reason behind it is complex, but let us offer a simplified explanation here. For more details, please refer to the [whitepaper](https://docs.zano.org/docs/whitepaper).
 
