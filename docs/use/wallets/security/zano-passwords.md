@@ -14,7 +14,7 @@ When managing Zano wallets, utilizing multiple password types enhances security 
   - If you run your Zano wallet on a remote server for staking, the wallet password protects the wallet file from unauthorized access.
   - When opening your wallet locally on a GUI wallet, the wallet password is required on the first launch. If the master password is enabled, the wallet password will be stored and not required for subsequent launches.
 
-## Seed Phrase Password (Also Known as [Passphrase](/docs/use/seed-phrase))
+## Seed Phrase Password (Also Known as [Passphrase](/docs/use/seed-phrase#passphrase))
 
 - **Purpose:** Adds an additional layer of security.
 - **Use Case:** For paper wallets stored offline, the seed phrase password (or passphrase) ensures that even if someone gains physical access to your Zano wallet, they cannot immediately compromise it.
