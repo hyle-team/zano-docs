@@ -1,6 +1,6 @@
 ---
 sidebar_position: 5
-slug: /use/auditable-wallets.md
+slug: /use/auditable-wallets
 ---
 
 # Auditable Wallets

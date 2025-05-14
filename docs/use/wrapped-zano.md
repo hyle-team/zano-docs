@@ -6,7 +6,7 @@ sidebar_position: 4
 
 Wrapped Zano (WZANO) is an ERC-20 token on the Ethereum blockchain that can be swapped 1:1 for ZANO.
 
-It allows us access to the enormous existing infrastructure that exists around Ethereum and ERC-20 tokens, such as [Verse DEX](https://verse.bitcoin.com/swap/).
+It allows us access to the enormous existing infrastructure that exists around Ethereum and ERC-20 tokens, such as [Verse DEX](https://verse.bitcoin.com/swap/) where a ZANO pair is available.
 
 ## How to wrap ZANO
 
