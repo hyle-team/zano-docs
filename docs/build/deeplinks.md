@@ -4,7 +4,7 @@ slug: /use/deeplinks
 
 # Deeplinks
 
-Based on materials of Matthew Reichardt [me@matthewreichardt.com](mailto\:me@matthewreichardt.com) ([https://github.com/hyle-team/zano/issues/269](https://github.com/hyle-team/zano/issues/269))
+Based on materials of Matthew Reichardt [me@matthewreichardt.com](mailto:me@matthewreichardt.com) ([https://github.com/hyle-team/zano/issues/269](https://github.com/hyle-team/zano/issues/269))
 
 ### Zano URI Scheme
 
