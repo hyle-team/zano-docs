@@ -24,6 +24,8 @@ Zano is a privacy-oriented blockchain from the CryptoNote family, which makes wo
 
 Architecturally, Zano consists of two modules - a **full node(daemon)** and a **wallet**. Both of these modules provide their own RPC API. Therefore, when you set up Zano on your server, you compile the **full node** (make target “**daemon**”, executable name **zanod**) and the console wallet (**simplewallet**), and run both, so that the wallet can connect to the full node through the RPC API via localhost (For security reasons, it is highly recommended to use ONLY your own full node).
 
+<u>Recommended security practice</u>: run the wallet process (simplewallet) on an internal host that **has no Internet connectivity**. The only outbound connection this host should make is to the full‑node RPC service (zanod, port 11211 by default). Keeping the machine that holds your private keys completely isolated from the public network greatly reduces your attack surface and provides a markedly more secure setup.
+
 Thus, the RPC API in Zano is divided into two parts - the DAEMON RPC API and the WALLET RPC API. This is due to the fact that, unlike EVM or Bitcoin networks, you cannot simply request the balance of a specific address from the Zano node. To get the balance of a specific address, you need to know its secret key and perform computationally complex operations. Therefore, there is a process of synchronizing the wallet with the daemon. If you have a wallet created, for example, a year or two ago and you haven't opened it for a long time or have restored it, the synchronization process may take some time. If the wallet was online a few days ago, the synchronization happens quickly - less than a minute.
 
 Zano is a platform where anyone can deploy their own asset, which will have the same privacy features as Zano itself. Such assets are called **Confidential Assets**. Support for Confidential Assets is reflected in the API documentation and in this manual. Each asset has an identifier (**asset_id**), and only this asset_id identify this specific asset. All other attributes of the asset may match similar attributes of other assets
@@ -73,6 +75,10 @@ After the wallet has synchronized, enter the command **show_seed**. First, the w
     [Zano wallet ZxCk74]:
 
 !!! Be sure to save this seed phrase in a secure place. If the seed phrase is lost, the wallet may become impossible to restore, and all assets may be lost.
+
+Once you’ve backed up your seed phrase, you can launch the wallet in server mode for future operations:
+
+    src/simplewallet --wallet-file=custody_wallet.zan --rpc-bind-port=12345 --daemon-address=192.168.1.3:11211
 
 ## Receiving Money with Payment ID
 
