@@ -20,7 +20,7 @@ If someone has your spend secret key, he can spend your coins. Master keys shoul
     `simplewallet --generate-new-wallet=zano_wallet_master`<br/>(zano_wallet_master is wallet's filename and can be changed freely)<br/>
     ii. Type in a password when prompted. An empty new wallet will be created.<br/>
     iii. Open the new wallet again: `simplewallet --offline-mode --wallet-file=zano_wallet_master`<br/>
-    iv. In the wallet console, type the following command:<br/>`save_watch_only zano_wallet_watch_only WATCH_PASSWORD`</br> where WATCH_PASSWORD is the password for the watch-only wallet. You should see: `Watch-only wallet has been stored to zano_wallet_watch_only`<br/>
+    iv. In the wallet console, type the following command:<br/>`save_watch_only zano_wallet_watch_only WATCH_PASSWORD`<br/> where WATCH_PASSWORD is the password for the watch-only wallet. You should see: `Watch-only wallet has been stored to zano_wallet_watch_only`<br/>
     v. Type `exit` to quit simplewallet.<br/>
 
 2. Copy zano_wallet_watch_only file from the secure environment to your production environment where daemons and the hot wallet is supposed to be run.
