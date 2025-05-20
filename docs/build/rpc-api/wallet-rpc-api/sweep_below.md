@@ -50,4 +50,4 @@ URL: ```http:://127.0.0.1:11211/json_rpc```
     "tx_unsigned_hex": Unsigned transaction data in hexadecimal format.
 
 ```
-<sub>Auto-doc built with: 2.1.6.402[ef0a47c]</sub>
+<sub>Auto-doc built with: 2.1.6.404[bafae7b]</sub>

@@ -1,4 +1,4 @@
-Generate integrated address
+Make integrated address from regular address
 
 URL: ```http:://127.0.0.1:11211/json_rpc```
 ### Request: 
@@ -6,15 +6,17 @@ URL: ```http:://127.0.0.1:11211/json_rpc```
 {
   "id": 0,
   "jsonrpc": "2.0",
-  "method": "make_integrated_address",
+  "method": "get_integrated_address",
   "params": {
-    "payment_id": "1dfe5a88ff9effb3"
+    "payment_id": "1dfe5a88ff9effb3",
+    "regular_address": "ZxCSpsGGeJsS8fwvQ4HktDU3qBeauoJTR6j73jAWWZxFXdF7XTbGm4YfS2kXJmAP4Rf5BVsSQ9iZ45XANXEYsrLN2L2W77dH7"
   }
 }
 ```
 ### Request description: 
 ```
     "payment_id": Hex-encoded Payment ID to be associated with the this address. If empty then wallet would generate new payment id using system random library
+    "regular_address": Zano wallet address to be used as a base for integrated address
 
 ```
 ### Response: 
