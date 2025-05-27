@@ -223,6 +223,7 @@ Since Zano is a multi-asset platform, each transaction might contain multiple tr
 IMPORTANT:
 
 - Do not account deposits for transactions that have not reached 10 confirmations. Sometimes the network undergoes reorganisation among the last 2-3 blocks. This is normal, and within this number of confirmations, the transaction sequence may change, including the removal of transactions that previously appeared with 2-3 confirmations. Read the history only until those transactions that got 10 confirmations, when it comes to transactions that haven't mach this number of transactions - re-read **get_recent_txs_and_info2** until you see those transactions in response with 10 confirmations. Make your code fully aware of such situations and re-read history for those transactions.
+- Do not count on **"remote_addresses"** or **"remote_aliases"** fields, as those fields are optional and might be or **might not be present** in transactions, due to privacy nature of transactions.
 - Consider only those **asset_id** that you know, and ignore any others.
 - When depositing an asset, ensure the correct interpretation of the decimal point, as it may differ for each asset. You can request asset details via the DAEMON RPC API [get_asset_info](https://docs.zano.org/docs/build/rpc-api/daemon-rpc-api/get_asset_info/). Native coins have the asset_id d6329b5b1f7c0805b5c345f4957554002a2f557845f64d7645dae0e051a6498a and should always be deposited for.
 - A transaction may contain both incoming and outgoing subtransfers. Check the **is_income** field for each element.
@@ -380,7 +381,8 @@ Response:
 
 It is good practice to check that your balance is sufficient for sending the desired asset before making a transfer; otherwise, there may be an error in sending the transaction. Sometimes, you need to wait up to 10 minutes to gather the required number of confirmations for the change (if the value in the unlocked field is still less than the value in the total field in the balances response). If you received a transaction hash in the “**tx_hash**” field, it means the transaction has been successfully created and accepted by the daemon for relay across the network. Once this transaction is included in a block and starts getting confirmations, you will see it in the results of [get_recent_txs_and_info2](https://docs.zano.org/docs/build/rpc-api/wallet-rpc-api/get_recent_txs_and_info2/) (the **is_income** field will be false).
 
-IMPORTANT: Before sending, be sure to check that the address you are sending to does not belong to your wallet, even if it is an integrated address of another user on your base wallet. You cannot send transactions between users within the same wallet. To check the base wallet address from integrated address, you need to call the WALLET RPC API [split_integrated_address](https://docs.zano.org/docs/build/rpc-api/wallet-rpc-api/split_integrated_address):
+
+**IMPORTANT**: Before sending, be sure to validate address and also check that the address you are sending to does not belong to your wallet, even if it is an integrated address of another user on your base wallet. You cannot send transactions between users within the same wallet. To validate address and check the base wallet address from integrated address, you need to call the WALLET RPC API [split_integrated_address](https://docs.zano.org/docs/build/rpc-api/wallet-rpc-api/split_integrated_address):
 
 ```json
 Request:
@@ -403,9 +405,9 @@ Response:
 }
 ```
 
-You need to check the **standard_address** field and ensure it is different from your own custody wallet. If the fields match, it means an attempt is being made to perform an internal transfer within your own custody, from one user to another. Such internal transactions are typically handled offchain by well-designed services.
+You need to first check that API managed to parse address, if **"standard_address"** is not empty then the address that you passed is valid. You also need to check the **standard_address** field and ensure it is different from your own custody wallet. If the fields match, it means an attempt is being made to perform an internal transfer within your own custody, from one user to another. Such internal transactions are typically handled offchain by well-designed services.
 
-IMPORTANT: Avoid sending to multiple destinations in a single transaction, as there are some limitations. For example, you cannot specify multiple different integrated addresses in multiple destinations for one transaction.
+**IMPORTANT**: Sending to multiple destinations in a single transaction related with some limitations: any **integrated address** should be used **only in single-destination transaction**.
 
 ## Legacy methods
 
