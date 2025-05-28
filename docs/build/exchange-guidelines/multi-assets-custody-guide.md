@@ -10,6 +10,7 @@ sidebar_position: 1
   - [Table of Contents](#table-of-contents)
   - [Introduction](#introduction)
   - [Creating a Wallet](#creating-a-wallet)
+    - [Creating a Wallet from custom seed phrase](#creating-a-wallet-from-custom-seed-phrase)
   - [Seed phrase backup](#seed-phrase-backup)
   - [Receiving Money with Payment ID](#receiving-money-with-payment-id)
   - [Processing Incoming Transactions](#processing-incoming-transactions)
@@ -44,6 +45,12 @@ To create a new wallet, you need to run the following command (you will be promp
     **********************************************************************
 
 A wallet can operate in two modes - command line interface mode, when it is started only with the **--wallet-file** parameter, or RPC server mode, when in addition it has the **--rpc-bind-port=port_number** parameter. When the wallet is in command line mode, you can do various commands to it, such as **transfer** or **deploy_new_asset**, and thus work with the wallet. You can view the list of commands by typing **help** in command line mode.
+
+### Creating a Wallet from custom seed phrase
+If you want generate private keys from manually chosen words, you can pick 24 words from the list of words in this ([source file](https://github.com/hyle-team/zano/blob/master/src/common/mnemonic-encoding.cpp)) (keep in mind that this words are not compatible with bip39). Then you can use simplewallet to extend this seed to standard Zano seed phrase by using "--derive_custom_seed" command line option:
+
+    ~/zano/build # src/simplewallet --derive_custom_seed
+    
 
 ## Seed phrase backup
 
