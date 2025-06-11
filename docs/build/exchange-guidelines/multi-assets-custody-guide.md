@@ -9,6 +9,7 @@ sidebar_position: 1
 - [Exchange integration full guide](#exchange-integration-full-guide)
   - [Table of Contents](#table-of-contents)
   - [Introduction](#introduction)
+  - [Custom transaction generation process and TSS](#custom-transaction-generation-process-and-tss)
   - [Creating a Wallet](#creating-a-wallet)
     - [Creating a Wallet from custom seed phrase](#creating-a-wallet-from-custom-seed-phrase)
   - [Seed phrase backup](#seed-phrase-backup)
@@ -30,6 +31,16 @@ Architecturally, Zano consists of two modules - a **full node(daemon)** and a **
 Thus, the RPC API in Zano is divided into two parts - the DAEMON RPC API and the WALLET RPC API. This is due to the fact that, unlike EVM or Bitcoin networks, you cannot simply request the balance of a specific address from the Zano node. To get the balance of a specific address, you need to know its secret key and perform computationally complex operations. Therefore, there is a process of synchronizing the wallet with the daemon. If you have a wallet created, for example, a year or two ago and you haven't opened it for a long time or have restored it, the synchronization process may take some time. If the wallet was online a few days ago, the synchronization happens quickly - less than a minute.
 
 Zano is a platform where anyone can deploy their own asset, which will have the same privacy features as Zano itself. Such assets are called **Confidential Assets**. Support for Confidential Assets is reflected in the API documentation and in this manual. Each asset has an identifier (**asset_id**), and only this asset_id identify this specific asset. All other attributes of the asset may match similar attributes of other assets
+
+## Custom transaction generation process and TSS
+Some exchanges/custody services have their own frameworks for working with crypto, which implyes custom(manual) building for transactions. This typically works pretty good for non-privacy blockchains, such as Ethereum or Bitcoin with regular ECDSA, but this might be extremely challanging with Zano. As as privacy coin, Zano transaction has quite sophisticated set of proofs and signatures, that is used to secure it. As far as we aware, there is no other implementations of complete process of generating Zano transaction and it's proofs, implemented in languages other than reference implementation in C++ that is used in the wallet codebase. If, for some reason, you still want to implement manual process of creating Zano transaction, please be advised to read this materrials that would help you to understand the math behind this proofs: 
+
+* Original CryptoNote protocol description(basic concepts of ring signatures and ephemeral keys) https://github.com/hyle-team/docs/blob/master/arch/cryptonote_wp_v2.0.pdf
+* Zano original whitepaper(describes the way payload encrypted in tx) https://github.com/hyle-team/docs/blob/master/zano/Zano_WP_latest.pdf
+* Extension of CLSAG that used in Zano signatures:  https://github.com/hyle-team/docs/blob/master/zano/dv-CLSAG-extension/dv-CLSAG-extension.pdf
+* RingCT and Confidential Assets: https://github.com/hyle-team/docs/blob/master/zano/CA_paper/Zano_CA_for_RingCT_and_Zarcanum_v1.1.pdf
+* [optional] Confidential PoS:  https://github.com/hyle-team/docs/blob/master/zano/PoS_with_Hiden_amounts_Zarcanum/Zarcanum-PoS-with-hidden-amounts.pdf
+
 
 ## Creating a Wallet
 
