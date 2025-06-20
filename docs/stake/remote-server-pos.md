@@ -15,8 +15,9 @@ In certain situations, performing Staking/PoS mining without the GUI application
 screen -S session_name
 ```
 
-Learn more about using **screen** [here](https://www.gnu.org/software/screen/manual/screen.html).\
-6\. Next, start the node daemon **zanod** with the following console command:
+Learn more about using **screen** [here](https://www.gnu.org/software/screen/manual/screen.html).
+
+6. Next, start the node daemon **zanod** with the following console command:
 
 ```
 zano_install_path\zanod
@@ -24,13 +25,13 @@ zano_install_path\zanod
 
 NOTE: For MacOS bundle binary (both zanod and simplewallet) located in /Applications/**Zano.app/Contents/MacOS/** folder, ensure you use the correct path to launch the binary.
 
-It's better to wait until the daemon is synchronized. You'll know this has happened when you see the following string in the console output: :
+It's better to wait until the daemon is synchronized. You'll know this has happened when you see the following string in the console output:
 
 ```
 Synchronized set to TRUE
 ```
 
-1. Start simplewallet with PoS mining enabled:
+7. Start simplewallet with PoS mining enabled:
 
 ```
 ./simplewallet --wallet-file=PATH_TO_WALLET_FILE --rpc-bind-port=RPC_PORT_NUMBER --do-pos-mining --deaf 
@@ -46,11 +47,12 @@ Some of the parameters are required, and some are optional. Here's what they mea
 - `--log-level=LOG_LEVEL` (optional) — sets the log level, possible values are from 0 (less verbose) to 4 (extremely verbose). May be useful for debugging. Default is 0;
 - `--log-file=PATH_TO_LOG` (optional) — sets path to the log file. Default is 'simplewallet.log' in the same folder where simplewallet binary is located;
 - `--deaf` (optional) — turns on so called 'deaf mode'. simplewallet's RPC server will reject any requests with error 500. This is useful if you just want to mine PoS and don't want that anyone would be able to do RPCs on your wallet. **Highly recommend**. Default: off;
-- `--pos-mining-reward-address=REWARD_ADDR` (optional) — sets an explicit address for receiving mining rewards. By default, all rewards will be received by the same wallet where staking coins are, so its balance will be gradually increasing. If you use this option, staking coins will be kept in the main wallet (specified by--wallet-file parameter), and mining rewards will be sent to the specified REWARD\_ADDR. In such a case, the balance of the main wallet won't be changing due to the mining process.
 
 Here's a real-world example of the command using recommended options (**don't forget to tailor it to your needs**):
 
 ```
 ../zano/build/src/simplewallet --wallet-file=zw3b --rpc-bind-port=50005 --do-pos-mining --log-level=0 --log-file=/home/user/zano/wallets/zw3b.log
---deaf --pos-mining-reward-address=aZxat4HAWriVQ3enkGcVsrZRdMseAJswG3CSEwTqZS246VsFQ53w26eZstYsu1jWE74Atz9ajLxFnBsVTafncWNH5SMv4zHFaTS
+--deaf 
 ```
+
+Note: If for some reason you would like to recieve staking rewards to separate wallet, you can use `--pos-mining-reward-address=REWARD_ADDR` command line option, it sets an explicit address for receiving mining rewards. By default, all rewards will be received by the same wallet where staking coins are, so its balance will be gradually increasing. If you use this option, staking coins will be kept in the main wallet (specified by--wallet-file parameter), and mining rewards will be sent to the specified REWARD\_ADDR. In such a case, the balance of the main wallet won't be changing due to the mining process.
