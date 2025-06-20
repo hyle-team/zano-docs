@@ -29,7 +29,7 @@ If you're new to staking, start with our **[Getting Started](./getting-started/p
 
 ## Advanced Setup
 
-For more advanced users, our **[Advanced Setup](./advanced-setup/)** section includes:
+For more advanced users, our **[Advanced Setup](./advanced-setup/remote-server-pos.md)** section includes:
 
 - Server/console mode staking
 - Automated staking on system startup
@@ -37,7 +37,7 @@ For more advanced users, our **[Advanced Setup](./advanced-setup/)** section inc
 
 ## Security & Best Practices
 
-Before staking significant amounts, review our **[Security & Best Practices](./security/)** section for:
+Before staking significant amounts, review our **[Security & Best Practices](./security/proof-of-stake-recommendations.md)** section for:
 
 - Hardware requirements and recommendations
 - Security best practices

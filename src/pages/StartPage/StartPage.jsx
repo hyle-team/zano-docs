@@ -44,7 +44,7 @@ const content = [
           "Venture into Zano's dual earning avenues. Learn how to mine Zano efficiently, ensuring optimal returns and network security.",
       },
       {
-        link: "docs/stake/proof-of-stake-mining",
+        link: "docs/stake/overview",
         linkText: "Staking Guide",
         content:
           "Explore the intricacies of staking on the Zano platform. Understand the rewards, risks, and best practices to maximize your stake's potential.",
@@ -88,7 +88,7 @@ const links = [
   },
   {
     name: "Stakers",
-    link: "docs/stake/proof-of-stake-mining",
+    link: "docs/stake/overview",
     Icon: stakeIcon,
   },
 ];

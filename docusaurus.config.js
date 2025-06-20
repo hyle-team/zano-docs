@@ -115,7 +115,7 @@ const config = {
             },
             {
               label: "Stake",
-              to: "/docs/stake/proof-of-stake-mining",
+              to: "/docs/stake/overview",
             },
           ],
         },
