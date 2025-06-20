@@ -6,11 +6,11 @@ sidebar_position: 2
 
 ## Introduction
 
-Staking is an important aspect of Zano, users should be able to effortlessly stake their Zano upon system startup without any intervention, for this we’ll use PM2. PM2 makes it possible to daemonize applications so that they will run in the background as a service.
+Staking is an important aspect of Zano, users should be able to effortlessly stake their Zano upon system startup without any intervention, for this we'll use PM2. PM2 makes it possible to daemonize applications so that they will run in the background as a service.
 
 ## Install Node.js & NPM
 
-We’ll also need Node.js, Installing Node.js and NPM is super easy, simply head over to the download page and download the relevant version, their website allows you to download Node.js the way you want.
+We'll also need Node.js, Installing Node.js and NPM is super easy, simply head over to the download page and download the relevant version, their website allows you to download Node.js the way you want.
 
 ### Windows
 
@@ -36,7 +36,7 @@ sudo apt install nodejs npm
 sudo pacman -S npm nodejs
 ```
 
-You can now type the following to ensure they’re installed and check version:
+You can now type the following to ensure they're installed and check version:
 
 ```
 node -v
@@ -90,7 +90,7 @@ Which will then show you a temp mountpoint, this will look something like:
 
 `/tmp/.mount_zano-lHATDRi`
 
-2.  Navigate to this folder, (you may need to check **‘show hidden files’**) then go to the  `usr > bin` folder and copy zanod and simplewallet to a folder of your choosing.
+2.  Navigate to this folder, (you may need to check **'show hidden files'**) then go to the  `usr > bin` folder and copy zanod and simplewallet to a folder of your choosing.
 
 ![](/img/stake/stake-on-boot-guide/extracted-zano-binaries.png)
 
@@ -153,7 +153,7 @@ The error: `Script not found: ...\start` is expected, you can ignore it.
 #### Linux
 
 ```
-pm2 start simplewallet -- --wallet-file example.wallet  --password <password> --rpc-bind-ip 127.0.0.1  --rpc-bind-port 11212  --daemon-address 127.0.0.1:11211 --do-pos-mining
+pm2 start simplewallet -- --wallet-file example.wallet  --password <password> --rpc-bind-ip 127.0.0.1  --rpc-bind-port 11212  --daemon-address 127.0.0.1:11211 --do-pos-mining
 ```
 
 ### PM2 tips
@@ -255,4 +255,4 @@ pm2 start <ID>
 
 ## Conclusion
 
-You’re now staking your Zano, on system startup automatically.
+You're now staking your Zano, on system startup automatically.
