@@ -86,6 +86,32 @@ To run the Zano Desktop application with the same privacy parameters on Windows,
 
 **Note:** Make sure to adjust the path to `Zano.exe` if you installed the application in a different location.
 
+### macOS Configuration
+
+To run the Zano Desktop application with the same privacy parameters on macOS, use the following command in Terminal:
+
+```bash
+open -a "Zano" --args --hide-my-port --use-only-priority-nodes --add-priority-node="95.217.43.225:11121" --add-priority-node="94.130.137.230:11121" --add-priority-node="95.217.42.247:11121" --add-priority-node="94.130.160.115:11121" --add-priority-node="195.201.107.230:11121" --add-priority-node="95.217.46.49:11121" --add-priority-node="159.69.76.144:11121" --add-priority-node="144.76.183.143:11121"
+```
+
+**Steps to run with privacy parameters:**
+
+1. Open Terminal (Applications > Utilities > Terminal)
+2. Copy and paste the command above
+3. Press Enter to run Zano with the privacy parameters
+
+**Alternative: Create a shell script**
+
+You can also create a shell script for easier access:
+
+1. Open TextEdit and create a new document
+2. Copy and paste the command above
+3. Save the file with a `.command` extension (e.g., `zano-privacy.command`)
+4. Make the file executable by running: `chmod +x zano-privacy.command`
+5. Double-click the `.command` file to run Zano with the privacy parameters
+
+**Note:** Make sure the Zano application is installed in the default Applications folder.
+
 ---
 
 ## General Security Issues
