@@ -85,6 +85,12 @@ const config = {
           label: "Stake",
         },
         {
+          type: "docSidebar",
+          sidebarId: "codeSidebar",
+          position: "left",
+          label: "Code",
+        },        
+        {
           href: "https://github.com/hyle-team/zano",
           label: "GitHub",
           position: "right",
@@ -116,6 +122,10 @@ const config = {
             {
               label: "Stake",
               to: "/docs/stake/overview",
+            },
+            {
+              label: "Code",
+              to: "/docs/code/overview",
             },
           ],
         },
