@@ -17,7 +17,9 @@ Aliases shorter than 6 characters can only be issued by the Zano Core Team. User
 
 :::
 
-The comment section will be temporarily stored in the blockchain until it passes a checkpoint. For more information on the pruning mechanism please refer to the [whitepaper](https://docs.zano.org/docs/whitepaper).
+The comment section will be temporarily stored in the blockchain until it passes a checkpoint. For more information on the pruning mechanism please refer to the [whitepaper](https://github.com/hyle-team/docs/blob/master/zano/Zano_WP_latest.pdf).
+
+
 
 <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0 }}>
   <iframe
