@@ -109,3 +109,18 @@ Watch-only wallet is not able naturally to calculate a balance using only a trac
 To workaround this difficulty watch-only wallet extracts and stores key images for own coins each time a signed transaction from a cold wallet is broadcasted using [submit_transfer](https://docs.zano.org/docs/build/rpc-api/wallet-rpc-api/submit_transfer) RPC. This data is stored locally in .outkey2ki file and it is required to calculate wallet's balance in case of full wallet resync.
 
 It's important to keep this data safe and not to delete watch-only wallet's files (including .outkey2ki). Otherwise, watch-only wallet won't be able to calculate its balance correctly and **the master wallet may be required to be connected online** for recovering funds.
+
+If it's happen that you lost or damaged outkey2ki, try the following:
+1. Make sure you're running build 2.1.8.414 or more recent.
+2. Stop *all* simplewallet processes in *all* environments.
+3. Move watch-only wallet file (`zano_wallet_watch_only`) to the secure environment, where the master wallet file is located.
+4. In the secure environment run the following command:
+
+   `simplewallet --offline-mode --wallet-file=zano_wallet_master --restore-ki-in-wo-wallet=zano_wallet_watch_only`
+6. Enter master wallet's password and watch-only wallet password when prompted.
+7. Make sure it finished successfully.
+8. Move `zano_wallet_watch_only` and `zano_wallet_watch_only.outkey2ki` files to the production environment.
+
+Now watch-only wallet, once fully synced, should show the correct balance.
+
+As a last resort you can always move you master wallet to the production environment, run it online (skipping `--offline-mode`), sync it and transfer all the funds manually to a newly created cold/hot wallet as described above.
