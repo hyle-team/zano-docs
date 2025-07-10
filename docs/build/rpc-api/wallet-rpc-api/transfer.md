@@ -59,7 +59,7 @@ URL: ```http:://127.0.0.1:11211/json_rpc```
   "result": {
     "tx_hash": "01220e8304d46b940a86e383d55ca5887b34f158a7365bbcdd17c5a305814a93",
     "tx_size": 1234,
-    "tx_unsigned_hex": ""
+    "tx_unsigned_hex": "e383d55ca5887b34f158a7365bbcd01220e8304d46b940a86e383d55ca5887b34f158a7365bbcdd17c5a305814a9301220e8304d46b940a86e383d55ca5887b34f158a7365bbcdd17c5a305814a9301220e8304d46b940a86e383d55ca5887b34f158a7365bbcdd17c5a305814a93"
   }
 }
 ```
@@ -67,6 +67,7 @@ URL: ```http:://127.0.0.1:11211/json_rpc```
 ```
     "tx_hash": Has of the generated transaction(if succeded)
     "tx_size": Transaction size in bytes
+    "tx_unsigned_hex": Has unsigned tx blob in hex encoding
 
 ```
-<sub>Auto-doc built with: 2.1.6.404[bafae7b]</sub>
+<sub>Auto-doc built with: 2.1.8.414[d56bf75]</sub>

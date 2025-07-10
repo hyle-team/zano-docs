@@ -27,4 +27,4 @@ URL: ```http:://127.0.0.1:11211/gettransactions```
   "txs_as_hex": Transactions stored as blobs
 
 ```
-<sub>Auto-doc built with: 2.1.6.404[bafae7b]</sub>
+<sub>Auto-doc built with: 2.1.8.414[d56bf75]</sub>

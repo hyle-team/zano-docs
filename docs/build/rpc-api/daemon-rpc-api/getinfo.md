@@ -193,4 +193,4 @@ URL: ```http:://127.0.0.1:11211/json_rpc```
     "white_peerlist_size": Size of the white peer list, which includes addresses of reliable nodes.
 
 ```
-<sub>Auto-doc built with: 2.1.6.404[bafae7b]</sub>
+<sub>Auto-doc built with: 2.1.8.414[d56bf75]</sub>
