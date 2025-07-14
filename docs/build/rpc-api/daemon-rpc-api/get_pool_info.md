@@ -43,4 +43,4 @@ URL: ```http:://127.0.0.1:11211/json_rpc```
     "status": Status code, OK if succeeded.
 
 ```
-<sub>Auto-doc built with: 2.1.8.414[d56bf75]</sub>
+<sub>Auto-doc built with: 2.1.8.415[f287916]</sub>

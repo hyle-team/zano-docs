@@ -36,4 +36,4 @@ URL: ```http:://127.0.0.1:11211/json_rpc```
     "txs_count": Total number of transactions needed to convert all bare outputs .
 
 ```
-<sub>Auto-doc built with: 2.1.8.414[d56bf75]</sub>
+<sub>Auto-doc built with: 2.1.8.415[f287916]</sub>
