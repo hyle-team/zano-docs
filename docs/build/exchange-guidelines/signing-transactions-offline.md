@@ -61,7 +61,7 @@ Unsigned transaction data retrieved in `tx_unsigned_hex` field should be passed 
 
 5. Run then master wallet in RPC mode within a secure environment:<br />`simplewallet --wallet-file=zano_wallet_master --offline-mode --rpc-bind-port=RPC_PORT --rpc-bind-ip=RPC_IP` (note that the master wallet is running in offline mode and doesn't need access to the Internet or Zano daemon).
 
-6. Using RPC [sing_transfer](https://docs.zano.org/docs/build/rpc-api/wallet-rpc-api/sign_transfer) sing the transaction using the master wallet.
+6. Using RPC [sign_transfer](https://docs.zano.org/docs/build/rpc-api/wallet-rpc-api/sign_transfer) sing the transaction using the master wallet.
 
 RPC example:
 
@@ -81,6 +81,7 @@ $ curl http://127.0.0.1:12233/json_rpc -s -H 'content-type:application/json;' --
 ```
 
 A signed transaction retrieved in `tx_signed_hex` field should be passed back to the production environment to be broadcasted by the watch-only hot wallet.
+NOTE: Please, don't sign more then one time the same "tx_unsigned_hex", as you'll get two transactions with different tx_id but spending the same key_images, which will lead to errors. 
 
 7. Using RPC [submit_transfer](https://docs.zano.org/docs/build/rpc-api/wallet-rpc-api/submit_transfer) broadcast the transaction via watch-only wallet.
 
