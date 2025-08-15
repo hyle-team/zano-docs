@@ -44,9 +44,9 @@ Extension for Concise Linkable Spontaneous Anonymous Group Signatures
 
 <https://hyle-team.github.io/docs/zano/dv-CLSAG-extension/dv-CLSAG-extension.pdf>
 
-<br>
-<br>
-<br>
+<br />
+<br />
+<br />
 
 ## Archive: drafts and legacy docs for history and context
 
