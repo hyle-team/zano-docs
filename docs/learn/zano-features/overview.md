@@ -96,7 +96,7 @@ Zano has a variety of wallets available for every type of user:
 
 - Lite Wallet \[IN PROGRESS]: A lightweight, easy-to-use wallet that is ideal for daily usage of small transactions and uses a remote node.
 
-- Third-Party Wallets \[IN PROGRESS]: Zano is getting integrated into various popular multi-asset wallets such as Cake Wallet and the [Bitcoin.com](file:///C:/Users/gonbat/AppData/Local/Temp/msohtmlclip1/01/clip_filelist.xml) wallet.
+- Third-Party Wallets \[IN PROGRESS]: Zano is getting integrated into various popular multi-asset wallets such as Cake Wallet and the [Bitcoin.com](https://bitcoin.com) wallet.
 
 ### Zano Companion
 
