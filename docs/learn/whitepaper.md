@@ -38,11 +38,11 @@ Zarcanum, a Proof-of-Stake scheme for transaction with hidden amounts
 
 <https://hyle-team.github.io/docs/zano/CA_paper/Zano_CA_for_RingCT_and_Zarcanum_v1.1.pdf>
 
-### dv-CLSAG-extension (2024)
+### d/v-CLSAG: Extension for Concise Linkable Spontaneous Anonymous Group Signatures (2024)
 
-Extension for Concise Linkable Spontaneous Anonymous Group Signatures
+Extension for the CLSAG (Concise Linkable Spontaneous Anonymous Group Signatures)
 
-<https://hyle-team.github.io/docs/zano/dv-CLSAG-extension/dv-CLSAG-extension.pdf>
+<https://eprint.iacr.org/2025/1513>
 
 <br />
 <br />
