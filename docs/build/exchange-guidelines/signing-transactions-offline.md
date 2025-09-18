@@ -111,6 +111,8 @@ To workaround this difficulty watch-only wallet extracts and stores key images f
 
 It's important to keep this data safe and not to delete watch-only wallet's files (including .outkey2ki). Otherwise, watch-only wallet won't be able to calculate its balance correctly and **the master wallet may be required to be connected online** for recovering funds.
 
+Please make sure, whenever you shutdown the watch only wallet - **close it gracefull**, use SIGINT, SIGTERM or ctrl+c and let it store the wallet state, or close ["store"] (https://docs.zano.org/docs/build/rpc-api/wallet-rpc-api/store/) wallet RPC method before you kill the simplewallet process.
+
 If it's happen that you lost or damaged outkey2ki, try restoring the watch only wallet:
 ### Restoring the watch only wallet
 
