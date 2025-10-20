@@ -2,29 +2,32 @@
 
 A list of builds for the current Zano testnet
 
-### Windows
-
-INST: https://build.zano.org/builds/zano-win-x64-release-testnet-v2.1.9.431[03ce1e6]-installer.exe
-
-sha256: 89555d172d233ea5ddd17ba47c88b5b764a40c37fafd8e1af4cceae9da7b992a
-
-ZIP: https://build.zano.org/builds/zano-win-x64-release-testnet-v2.1.9.431[03ce1e6].zip
-
-sha256: bec6bf23a85dbd205adeb5cc7d5971dc7f5f487a4330900a023e8fc5b562d11f
-
-### MacOs
-
-https://build.zano.org/builds/zano-macos-x64-release-testnet-v2.1.9.431[03ce1e6].dmg
-
-sha256: 8f429c35ecb90b131be5071e44ac8a48ebb2022185f463a97ee96226315c2089
-
-### Linux
-
-https://build.zano.org/builds/zano-linux-x64-release-testnet-devtools-v2.1.9.431[03ce1e6].AppImage
-
-sha256: 56447e7e919417a663ff30f16a584109ef78a507521606ffc7065a849040e49f
-
-
 ```
-updated at 2025-08-29 01:22 UTC
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+Windows:
+INST: https://build.zano.org/builds/zano-win-x64-release-testnet-v2.1.10.433[653f8b5]-installer.exe
+sha256: d6d3f65db80f563b2049af5107506667e6ae83c854405a1e7ad57a6e42950d1a
+
+ZIP: https://build.zano.org/builds/zano-win-x64-release-testnet-v2.1.10.433[653f8b5].zip
+sha256: bde670d72717fe16dd6475430de1da37a8203cf666a3cfc2d9621e87672ed386
+
+macOS:
+https://build.zano.org/builds/zano-macos-x64-release-testnet-v2.1.10.433[653f8b5].dmg
+sha256: 5e4c3f5c81840153ef52c707bc983a84317a3bd9dbb0b80f2e1aa80062f4fb4e
+
+Linux:
+https://build.zano.org/builds/zano-linux-x64-release-testnet-devtools-v2.1.10.433[653f8b5].AppImage
+sha256: b0fb813854d17b88946f0ea4f2492d2e31d5e711f760031cb9be520324e0b094
+-----BEGIN PGP SIGNATURE-----
+
+iHUEARYKAB0WIQSAlUHSyV95S5huh5+pK4bC95+XGgUCaPZPjwAKCRCpK4bC95+X
+GhNuAP0VGempLCUi42O/d5TDCBB/QxT+arR3UftoMxPNWE/EBQD9Hm7uIO0D002R
+OVyo5Pwp4EHhXiwLXIbLwjIPcHezcQ8=
+=618u
+-----END PGP SIGNATURE-----
+
+updated at 2025-10-20 16:08 UTC
 ```
+
