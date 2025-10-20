@@ -2,7 +2,7 @@
 
 1. Download and install [GnuPG for Windows](https://www.gnupg.org/download/) or [GPGTools for macOS](https://gpgtools.org/). Linux users likely already have gpg installed.
 
-2. Download [Zano Build Signer public key](https://raw.githubusercontent.com/hyle-team/zano/refs/heads/master/utils/gpg/zano_build_signer.asc) from GitHub. You may also check the file history to ensure it hasn't been changed recently (it is normally updated once every 2 years).
+2. Download [Zano Build Signer public key](https://raw.githubusercontent.com/hyle-team/zano/refs/heads/master/utils/gpg/zano_build_signer.asc) from GitHub. You may also check the [file history](https://github.com/hyle-team/zano/commits/master/utils/gpg/zano_build_signer.asc) to ensure it hasn't been changed recently (it is normally updated once every 2 years).
 
 3. Open a terminal (command-line console), then:
 
