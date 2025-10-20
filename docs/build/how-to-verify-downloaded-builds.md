@@ -10,7 +10,7 @@
    ```
    gpg --keyid-format short --with-fingerprint zano_build_signer.asc
    ```
-   You should output similar to this:
+   You should see output similar to this:
    ```
    gpg: WARNING: no command supplied.  Trying to guess what you mean ...
    pub   ed25519/F79F971A 2025-10-20 [SC] [expires: 2027-10-20]
