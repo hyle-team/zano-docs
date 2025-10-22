@@ -19,11 +19,16 @@ Based on materials of Matthew Reichardt [me@matthewreichardt.com](mailto:me@matt
 Example of **send** command:
 
 **zano:action
-=send\&address=ZxCkvE7zhS6JuFE5neAaTtcY8PUT2CwfLZJQWP32jrELB1Vg9oSJyGJDyRWurqX6SXSqxjGz2yrAKaMqmxDa7E8313igosBVT\&comment=Some%20payment\&mixins=11\&hide\_sender=true\&hide\_receiver=true**
+=send&address=ZxCkvE7zhS6JuFE5neAaTtcY8PUT2CwfLZJQWP32jrELB1Vg9oSJyGJDyRWurqX6SXSqxjGz2yrAKaMqmxDa7E8313igosBVT\&comment=Some%20payment**
 
 - address - address of recipient
 - amount - amount of asset to be transfered (in a units with decimal point, like 10.0 coins)
 - asset_id - id of the asset to be transfered
 - comment - comment about payment\[optional]
-- mixins - number of mixins\[optional]
 
+Here is how link would look like in html:
+```html
+<p>
+  <a href="zano:action=send&address=ZxCkvE7zhS6JuFE5neAaTtcY8PUT2CwfLZJQWP32jrELB1Vg9oSJyGJDyRWurqX6SXSqxjGz2yrAKaMqmxDa7E8313igosBVT&amount=0.1&comment=Some%20payment">Zano link</a>
+</p>
+```
