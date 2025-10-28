@@ -6,7 +6,7 @@ Zano Web3 TS is a TypeScript library designed to facilitate interaction with the
 
 Github: https://github.com/hyle-team/zano_web3
 
-Package: https://www.npmjs.com/package/zano_web
+Package: https://www.npmjs.com/package/zano_web3
 
 ## Native Zano Wallet for IOS/Android (C++)
 

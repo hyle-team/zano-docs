@@ -24,7 +24,7 @@ Make sure the daemon is synchronized with the network. It may take up to few hou
 
 ### How to validate an address?
 
-To validate an address you can use [split_integrated_address](https://docs.zano.org/reference/split_integrated_address). It also works with standard addresses (non integrated one)
+To validate an address you can use [split_integrated_address](https://docs.zano.org/docs/build/rpc-api/wallet-rpc-api/split_integrated_address). It also works with standard addresses (non integrated one)
 
 ### How to get all integrated addresses on a wallet?
 
