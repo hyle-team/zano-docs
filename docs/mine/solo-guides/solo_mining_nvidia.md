@@ -36,13 +36,13 @@ nano ZANO-SOLO.sh
 
 Note the contents. They provide the basic instructions for setting up TT-Miner (though they will require slight modifications):
 
-> rem * Your call to start the ZANO stratrum should look like this. You have to replace <YOUR_WALLET_ID>
-> rem * with the address of your ZANO-Wallet
-> 
-> rem zanod.exe --stratum --stratum-miner-address=<YOUR_WALLET_ID> --stratum-bind-port=11555
+> rem \* Your call to start the ZANO stratrum should look like this. You have to replace `<YOUR_WALLET_ID>`
+> rem \* with the address of your ZANO-Wallet
+>
+> rem zanod.exe --stratum --stratum-miner-address=`<YOUR_WALLET_ID>` --stratum-bind-port=11555
 > 
 > rem TT commandline
-> ./TT-Miner -luck -coin ZANO -P <YOUR_WORKER_NAME>@127.0.0.1:11555
+> ./TT-Miner -luck -coin ZANO -P `<YOUR_WORKER_NAME>`@127.0.0.1:11555
 > pause
 
 Exit Nano (`ctl+x`), but leave the terminal and directory open; we'll return to it soon.
@@ -88,7 +88,7 @@ nvcc --version
 
 Once your node is fully synced, stop it (`ctl+c`). In the same terminal, restart `zanod`  with the following flags, taken from the above `ZANO-SOLO.sh` file:
 
-```
+```bash
 ./zanod --stratum --stratum-miner-address=<YOUR_WALLET_ID> --stratum-bind-port=11555
 ```
 

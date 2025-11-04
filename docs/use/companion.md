@@ -8,7 +8,7 @@ Zano Companion is a Metamask-like browser extension that enables authentication 
 
 It's your gateway to the broader Zano ecosystem!
 
-::info
+:::info
 
 Zano Companion is also directly integrated into the Zano Mobile Wallet app. To access it, simply click on "Browser" and navigate to the Zano dApp you wish to use.
 

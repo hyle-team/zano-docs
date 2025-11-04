@@ -1,7 +1,6 @@
-const lightCodeTheme = require("prism-react-renderer/themes/github");
-const darkCodeTheme = require("prism-react-renderer/themes/dracula");
-const math = require("remark-math");
-const katex = require("rehype-katex");
+import {themes as prismThemes} from 'prism-react-renderer';
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
 
 const config = {
   title: "Zano Docs",
@@ -12,7 +11,12 @@ const config = {
   baseUrl: "/",
 
   onBrokenLinks: "throw",
-  onBrokenMarkdownLinks: "warn",
+
+  markdown: {
+    hooks: {
+      onBrokenMarkdownLinks: "warn",
+    },
+  },
 
   i18n: {
     defaultLocale: "en",
@@ -24,12 +28,12 @@ const config = {
       "classic",
       {
         docs: {
-          sidebarPath: require.resolve("./sidebars.js"),
-          remarkPlugins: [math],
-          rehypePlugins: [katex],
+          sidebarPath: './sidebars.js',
+          remarkPlugins: [remarkMath],
+          rehypePlugins: [rehypeKatex],
         },
         theme: {
-          customCss: require.resolve("./src/css/custom.css"),
+          customCss: './src/css/custom.css',
         },
       },
     ],
@@ -192,8 +196,8 @@ const config = {
       copyright: `Copyright © ${new Date().getFullYear()} Zano.org`,
     },
     prism: {
-      theme: lightCodeTheme,
-      darkTheme: darkCodeTheme,
+      theme: prismThemes.github,
+      darkTheme: prismThemes.dracula,
     },
     algolia: {
       appId: 'GZR5BV1JNU',
@@ -203,4 +207,4 @@ const config = {
   },
 };
 
-module.exports = config;
+export default config;

@@ -202,6 +202,4 @@ save = Saves wallet synchronized data
 
 show_seed = Displays secret 24 word phrase used to recover wallet
 
-sweep_below <mixin_count>
-
-<amount_lower_limit> [payment_id]: Tries to transfer all coins with amount below the given limit to the given address
+sweep_below `<mixin_count>` `<amount_lower_limit>` [payment_id]: Tries to transfer all coins with amount below the given limit to the given address
