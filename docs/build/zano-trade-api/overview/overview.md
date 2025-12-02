@@ -6,4 +6,4 @@
 - [Ionic Swaps Overview](https://docs.zano.org/docs/build/confidential-assets/ionic-swaps)
 
 ## Rest API ENDPOINTS
-**Base URL** - https://trade.zano.org
+**Base URL** - https://api.trade.zano.org/
