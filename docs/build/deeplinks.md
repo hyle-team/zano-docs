@@ -11,8 +11,6 @@ Based on materials of Matthew Reichardt [me@matthewreichardt.com](mailto:me@matt
 **action** - type of action requested, supported actions:
 
 - send - simply send coins to given address
-- escrow - create escrow-contract
-- marketplace\_offer\_create - create marketplace offer
 
 ### Action "send"
 
