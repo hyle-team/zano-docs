@@ -42,7 +42,7 @@ Zarcanum, a Proof-of-Stake scheme for transaction with hidden amounts
 
 Extension for the CLSAG (Concise Linkable Spontaneous Anonymous Group Signatures)
 
-[https://eprint.iacr.org/2025/1513](https://eprint.iacr.org/2025/1513)
+[https://eprint.iacr.org/2025/2335](https://eprint.iacr.org/2025/2335)
 
 <br />
 <br />
