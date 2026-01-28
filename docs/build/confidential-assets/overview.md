@@ -6,10 +6,6 @@ sidebar_position: 1
 
 Confidential Assets are privacy tokens with all the features of native Zano coin
 
-:::info
-Currently asset creation is only supported on Zano Testnet and will be brought to mainnet with upcoming Zarcanum hardfork
-:::
-
 Confidential Assets Commands are availabe trough CLI interface (simplewallet)
 
 ### Asset Methods
