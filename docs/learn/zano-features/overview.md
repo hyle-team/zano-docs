@@ -64,7 +64,7 @@ Zano incorporates the world’s first Proof of Stake scheme that enhances tradit
 
 Auditable wallets allow people and organizations to create transparent wallets for situations where we would rather verify than trust. Creating auditable wallets doesn’t affect the privacy of the Zano network in any way.
 
-### Confıdential Assets
+### Confidential Assets
 
 Anyone can easily issue user-creatable privacy tokens on the Zano chain; assets secured by the same mechanisms that make Zano so much more secure than
 
