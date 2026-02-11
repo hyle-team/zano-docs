@@ -9,7 +9,7 @@ Each Zano user can register with an alias, for example, @easytouse, a human-read
 
 Each alias is assigned to a particular wallet. Only one alias can be created per wallet. To register an alias, select `Register an alias` from the wallet main window.
 
-To reduce the possibility of phishing, we set limitations on alias registrations. Users can use any combination of the lower-case Latin letters a-z and the Arabic numerals 0-9. Additionally, the length must be a minimum of 6 characters and a maximum of 12.
+To reduce the possibility of phishing, we set limitations on alias registrations. Users can use any combination of the lower-case Latin letters a-z and the Arabic numerals 0-9. Additionally, the length must be a minimum of 6 characters and a maximum of 25.
 
 :::note
 
