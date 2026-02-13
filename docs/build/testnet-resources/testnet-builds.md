@@ -2,33 +2,32 @@
 
 A list of builds for the current Zano testnet
 
-```
------BEGIN PGP SIGNED MESSAGE-----
+```-----BEGIN PGP SIGNED MESSAGE-----
 Hash: SHA512
 
 Windows:
-INST: https://build.zano.org/builds/zano-win-x64-release-testnet-v2.1.13.445[9f8141c]-installer.exe
-sha256: 33aa314b739128484a9cfc2a570fd5834d685ef75c712c7e64a0d8b482d8b1ab
+INST: https://build.zano.org/builds/zano-win-x64-develop-testnet-v2.2.0.451[651fb6c]-installer.exe
+sha256: 24afafc0b921d14516fcc3fd6b0388b3fff3bf0ba82bc793fef4acd06c810404
 
-ZIP: https://build.zano.org/builds/zano-win-x64-release-testnet-v2.1.13.445[9f8141c].zip
-sha256: 79bb1c5d7e587c6a9ebcbf48eca4038f06d5bcf720e9108dcedac7b4e33e3551
+ZIP: https://build.zano.org/builds/zano-win-x64-develop-testnet-v2.2.0.451[651fb6c].zip
+sha256: 439b77cc2fa8b8bebf7d122074e8b2345057b5fba5f319817ca7f3305825d592
 
 macOS:
-https://build.zano.org/builds/zano-macos-x64-release-testnet-v2.1.13.445[9f8141c].dmg
-sha256: 76f7495eee98c231991d691ce081b14bcaf6e9ff589344109040cf320016075c
+https://build.zano.org/builds/zano-macos-x64-develop-testnet-v2.2.0.451[651fb6c].dmg
+sha256: 44767539befa9375d83651ed6aba7800e9540b4b873eabdf106d2c48f603d38b
 
 Linux:
-https://build.zano.org/builds/zano-linux-x64-release-testnet-devtools-v2.1.13.445[9f8141c].AppImage
-sha256: 33cf1dcbac4f42420b0725273a3066047f0b468c47225812f009ca6f18e30414
+https://build.zano.org/builds/zano-linux-x64-develop-testnet-devtools-v2.2.0.451[651fb6c].AppImage
+sha256: c76e79702766ce84b2e237ae28c559819d0ba8a42ff152a36e856502af5c76e8
 -----BEGIN PGP SIGNATURE-----
 
-iHUEARYKAB0WIQSAlUHSyV95S5huh5+pK4bC95+XGgUCaWDpTgAKCRCpK4bC95+X
-Ggl7AP9EXy81FPrV80T7MhF5tU88hWPVi5noabCbz9hYQQ2yMAD9Fm1JtqxmS5YN
-vp5eBawvOc5+DKLuPW6C7lipwkNUqwU=
-=dzlC
+iHUEARYKAB0WIQSAlUHSyV95S5huh5+pK4bC95+XGgUCaY+l8QAKCRCpK4bC95+X
+GoX8APsEsapF/FjxmG9B/o9U2UW6fCXwz/6EhMLZTe8nqy/lsAD8DQZo6rOqph8m
+g/2Y7IO0YZF0ZarBrXqzXwY2NF43mww=
+=uWSV
 -----END PGP SIGNATURE-----
 
-updated at 2026-01-09 11:57 UTC
+updated at 2026-02-12 22:31 UTC
 ```
 
 [How to verify downloaded builds](https://docs.zano.org/docs/build/how-to-verify-downloaded-builds/)
