@@ -2,7 +2,8 @@
 
 A list of builds for the current Zano testnet
 
-```-----BEGIN PGP SIGNED MESSAGE-----
+```
+-----BEGIN PGP SIGNED MESSAGE-----
 Hash: SHA512
 
 Windows:
