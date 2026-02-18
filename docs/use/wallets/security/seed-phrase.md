@@ -47,3 +47,7 @@ A **passphrase** is an additional layer of security that can be added to your se
 
 - **Loss of Passphrase:** If you forget or lose the passphrase, you will be permanently locked out of your wallet.
 - **Complexity:** Managing an additional passphrase can be cumbersome and may lead to user errors if not handled properly.
+
+## Recovering a Corrupted Seed Phrase
+
+If your seed phrase isn't working during wallet restoration, you may have written down a word incorrectly or swapped two adjacent words. Zano's CLI wallet includes an experimental [Seed Doctor](/docs/use/wallets/seed-doctor) tool that can attempt to fix these common mistakes.
