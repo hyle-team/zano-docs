@@ -148,6 +148,12 @@ Restores wallet from seed
 --restore-wallet
 ```
 
+Attempts to recover a seed phrase with a typo or swapped words (see [Seed Doctor](/docs/use/wallets/seed-doctor))
+
+```
+--seed-doctor
+```
+
 Provides the destination for the log file, relative to the simplewalletbinary
 
 ```
