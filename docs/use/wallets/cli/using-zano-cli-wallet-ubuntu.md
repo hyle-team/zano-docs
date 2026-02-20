@@ -99,7 +99,7 @@ For whatever reason, you may lose your original Zano CLI wallet (your name.walle
 After starting zanod, open another terminal in the simple-wallet directory. Give the following command, supplying your seed phrase:
 
 ```
-./simplewallet --restore-wallet your 24 word seedphrase
+./simplewallet --restore-wallet your 26 word seedphrase
 ```
 
 You will then be asked to reenter the seedphrase, enter the password specific to that seedphrase, and then enter your restored wallet's password.
@@ -206,6 +206,6 @@ resync = Resets all transfers and re-synchronize the wallet
 
 save = Saves wallet synchronized data
 
-show_seed = Displays secret 24 word phrase used to recover wallet
+show_seed = Displays secret 26 word phrase used to recover wallet
 
 sweep_below `<mixin_count>` `<amount_lower_limit>` [payment_id]: Tries to transfer all coins with amount below the given limit to the given address
