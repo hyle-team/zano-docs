@@ -3,209 +3,278 @@ sidebar_position: 5
 slug: /use/wallets/using-zano-cli-wallet-ubuntu
 ---
 
-# Using a Zano CLI Wallet (Ubuntu)
+# Using a Zano CLI Wallet
 
-Open a terminal in the directory with Zanod. Start your node, by giving the command:
+This guide assumes you've already [installed Zano and created a wallet](/docs/use/wallets/install-zano-cli-wallet-ubuntu).
 
-```
+## Starting up
+
+Start the daemon in one terminal:
+
+```bash
 ./zanod
 ```
 
-Open another terminal in the same directory (with simplewallet). Start your wallet, by giving the following command, substituting the name of your wallet:
+Once it's synced, open a second terminal and launch your wallet:
 
-```
+```bash
 ./simplewallet --wallet-file name.wallet
 ```
 
-Enter your password, when prompted. Notice that the wallet displays your receive address after “Opened wallet.” You will use this to fund your new wallet.
+Enter your password when prompted. The wallet will display your receive address after "Opened wallet."
 
-![alt using-zano-ubuntu-enter-password](/img/use/using-zano-cli-wallet-ubuntu/using-zano-ubuntu-enter-password.png "using-zano-ubuntu-enter-password")
+![Open an existing wallet](/img/use/using-zano-cli-wallet-ubuntu/usage-open-wallet.png)
 
-P.S. Zanod (your node) can be left running, if you’ll be transferring funds to your wallet soon. If not, close your wallet by giving the command:
+To close the wallet cleanly, use the `exit` command. The daemon can be left running.
 
-```
-exit
-```
+## Checking your balance
 
-After you’ve funded your new Zano CLI wallet, open it again and check for your funds (steps 1-2 above). If they’re not visible, wait a bit and then give the command:
+If you've received funds but they aren't showing, resynchronize:
 
 ```
 refresh
 ```
 
-Now let’s send some ZANO to a friend!
-
-The command for sending ZANO consists of four important bits of information:
-
-1. the command itself
-2. the number of UTXOs with which to mix yours (between 10-50/maximum available)
-3. the receiving address
-4. the amount of ZANO you wish to send
-
-<br/>
-For example:<br/>
-(1) (2) (3) (4)
-
-![alt using-zano-ubuntu-send-bits-example](/img/use/using-zano-cli-wallet-ubuntu/using-zano-ubuntu-send-bits-example.png "using-zano-ubuntu-send-bits-example")
-
-### Creating an Auditable CLI Wallet
-
-Owing to the inherent privacy of Zano wallets, no third parties can see their content on the blockchain, as with other cryptocurrencies with transparent ledgers.
-
-There are instances, however, in which a user may want, or even need, the balance and transaction history of a wallet to be visible to a third-party (e.g., a public foundation). In such a case, one can use an Zano auditable CLI wallet (the auditable wallets are currently only available as CLI).
-
-For further information on the auditable wallet, see https://docs.zano.org/docs/auditable-wallets
-
-Give the following command, substituting "name":
+To see your balance:
 
 ```
+balance
+```
+
+To see balances for all assets (ZANO, confidential assets, etc.):
+
+```
+balance raw
+```
+
+![Check balance](/img/use/using-zano-cli-wallet-ubuntu/usage-balance.png)
+
+## Sending ZANO
+
+The `transfer` command takes a mixin count, destination address, and amount:
+
+```
+transfer <mixin_count> <address> <amount>
+```
+
+- **mixin_count**: the number of decoy outputs mixed with yours for privacy. Use **15** for standard wallets, **0** for auditable wallets.
+- **address**: the recipient's Zano address (starts with `Zx` or `aZx`)
+- **amount**: the amount of ZANO to send
+
+Example — send 10 ZANO:
+
+```
+transfer 15 ZxD4wSgHgE5TRVHQRbPKNthSpNSJoQp6DPLNaL4f3YT5dDQarAEHB2bVroPWhkCD59GDfVDjBBHmgLd2M1P92h5c21KwPZqg 10
+```
+
+You can send to multiple recipients in one transaction:
+
+```
+transfer 15 <address_1> <amount_1> <address_2> <amount_2>
+```
+
+An optional **payment_id** can be appended at the end for services that require it.
+
+![Send ZANO](/img/use/using-zano-cli-wallet-ubuntu/usage-transfer.png)
+
+### Sending assets
+
+To send a confidential asset other than ZANO, prefix the address with the asset ID:
+
+```
+transfer 15 <asset_id>:<address> <amount>
+```
+
+## Receiving ZANO
+
+Your receive address is shown when the wallet opens, or at any time with:
+
+```
+address
+```
+
+To generate an integrated address with an embedded payment ID (useful for exchanges or services):
+
+```
+integrated_address
+```
+
+Or with a specific payment ID:
+
+```
+integrated_address <payment_id>
+```
+
+## Transaction history
+
+View recent transactions (last 100 by default):
+
+```
+list_recent_transfers
+```
+
+With offset and count:
+
+```
+list_recent_transfers <offset> <count>
+```
+
+Export transaction history to CSV:
+
+```
+export_history
+```
+
+Export recent transfers as JSON:
+
+```
+export_recent_transfers
+```
+
+## Restoring a wallet from seed
+
+If you've lost your wallet file or password, you can restore it using your seed phrase.
+
+Start the daemon, then in another terminal:
+
+```bash
+./simplewallet --restore-wallet name.wallet
+```
+
+You'll be prompted to create a password for the restored wallet file, then enter your seed phrase. Current wallets use 26-word seeds; older wallets may have 24 or 25 words. If the seed was secured with a [passphrase](/docs/use/seed-phrase#passphrase), you'll need that too.
+
+![Restore wallet from seed](/img/use/using-zano-cli-wallet-ubuntu/usage-restore-wallet.png)
+
+If your seed phrase has a typo or swapped words, try the [Seed Doctor](/docs/use/wallets/seed-doctor) tool:
+
+```bash
+./simplewallet --seed-doctor
+```
+
+## Auditable wallets
+
+Zano wallets are private by default — no third party can see balances or transactions on the blockchain. An **auditable wallet** lets a third party see your balances and transactions (e.g., for a public foundation or compliance).
+
+For more details, see the [Auditable Wallets](/docs/use/auditable-wallets) page.
+
+### Create an auditable wallet
+
+```bash
 ./simplewallet --generate-new-auditable-wallet name.wallet
 ```
 
-When prompted, enter your new password, preferably generated from a password generator.
+Set a password when prompted. Note that auditable wallet addresses start with `aZx` (standard wallets start with `Zx`).
 
-![alt using-zano-ubuntu-enter-new-password](/img/use/using-zano-cli-wallet-ubuntu/using-zano-ubuntu-enter-new-password.png "using-zano-ubuntu-enter-new-password")
+![Create an auditable wallet](/img/use/using-zano-cli-wallet-ubuntu/usage-auditable-wallet.png)
 
-You now have an auditable CLI. Anyone to whom you provide the tracking seed will be able to see the wallet's balance and transaction history.
+### Get the tracking seed
 
-If you ever need to retrieve the tracking seed, simply open the wallet and give the following command:
+Open the auditable wallet and run:
 
 ```
 tracking_seed
 ```
 
-![alt using-zano-ubuntu-tracking-seed](/img/use/using-zano-cli-wallet-ubuntu/using-zano-ubuntu-tracking-seed.png "using-zano-ubuntu-tracking-seed")
+Share this tracking seed with anyone who needs to audit the wallet. They can restore a read-only copy using `--restore-wallet` and entering the tracking seed instead of a seed phrase.
 
-Now, we must get our seed phrase, in case we ever need to restore our auditable CLI wallet. Within the wallet, give the command:
+![Get tracking seed](/img/use/using-zano-cli-wallet-ubuntu/usage-tracking-seed.png)
+
+### Back up the seed phrase
+
+Just like a standard wallet:
 
 ```
 show_seed
 ```
 
-Again, when prompted, supply and confirm another password, specific to the seed itself.
+## Watch-only wallets
 
-![alt using-zano-ubuntu-show-seed](/img/use/using-zano-cli-wallet-ubuntu/using-zano-ubuntu-show-seed.png "using-zano-ubuntu-show-seed")
-
-Lastly, note that the address of an auditable wallet always begins with an initial "a", in contrast to a standard wallet, which always begins with "Zx":
+A watch-only wallet lets someone view your wallet without being able to spend from it. Open the wallet you want to create a watch-only copy of, then:
 
 ```
-aZxazX8e7rgRdRgrukJnQ3US3P81jas2TZfY7tz99Hab7yUyB8rAGkAhoHH3jrBpSBJP8PyrU3YsHb7HRtmXk4CjeYvjCHVPU3g
+save_watch_only <filename> <password>
 ```
 
-### Restoring a CLI Wallet from Seed
-
-For whatever reason, you may lose your original Zano CLI wallet (your name.wallet file) or its password. All is not lost, if you safeguarded your seed.
-
-After starting zanod, open another terminal in the simple-wallet directory. Give the following command, supplying your seed phrase:
+Example:
 
 ```
-./simplewallet --restore-wallet your 26 word seedphrase
+save_watch_only mywallet_watchonly.wallet mypassword
 ```
 
-You will then be asked to reenter the seedphrase, enter the password specific to that seedphrase, and then enter your restored wallet's password.
+## PoS staking
 
-![alt using-zano-ubuntu-restore-wallet](/img/use/using-zano-cli-wallet-ubuntu/using-zano-ubuntu-restore-wallet.png "using-zano-ubuntu-restore-wallet")
+You can stake ZANO directly from the CLI wallet by launching it with the `--do-pos-mining` flag:
 
-### Creating a Watch-Only CLI Wallet
-
-If you wish to allow someone to merely view your wallet, without being able to spend from it, you'll create a watch-only wallet. Open the wallet for which you wish to generate a watch-only wallet. Within the console, give the command, substituting the name of, and new password for, your new watch-only wallet:
-
-```
-save_watch_only new_name.wallet password_for_wallet
+```bash
+./simplewallet --wallet-file name.wallet --do-pos-mining
 ```
 
-![alt using-zano-ubuntu-watch-only](/img/use/using-zano-cli-wallet-ubuntu/using-zano-ubuntu-watch-only.png "using-zano-ubuntu-watch-only")
+To send staking rewards to a different address:
 
-### Other Useful in-Terminal Flags
-
-To skip supplying your password when opening wallet
-
-```
---password arg
+```bash
+./simplewallet --wallet-file name.wallet --do-pos-mining --pos-mining-reward-address <address>
 ```
 
-Use daemon instance at : for changing default host and port
+For an automated staking setup with PM2, see [Stake Zano on Boot](/docs/stake/advanced-setup/stake-zano-on-boot).
 
-```
---daemon-address arg
-```
+![PoS staking](/img/use/using-zano-cli-wallet-ubuntu/usage-staking.png)
 
-Prevents connecting to Zanod (daemon) for working offline (e.g., for cold-signing)
+## Command-line flags
 
-```
---offline-mode
-```
+These flags are passed when launching simplewallet.
 
-Disables Tor from running with your wallet; this may be necessary if the Tor network itself is down.
+| Flag | Description |
+|------|-------------|
+| `--wallet-file <file>` | Open an existing wallet |
+| `--generate-new-wallet <file>` | Create a new standard wallet |
+| `--generate-new-auditable-wallet <file>` | Create a new auditable wallet |
+| `--restore-wallet <file>` | Restore a wallet from seed phrase or tracking seed |
+| `--password <pass>` | Supply wallet password (skip interactive prompt) |
+| `--daemon-address <host>:<port>` | Connect to a specific daemon (local or [public node](/docs/build/public-nodes)) |
+| `--offline-mode` | Don't connect to the daemon (for [cold-signing](/docs/build/exchange-guidelines/signing-transactions-offline)) |
+| `--do-pos-mining` | Enable PoS staking |
+| `--pos-mining-reward-address <addr>` | Send staking rewards to a different address |
+| `--rpc-bind-port <port>` | Run wallet as an RPC server on this port |
+| `--rpc-bind-ip <ip>` | Bind RPC server to this IP (default: 127.0.0.1) |
+| `--jwt-secret <secret>` | Enable JWT authentication for RPC |
+| `--disable-tor-relay` | Disable Tor relay (may help if Tor network is down) |
+| `--seed-doctor` | Attempt to recover a broken seed phrase (see [Seed Doctor](/docs/use/wallets/seed-doctor)) |
+| `--derive_custom_seed` | Derive a seed from custom 24 words (advanced) |
+| `--no-refresh` | Don't sync the wallet on startup |
+| `--log-file <path>` | Set log file location |
+| `--log-level <0-4>` | Set log verbosity |
+| `--deaf` | Ignore all RPC commands (safe PoS mining mode) |
+| `--command <cmd>` | Execute a wallet command non-interactively |
 
-```
---disable-tor-relay
-```
+## In-wallet commands
 
-Restores wallet from seed
+These commands are used inside the wallet console after opening.
 
-```
---restore-wallet
-```
-
-Attempts to recover a seed phrase with a typo or swapped words (see [Seed Doctor](/docs/use/wallets/seed-doctor))
-
-```
---seed-doctor
-```
-
-Provides the destination for the log file, relative to the simplewalletbinary
-
-```
---log-file arg
-```
-
-Sets the level of detail for the log
-
-```
---log-level arg
-```
-
-Sets the level of detail for the log (same effect as above)
-
-```
---set-log arg
-```
-
-Generates a new wallet that is auditable by a third party
-
-```
---generate-new-auditable-wallet
-```
-
-And finally, to run any of the following commands outside of the wallet:
-
-```
---command arg
-```
-
-**Other Useful in-Wallet Commands**
-
-address = Shows current wallet public address
-
-balance = Shows current wallet balance
-
-exit = Closes the wallet
-
-export_history [filename needed?] = Exports tx history into a CSV file
-
-export_recent_transfers = Writes recent transfer txs in json to wallet_recent_transfers.txt (in Zano directory)
-
-help = Shows a list of flags and commands
-
-list_recent_transfers = Shows recent maximum 1000 sent amounts, offset default = 0, count default = 100
-
-refresh = Resynchronize transactions and balance
-
-resync = Resets all transfers and re-synchronize the wallet
-
-save = Saves wallet synchronized data
-
-show_seed = Displays secret 26 word phrase used to recover wallet
-
-sweep_below `<mixin_count>` `<amount_lower_limit>` [payment_id]: Tries to transfer all coins with amount below the given limit to the given address
+| Command | Description |
+|---------|-------------|
+| `address` | Show wallet public address |
+| `balance` | Show balance (`balance raw` for all assets) |
+| `refresh` | Resynchronize transactions and balance |
+| `resync` | Reset all transfers and re-synchronize from scratch |
+| `save` | Save wallet state |
+| `exit` | Close the wallet |
+| `help` | Show all available commands |
+| `transfer` | `transfer <mixin> <addr> <amount> [payment_id]` |
+| `list_recent_transfers` | `[offset] [count]` — show recent transactions (max 1000) |
+| `list_outputs` / `lo` | `[spent\|unspent] [ticker=ZANO]` — list UTXOs |
+| `show_seed` | Display seed recovery phrase (26 words for current wallets) |
+| `spendkey` | Display secret spend key |
+| `viewkey` | Display secret view key |
+| `tracking_seed` | Display tracking seed (auditable wallets) |
+| `save_watch_only` | `<file> <password>` — export a watch-only wallet |
+| `integrated_address` | `[payment_id]` — generate or decode an integrated address |
+| `show_staking_history` | `[days]` — show PoS staking rewards |
+| `export_history` | Export transaction history to CSV |
+| `export_recent_transfers` | Export recent transfers as JSON |
+| `sweep_below` | `<mixin> <address> <amount_limit> [payment_id]` — consolidate small outputs |
+| `sweep_bare_outs` | Transfer all bare (non-ZC) outputs to self |
+| `set_log` | `<level>` — change log verbosity (0-4) |
+| `deploy_new_asset` | `<json_file>` — deploy a new confidential asset |
+| `emit_asset` | `<asset_id> <amount>` — mint more of an asset you own |
+| `burn_asset` | `<asset_id> <amount>` — burn asset tokens |
+| `check_all_tx_keys` | Verify one-time secret keys for all sent transactions |

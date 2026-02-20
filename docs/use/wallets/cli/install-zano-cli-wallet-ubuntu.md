@@ -3,116 +3,121 @@ sidebar_position: 4
 slug: /use/wallets/install-zano-cli-wallet-ubuntu
 ---
 
-# Install a Zano CLI Wallet (Ubuntu)
+# Install a Zano CLI Wallet (Linux)
 
-**Step 1**
+Download Zano, extract the CLI binaries, sync the blockchain, and create your first wallet.
 
-Go to the official site: https://zano.org and navigate to the downloads section
+## 1. Download
 
-**Step 2**
-
-Download Linux (Ubuntu 16.04+) CLI Wallet
-
-![alt install-zano-cli-wallet-step-3](/img/use/install-zano-cli-wallet-ubuntu/install-zano-cli-wallet-step-3.png "install-zano-cli-wallet-step-3")
-
-**Step 3**
-
-Right click the file and select Properties
-
-![alt install-zano-cli-wallet-step-4](/img/use/install-zano-cli-wallet-ubuntu/install-zano-cli-wallet-step-4.png "install-zano-cli-wallet-step-4")
-
-**Step 4**
-
-Copy the file name
-
-![alt install-zano-cli-wallet-step-5](/img/use/install-zano-cli-wallet-ubuntu/install-zano-cli-wallet-step-5.png "install-zano-cli-wallet-step-5")
-
-**Step 5**
-
-Open a terminal in this directory & validate the authenticity of the file by running a checksum (XXX represents your version):
+Go to [zano.org](https://zano.org) and navigate to the downloads section. Download the Linux release — it's distributed as an **AppImage** file:
 
 ```
-sha256sum zano-linux-x64-v<XXX>.tar.bz2
+zano-linux-x64-release-v<VERSION>[<hash>].AppImage
 ```
 
-(Results should match release notes from Download page)
+## 2. Verify the download
 
-![alt install-zano-cli-wallet-step-6-1](/img/use/install-zano-cli-wallet-ubuntu/install-zano-cli-wallet-step-6-1.png "install-zano-cli-wallet-step-6-1")
-![alt install-zano-cli-wallet-step-6-2](/img/use/install-zano-cli-wallet-ubuntu/install-zano-cli-wallet-step-6-2.png "install-zano-cli-wallet-step-6-2")
+Open a terminal in the download directory and run a checksum against the file:
 
-**Step 6**
-
-If checksums match, decompress & extract the .tar.bz2 file:
-
-```
-tar -xvjf zano-linux-x64-release-devtools-v1.5.0.143[336fac2].tar.bz2
+```bash
+sha256sum zano-linux-x64-release-v*.AppImage
 ```
 
-![alt install-zano-cli-wallet-step-7](/img/use/install-zano-cli-wallet-ubuntu/install-zano-cli-wallet-step-7.png "install-zano-cli-wallet-step-7")
+Compare the output against the SHA256 hash published in the [release notes](https://github.com/hyle-team/zano/releases). If they don't match, re-download the file.
 
-**Steps 7-9**
+## 3. Extract the CLI binaries
 
-1. Delete your original .tar.bz2 file
-2. Move the Zano folder to a location of your choice
-3. Within the Zano directory, open a terminal and run the daemon to start the node and download the blockchain:
+The AppImage contains both the GUI wallet and CLI tools. To extract the CLI binaries:
+
+```bash
+chmod +x zano-linux-x64-release-v*.AppImage
+./zano-linux-x64-release-v*.AppImage --appimage-extract
+```
+
+This creates a `squashfs-root/` directory. The CLI binaries you need are inside:
 
 ```
+squashfs-root/usr/bin/zanod          # the daemon (node)
+squashfs-root/usr/bin/simplewallet   # the CLI wallet
+```
+
+Move them to a directory of your choice:
+
+```bash
+mkdir -p ~/zano
+cp squashfs-root/usr/bin/zanod squashfs-root/usr/bin/simplewallet ~/zano/
+```
+
+You can delete `squashfs-root/` after copying the binaries.
+
+![Extract CLI binaries from AppImage](/img/use/install-zano-cli-wallet-ubuntu/install-extract-appimage.png)
+
+## 4. Start the daemon
+
+The daemon (`zanod`) connects to the Zano network and downloads the blockchain. Open a terminal in your Zano directory and run:
+
+```bash
 ./zanod
 ```
 
-![alt install-zano-cli-wallet-step-8-10-1](/img/use/install-zano-cli-wallet-ubuntu/install-zano-cli-wallet-step-8-10-1.png "install-zano-cli-wallet-step-8-10-1")
-![alt install-zano-cli-wallet-step-8-10-2](/img/use/install-zano-cli-wallet-ubuntu/install-zano-cli-wallet-step-8-10-2.png "install-zano-cli-wallet-step-8-10-2")
+Wait for the blockchain to fully sync — this can take a few hours on the first run, depending on your connection speed. Keep the daemon running; you'll need it for the next step.
 
-**Step 11**
+![Starting the daemon](/img/use/install-zano-cli-wallet-ubuntu/install-zanod-sync.png)
 
-Wait for the blockchain to download and sync. This may take quite a few hours, depending on your download speed. And leave the daemon running! We’ll need that to create our new wallet.
+:::tip Skip the sync with a public node
+If you don't want to download the full blockchain, you can connect your wallet directly to a public node instead. Skip to step 5 and add `--daemon-address` when opening your wallet:
 
-![alt install-zano-cli-wallet-step-11](/img/use/install-zano-cli-wallet-ubuntu/install-zano-cli-wallet-step-11.png "install-zano-cli-wallet-step-11")
-
-**Step 12**
-
-Once sync is complete, open another terminal in the Zano directory with the simplewalletbinary—that's our CLI wallet executable. Give command:
-
-```
-./simplewallet --generate-new-wallet=name.wallet
+```bash
+./simplewallet --generate-new-wallet name.wallet --daemon-address 37.27.100.59:10500
 ```
 
-Replace “name” with your new wallet’s name, e.g.,:
+See [Public Nodes](/docs/build/public-nodes) for available endpoints.
+:::
 
-```
-./simplewallet --generate-new-wallet=zanocli.wallet
-```
+## 5. Create a new wallet
 
-![alt install-zano-cli-wallet-step-12](/img/use/install-zano-cli-wallet-ubuntu/install-zano-cli-wallet-step-12.png "install-zano-cli-wallet-step-12")
+Once the daemon is synced (or if you're using a public node), open a new terminal in the same directory:
 
-**Step 13**
-
-When asked, enter a password for your wallet. You should use a password generator, found in password managers such as KeePass.
-
-![alt install-zano-cli-wallet-step-13](/img/use/install-zano-cli-wallet-ubuntu/install-zano-cli-wallet-step-13.png "install-zano-cli-wallet-step-13")
-
-**Steps 14-15**
-
-14. To open your new wallet, give the following command in the same terminal (again, substituting "name"):
-
-```
-./simplewallet --wallet-file name.wallet
+```bash
+./simplewallet --generate-new-wallet name.wallet
 ```
 
-15. Enter your password, when prompted. Notice that the wallet displays your receive address after “Opened wallet.” You will use this to fund your new wallet.
+Replace `name` with whatever you'd like to call your wallet (e.g., `mywallet.wallet`).
 
-![alt install-zano-cli-wallet-step-15](/img/use/install-zano-cli-wallet-ubuntu/install-zano-cli-wallet-step-15.png "install-zano-cli-wallet-step-15")
+You'll be prompted to create a password. Use a strong one — a password manager like KeePass or Bitwarden is recommended.
 
-**Steps 16-17**
+After the password is set, the wallet will display your receive address (starts with `Zx`). This is the address you'll use to receive ZANO.
 
-16. Now we must get our wallet’s seed phrase, as well as set an additional password for the seed itself. Give the command:
+![Create a new wallet](/img/use/install-zano-cli-wallet-ubuntu/install-generate-wallet.png)
+
+## 6. Back up your seed phrase
+
+Your seed phrase is the only way to recover your wallet if you lose the wallet file or forget the password.
+
+Inside the wallet console, run:
 
 ```
 show_seed
 ```
 
-17. Again, when prompted provide a password for the seed phrase you’re about to get. Confirm the password, and be sure to save both it and your seed phrase!!
+You'll be prompted for your wallet password, then asked to set a **seed password** (also called a [passphrase](/docs/use/seed-phrase#passphrase)). This is optional — if you set one, you'll need both the seed phrase and the passphrase to restore the wallet.
 
-![alt install-zano-cli-wallet-step-17](/img/use/install-zano-cli-wallet-ubuntu/install-zano-cli-wallet-step-17.png "install-zano-cli-wallet-step-17")
+The wallet will display your **seed phrase** (26 words for current wallets). Write it down and store it somewhere safe and offline.
 
-**You've successfully installed your new Zano Wallet!**
+![Back up your seed phrase](/img/use/install-zano-cli-wallet-ubuntu/install-show-seed.png)
+
+:::warning
+Anyone with access to your seed phrase (and passphrase, if set) can take full control of your wallet. Never share it, never store it digitally in plain text.
+:::
+
+## 7. Open an existing wallet
+
+To reopen your wallet in the future:
+
+```bash
+./simplewallet --wallet-file name.wallet
+```
+
+Enter your password when prompted.
+
+**You're done.** Head over to [Using a Zano CLI Wallet](/docs/use/wallets/using-zano-cli-wallet-ubuntu) for sending, receiving, and more advanced operations.
