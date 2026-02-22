@@ -16,29 +16,29 @@ You can perform Ionic Swaps on [Zano Trade](/docs/use/zano-trade), which provide
 
 ## Create a Swap Proposal
 
-On the official Zano Desktop and Mobile apps, open your wallet, locate and select the **P2P Swap** button.
+On the official Zano Desktop app, open your wallet and select the **Swap** tab.
 
-![P2P Swap button](/img/use/wallet-features/ionic-swaps/2.7.1.wallet_swap.png)
+![Swap tab](/img/use/wallet-features/ionic-swaps/2.7.1.wallet_swap.png)
 
 1. Click the **+** or **Create Swap** button to create a new swap proposal.
 
 2. Fill in the swap details:
-   - **Send**: Select the asset and specify the amount you wish to sell.
-   - **Address**: Enter the wallet address or alias of the counterparty you wish to trade with.
-   - **Receive**: Select the asset and specify the amount you wish to receive in return.
-   - **Expiration Time** *(desktop only)*: Set when the swap proposal expires.
+   - **Sending**: Select the asset and specify the amount you wish to sell.
+   - **Receiver address**: Enter the wallet address or alias of the counterparty you wish to trade with.
+   - **Receiving**: Select the asset and specify the amount you wish to receive in return.
+   - **Expiration Time**: Set when the swap proposal expires.
 
 ![Creating a swap proposal](/img/use/wallet-features/ionic-swaps/2.7.3.wallet_create-swap.png)
 
 :::note
 
-If your asset does not appear in the selection list, you will need to whitelist it first ([mobile](https://youtu.be/w8sLT7cJRq0) | [desktop](https://youtu.be/pGRDO2999IE)).
+If your asset does not appear in the selection list, you will need to [whitelist it first](https://youtu.be/pGRDO2999IE).
 
 :::
 
 3. Click **Create Proposal**. A unique swap proposal code will be generated.
 
-4. Share this code with your trading partner using any messaging application.
+4. Use the **Copy** button to copy the swap proposal code and share it with your trading partner using any messaging application.
 
 ![Generated swap proposal hex](/img/use/wallet-features/ionic-swaps/2.7.4.wallet_swap-proposal-hex.png)
 
@@ -60,9 +60,9 @@ You can "cancel" a proposal at any time by moving your funds to another wallet.
 
 Once you receive a swap proposal code from your trading partner:
 
-1. Open your wallet and locate the **P2P Swap** button.
+1. Open your wallet and select the **Swap** tab.
 
-2. Select **Confirm Swap** or **Accept Swap**.
+2. Select **Confirm Swap**.
 
 3. Paste the proposal code you received.
 
@@ -70,6 +70,8 @@ Once you receive a swap proposal code from your trading partner:
 
 4. Verify the swap conditions (assets and amounts) are correct.
 
-5. Click **Accept Proposal** to complete the swap.
+5. Click **Accept Proposal** to submit the swap to the blockchain.
 
-![On going swap](/img/use/wallet-features/ionic-swaps/2.7.2.wallet_swap.png)
+Once accepted, the swap will be processed on-chain. You can monitor its progress in the **Swap** tab, where it will appear as an ongoing swap until the transaction is confirmed.
+
+![Ongoing swap](/img/use/wallet-features/ionic-swaps/2.7.2.wallet_swap.png)
