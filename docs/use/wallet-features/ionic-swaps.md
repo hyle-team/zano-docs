@@ -24,8 +24,8 @@ On the official Zano Desktop app, open your wallet and select the **Swap** tab.
 
 2. Fill in the swap details:
    - **Sending**: Select the asset and specify the amount you wish to sell.
-   - **Receiver address**: Enter the wallet address or alias of the counterparty you wish to trade with.
    - **Receiving**: Select the asset and specify the amount you wish to receive in return.
+   - **Receiver address**: Enter the wallet address or alias of the counterparty you wish to trade with.
    - **Expiration Time**: Set when the swap proposal expires.
 
 ![Creating a swap proposal](/img/use/wallet-features/ionic-swaps/2.7.3.wallet_create-swap.png)
