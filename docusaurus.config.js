@@ -7,8 +7,8 @@ const config = {
   tagline: "Blockchain privacy for mass adoption",
   favicon: "img/favicon.ico",
 
-  url: "https://docs.zano.org",
-  baseUrl: "/",
+  url: process.env.URL || "https://docs.zano.org",
+  baseUrl: process.env.BASE_URL || "/",
 
   onBrokenLinks: "throw",
 
