@@ -7,28 +7,28 @@ A list of builds for the current Zano testnet
 Hash: SHA512
 
 Windows:
-INST: https://build.zano.org/builds/zano-win-x64-develop-testnet-v2.2.0.455[2edace9]-installer.exe
-sha256: e5351e1078513563ccb316acba06a6099bba9c3de471c1f8179c60770df5daf7
+INST: https://build.zano.org/builds/zano-win-x64-develop-testnet-v2.2.0.459[d3912ff]-installer.exe
+sha256: ee31419b2630a3818ee814f57d8568b284a12b21739ac008ab5f2bd0a82da873
 
-ZIP: https://build.zano.org/builds/zano-win-x64-develop-testnet-v2.2.0.455[2edace9].zip
-sha256: 39a35133f1e7318907ac9a2c0bc03e325c58a2ef56cded755767cc6c69e43abd
+ZIP: https://build.zano.org/builds/zano-win-x64-develop-testnet-v2.2.0.459[d3912ff].zip
+sha256: 83459f3c1e237f53f09d6b2bbe2b6d3399fab50862a8689c07692a12ce400d89
 
 macOS:
-https://build.zano.org/builds/zano-macos-x64-develop-testnet-v2.2.0.455[2edace9].dmg
-sha256: 4d1a811e66a840bae8cd2b8152b0aded05e5f5dea4cbf8225f4bf576327a8c90
+https://build.zano.org/builds/zano-macos-x64-develop-testnet-v2.2.0.459[d3912ff].dmg
+sha256: a85539ef52aac7198dc9808b606aaf5221547397d9c0e25b0d84b6c53b4b9564
 
 Linux:
-https://build.zano.org/builds/zano-linux-x64-develop-testnet-devtools-v2.2.0.455[2edace9].AppImage
-sha256: 50bb746e88b6a443d0c149d4c753962da47091e3f8d29eb5513a41cdec2437bc
+https://build.zano.org/builds/zano-linux-x64-develop-testnet-devtools-v2.2.0.459[d3912ff].AppImage
+sha256: 60ba8b220488b75b47c1876526d5f867d0f8b9d5abf19649937c2839ae27ad11
 -----BEGIN PGP SIGNATURE-----
 
-iHUEARYKAB0WIQSAlUHSyV95S5huh5+pK4bC95+XGgUCaZkG/AAKCRCpK4bC95+X
-GrNZAP0eYecp+bElVSZQxqVKIPMNGdUI3nzo7c51DyBF/LXbuAD/V9bCAssHG3AW
-hvF+xNio4VAgGRq7C02mXMtgOGJHdAQ=
-=MGEW
+iHUEARYKAB0WIQSAlUHSyV95S5huh5+pK4bC95+XGgUCaaOKhAAKCRCpK4bC95+X
+Goh7AQCZCujHxawJGp/RtNapaePRc5dwYLR7i8r0dCzcOHmmIQEA++5xi0n4+VHQ
+7W+5AxLnMI86riWwUarJVVRi0ZHKCQM=
+=XZJ5
 -----END PGP SIGNATURE-----
 
-updated at 2026-02-21 00:15 UTC
+updated at 2026-03-01 00:40 UTC
 ```
 
 [How to verify downloaded builds](https://docs.zano.org/docs/build/how-to-verify-downloaded-builds/)
