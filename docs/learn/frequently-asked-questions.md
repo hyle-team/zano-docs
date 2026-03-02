@@ -6,7 +6,7 @@ sidebar_position: 8
 
 ### **What is Zano?[​](https://docs.zano.org/docs/learn/frequently-asked-questions/#what-is-zano)**
 
-Zano is an open-source cryptocurrency (layer-1) and ecosystem with enterprise-grade privacy, security, and scalability that operates as a robust foundation for confidential assets and decentralized applications (dApps).
+Zano is an open-source layer-1 blockchain where all transactions are private by default. Amounts, addresses, and even asset types are hidden on every transaction — enforced by the protocol, not opt-in. You can transfer funds, stake, issue confidential tokens, trade peer-to-peer, and build decentralized applications on Zano.
 
 ### **How does Zano achieve privacy?**
 
@@ -63,12 +63,6 @@ You can mine coins and stake them to increase your balance or trade coins on cry
 ### **Where can I store my Zano?**
 
 [Wallets where Zano is available](https://zano.org/downloads) (Mobile & Desktop)
-
-<!-- ### **Where can I spend Zano?**
-
-Zano is currently integrated in Trocador's Anon Pay, this means that any website that uses this payment processor will accept Zano, that includes buying gift cards and prepaid cards at [Cake Pay](https://buy.cakepay.com) and [Trocador](https://trocador.app/es/prepaidcards/) itself.
-
-We are also working on further integrations and a Zano based decentralized [marketplace](https://zanobazaar.com) is in the works by a community member. -->
 
 ### **What’s the plan for scaling?**
 

@@ -138,11 +138,11 @@ const config = {
           items: [
             {
               label: "Homepage",
-              to: "https://new.zano.org",
+              to: "https://zano.org",
             },
             {
               label: "Downloads",
-              to: "https://new.zano.org/downloads",
+              to: "https://zano.org/downloads",
             },
             {
               label: "Blog",

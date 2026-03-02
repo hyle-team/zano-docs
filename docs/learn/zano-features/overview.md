@@ -12,11 +12,19 @@ Our hybrid PoW/PoS consensus algorithm makes attacks on Zano infeasible, ensurin
 
 ### Stability
 
-The extensive amount of testing that our blockchain has undergone minimizes the issues often encountered in the early days of any project. This makes the Zano network stable and release-ready from day 1. Our decade of experience with both Boolberry and Zano commences this.
+The extensive amount of testing that our blockchain has undergone minimizes the issues often encountered in the early days of any project. This makes the Zano network stable and release-ready from day 1. Our decade of experience with both Boolberry and Zano confirms this.
 
 ### Decentralization
 
 When we say decentralization we mean it, Zano is truly decentralized as anyone can participate in the network, and nobody has an unfair advantage. There are no validator nodes (master nodes), no minimum staking amounts, and no lock-up times. Whether you are a miner, a staker, or a user, **Zano is for everyone**.
+
+### Fungibility
+
+No coin is tainted. No blacklists. Hidden transaction history makes every ZANO identical. Unlike transparent blockchains where coins can be flagged or rejected based on their history, Zano's privacy guarantees mean every coin is equal.
+
+### Uncensorable
+
+When transactions are invisible, they can't be blocked, reversed, or selectively enforced. Privacy at the protocol level means no one can discriminate against specific transactions or addresses.
 
 ### Easy-to-Use
 
@@ -66,9 +74,7 @@ Auditable wallets allow people and organizations to create transparent wallets f
 
 ### Confıdential Assets
 
-Anyone can easily issue user-creatable privacy tokens on the Zano chain; assets secured by the same mechanisms that make Zano so much more secure than
-
-first-generation cryptocurrencies, namely because of hidden addresses and hidden amounts. This unique technology can be used to create private stablecoins, shielded versions of existing assets, and much more, without the overhead of having to create, manage, and secure your own blockchain.
+Anyone can easily issue user-creatable privacy tokens on the Zano chain; assets secured by the same mechanisms that make Zano so much more secure than first-generation cryptocurrencies, namely because of hidden addresses and hidden amounts. This unique technology can be used to create private stablecoins, shielded versions of existing assets, and much more, without the overhead of having to create, manage, and secure your own blockchain.
 
 ## Products
 
@@ -76,7 +82,7 @@ All of the above-named technologies can be used to create all kinds of privacy-f
 
 ### Zano Trade: P2P Cryptocurrency Trading Platform
 
-The Localbitcoins-like trading app will utilize Zano's built-in escrow contracts to eliminate the need for a third party in the trade settlement process. The escrow contract will require both parties to lock up collateral until the trade is concluded, thereby creating a financial incentive for both sides to cooperate. Any crypto, and even fiat, can be traded natively on this platform.
+A peer-to-peer trading platform that uses Zano's built-in escrow contracts to eliminate the need for a third party in the trade settlement process. The escrow contract requires both parties to lock up collateral until the trade is concluded, creating a financial incentive for both sides to cooperate. Any crypto, and even fiat, can be traded natively on this platform.
 
 ### Zano Trade: Decentralized Exchange
 
@@ -86,18 +92,44 @@ A decentralized exchange to trade native Zano and all the Confidential Assets la
 
 Zano Governance is an anonymous on-chain voting system where our stakers who secure the network can vote on major decisions regarding the Zano blockchain, further decentralizing the Zano ecosystem.
 
+### FUSD
+
+A private stablecoin on Zano. Send dollars without anyone knowing how much, to whom, or when. Built as a Confidential Asset, FUSD has the same privacy guarantees as native ZANO.
+
+### Zano Stats
+
+Live blockchain explorer with network analytics, staking data, and market insights. Available at [zanostats.com](https://zanostats.com).
+
 ### Zano Wallets
 
 Zano has a variety of wallets available for every type of user:
 
-- Desktop Wallet: A full-node wallet that gives you access to all of our features, including staking.
+- **Desktop Wallet**: A full-node wallet that gives you access to all features, including staking.
 
-- Mobile Wallet: A remote-node wallet that supports all of our features except stak- ing, ready for instant use that fits in your pocket.
+- **Mobile Wallet**: A remote-node wallet that supports all features except staking, ready for instant use that fits in your pocket.
 
-- Lite Wallet \[IN PROGRESS]: A lightweight, easy-to-use wallet that is ideal for daily usage of small transactions and uses a remote node.
-
-- Third-Party Wallets \[IN PROGRESS]: Zano is getting integrated into various popular multi-asset wallets such as Cake Wallet and the [Bitcoin.com](https://bitcoin.com) wallet.
+- **Third-Party Wallets**: Zano is available in [Cake Wallet](https://cakewallet.com), [Bitcoin.com](https://bitcoin.com) wallet, and [Edge Wallet](https://edge.app).
 
 ### Zano Companion
 
-A Metamask-like browser extension that enables authentication and connects the Zano desktop wallet to the web applications built on Zano. Zano Companion is your gateway to the broader Zano ecosystem!
+A browser extension that connects the Zano desktop wallet to web applications built on Zano. Handles authentication and transaction signing for dApps in the Zano ecosystem.
+
+### Zano MCP
+
+An [MCP server](https://github.com/PRavaga/zano-mcp) that connects AI agents (Claude Code, Cursor, Windsurf, and other MCP-compatible tools) to the Zano blockchain. 45+ tools for querying blocks, wallets, assets, DEX order books, and trading data — giving AI assistants direct read access to a privacy chain. See the [blog post](https://blog.zano.org/zano-mcp-give-your-ai-agent-eyes-on-a-privacy-blockchain/) for setup and use cases.
+
+## Wider Ecosystem
+
+Beyond the core products above, the Zano ecosystem includes:
+
+- **[Wrapped Zano](https://wrapped.zano.org)**: WZANO — an ERC-20 token on Ethereum, exchangeable 1:1 for native ZANO at any time.
+- **[Obscura](https://obscura.zano.org)**: Mint and manage NFTs privately. Digital ownership without broadcasting your collection to the world.
+- **[Zano Messenger](https://docs.zano.org/docs/use/zano-matrix-guide)**: Decentralized, encrypted communication built on Matrix, linked to your Zano alias.
+- **[Bridgeless](https://bridgeless.com)**: Non-custodial bridge between public and privacy blockchains. Uses Zano gateway addresses with ETH-compatible signatures for cross-chain asset commands.
+- **[Zano Bay](https://zanobay.com)**: A private marketplace. Buy and sell goods with end-to-end encrypted transactions.
+- **[Bandit City](https://bandit.city)**: Community hub with its own token, staking, and culture built on Zano.
+- **[Alias Auction](https://auction.zano.org)**: Bid on human-readable @usernames registered on-chain as your Zano identity.
+- **[Zano Pay](https://pay.zano.org)**: Embeddable payment widgets for any website. Accept private payments in minutes.
+- **[Zano Cash POS](https://zanocash.com)**: Point-of-sale for physical shops. Customers scan, pay, done — private, no bank required.
+
+See the full ecosystem at [zano.org/ecosystem](https://zano.org/ecosystem).
