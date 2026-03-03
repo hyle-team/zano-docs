@@ -4,6 +4,8 @@ sidebar_position: 5
 
 # Specifications
 
+See also: [Emission & Tokenomics](/docs/learn/emission) for supply details, [Features Overview](/docs/learn/zano-features/overview) for technology descriptions.
+
 | General info              |                                                                        |
 | :------------------------ | ---------------------------------------------------------------------- |
 | Release                   | 2019                                                                   |

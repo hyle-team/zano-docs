@@ -4,8 +4,14 @@ sidebar_position: 1
 
 # Getting Started
 
-Here, you'll find various tools and resources to enhance your experience within the Zano ecosystem. Whether you're new to Zano or have been a part of our community for a while, this guide offers insights and detailed instructions to help you easily navigate the platform.
+This section covers how to use Zano day-to-day.
 
-Begin with the basics in our [Wallets Guides](/docs/use/wallets/overview). Explore unique functionalities like [Aliases](aliases) or understand the benefits of [Auditable Wallets](auditable-wallets). You will also find guides on our official private dApps like [Zano Trade](zano-trade.md) and [Zano Matrix](zano-matrix-guide.mdx).
+**Wallets** — Set up a [desktop or mobile wallet](/docs/use/wallets/overview). Back up your [seed phrase](/docs/use/seed-phrase) and understand [password types](/docs/use/zano-passwords.md).
 
-If you ever encounter challenges, our [Reporting Issues](reporting-issues) section is here to help. Dive in and make the most of what Zano has to offer.
+**Features** — [Aliases](/docs/use/aliases) (@username addresses), [Auditable Wallets](/docs/use/auditable-wallets), [Wrapped Zano](/docs/use/wrapped-zano) (ERC-20 bridge).
+
+**dApps** — Most need [Zano Companion](/docs/use/companion) (browser extension) to connect your wallet:
+- [Zano Trade](/docs/use/zano-trade) — DEX and P2P trading
+- [Zano Matrix](/docs/use/zano-matrix-guide) — Encrypted messenger
+
+Having problems? See [Reporting Issues](/docs/use/reporting-issues).
