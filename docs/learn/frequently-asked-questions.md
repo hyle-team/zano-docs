@@ -6,7 +6,7 @@ sidebar_position: 8
 
 ### **What is Zano?[​](https://docs.zano.org/docs/learn/frequently-asked-questions/#what-is-zano)**
 
-Zano is an open-source layer-1 blockchain where all transactions are private by default. Amounts, addresses, and even asset types are hidden on every transaction — enforced by the protocol, not opt-in. You can transfer funds, stake, issue confidential tokens, trade peer-to-peer, and build decentralized applications on Zano.
+Zano is an open-source layer-1 blockchain where every transaction is private by default. Amounts, addresses, and even asset types are hidden, enforced at the protocol level, not opt-in. You can send funds, stake, issue your own tokens, trade peer-to-peer, and build apps on Zano.
 
 ### **How does Zano achieve privacy?**
 

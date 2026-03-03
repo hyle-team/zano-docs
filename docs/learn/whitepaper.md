@@ -4,6 +4,8 @@ sidebar_position: 3
 
 # Research & Whitepapers
 
+For independent third-party audits of these protocols, see [Security Reviews](/docs/learn/reviews).
+
 ### Zano Whitepaper (2019)
 
 Original Zano whitepaper, describes general concepts used in project.

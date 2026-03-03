@@ -4,34 +4,34 @@ sidebar_position: 1
 
 # What is Zano
 
-Zano is an open-source layer-1 blockchain where all transactions are private by default. Amounts, addresses, and even asset types are hidden on every transaction — enforced by the protocol, not opt-in.
+Zano is an open-source layer-1 blockchain where every transaction is private by default. Amounts, addresses, and even asset types are hidden. This is enforced at the protocol level, not opt-in.
 
-You can transfer funds, earn staking rewards, issue confidential tokens, trade peer-to-peer, and build decentralized applications on Zano. No one can see what you sent, who you sent it to, or what asset was involved. All an observer sees is that a transaction happened.
+You can send funds, stake, issue your own tokens, trade peer-to-peer, and build apps on Zano. Nobody can see what you sent, who received it, or which asset was involved. All an outside observer sees is that a transaction happened.
 
 ![Comparison of details revealed by ETH’s transactions and Zano ones.](/img/learn/what-is-zano/transfer.png)
 
-Transactions are verifiable by the sender and receiver through transaction IDs, but the data is never publicly exposed.
+The sender and receiver can verify transactions through transaction IDs, but none of the data is publicly exposed.
 
 ### Origin
 
-Zano’s lead developer Andrey Sabelnikov wrote the original CryptoNote reference implementation — the codebase that Monero and hundreds of other projects forked from. Zano is his next evolution of that work, built from scratch with a wider scope: not just private payments, but a private economy.
+Zano’s lead developer Andrey Sabelnikov wrote the original CryptoNote reference implementation, the codebase that Monero and hundreds of other projects forked from. Zano is his next evolution of that work, built from scratch with a wider scope: not just private payments, but a private economy.
 
-### Key Technologies
+### Key technologies
 
-**Zarcanum**: The world’s first Proof of Stake scheme with hidden amounts. Stakers can secure the network in complete anonymity.
+Each technology is covered in detail in the [Features Overview](/docs/learn/zano-features/overview). The research papers behind them are in [Whitepapers](/docs/learn/whitepaper).
 
-**Confidential Assets**: Anyone can issue privacy tokens on the Zano chain, secured by the same mechanisms as the native coin — hidden addresses and hidden amounts. Private stablecoins, shielded versions of existing assets, and more, without running your own blockchain.
+**Zarcanum** is the world’s first Proof of Stake scheme with hidden amounts. Stakers secure the network without revealing their balances.
 
-**Ionic Swaps**: An improvement on atomic swaps that enables peer-to-peer asset exchange with full privacy. Neither party has an unfair advantage. This powers Zano’s DEX.
+**Confidential Assets** let anyone issue privacy tokens on the Zano chain, with the same protections as native ZANO: hidden addresses and hidden amounts. You can create private stablecoins, shielded versions of existing assets, and more, without running your own blockchain.
 
-**Hybrid PoW/PoS Consensus**: Alternating Proof of Work and Proof of Stake blocks. Attacking Zano requires both hashpower and stake — no single vector is enough.
+**Ionic Swaps** improve on atomic swaps by enabling peer-to-peer asset exchange with full privacy. Neither party has an unfair advantage. This is what powers Zano Trade, the built-in DEX.
 
-**Auditable Wallets**: An opt-in feature for transparent wallets where a third party would rather verify than trust. Does not affect privacy for the rest of the network.
+**Hybrid PoW/PoS Consensus** alternates Proof of Work and Proof of Stake blocks. Attacking Zano requires both hashpower and stake, so no single vector is enough.
 
-**Fungibility**: No coin is tainted. No blacklists. Hidden transaction history makes every ZANO identical.
+**Auditable Wallets** are opt-in transparent wallets for situations where a third party needs to verify balances. Enabling them on one wallet doesn’t affect privacy for anyone else on the network.
 
-**Uncensorable**: When transactions are invisible, they can’t be blocked, reversed, or selectively enforced.
+**Fungibility**: every ZANO is identical. No coin has a "history" that can be traced, flagged, or blacklisted.
 
-Zano also supports a [Marketplace API](https://docs.zano.org/docs/build/marketplace/marketplace-api-guide) for on-chain decentralized stores, [Escrow/P2P Contracts](https://docs.zano.org/docs/use/escrow-contracts/) for trustless peer-to-peer agreements, and human-readable [Aliases](https://docs.zano.org/docs/use/aliases) (@username instead of long addresses).
+**Uncensorable**: when transactions are invisible, they can’t be blocked, reversed, or selectively enforced.
 
-See the [roadmap](https://zano.org/roadmap) for what’s coming next, or the [FAQ](https://docs.zano.org/docs/learn/frequently-asked-questions) for common questions.
+Check the [roadmap](https://zano.org/roadmap) for what’s coming next, or the [FAQ](/docs/learn/frequently-asked-questions) for common questions.
