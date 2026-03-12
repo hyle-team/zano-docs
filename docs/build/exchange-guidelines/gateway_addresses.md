@@ -26,21 +26,17 @@ The **spend key** acts as a master key that controls all operations related to a
 
 To make integration with Zano convenient for a wide range of services, we implemented support for several signature types that are widely used across the blockchain industry. Below is a description of these signature types, along with the names of the corresponding API fields in the Wallet RPC API [register_gateway_address](https://docs.zano.org/docs/build/rpc-api/wallet-rpc-api/register_gateway_address):
 
-- `opt_owner_ecdsa_pub_key` - **ECDSA over secp256k1**. This signature type is widely used in blockchain projects such as Ethereum, Bitcoin, and others.
-- `opt_owner_eddsa_pub_key` - **Ed25519** (also referred to as EdDSA). This is the variant used in Solana.
-- `opt_owner_custom_schnorr_pub_key` - **Zano custom Schnorr signature**, also based on Ed25519.
+| Name in API | Curve | Public key | Signature | Use case |
+|---|---|---|---|---|
+| `opt_owner_ecdsa_pub_key` | secp256k1 | 33 bytes (compressed) | 64 bytes <br>(r \|\| s) | **ECDSA over secp256k1**. This signature type is widely used in blockchain projects such as Ethereum, Bitcoin, and others. |
+| `opt_owner_eddsa_pub_key` | Ed25519 | 32 bytes | 64 bytes <br>(R \|\| s) |  **Ed25519** (also referred to as EdDSA). This is the variant used in Solana. |
+| `opt_owner_custom_schnorr_pub_key` | Ed25519  | 32 bytes | 64 bytes <br>(c \|\| y) | **Zano custom Schnorr signature**, also based on Ed25519. | 
 
 **opt_owner_ecdsa_pub_key(ECDSA)** and **opt_owner_eddsa_pub_key(Ed25519)** were implemented primarily because these standards are widely supported across the blockchain industry and because there is extensive tooling available for building MPC solutions with these key types.
 
 **opt_owner_custom_schnorr_pub_key(Zano custom Schnorr signature)** is an internal algorithm native to the Zano codebase and integrated into Zano’s core transaction protocols. It has similarities to the scheme used in Solana and relies on the same elliptic curve, but for historical reasons it differs in several implementation details, including the hash function used in the Schnorr algorithm.
 
 Note: View key (`view_pub_key`) can be only **Zano custom Schnorr signature**, as it involved in internal protocol machinery. Only spend key could be assigned as **ECDSA**/**EDDSA***
-
-| Name in API | Curve | Public key | Signature | Use case |
-|---|---|---|---|---|
-| `opt_owner_ecdsa_pub_key` | secp256k1 | 33 bytes (compressed) | 64 bytes <br>(r \|\| s) | **ECDSA over secp256k1**. This signature type is widely used in blockchain projects such as Ethereum, Bitcoin, and others. |
-| `opt_owner_eddsa_pub_key` | Ed25519 | 32 bytes | 64 bytes <br>(R \|\| s) |  **Ed25519** (also referred to as EdDSA). This is the variant used in Solana. |
-| `opt_owner_custom_schnorr_pub_key` | Ed25519  | 32 bytes | 64 bytes <br>(c \|\| y) | **Zano custom Schnorr signature**, also based on Ed25519. | 
 
 All three types use the compact signature format (64 bytes, without the recovery byte `v`). The signature is transmitted as a hex string (128 characters).
 
@@ -74,7 +70,10 @@ Generate two key pairs:
 
 1. **View keys** (`view_pub_key`, `view_secret_key`) - the GW address identifier. `view_pub_key` will become the address (`gwZ...`), and `view_secret_key` will be needed later to decrypt payment ID in transaction history
 2. **Owner keys** (`owner_pub_key`, `owner_secret_key`) - the owners key for signing transactions. 
-   
+
+**Note:** In the simplest setup, the same key can be used both as the **view key** and as the **ownership key** by providing it as both `view_pub_key` and `opt_owner_custom_schnorr_pub_key` in `register_gateway_address`.  
+However, to provide more complete guidance, the examples below use a more advanced configuration in which the owner and view keys would be different.
+
 
 **Note on view key generating: L and main subgroup**
 
@@ -99,6 +98,7 @@ This ensures that the public key resides in the main subgroup and that the regis
 [EIP-2 explaining link](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-2.md)
 
 For ECDSA signatures (secp256k1), Zano requires that the value of `s` be in the "lower half" (`s <= n/2`, where `n` is the order of the secp256k1 curve). This is a standard requirement (EIP-2) that prevents signature malleability. Our `ethers.js` v6 library automatically normalizes `s` when calling `signingKey.sign()`, so no additional action is required.
+
 
 **nodejs - keygen example**
 
@@ -273,7 +273,7 @@ Balances are still empty - the address was just created
 
 Sending funds from a GW address is done via **daemon RPC** (!not wallet RPC!) in three stages: creating an unsigned transaction, signing, and broadcasting to the network.
 
-This approach allows signing transactions **outside the daemon** - for example, in MetaMask (for Ethereum keys), on a cold wallet, or in any external system.
+This approach allows signing transactions **outside the daemon** - for example, in MPC framework, on a cold wallet, or in any external system.
 
 ### General flow
 
@@ -494,20 +494,7 @@ Transaction history for a GW address is queried via **daemon RPC** using the `ga
 
 The `gateway_view_secret_key` parameter is passed to the daemon to decrypt payment IDs and attachments (comments). **If you use a public daemon**, this key will be exposed to its operator. For full security, **run your own node**.
 
-```
-+------------------------------------------------------+
-|            gateway_get_address_history               |
-|                                                      |
-|  With view_secret_key:       Without view_secret_key:|
-|  +----------------------+   +--------------------+   |
-|  | Payment ID: 1dfe5a88 |   | Payment ID: ???    |   |
-|  | ZANO: +1.0           |   | ZANO: +1.0         |   |
-|  | Comment: "payment"   |   | Comment: ???       |   |
-|  +----------------------+   +--------------------+   |
-|                                                      |
-|  Decrypted                    Encrypted              |
-+------------------------------------------------------+
-```
+
 
 ### Request
 
@@ -922,31 +909,15 @@ main();
 
 ---
 
-### Comparison table
-
-| Feature | Regular address (UTXO) | GW address |
-|---|---|---|
-| Address prefix | `Z...` (regular), `iZ...` (integrated) | `gwZ...` (regular), `gwiZ...` (integrated) |
-| Key structure | Key pair: spend_key + view_key | Single public key |
-| Balance model | UTXO - hidden outputs scattered across blocks | Account - balance stored on-chain |
-| Amount privacy | Hidden (Zarcanum confidential transactions) | Open - amounts are visible in the blockchain |
-| Ring signatures | Yes (decoy-set for sender anonymity) | No |
-| Payment ID | Encrypted | Encrypted via view key |
-| Owner signatures | Schnorr (Zano) | Schnorr / EdDSA / Ethereum |
-| Multi-asset | Yes (each asset - separate UTXOs) | Yes (one address stores balances for all assets) |
-
-
-
-
 ## API quick reference
 
 | Method | RPC type | Description |
 |---|---|---|
-| `register_gateway_address` | Wallet RPC | Register a new GW address (fee: 100 ZANO) |
-| `gateway_get_address_info` | Daemon RPC | Get information and balances of a GW address |
-| `gateway_create_transfer` | Daemon RPC | Create an unsigned transaction from a GW address |
-| `gateway_sign_transfer` | Daemon RPC | Sign a transaction with owner key |
-| `sendrawtransaction` | Daemon RPC | Broadcast a signed transaction to the network |
-| `gateway_get_address_history` | Daemon RPC | Get GW address transaction history (requires view key for decryption) |
-| `get_integrated_address` | Daemon RPC | Create an integrated `gwiZ...` address with payment ID |
-| `transfer` | Wallet RPC | Send funds TO a GW address (standard method) |
+| [register_gateway_address](https://docs.zano.org/docs/build/rpc-api/wallet-rpc-api/register_gateway_address) | Wallet RPC | Register a new GW address (fee: 100 ZANO) |
+| [gateway_get_address_info](https://docs.zano.org/docs/build/rpc-api/daemon-rpc-api/gateway_get_address_info) | Daemon RPC | Get information and balances of a GW address |
+| [gateway_create_transfer](https://docs.zano.org/docs/build/rpc-api/daemon-rpc-api/gateway_create_transfer) | Daemon RPC | Create an unsigned transaction from a GW address |
+| [gateway_sign_transfer](https://docs.zano.org/docs/build/rpc-api/daemon-rpc-api/gateway_sign_transfer) | Daemon RPC | Sign a transaction with owner key |
+| [sendrawtransaction](https://docs.zano.org/docs/build/rpc-api/daemon-rpc-api/sendrawtransaction) | Daemon RPC | Broadcast a signed transaction to the network |
+| [gateway_get_address_history](https://docs.zano.org/docs/build/rpc-api/daemon-rpc-api/gateway_get_address_history) | Daemon RPC | Get GW address transaction history (requires view key for decryption) |
+| [get_integrated_address](https://docs.zano.org/docs/build/rpc-api/daemon-rpc-api/get_integrated_address) | Daemon RPC | Create an integrated `gwiZ...` address with payment ID |
+| [transfer](https://docs.zano.org/docs/build/rpc-api/wallet-rpc-api/transfer) | Wallet RPC | Send funds TO a GW address (standard method) |
