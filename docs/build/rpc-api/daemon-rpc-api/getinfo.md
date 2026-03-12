@@ -115,6 +115,7 @@ URL: ```http:://127.0.0.1:11211/json_rpc```
     "pos_sequence_factor": 0,
     "pow_difficulty": 12777323347117,
     "pow_sequence_factor": 1,
+    "pre_hf_tx_freeze_period_active": false,
     "seconds_for_10_blocks": 476,
     "seconds_for_30_blocks": 1264,
     "status": "OK",
@@ -178,6 +179,7 @@ URL: ```http:://127.0.0.1:11211/json_rpc```
     "pos_sequence_factor": The current PoS sequence factor, representing the number of consecutive PoS blocks. This information is only provided if the COMMAND_RPC_GET_INFO_FLAG_POS_SEQUENCE_FACTOR flag is set.
     "pow_difficulty": Current difficulty for Proof of Work mining.
     "pow_sequence_factor": The current PoW sequence factor, representing the number of consecutive PoW blocks. This information is only provided if the COMMAND_RPC_GET_INFO_FLAG_POW_SEQUENCE_FACTOR flag is set.
+    "pre_hf_tx_freeze_period_active": Boolean value indicating whether tx sending is temporarly stopped because a hardfork is coming.
     "seconds_for_10_blocks": The time period in seconds between the most recent block and the 10th block older. This information is only provided if the COMMAND_RPC_GET_INFO_FLAG_SECONDS_FOR_10_BLOCKS flag is set.
     "seconds_for_30_blocks": The time period in seconds between the most recent block and the 30th block older. This information is only provided if the COMMAND_RPC_GET_INFO_FLAG_SECONDS_FOR_30_BLOCKS flag is set.
     "status": Status of the call.
@@ -193,4 +195,4 @@ URL: ```http:://127.0.0.1:11211/json_rpc```
     "white_peerlist_size": Size of the white peer list, which includes addresses of reliable nodes.
 
 ```
-<sub>Auto-doc built with: 2.1.8.415[f287916]</sub>
+<sub>Auto-doc built with: 2.2.0.461[7ecf73f]</sub>

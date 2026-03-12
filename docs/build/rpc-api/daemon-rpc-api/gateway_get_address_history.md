@@ -1,4 +1,4 @@
-(deprecated) Returns wallet history of transactions
+Retrieves the transaction history for a specific gateway address.
 
 URL: ```http:://127.0.0.1:11211/json_rpc```
 ### Request: 
@@ -6,25 +6,21 @@ URL: ```http:://127.0.0.1:11211/json_rpc```
 {
   "id": 0,
   "jsonrpc": "2.0",
-  "method": "get_recent_txs_and_info",
+  "method": "gateway_get_address_history",
   "params": {
-    "count": 100,
-    "exclude_mining_txs": false,
-    "exclude_unconfirmed": false,
-    "offset": 0,
-    "order": "FROM_END_TO_BEGIN",
-    "update_provision_info": true
+    "count": 10,
+    "gateway_address": "gateway1qxyz...",
+    "gateway_view_secret_key": "f74bb56a5b4fa562e679ccaadd697463498a66de4f1760b2cd40f11c3a00a7a8",
+    "offset": 0
   }
 }
 ```
 ### Request description: 
 ```
-    "count": How many items to fetch, if items fetched is less then count, then it enumeration is over
-    "exclude_mining_txs": Exclude mining/staking transactions from results(last_item_index should be used for subsequential calls)
-    "exclude_unconfirmed": Do not include uncomfirmed transactions in results (it also not included is offset is non zero)
-    "offset": Offset from what index to start fetching transfers entries(if filters are used then last_item_index could be used from previous call)
-    "order": Order: "FROM_BEGIN_TO_END" or "FROM_END_TO_BEGIN"
-    "update_provision_info": If update pi is required, could be false only if need to optimize performance(appliable for a veru big wallets)
+    "count": The number of transactions to retrieve from the specified offset.
+    "gateway_address": The gateway address for which transaction history is being requested.
+    "gateway_view_secret_key": View secret key to decrypt attachments and payment id
+    "offset": The offset in the transaction history from which to start retrieval.
 
 ```
 ### Response: 
@@ -33,23 +29,19 @@ URL: ```http:://127.0.0.1:11211/json_rpc```
   "id": 0,
   "jsonrpc": "2.0",
   "result": {
-    "last_item_index": 1,
-    "pi": {
-      "balance": 100000000000,
-      "curent_height": 121212,
-      "transfer_entries_count": 3,
-      "transfers_count": 1,
-      "unlocked_balance": 90000000000
-    },
-    "total_transfers": 1,
-    "transfers": [{
+    "balances": [{
+      "amount": 100000000,
+      "asset_id": "729811f9340537e8d5641949e6cc58261f91f109687a706f39bae9514757e819"
+    }],
+    "status": "OK",
+    "total_transactions": 100,
+    "transactions": [{
       "ado": {
         "operation_type": 1,
         "opt_amount_commitment": "5688b56a5b4fa562e679ccaadd697463498a66de4f1760b2cd40f11c3a00a7a8",
         "opt_asset_id": "cc4e69455e63f4a581257382191de6856c2156630b3fba0db4bdd73ffcfb36b6",
         "version": 2
       },
-      "amount": 1000000000000,
       "comment": "Comment here",
       "contract": [{
         "cancel_expiration_time": 0,
@@ -74,11 +66,9 @@ URL: ```http:://127.0.0.1:11211/json_rpc```
       },
       "fee": 10000000000,
       "height": 0,
-      "is_income": false,
       "is_mining": false,
       "is_mixing": false,
       "is_service": false,
-      "payment_id": "00000000ff00ff00",
       "remote_addresses": ["ZxBvJDuQjMG9R2j4WnYUhBYNrwZPwuyXrC7FHdVmWqaESgowDvgfWtiXeNGu8Px9B24pkmjsA39fzSSiEQG1ekB225ZnrMTBp"],
       "remote_aliases": ["roger"],
       "service_entries": [{
@@ -109,31 +99,25 @@ URL: ```http:://127.0.0.1:11211/json_rpc```
 ```
 ### Response description: 
 ```
-    "last_item_index": Index of last returned item(might be needed if filters are used)
-    "pi": Additiona details about balance state
-      "balance": Current balance of native coins
-      "curent_height": Current sync height of the wallet
-      "transfer_entries_count": Number of UTXO entries in wallet
-      "transfers_count": Number of transfers in wallet
-      "unlocked_balance": Unlocked balance oof native coins
-    "total_transfers": Total number of transfers in the tx history
-    "transfers": Transfers history array
+    "balances": List of balances for different asset_id associated with the gateway address at the time of the request.
+      "amount": The amount of the specified currency in the gateway balance entry.
+      "asset_id": The asset ID for the gateway balance entry.
+    "status": Status of the call.
+    "total_transactions": Total number of transactions associated with the specified gateway address.
+    "transactions": List of transactions associated with the specified gateway address, retrieved based on the provided parameters.
       "ado": "Asset Descriptor Operation" if it was present in transaction
         "operation_type": Asset operation type identifier
         "opt_amount_commitment": (optional) Asset operation amount commitment (register/emit/burn).
         "opt_asset_id": (optional) ID of an asset (emit/burn/update).
         "version": Asset operation type struct version
-      "amount": Native coins amount
       "comment": Some human-readable comment
       "contract": Escrow contract if it's part of transaction
       "employed_entries": Mark entries from transaction that was connected to this wallet
       "fee": Transaction fee
       "height": Height of the block that included transaction(0 i  transaction is unconfirmed)
-      "is_income": If trnasfer entrie is income (taken from native subtransfer)
       "is_mining": Tells if this transaction is coinbase transaction(ie generated by PoW mining or by PoS staking)
       "is_mixing": Tells if this transaction using mixins or not(auditble wallets normally don't use mixins)
       "is_service": Tells if this transaction is used as utility by one of Zano services(contracts, ionic swaps, etc)
-      "payment_id": HEX-encoded payment id blob, if it was present
       "remote_addresses": Remote addresses of this transfer(destination if it's outgoing transfer or sender if it's incoming transaction)
       "remote_aliases": Aliases for remot addresses, of discovered
       "service_entries": Additional entries that might be stored in transaction but not part of it's consensus

@@ -42,8 +42,9 @@ URL: ```http:://127.0.0.1:11211/json_rpc```
       "id": "a6e8da986858e6825fce7a192097e6afae4e889cabe853a9c29b964985b23da8",
       "ins": [{
         "amount": 1000000000000,
+        "asset_id": "7d0c755e7e24a241847176c9a3cf4c970bcd6377018068abe6fe4535b23f5323",
         "global_indexes": [0,2,12,27],
-        "htlc_origin": "",
+        "gw_addr": "gwZ5sqZkre33rxhoo9ht5xcmzy5khvr2hFSfvk7TeXeMXxby7acC3fs1D",
         "kimage_or_ms_id": "2540e0544b1fed3b104976f803dbd83681335c427f9d601d9d5aecf86ef276d2",
         "multisig_count": 0
       }],
@@ -51,9 +52,12 @@ URL: ```http:://127.0.0.1:11211/json_rpc```
       "object_in_json": "ewogICJ2ZXJzaW9uIjogMSwgCiAgInZpbiI6IFsgewogICAgIC",
       "outs": [{
         "amount": 9000000000,
+        "asset_id": "7d0c755e7e24a241847176c9a3cf4c970bcd6377018068abe6fe4535b23f5323",
         "global_index": 0,
+        "gw_addr": "gwZ5sqZkre33rxhoo9ht5xcmzy5khvr2hFSfvk7TeXeMXxby7acC3fs1D",
         "is_spent": false,
         "minimum_sigs": 0,
+        "payment_id": 0,
         "pub_keys": ["7d0c755e7e24a241847176c9a3cf4c970bcd6377018068abe6fe4535b23f5323"]
       }],
       "pub_key": "0feef5e2ea0e88b592c0a0e6639ce73e12ea9b3136d89464748fcb60bb6f18f5",
@@ -81,20 +85,24 @@ URL: ```http:://127.0.0.1:11211/json_rpc```
       "id": Hash of the transaction.
       "ins": Inputs of the transaction.
         "amount": The amount of coins being transacted.
-        "global_indexes": List of global indexes indicating the outputs referenced by this input, where only one is actually being spent.
-        "htlc_origin": Origin hash for HTLC (Hash Time Locked Contract).
-        "kimage_or_ms_id": Contains either the key image for the input or the multisig output ID, depending on the input type.
+        "asset_id": [optional] Asset ID (for txin_gateway only)
+        "global_indexes": List of global indexes indicating the outputs referenced by this input, where only one is actually being spent (only for txin_zc_input).
+        "gw_addr": [optional] Gateway source address (for txin_gateway only)
+        "kimage_or_ms_id": Contains either the key image for the input or the multisig output ID, or gateway address, depending on the input type.
         "multisig_count": Number of multisig signatures used, relevant only for multisig outputs.
       "keeper_block": Block height where the transaction is confirmed, or -1 if it is unconfirmed.
       "object_in_json": Serialized transaction represented in JSON, encoded in Base64.
       "outs": Outputs of the transaction.
         "amount": The output's amount, 0 for ZC outputs.
+        "asset_id": [optional] Asset ID (for tx_out_gateway only)
         "global_index": Global index of the output for this specific amount.
+        "gw_addr": [optional] Gateway destination address (for tx_out_gateway only)
         "is_spent": Indicates whether the output has been spent.
         "minimum_sigs": Minimum number of signatures required to spend the output, for multisig outputs only.
+        "payment_id": [optional] Intrinsic per-output 8 byte long payment id
         "pub_keys": List of public keys associated with the output.
       "pub_key": Public key associated with the transaction.
       "timestamp": Timestamp when the transaction was created.
 
 ```
-<sub>Auto-doc built with: 2.1.8.415[f287916]</sub>
+<sub>Auto-doc built with: 2.2.0.461[7ecf73f]</sub>
