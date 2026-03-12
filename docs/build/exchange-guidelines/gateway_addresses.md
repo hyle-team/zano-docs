@@ -16,6 +16,27 @@ Each Gateway Address is associated with two private keys controlled by its owner
 
 In a more advanced setup, a GW address may use different view and spend keys. Importantly, the spend key can be replaced by the owner of the GW address.
 
+### Keys associated with GW address
+
+Each GW address is associated with **two** public keys: a **view key** and a **spend key**.
+
+The **view key** is used exclusively to derive a shared secret between the sender and the recipient, and to encrypt additional information attached to the transaction, such as comments or a `payment_id`, using that secret. Once a view key has been associated with a GW address, it cannot be changed.
+
+The **spend key** acts as a master key that controls all operations related to a GW address, including spending funds and assigning a new owner by replacing the spend key. From a security perspective, this is the most critical key, as it ultimately controls all funds associated with the address.
+
+To make integration with Zano convenient for a wide range of services, we implemented support for several signature types that are widely used across the blockchain industry. Below is a description of these signature types, along with the names of the corresponding API fields in the Wallet RPC API [register_gateway_address](https://docs.zano.org/docs/build/rpc-api/wallet-rpc-api/register_gateway_address):
+
+- `opt_owner_ecdsa_pub_key` - **ECDSA over secp256k1**. This signature type is widely used in blockchain projects such as Ethereum, Bitcoin, and others.
+- `opt_owner_eddsa_pub_key` - **Ed25519** (also referred to as EdDSA). This is the variant used in Solana.
+- `opt_owner_custom_schnorr_pub_key` - **Zano custom Schnorr signature**, also based on Ed25519.
+
+**opt_owner_ecdsa_pub_key(ECDSA)** and **opt_owner_eddsa_pub_key(Ed25519)** were implemented primarily because these standards are widely supported across the blockchain industry and because there is extensive tooling available for building MPC solutions with these key types.
+
+**opt_owner_custom_schnorr_pub_key(Zano custom Schnorr signature)** is an internal algorithm native to the Zano codebase and integrated into Zano’s core transaction protocols. It has similarities to the scheme used in Solana and relies on the same elliptic curve, but for historical reasons it differs in several implementation details, including the hash function used in the Schnorr algorithm.
+
+Note: View key (`view_pub_key`) can be only **Zano custom Schnorr signature**, as it involved in internal protocol machinery. Only spend key could be assigned as **ECDSA**/**EDDSA***
+
+
 ### Privacy
 
 When a transaction is sent to or from a GW address, some confidentiality is intentionally sacrificed for the parts of the transaction that directly involve the GW address, whether as the sender or the recipient:
@@ -35,7 +56,7 @@ Registration of a GW address is done via **wallet RPC** (`register_gateway_addre
 ### Prerequisites
 #### **IMPORTANT**: You must use **YOUR OWN NODE**, as the `view key` will be transferred there.
 - Running and synced Zano daemon (`zanod`) on a network with hard fork 6+
-- A wallet with RPC server enabled
+- A wallet with RPC server enabled [(HOWTO)](https://docs.zano.org/docs/build/exchange-guidelines/starting-the-daemon-and-the-wallet-application-as-rpc-server)
 - Balance of at least **~100.01 ZANO** (100 ZANO - Registration fee + Default fee)
 
 ### Steps
