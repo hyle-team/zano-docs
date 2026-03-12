@@ -30,8 +30,8 @@ URL: ```http:://127.0.0.1:11211/json_rpc```
     "descriptor_info": {
       "meta_info": "Some metadata",
       "opt_owner_custom_schnorr_pub_key": "f74bb56a5b4fa562e679ccaadd697463498a66de4f1760b2cd40f11c3a00a7a8",
-      "opt_owner_eddsa_pub_key": "f74bb56a5b4fa562e679ccaadd697463498a66de4f1760b2cd40f11c3a00a7a8",
-      "opt_owner_eth_pub_key": "f74bb56a5b4fa562e679ccaadd697463498a66de4f1760b2cd40f11c3a00a7a8e2"
+      "opt_owner_ecdsa_pub_key": "f74bb56a5b4fa562e679ccaadd697463498a66de4f1760b2cd40f11c3a00a7a8e2",
+      "opt_owner_eddsa_pub_key": "f74bb56a5b4fa562e679ccaadd697463498a66de4f1760b2cd40f11c3a00a7a8"
     },
     "gateway_view_pub_key": "0feef5e2ea0e88b592c0a0e6639ce73e12ea9b3136d89464748fcb60bb6f18f5",
     "payment_id": "4cf2c7c7e16d1a2a",
@@ -47,11 +47,11 @@ URL: ```http:://127.0.0.1:11211/json_rpc```
     "descriptor_info": Information about the specified gateway address.
       "meta_info": Additional metadata about the gateway
       "opt_owner_custom_schnorr_pub_key": owner's custom Schnorr signature public key
+      "opt_owner_ecdsa_pub_key": owner's Ethereum public key
       "opt_owner_eddsa_pub_key": owner's EdDSA public key
-      "opt_owner_eth_pub_key": owner's Ethereum public key
     "gateway_view_pub_key": Gateway view public key associated with the gateway address.
     "payment_id": Payment ID associated with the gateway address.
     "status": Status of the call.
 
 ```
-<sub>Auto-doc built with: 2.2.0.461[7ecf73f]</sub>
+<sub>Auto-doc built with: 2.2.0.461[d830c07]</sub>

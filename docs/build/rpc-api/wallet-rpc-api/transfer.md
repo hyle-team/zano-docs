@@ -72,4 +72,4 @@ URL: ```http:://127.0.0.1:11211/json_rpc```
     "tx_unsigned_hex": Has unsigned tx blob in hex encoding
 
 ```
-<sub>Auto-doc built with: 2.2.0.461[7ecf73f]</sub>
+<sub>Auto-doc built with: 2.2.0.461[d830c07]</sub>
