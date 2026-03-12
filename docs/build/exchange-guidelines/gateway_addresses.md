@@ -36,6 +36,13 @@ To make integration with Zano convenient for a wide range of services, we implem
 
 Note: View key (`view_pub_key`) can be only **Zano custom Schnorr signature**, as it involved in internal protocol machinery. Only spend key could be assigned as **ECDSA**/**EDDSA***
 
+| Name in API | Curve | Public key | Signature | Use case |
+|---|---|---|---|---|
+| `opt_owner_ecdsa_pub_key` | secp256k1 | 33 bytes (compressed) | 64 bytes <br>(r \|\| s) | **ECDSA over secp256k1**. This signature type is widely used in blockchain projects such as Ethereum, Bitcoin, and others. |
+| `opt_owner_eddsa_pub_key` | Ed25519 | 32 bytes | 64 bytes <br>(R \|\| s) |  **Ed25519** (also referred to as EdDSA). This is the variant used in Solana. |
+| `opt_owner_custom_schnorr_pub_key` | Ed25519  | 32 bytes | 64 bytes <br>(c \|\| y) | **Zano custom Schnorr signature**, also based on Ed25519. | 
+
+All three types use the compact signature format (64 bytes, without the recovery byte `v`). The signature is transmitted as a hex string (128 characters).
 
 ### Privacy
 
@@ -66,38 +73,12 @@ Registration of a GW address is done via **wallet RPC** (`register_gateway_addre
 Generate two key pairs:
 
 1. **View keys** (`view_pub_key`, `view_secret_key`) - the GW address identifier. `view_pub_key` will become the address (`gwZ...`), and `view_secret_key` will be needed later to decrypt payment ID in transaction history
-2. **Owner keys** (`owner_pub_key`, `owner_secret_key`) - the owners key for signing transactions. Choose one of the types:
-   - **Schnorr** (Zano native) - 32 bytes
-   - **EdDSA** (Ed25519) - 32 bytes
-   - **Ethereum** (secp256k1) - 33 bytes
+2. **Owner keys** (`owner_pub_key`, `owner_secret_key`) - the owners key for signing transactions. 
+   
 
-Important: `view_pub_key` must not contain a torsion component (validated by the blockchain during registration).
+**Note on view key generating: L and main subgroup**
 
-#### About the three signature types
-
-GW addresses support three types of owner signatures. The type is selected during registration.
-
-| Type | Curve | Public key | Signature | Use case |
-|---|---|---|---|---|
-| **Schnorr** | Ed25519 (Zano native) | 32 bytes | 64 bytes (c \|\| y) | Native Zano signing, cold wallets |
-| **EdDSA** | Ed25519 | 32 bytes | 64 bytes (R \|\| s) | Standard Ed25519, hardware tokens |
-| **Ethereum** | secp256k1 | 33 bytes (compressed) | 64 bytes (r \|\| s) | MetaMask, Ethereum wallets |
-
-All three types use the compact signature format (64 bytes, without the recovery byte `v`). The signature is transmitted as a hex string (128 characters).
-
-When registering, specify **exactly one** owner key:
-- `opt_owner_eth_pub_key` — for Ethereum (33 bytes, compressed secp256k1)
-- `opt_owner_eddsa_pub_key` — for EdDSA (32 bytes)
-- `opt_owner_custom_schnorr_pub_key` — for Schnorr (32 bytes)
-
-When signing a transaction (`gateway_sign_transfer`), the corresponding field is specified:
-- `opt_eth_signature` — for Ethereum
-- `opt_eddsa_signature` — for EdDSA
-- `opt_custom_schnorr_signature` — for Schnorr
-
-**L and main subgroup**
-
-The GW address key is a point on the Ed25519 curve. The Ed25519 curve has order `8 * L`, where `L` is the order of the prime-order subgroup:
+The GW address view key is a point on the Ed25519 curve. The Ed25519 curve has order `8 * L`, where `L` is the order of the prime-order subgroup:
 
 [Wiki Curve25519 L magic number](https://en.wikipedia.org/wiki/Curve25519)
 ```
@@ -106,18 +87,18 @@ L = 2^252 + 27742317777372353535851937790883648493
 
 If the secret scalar is chosen arbitrarily (without the restriction `< L`), the resulting point may contain a **torsion component** — a small multiplier of order 2, 4, or 8. Such points lie outside the main subgroup and create a vulnerability: two different scalars can generate the same point (address collision).
 
-During registration, Blockchain Core verifies that `view_pub_key` belongs to the main L-subgroup (no torsion). Therefore, when generating a view key, you need to:
+During registration, Zano Core verifies that `view_pub_key` belongs to the main L-subgroup (no torsion). Therefore, when generating a view key, you need to:
 
 1. Select a random scalar `s` in the range `[1, L-1]`
-2. Compute the public key as `s * G` (Ed25519 base point)
+2. Compute the public key as `s * G` 
 
 This ensures that the public key resides in the main subgroup and that the registration will pass validation.
 
-**Ethereum low-S normalisation**
+**ECDSA low-S normalisation**
 
 [EIP-2 explaining link](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-2.md)
 
-For Ethereum signatures (secp256k1), Zano requires that the value of `s` be in the "lower half" (`s <= n/2`, where `n` is the order of the secp256k1 curve). This is a standard requirement (EIP-2) that prevents signature malleability. Our `ethers.js` v6 library automatically normalizes `s` when calling `signingKey.sign()`, so no additional action is required.
+For ECDSA signatures (secp256k1), Zano requires that the value of `s` be in the "lower half" (`s <= n/2`, where `n` is the order of the secp256k1 curve). This is a standard requirement (EIP-2) that prevents signature malleability. Our `ethers.js` v6 library automatically normalizes `s` when calling `signingKey.sign()`, so no additional action is required.
 
 **nodejs - keygen example**
 
@@ -190,14 +171,14 @@ User                  Wallet RPC            Blockchain
   "params": {
     "view_pub_key": "4dbaa579daf3c4a91e6be2efde9568975f7b506b50d18bbefd6f03132b2ef180",
     "descriptor_info": {
-      "opt_owner_eth_pub_key": "0375d5e222b50cb55ede0a70ebb398ebc9e5d5e74ea0cbce860d4a38301877f4f7",
+      "opt_owner_ecdsa_pub_key": "0375d5e222b50cb55ede0a70ebb398ebc9e5d5e74ea0cbce860d4a38301877f4f7",
       "meta_info": "Example GW address for documentation"
     }
   }
 }
 ```
 
-Instead of `opt_owner_eth_pub_key` you can specify:
+Instead of `opt_owner_ecdsa_pub_key` you can specify:
 - `opt_owner_custom_schnorr_pub_key` - for Schnorr key (64 hex)
 - `opt_owner_eddsa_pub_key` - for EdDSA key (64 hex)
 
@@ -227,7 +208,7 @@ async function registerGatewayAddress(viewPubKey, ownerEthPubKey) {
   const regResult = await callWalletRpc('register_gateway_address', {
     view_pub_key: viewPubKey,
     descriptor_info: {
-      opt_owner_eth_pub_key: ownerEthPubKey,
+      opt_owner_ecdsa_pub_key: ownerEthPubKey,
       meta_info: 'Example GW address for documentation',
     },
   });
@@ -274,7 +255,7 @@ Use daemon RPC `gateway_get_address_info`:
   "result": {
     "status": "OK",
     "descriptor_info": {
-      "opt_owner_eth_pub_key": "0375d5e222b50cb55ede0a70ebb398ebc9e5d5e74ea0cbce860d4a38301877f4f7",
+      "opt_owner_ecdsa_pub_key": "0375d5e222b50cb55ede0a70ebb398ebc9e5d5e74ea0cbce860d4a38301877f4f7",
       "meta_info": "Example GW address for documentation"
     },
     "balances": [],
@@ -382,12 +363,12 @@ Take `tx_hash_to_sign` from the response and sign it with **your owner_secret_ke
   "params": {
     "tx_blob": "040141004dbaa579daf3c4a91e6be2efde9568975f7b506b50d18bbefd6f03132b2ef18074c32d3eaafafc623bf483e858d42e8bf4ec7df064ada2e34934469cff6b626880988be49903000516787ebe13ed53f6e5225ef5c481024b7f331a42fefa6d859c785521116659150a1700000b0217ce0b0264e42700e40b5402000000023f00f2085ea66732a56db0771aefcaa9c9fcb7828bcf4275d45579c5921d13516df041eacba1733953ed9dd2d2672d20c866076477c32e061536deb1245cb2804137e64ba3acd47465143f7e568afc2c1c3add2b9ffc13520feec9cb8ee734dbd3a574c32d3eaafafc623bf483e858d42e8bf4ec7df064ada2e34934469cff6b6268d2ff9f07847d62ebc7202bc521e74f94003f007e5ad2eab4fb7f4a0b19177b593043e30640993e7c844397767c8a22e91521bb97c2d275ee1760109f93d2021cfebffd73aa1e0da75a3cbd737910de3fbe92fb4bbb7523374f82711e894d357b82283f5df7963769d77a80572c0612b0be151374c32d3eaafafc623bf483e858d42e8bf4ec7df064ada2e34934469cff6b6268e359da40dc207efd55f19663586410d00006000143004600000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000032e002f07b6039875cc562b68a034d3acd220672f7213dce03a425deba13c9a01759d65b1c4e06210da36d87f7c6a81c46cd43ec869018e0b2497f6adf79f06aaad6a3080793811d4059534b25449addbcaa1ac642cb9086dbf060d0a8cd685d05532ef23c7e85c9eac2533d21571249799722f491f4318c1426b2ee61cb9575e824302bb95a145a2cb71a682fb652d431f8f17dd66e0036decc89a17784a5d84f4000e36580e5e0bd1bca7d3d4575c2ecec56afdb85ab06986bb35613262fd12e8080482d68d09e8e9b43779f6f9913977935ce00dc2b47e8121ab24d17cf8999992b0c2075effe6cd4b0ad21ac3a310a94cc5b481373c05960cb1ae134d75f8184005e45fc1134f2bd4de031826856e494d4d06e4b2d3164e98b752b4f559df5169b986378c0fd4ddbada717875a15097773974fec4a8419dcdad4fdceb7d6fa5ad71072f36a5888dedc29c3beabcc0784c1035cde704d14d799ee794558b1bfb839537a6663da725062aaa83bee9896eceffaf1236799bb59c7b9bc98c4c20414f254fd151438a6f4208e02bfa6050414dfb1df3c2e41d1173ee9c1da2b60e1fbf84519bad7690be9d01c927da4aa3ee59a7b292caafba860fe1687c344994e80f6b18f5853acfac90be73993e4658de57d6e15b242c8774816433e3a13c1e385bb649efe87e18a75624bd47b25e8414a6b7c2a2deea6988576d8ddeae0be1f689bfe7679f77afe745cf1d819b0d18783aef1122fa1a22917b95a0495b965aad389907aaf96dd1744f4ad5d615e5f46c0853ac8f5a43d404e576db9112eb10182a55f8047b96f8bdb3d0c7b04a2fcef6faa4b732b74d142158bbaba42f32a4216e22a60f33a99867067d22fae284cbefd0e77116ab5274d6fd904725cb23736c4a6d020102932a7296485c475d663f3da145150687fd97f229cb875b0723fad6e9ff545cf90dfa73f05cfb4b90a784d3baea4314a9fc99bb0be5e1eb9bf14341fcb3178a5102fdf319fbafb71264060a697b4b312111ebe4eee25afb2c6c3e12bdda4ed7ea0e433d03150eae875856e1ccba6d70d804747b22b7961bd2a332364919d0d5380002e2f5cac81634c1d768b2a61bb39fda2016fb0bdb75dec9277baa70d4ade8b9069eb890a3c331fd1e45f16fb76adaeaa090a8aa3af3691c0a4c6127ae4213dd0ac55f3f8d223f7f7ee7151e12d4ba8367b2c2bc299b5d30fa8056e7a95c1eb40c30e72c83b96c57d3c13f804e58c20571ef9c934860cbf66746a780e9dfa2444f0221bb69bc9c2099d3672bb30d95b4d1299c57d1b1ad077ea53b9887fc401cf70ab29cdb7bd636d417506749ab6aaae4d00395d8aaa4d5d82ec596c60d850db10e",
     "tx_hash_to_sign": "20e922b32dfe9b8b6bc6004e40f4198c9e966d5e228cd4830656ba967f8a205c",
-    "opt_eth_signature": "c2b347b83da0a79637b74ad4b504030033b771ac8cb1f610757f82e88d112b1032ef615efb2cf3f2e70c15de9c63208ca80c1cea70f12785648c98a5ca3c7b40"
+    "opt_ecdsa_signature": "c2b347b83da0a79637b74ad4b504030033b771ac8cb1f610757f82e88d112b1032ef615efb2cf3f2e70c15de9c63208ca80c1cea70f12785648c98a5ca3c7b40"
   }
 }
 ```
 
-Instead of `opt_eth_signature` use:
+Instead of `opt_ecdsa_signature` use:
 - `opt_custom_schnorr_signature` - if owner key is Schnorr
 - `opt_eddsa_signature` - if owner key is EdDSA
 
@@ -449,7 +430,7 @@ async function sendFromGateway(gatewayAddressId, recipientAddress, amount, owner
   const signResult = await callDaemonRpc('gateway_sign_transfer', {
     tx_blob: createResult.tx_blob,
     tx_hash_to_sign: createResult.tx_hash_to_sign,
-    opt_eth_signature: ethSignature,
+    opt_ecdsa_signature: ethSignature,
   });
 
   console.log('Transaction signed successfully');
@@ -812,7 +793,7 @@ async function main() {
     const regResult = await callWalletRpc('register_gateway_address', {
       view_pub_key: viewPubKey,
       descriptor_info: {
-        opt_owner_eth_pub_key: ownerEthPubKey,
+        opt_owner_ecdsa_pub_key: ownerEthPubKey,
         meta_info: 'Example GW address for documentation',
       },
     });
@@ -879,7 +860,7 @@ async function main() {
     const signResult = await callDaemonRpc('gateway_sign_transfer', {
       tx_blob: createResult.tx_blob,
       tx_hash_to_sign: createResult.tx_hash_to_sign,
-      opt_eth_signature: ethSignature,
+      opt_ecdsa_signature: ethSignature,
     });
     assertOk(signResult, 'gateway_sign_transfer');
     console.log('Transaction signed, blob length:', signResult.signed_tx_blob.length);
