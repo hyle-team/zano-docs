@@ -7,8 +7,8 @@ sidebar_position: 8
 - [Beginner Questions](#beginner-questions)
 - [Privacy Technologies](#privacy-technologies)
 - [Tokenomics & Trust](#tokenomics--trust)
-- [Dealing with Misuse & Bad Actors](#dealing-with-misuse--bad-actors)
 - [Cross-Chain Bridging](#cross-chain-bridging)
+- [Dealing with Misuse & Bad Actors](#dealing-with-misuse--bad-actors)
 - [Troubleshooting](#troubleshooting)
 
 ---
@@ -120,7 +120,7 @@ We'll continue to improve our dynamic blocksize (which our team pioneered initia
 
 ### How are Zano transactions kept private by default?
 
-Zano is designed with a strong focus on privacy, utilizing advanced cryptographic technologies to ensure transaction confidentiality:
+Zano leverages the proven and time-tested cryptographic primitives that were first introduced with CryptoNote, a protocol of which one of our founders was a lead-dev for, origin for over 300 forks and used by the biggest private cryptocurrencies:
 
 - **d/v-CLSAG Ring Signatures** make transactions between Zano network members untraceable.
 - **Stealth Addresses** conceal sending and receiving addresses.
@@ -220,32 +220,6 @@ Beyond making the foundation fund wallet publicly accessible and publishing mont
 
 ---
 
-## Dealing with Misuse & Bad Actors
-
-### What does Zano do to prevent bad actors from abusing its privacy features?
-
-Zano is built as a truly permissionless network, no member of the development team or anyone else can prevent others from using its features. This ensures that every user has equal access, regardless of who they are or where they come from. We firmly believe this is the core ethos of cryptocurrency. If a network isn't open and resistant to control or censorship, then calling it decentralized has little meaning.
-
-### How do privacy coins like Zano balance user freedom with responsibility?
-
-Every user is responsible for their own actions, the network doesn't judge anyone.
-
-### What would Zano say to regulators or critics who claim privacy coins are only for criminals?
-
-We affirm that **privacy is a fundamental human right** (UDHR, 1948) and applies online as well as offline (UN Human Rights Council, 2013). It is the foundation of freedom, dignity, and self-determination in an increasingly digital world. Without privacy, individuals cannot fully exercise other rights such as freedom of expression, freedom of association, or the right to participate in society without coercion or surveillance.
-
-In the realm of money and communication, privacy is not a privilege but a necessity. It protects individuals from unjust discrimination, economic exclusion, and authoritarian control. Just as we expect confidentiality in our personal lives, our medical records, or our votes, we must demand the same for our digital interactions and financial transactions.
-
-### Is there a way to track or flag suspicious activity on Zano's blockchain?
-
-No. Zano is built precisely so you can't distinguish one transaction from another.
-
-### How does Zano differentiate between protecting user rights and enabling bad behavior?
-
-Zano is designed as a **decentralized, permissionless network**, which means it does not (and cannot) make judgments about who uses it or for what purpose. Just as the internet itself does not distinguish between "good" and "bad" traffic, a truly decentralized financial system must remain neutral.
-
----
-
 ## Cross-Chain Bridging
 
 ### Can I bridge assets like BTC or ETH to Zano?
@@ -279,6 +253,32 @@ Currently set at 0.1%, plus regular transaction fees.
 ### Is there a custodian involved, like with WBTC?
 
 No. The entire protocol is decentralized and non-custodial, no central third party holds your assets at any point.
+
+---
+
+## Dealing with Misuse & Bad Actors
+
+### What does Zano do to prevent bad actors from abusing its privacy features?
+
+Zano is built as a truly permissionless network, no member of the development team or anyone else can prevent others from using its features. This ensures that every user has equal access, regardless of who they are or where they come from. We firmly believe this is the core ethos of cryptocurrency. If a network isn't open and resistant to control or censorship, then calling it decentralized has little meaning.
+
+### How do privacy coins like Zano balance user freedom with responsibility?
+
+Every user is responsible for their own actions, the network doesn't judge anyone.
+
+### What would Zano say to regulators or critics who claim privacy coins are only for criminals?
+
+We affirm that **privacy is a fundamental human right** (UDHR, 1948) and applies online as well as offline (UN Human Rights Council, 2013). It is the foundation of freedom, dignity, and self-determination in an increasingly digital world. Without privacy, individuals cannot fully exercise other rights such as freedom of expression, freedom of association, or the right to participate in society without coercion or surveillance.
+
+In the realm of money and communication, privacy is not a privilege but a necessity. It protects individuals from unjust discrimination, economic exclusion, and authoritarian control. Just as we expect confidentiality in our personal lives, our medical records, or our votes, we must demand the same for our digital interactions and financial transactions.
+
+### Is there a way to track or flag suspicious activity on Zano's blockchain?
+
+No. Zano is built precisely so you can't distinguish one transaction from another.
+
+### How does Zano differentiate between protecting user rights and enabling bad behavior?
+
+Zano is designed as a **decentralized, permissionless network**, which means it does not (and cannot) make judgments about who uses it or for what purpose. Just as the internet itself does not distinguish between "good" and "bad" traffic, a truly decentralized financial system must remain neutral.
 
 ---
 
