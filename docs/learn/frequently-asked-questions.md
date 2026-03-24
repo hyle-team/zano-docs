@@ -17,7 +17,7 @@ sidebar_position: 8
 
 ### What is Zano, and how is it different from other cryptocurrencies?
 
-Zano is an open-source cryptocurrency and ecosystem with enterprise-grade privacy, security, and scalability that operates as a robust foundation for confidential assets and decentralized applications (dApps).
+Zano is an open-source layer-1 blockchain where every transaction is private by default. Amounts, addresses, and even asset types are hidden, enforced at the protocol level, not opt-in. You can send funds, stake, issue your own tokens, trade peer-to-peer, and build apps on Zano.
 
 **Key characteristics:**
 
@@ -109,6 +109,12 @@ Zano dApps can use alias-based authentication, as [Zano Matrix](/docs/use/zano-m
 ### What is Zarcanum?
 
 Zarcanum is the world's first Proof of Stake scheme that enhances traditional PoS with untraceability and hidden amounts, revolutionizing blockchain consensus. Thanks to this innovative approach, our stakers can stake in complete anonymity.
+
+### How is the network secured?
+
+Zano uses a hybrid consensus algorithm that alternates between Proof-of-Work (PoW) and Proof-of-Stake (PoS) blocks.
+
+This approach combines the benefits of both mechanisms to enhance blockchain security and decentralization. If performing a 51% attack on Zano, one would need the majority of the hash rate **and** a significant amount of the total amount of staked coins, making the cost of an attack incredibly high, thus becoming infeasible.
 
 ### What's the plan for scaling?
 
