@@ -8,11 +8,13 @@ URL: ```http:://127.0.0.1:11211/json_rpc```
   "jsonrpc": "2.0",
   "method": "get_wallet_info",
   "params": {
+    "collect_utxo_data": false
   }
 }
 ```
 ### Request description: 
 ```
+    "collect_utxo_data": Collect utxo statistics data(might slow down request, don't use it by default)
 
 ```
 ### Response: 
@@ -27,8 +29,7 @@ URL: ```http:://127.0.0.1:11211/json_rpc```
     "is_whatch_only": false,
     "path": "\/some\/path\/to\/wallet\/file.zan",
     "transfer_entries_count": 24,
-    "transfers_count": 11,
-    "utxo_distribution": ["1"]
+    "transfers_count": 11
   }
 }
 ```
@@ -41,7 +42,6 @@ URL: ```http:://127.0.0.1:11211/json_rpc```
     "path": Path to wallet file location
     "transfer_entries_count": Represent number of internal entries count(each entry represent tx output that have been addressed to this wallet)
     "transfers_count": Represent number of transactions that happened to this wallet(basically tx history)
-    "utxo_distribution": UTXO distribution for this particular wallet: disabled right now
 
 ```
-<sub>Auto-doc built with: 2.1.8.415[f287916]</sub>
+<sub>Auto-doc built with: 2.2.0.461[d830c07]</sub>

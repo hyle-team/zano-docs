@@ -1,4 +1,4 @@
-Returns wallet history of transactions V2(post-zarcanum version)
+(deprecated) Returns wallet history of transactions V2 (post-Zarcanum version)
 
 URL: ```http:://127.0.0.1:11211/json_rpc```
 ### Request: 
@@ -92,6 +92,14 @@ URL: ```http:://127.0.0.1:11211/json_rpc```
         "asset_id": "cc608f59f8080e2fbfe3c8c80eb6e6a953d47cf2d6aebd345bada3a1cab99852",
         "is_income": false
       }],
+      "subtransfers_by_pid": [{
+        "payment_id": "a1a2a3a4a5a6a7a8",
+        "subtransfers": [{
+          "amount": 1000000000000,
+          "asset_id": "cc608f59f8080e2fbfe3c8c80eb6e6a953d47cf2d6aebd345bada3a1cab99852",
+          "is_income": false
+        }]
+      }],
       "timestamp": 1712590951,
       "transfer_internal_index": 12,
       "tx_blob_size": 0,
@@ -140,12 +148,18 @@ URL: ```http:://127.0.0.1:11211/json_rpc```
         "amount": Amount of asset the had been transfered
         "asset_id": Asset id
         "is_income": Indicates if transfer was income our outgoing
+      "subtransfers_by_pid": Essential part of transfer entry: amounts that been transfered in this transaction grouped by payment ID and then by asset ID
+        "payment_id": HEX-encoded payment id, or empty string if not present
+        "subtransfers": Amounts that been transfered in this transaction with corresponding payment ID grouped by asset ID
+          "amount": Amount of asset the had been transfered
+          "asset_id": Asset id
+          "is_income": Indicates if transfer was income our outgoing
       "timestamp": Timestamp of the block that included transaction in blockchain, 0 for unconfirmed
       "transfer_internal_index": Index of this entry in the wallet's array of transaction's history
       "tx_blob_size": Size of transaction in bytes
       "tx_hash": Transaction ID(hash)
-      "tx_type": Could be one of this:  GUI_TX_TYPE_NORMAL=0, GUI_TX_TYPE_PUSH_OFFER=1, GUI_TX_TYPE_UPDATE_OFFER=2, GUI_TX_TYPE_CANCEL_OFFER=3, GUI_TX_TYPE_NEW_ALIAS=4,GUI_TX_TYPE_UPDATE_ALIAS=5,GUI_TX_TYPE_COIN_BASE=6,GUI_TX_TYPE_ESCROW_PROPOSAL=7,GUI_TX_TYPE_ESCROW_TRANSFER=8,GUI_TX_TYPE_ESCROW_RELEASE_NORMAL=9,GUI_TX_TYPE_ESCROW_RELEASE_BURN=10,GUI_TX_TYPE_ESCROW_CANCEL_PROPOSAL=11,GUI_TX_TYPE_ESCROW_RELEASE_CANCEL=12,GUI_TX_TYPE_HTLC_DEPOSIT=13,GUI_TX_TYPE_HTLC_REDEEM=14
+      "tx_type": Could be one of this:  GUI_TX_TYPE_NORMAL=0, GUI_TX_TYPE_PUSH_OFFER=1, GUI_TX_TYPE_UPDATE_OFFER=2, GUI_TX_TYPE_CANCEL_OFFER=3, GUI_TX_TYPE_NEW_ALIAS=4,GUI_TX_TYPE_UPDATE_ALIAS=5,GUI_TX_TYPE_COIN_BASE=6,GUI_TX_TYPE_ESCROW_PROPOSAL=7,GUI_TX_TYPE_ESCROW_TRANSFER=8,GUI_TX_TYPE_ESCROW_RELEASE_NORMAL=9,GUI_TX_TYPE_ESCROW_RELEASE_BURN=10,GUI_TX_TYPE_ESCROW_CANCEL_PROPOSAL=11,GUI_TX_TYPE_ESCROW_RELEASE_CANCEL=12
       "unlock_time": Unlock time of this transfer (if present)
 
 ```
-<sub>Auto-doc built with: 2.1.8.415[f287916]</sub>
+<sub>Auto-doc built with: 2.2.0.461[d830c07]</sub>

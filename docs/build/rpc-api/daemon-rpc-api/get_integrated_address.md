@@ -26,7 +26,8 @@ URL: ```http:://127.0.0.1:11211/json_rpc```
   "jsonrpc": "2.0",
   "result": {
     "integrated_address": "iZ2EMyPD7g28hgBfboZeCENaYrHBYZ1bLFi5cgWvn4WJLaxfgs4kqG6cJi9ai2zrXWSCpsvRXit14gKjeijx6YPCLJEv6Fx4rVm1hdAGQFis",
-    "payment_id": "1dfe5a88ff9effb3"
+    "payment_id": "1dfe5a88ff9effb3",
+    "status": "OK"
   }
 }
 ```
@@ -34,6 +35,7 @@ URL: ```http:://127.0.0.1:11211/json_rpc```
 ```
     "integrated_address": Integrated address combining a standard address and payment ID, if applicable.
     "payment_id": Payment ID associated with the this address.
+    "status": Status
 
 ```
-<sub>Auto-doc built with: 2.1.8.415[f287916]</sub>
+<sub>Auto-doc built with: 2.2.0.461[d830c07]</sub>

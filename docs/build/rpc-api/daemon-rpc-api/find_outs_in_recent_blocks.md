@@ -33,6 +33,7 @@ URL: ```http:://127.0.0.1:11211/json_rpc```
       "amount": 1000000000000,
       "asset_id": "cc4e69455e63f4a581257382191de6856c2156630b3fba0db4bdd73ffcfb36b6",
       "output_tx_index": 2,
+      "payment_id": 0,
       "tx_block_height": 2555000,
       "tx_id": "a6e8da986858e6825fce7a192097e6afae4e889cabe853a9c29b964985b23da8"
     }],
@@ -48,9 +49,10 @@ URL: ```http:://127.0.0.1:11211/json_rpc```
       "amount": The amount of the output.
       "asset_id": Asset ID of the output.
       "output_tx_index": Index of the output in the transaction.
+      "payment_id": [optional] 8-bytes long intrinsic payment id
       "tx_block_height": Block height where the transaction is present.
       "tx_id": Transaction ID where the output is present, if found.
     "status": Status of the call.
 
 ```
-<sub>Auto-doc built with: 2.1.8.415[f287916]</sub>
+<sub>Auto-doc built with: 2.2.0.461[d830c07]</sub>

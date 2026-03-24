@@ -12,7 +12,8 @@ URL: ```http:://127.0.0.1:11211/json_rpc```
     "destinations": [{
       "address": "ZxBvJDuQjMG9R2j4WnYUhBYNrwZPwuyXrC7FHdVmWqaESgowDvgfWtiXeNGu8Px9B24pkmjsA39fzSSiEQG1ekB225ZnrMTBp",
       "amount": 10000000000000,
-      "asset_id": "cc608f59f8080e2fbfe3c8c80eb6e6a953d47cf2d6aebd345bada3a1cab99852"
+      "asset_id": "cc608f59f8080e2fbfe3c8c80eb6e6a953d47cf2d6aebd345bada3a1cab99852",
+      "payment_id": 1020394
     }],
     "do_not_split_destinations": false
   }
@@ -25,6 +26,7 @@ URL: ```http:://127.0.0.1:11211/json_rpc```
       "address": Destination address
       "amount": Amount to transfer to destination
       "asset_id": Asset id to transfer
+      "payment_id": [optional] Intrinsic 8-byte payment id for this destination. Incompatible with integrated addresses.
     "do_not_split_destinations": If true, the provided destinations will be used as-is and won't be splitted (or altered) to avoid common issues. Default is false.
 
 ```
@@ -43,4 +45,4 @@ URL: ```http:://127.0.0.1:11211/json_rpc```
     "tx_id": Id of transaction that emits the required asset.
 
 ```
-<sub>Auto-doc built with: 2.1.8.415[f287916]</sub>
+<sub>Auto-doc built with: 2.2.0.461[d830c07]</sub>

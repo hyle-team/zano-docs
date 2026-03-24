@@ -33,7 +33,8 @@ URL: ```http:://127.0.0.1:11211/json_rpc```
       "address": "ZxBvJDuQjMG9R2j4WnYUhBYNrwZPwuyXrC7FHdVmWqaESgowDvgfWtiXeNGu8Px9B24pkmjsA39fzSSiEQG1ekB225ZnrMTBp",
       "amount": 10000000000000,
       "asset_id": "cc608f59f8080e2fbfe3c8c80eb6e6a953d47cf2d6aebd345bada3a1cab99852",
-      "out_index": 1
+      "out_index": 1,
+      "payment_id": 0
     }],
     "status": "OK",
     "tx_in_json": "ewogICJ2ZXJzaW9uIjogMSwgC....iAgInZpbiI6IFsgewogICAgIC",
@@ -48,9 +49,10 @@ URL: ```http:://127.0.0.1:11211/json_rpc```
       "amount": Amount begin transferred.
       "asset_id": Asset id.
       "out_index": Index of the corresponding output in the transaction.
+      "payment_id": [optional] Intrinsic per-output 8 byte long payment id
     "status": Status code of operation, OK if success
     "tx_in_json": Serialized transaction represented in JSON, encoded in Base64.
     "verified_tx_id": (Re)calculated transaction id. Can be used in third-party proof generation.
 
 ```
-<sub>Auto-doc built with: 2.1.8.415[f287916]</sub>
+<sub>Auto-doc built with: 2.2.0.461[d830c07]</sub>
