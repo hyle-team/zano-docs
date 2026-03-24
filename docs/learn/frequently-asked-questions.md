@@ -53,7 +53,7 @@ On the consensus side, Zano runs a hybrid PoW/PoS model instead of Monero's pure
 2. Create a wallet by following the steps in the app.
 3. Store your keys in a safe place.
 
-**Mobile wallet** is ideal for everyday transactions on the go. **Desktop wallet** runs a full local node, required for staking and offers the most complete feature set.
+**Mobile wallet** is ideal for everyday transactions on the go. **Desktop wallet** runs a full local node, required for staking and offers the most complete feature set. See the [desktop wallet guide](/docs/use/wallets/gui-wallet) for a detailed walkthrough.
 
 See all compatible wallets: [zano.org/wallets](https://zano.org/wallets)
 
@@ -126,7 +126,9 @@ We'll continue to improve our dynamic blocksize (which our team pioneered initia
 
 ### How are Zano transactions kept private by default?
 
-Zano leverages the proven and time-tested cryptographic primitives that were first introduced with CryptoNote, a protocol of which one of our founders was a lead-dev for, origin for over 300 forks and used by the biggest private cryptocurrencies:
+Zano leverages the proven and time-tested cryptographic primitives that were first introduced with CryptoNote, a protocol of which one of our founders was a lead-dev for, origin for over 300 forks and used by the biggest private cryptocurrencies.
+
+Our Implementation boils down to:
 
 - **d/v-CLSAG Ring Signatures** make transactions between Zano network members untraceable.
 - **Stealth Addresses** conceal sending and receiving addresses.
