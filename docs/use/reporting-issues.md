@@ -8,6 +8,10 @@ Zano team puts a lot of hard work to bring you the best blockchain experience po
 
 All you need to do is to follow the [report link](https://github.com/hyle-team/zano/issues), describe your situation and submit a request. Or join our [Discord](https://discord.gg/wE3rmYY) and post it in the #support channel.
 
+For Zano Trade related issues, join: **[@zano_trade_support](https://t.me/zano_trade_support)**
+
+For critical network updates (hard forks, urgent upgrades): **[@zano_critical](https://t.me/zano_critical)**
+
 ## Log files
 
 In most cases log files are essential for troubleshooting. It could be wise to attach them to the report you submit. Specifically, `Zano.log` or `zanod.log` would be useful for our dev team. They are stored in different locations depending on OS:

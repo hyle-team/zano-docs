@@ -303,3 +303,9 @@ To access the wallet in the event of a loss, you need something called a mnemoni
 ### Why does the desktop wallet take so long to start?
 
 Zano wallet is a full node application. Due to loading the blockchain and multiple wallets synchronizing, start time depends on your system specifications and may be bottlenecked by internet connection speed.
+
+### Where can I get support?
+
+- **General issues**: [GitHub Issues](https://github.com/hyle-team/zano/issues) or [Discord #support](https://discord.gg/wE3rmYY)
+- **Zano Trade support**: [@zano_trade_support](https://t.me/zano_trade_support)
+- **Critical network updates**: [@zano_critical](https://t.me/zano_critical)

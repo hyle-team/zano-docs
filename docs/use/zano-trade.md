@@ -156,3 +156,9 @@ An ionic swap takes 1 confirmation to complete, which on average is 1 minute.
 ### Why do I need Zano Companion to be able to access Zano Trade?
 
 Since Zano Trade is a non-custodial app it uses Zano Companion as a secure interface to the user's wallet instead, this way funds always stay in your control.
+
+## Support
+
+If you need help with Zano Trade, join our dedicated support chat: **[@zano_trade_support](https://t.me/zano_trade_support)**
+
+For critical network updates and announcements: **[@zano_critical](https://t.me/zano_critical)**
