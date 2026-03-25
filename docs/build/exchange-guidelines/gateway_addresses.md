@@ -29,7 +29,7 @@ To make integration with Zano convenient for a wide range of services, we implem
 | Name in API | Curve | Public key | Signature | Use case |
 |---|---|---|---|---|
 | `opt_owner_ecdsa_pub_key` | secp256k1 | 33 bytes (compressed) | 64 bytes <br />(r \|\| s) | **ECDSA over secp256k1**. This signature type is widely used in blockchain projects such as Ethereum, Bitcoin, and others. |
-| `opt_owner_eddsa_pub_key` | Ed25519 | 32 bytes | 64 bytes <br />(R \|\| s) |  **Ed25519** (also referred to as EdDSA). This is the variant used in Solana. |
+| `opt_owner_eddsa_pub_key` | Ed25519 | 32 bytes | 64 bytes <br />(R \|\| s) |  **EDDSA** (also referred to as EdDSA). This is the variant used in Solana. |
 | `opt_owner_custom_schnorr_pub_key` | Ed25519  | 32 bytes | 64 bytes <br />(c \|\| y) | **Zano custom Schnorr signature**, also based on Ed25519. | 
 
 **opt_owner_ecdsa_pub_key(ECDSA)** and **opt_owner_eddsa_pub_key(Ed25519)** were implemented primarily because these standards are widely supported across the blockchain industry and because there is extensive tooling available for building MPC solutions with these key types.
