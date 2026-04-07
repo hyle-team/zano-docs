@@ -909,6 +909,280 @@ main();
 
 ---
 
+## 8. Changing the owner of a GW address
+
+The owner of a GW address can be changed by the current owner, this is done via **daemon RPC** (not wallet RPC) using a two-step flow similar to `gateway_create_transfer` / `gateway_sign_transfer`, the current owner signs the transaction to authorize the transfer of ownership to a new public key.
+
+After the owner change, only the holder of the **new** owner secret key can sign transactions from this GW address, the previous owner loses all control.
+
+### Prerequisites
+
+> **WARNING:**
+>
+> **DO NOT create an owner change transaction while there are OTHER pending GW transactions from the same address in the mempool!**
+>
+> If any unconfirmed gateway transactions (transfers, other operations) from this GW address exist in the mempool, the owner change transaction will conflict with them. Wait until ALL pending GW transactions are confirmed (mined into a block) before submitting an owner change. Failing to do so may result in rejected transactions or undefined behavior.
+
+- The GW address must have sufficient **native coin** balance to pay the transaction fee
+- You need the **current owner's secret key** to sign the owner change transaction
+- You need the **new owner's public key** (generate a new keypair beforehand)
+- **There must be NO other pending GW transactions from this address in the mempool** (see warning above)
+
+### General flow
+
+```
+External service            Daemon (zanod)            Blockchain
+      |                           |                       |
+      |  gateway_create_          |                       |
+      |  owner_change ----------> |                       |
+      |    address_id             | Checks balance        |
+      |    new_owner_pub_key      | Builds unsigned TX    |
+      |    fee                    |                       |
+      |                           |                       |
+      |  tx_hash_to_sign     <--- |                       |
+      |  tx_blob                  |                       |
+      |                           |                       |
+      |  +--------------------+   |                       |
+      |  | Signs               |  |                       |
+      |  | tx_hash_to_sign     |  |                       |
+      |  | with CURRENT        |  |                       |
+      |  | owner_key           |  |                       |
+      |  +--------------------+   |                       |
+      |                           |                       |
+      |  gateway_sign_            |                       |
+      |  owner_change ----------> |                       |
+      |    tx_blob + signature    | Inserts signature     |
+      |                           | Broadcasts TX         |
+      |                           | --------------------> |
+      |  signed_tx_blob      <--- |        Into block     |
+```
+
+Note: unlike `gateway_sign_transfer`, `gateway_sign_owner_change` **broadcasts the transaction automatically** - there is no need to call `sendrawtransaction` separately.
+
+### Step 1: Generate new owner keys
+
+Generate a new owner keypair, the type (Schnorr / EdDSA / Ethereum) does not have to match the current owner's type - you can change from one signature scheme to another.
+
+```javascript
+// Example: generate Schnorr owner keys
+const ED25519_L = (1n << 252n) + 27742317777372353535851937790883648493n;
+
+function randomScalarLtL() {
+  while (true) {
+    const b = require('crypto').randomBytes(32);
+    const x = BigInt('0x' + b.toString('hex'));
+    const s = x % ED25519_L;
+    if (s !== 0n) return s;
+  }
+}
+
+function scalarToLe32Hex(s) {
+  const out = Buffer.alloc(32, 0);
+  let x = s;
+  for (let i = 0; i < 32; i++) {
+    out[i] = Number(x & 0xffn);
+    x >>= 8n;
+  }
+  return out.toString('hex');
+}
+
+const scalar = randomScalarLtL();
+const newOwnerSecretKey = scalarToLe32Hex(scalar);
+const newOwnerPubKey = Buffer.from(ed.Point.BASE.multiply(scalar).toBytes()).toString('hex');
+
+console.log('New owner pub key:', newOwnerPubKey);
+console.log('New owner secret key (save securely!):', newOwnerSecretKey);
+```
+
+### Step 2: Create owner change transaction - `gateway_create_owner_change`
+
+**Request** (daemon JSON-RPC):
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 0,
+  "method": "gateway_create_owner_change",
+  "params": {
+    "address_id": "4dbaa579daf3c4a91e6be2efde9568975f7b506b50d18bbefd6f03132b2ef180",
+    "new_descriptor_info": {
+      "opt_owner_custom_schnorr_pub_key": "77f53dd03ef922858122b19b0610f8a6eeebf17d828c7eef6fd25f906a5e00bf"
+    },
+    "fee": 10000000000
+  }
+}
+```
+
+Instead of `opt_owner_custom_schnorr_pub_key` you can specify:
+- `opt_owner_ecdsa_pub_key` - for Ethereum key (66 hex, compressed secp256k1)
+- `opt_owner_eddsa_pub_key` - for EdDSA key (64 hex)
+
+Exactly **one** new owner key type must be specified.
+
+Optional field `meta_info` can be included in `new_descriptor_info` to update the metadata.
+
+**Response:**
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 0,
+  "result": {
+    "status": "OK",
+    "tx_hash_to_sign": "3cd7020bacebd3d7c06d4f80a5d5041f1700329ea4b3ea3104b1e65b49f0f4f0",
+    "tx_blob": "0401..."
+  }
+}
+```
+
+### Step 3: Sign and broadcast - `gateway_sign_owner_change`
+
+Sign `tx_hash_to_sign` with the **current** owner's secret key (not the new one), then submit the signature.
+
+**Request** (daemon JSON-RPC):
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 0,
+  "method": "gateway_sign_owner_change",
+  "params": {
+    "tx_blob": "0401...",
+    "tx_hash_to_sign": "3cd7020bacebd3d7c06d4f80a5d5041f1700329ea4b3ea3104b1e65b49f0f4f0",
+    "opt_ecdsa_signature": "c2b347b83da0a79637b74ad4b504030033b771ac8cb1f610757f82e88d112b1032ef615efb2cf3f2e70c15de9c63208ca80c1cea70f12785648c98a5ca3c7b40"
+  }
+}
+```
+
+Instead of `opt_ecdsa_signature` use:
+- `opt_custom_schnorr_signature` - if current owner key is Schnorr
+- `opt_eddsa_signature` - if current owner key is EdDSA
+
+Exactly **one** signature must be specified, matching the current owner's key type.
+
+**Response:**
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 0,
+  "result": {
+    "status": "OK",
+    "signed_tx_blob": "0401..."
+  }
+}
+```
+
+The transaction is broadcast automatically upon success. No `sendrawtransaction` call is needed.
+
+### Step 4: Verify the change
+
+After the transaction is confirmed in a block, query `gateway_get_address_info` to verify the new owner:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 0,
+  "method": "gateway_get_address_info",
+  "params": {
+    "gateway_address": "gwZ5sqxb53vdd7RjUoPoSWeELimisUGprEX3P8fhcQwc8Dw6xpnSgfC1v"
+  }
+}
+```
+
+The `descriptor_info` in the response will now contain the new owner's public key.
+
+### Signing examples
+
+**Zano Schnorr (Ed25519):**
+
+```javascript
+const { keccak_256 } = require('@noble/hashes/sha3');
+
+function hexToBytes(hex) { return Buffer.from(hex, 'hex'); }
+
+function le32HexToBigInt(hex) {
+  const buf = Buffer.from(hex, 'hex');
+  let result = 0n;
+  for (let i = 31; i >= 0; i--) result = (result << 8n) | BigInt(buf[i]);
+  return result;
+}
+
+function bigIntToLe32Hex(s) {
+  const out = Buffer.alloc(32, 0);
+  let x = s;
+  for (let i = 0; i < 32; i++) { out[i] = Number(x & 0xffn); x >>= 8n; }
+  return out.toString('hex');
+}
+
+function scalarReduce(buf32) {
+  let x = 0n;
+  for (let i = 31; i >= 0; i--) x = (x << 8n) | BigInt(buf32[i]);
+  return ((x % ED25519_L) + ED25519_L) % ED25519_L;
+}
+
+// Zano Schnorr: c = keccak256(m || A || R) mod L, y = r - c*a mod L
+function zanoSchnorrSign(txHashHex, ownerPubKeyHex, ownerSecretKeyHex) {
+  const m = hexToBytes(txHashHex);
+  const A = hexToBytes(ownerPubKeyHex);
+  const a = le32HexToBigInt(ownerSecretKeyHex);
+
+  const r = randomScalarLtL();
+  const R = ed.Point.BASE.multiply(r).toBytes();
+
+  const preimage = Buffer.concat([m, A, Buffer.from(R)]);
+  const c = scalarReduce(keccak_256(preimage));
+  const y = ((r - c * a) % ED25519_L + ED25519_L) % ED25519_L;
+
+  return bigIntToLe32Hex(c) + bigIntToLe32Hex(y); // 128 hex
+}
+```
+
+**Ethereum ECDSA (secp256k1):**
+
+```javascript
+const bytesToSign = ethers.getBytes('0x' + txHashToSign);
+const sig = ownerWallet.signingKey.sign(bytesToSign);
+const ethSignature = sig.r.slice(2) + sig.s.slice(2); // r||s, 128 hex
+```
+
+### Node.js - complete owner change flow
+
+```javascript
+async function changeGatewayOwner(addressId, currentOwnerPubKey, currentOwnerSecretKey, newOwnerPubKey) {
+  // Step 1: create unsigned owner change transaction
+  const createRes = await callDaemonRpc('gateway_create_owner_change', {
+    address_id: addressId,
+    new_descriptor_info: {
+      opt_owner_custom_schnorr_pub_key: newOwnerPubKey,
+    },
+    fee: 10_000_000_000,
+  });
+  assertOk(createRes, 'gateway_create_owner_change');
+  console.log('TX hash to sign:', createRes.tx_hash_to_sign);
+
+  // Step 2: sign with current owner's key
+  const signature = zanoSchnorrSign(
+    createRes.tx_hash_to_sign,
+    currentOwnerPubKey,
+    currentOwnerSecretKey
+  );
+  console.log('Signature:', signature);
+
+  // Step 3: submit signature (broadcasts automatically)
+  const signRes = await callDaemonRpc('gateway_sign_owner_change', {
+    tx_blob: createRes.tx_blob,
+    tx_hash_to_sign: createRes.tx_hash_to_sign,
+    opt_custom_schnorr_signature: signature,
+  });
+  assertOk(signRes, 'gateway_sign_owner_change');
+  console.log('Owner change broadcast OK');
+
+  return createRes.tx_hash_to_sign;
+}
+```
+---
+
 ## API quick reference
 
 | Method | RPC type | Description |
@@ -917,6 +1191,8 @@ main();
 | [gateway_get_address_info](https://docs.zano.org/docs/build/rpc-api/daemon-rpc-api/gateway_get_address_info) | Daemon RPC | Get information and balances of a GW address |
 | [gateway_create_transfer](https://docs.zano.org/docs/build/rpc-api/daemon-rpc-api/gateway_create_transfer) | Daemon RPC | Create an unsigned transaction from a GW address |
 | [gateway_sign_transfer](https://docs.zano.org/docs/build/rpc-api/daemon-rpc-api/gateway_sign_transfer) | Daemon RPC | Sign a transaction with owner key |
+| [gateway_create_owner_change](https://docs.zano.org/docs/build/rpc-api/daemon-rpc-api/gateway_create_owner_change) | Daemon RPC | Create an unsigned owner change transaction |
+| [gateway_sign_owner_change](https://docs.zano.org/docs/build/rpc-api/daemon-rpc-api/gateway_sign_owner_change) | Daemon RPC | Sign and broadcast an owner change transaction |
 | [sendrawtransaction](https://docs.zano.org/docs/build/rpc-api/daemon-rpc-api/sendrawtransaction) | Daemon RPC | Broadcast a signed transaction to the network |
 | [gateway_get_address_history](https://docs.zano.org/docs/build/rpc-api/daemon-rpc-api/gateway_get_address_history) | Daemon RPC | Get GW address transaction history (requires view key for decryption) |
 | [get_integrated_address](https://docs.zano.org/docs/build/rpc-api/daemon-rpc-api/get_integrated_address) | Daemon RPC | Create an integrated `gwiZ...` address with payment ID |
