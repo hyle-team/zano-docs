@@ -1,3 +1,7 @@
+:::caution Testnet only
+This RPC method is currently available only on testnet. It will be included in a future mainnet release.
+:::
+
 Signs a gateway owner change transaction and broadcasts it to the network. A single signature from the current owner is used for both the gateway input (fee) and the ownership proof, since both are signed over the same tx hash by the same key.
 
 URL: ```http:://127.0.0.1:11211/json_rpc```

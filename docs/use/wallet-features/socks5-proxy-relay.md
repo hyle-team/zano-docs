@@ -5,6 +5,9 @@ slug: /use/socks5-proxy-relay
 
 # Sending transactions and PoS blocks through a SOCKS5 proxy
 
+:::caution Testnet only
+This feature is currently available only on testnet. It will be included in a future mainnet release.
+:::
 
 Zano wallet can route transaction broadcasts and PoS block submissions through a SOCKS5 proxy (like Tor). Your wallet still syncs with your local daemon as usual, but when it needs to push something to the network - it does that through the proxy to a remote node, your real IP stays hidden.
 

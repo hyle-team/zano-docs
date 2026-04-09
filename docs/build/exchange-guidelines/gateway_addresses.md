@@ -1,5 +1,9 @@
 # Gateway Addresses (GW) in Zano
 
+:::caution Testnet only
+Gateway Addresses are currently available only on testnet. They will be included in a future mainnet release.
+:::
+
 ## 1. What are Gateway Addresses?
 
 A Gateway Address (GW) is a new type of address in the Zano blockchain that will be introduced starting with Hard Fork 6. Unlike classic addresses, which operate under the UTXO model, GW addresses use an **account-based model**, meaning that the balance is stored directly on the blockchain rather than being represented as a set of separate UTXOs.

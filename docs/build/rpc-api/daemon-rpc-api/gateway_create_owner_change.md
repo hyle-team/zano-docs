@@ -1,3 +1,7 @@
+:::caution Testnet only
+This RPC method is currently available only on testnet. It will be included in a future mainnet release.
+:::
+
 Creates a transaction to change the owner of a gateway address. Returns unsigned tx blob and tx hash that must be signed by the current owner.
 
 URL: ```http:://127.0.0.1:11211/json_rpc```

@@ -1,3 +1,7 @@
+:::caution Testnet only
+This RPC method is currently available only on testnet. It will be included in a future mainnet release.
+:::
+
 Retrieves the transaction history for a specific gateway address.
 
 URL: ```http:://127.0.0.1:11211/json_rpc```

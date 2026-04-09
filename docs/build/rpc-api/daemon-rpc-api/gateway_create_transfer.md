@@ -1,3 +1,7 @@
+:::caution Testnet only
+This RPC method is currently available only on testnet. It will be included in a future mainnet release.
+:::
+
 Initiates a transfer from gateway address. Create tx that need to be signed.
 
 URL: ```http:://127.0.0.1:11211/json_rpc```
