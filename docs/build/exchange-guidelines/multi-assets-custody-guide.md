@@ -14,7 +14,13 @@ Architecturally, Zano consists of two modules - a **full node(daemon)** and a **
 
 Thus, the RPC API in Zano is divided into two parts - the DAEMON RPC API and the WALLET RPC API. This is due to the fact that, unlike EVM or Bitcoin networks, you cannot simply request the balance of a specific address from the Zano node. To get the balance of a specific address, you need to know its secret key and perform computationally complex operations. Therefore, there is a process of synchronizing the wallet with the daemon. If you have a wallet created, for example, a year or two ago and you haven't opened it for a long time or have restored it, the synchronization process may take some time. If the wallet was online a few days ago, the synchronization happens quickly - less than a minute.
 
-Zano is a platform where anyone can deploy their own asset, which will have the same privacy features as Zano itself. Such assets are called **Confidential Assets**. Support for Confidential Assets is reflected in the API documentation and in this manual. Each asset has an identifier (**asset_id**), and only this asset_id identify this specific asset. All other attributes of the asset may match similar attributes of other assets
+Zano is a platform where anyone can deploy their own asset, which will have the same privacy features as Zano itself. Such assets are called **Confidential Assets**. Support for Confidential Assets is reflected in the API documentation and in this manual. Each asset has an identifier (**asset_id**), and only this asset_id identify this specific asset. All other attributes of the asset may match similar attributes of other assets.
+
+Note: All critical updates are possted in this telegram chat, if you run custody or any other servic that involve Zano software, please subscribe to it and do not mute it: https://t.me/+LZvLUpbyrukwYzk6
+
+
+
+
 
 ## Custom transaction generation process and TSS
 Some exchanges and custody services use their own frameworks for working with cryptocurrencies, which require manually constructing transactions. This approach generally works well for non-privacy blockchains such as Ethereum or Bitcoin with regular ECDSA signatures, but it can be extremely challenging with Zano. As a privacy coin, a Zano transaction includes a sophisticated set of proofs and signatures that secure it. As far as we are aware, there are no complete implementations of the Zano transaction-generation process and its proofs in languages other than the C++ reference implementation used in the official wallet codebase. If, for any reason, you still want to implement a manual process for creating Zano transactions, please review the following materials to understand the mathematics behind these proofs: 
