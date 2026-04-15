@@ -48,7 +48,7 @@
 
    On Windows run in terminal:
    ```
-   certutils -hashfile <FILENAME>
+   certutil -hashfile <FILENAME> SHA256
    ```
    On Linux or macOS:
    ```
@@ -56,7 +56,7 @@
    ```
    where `<FILENAME>` should be replaced with the filename you've downloaded, for instance:
    ```
-   certutils -hashfile zano-win-x64-release-v2.1.10.433[653f8b5].zip SHA256
+   certutil -hashfile zano-win-x64-release-v2.1.10.433[653f8b5].zip SHA256
    ```
    You sould see something like that:
    ```
