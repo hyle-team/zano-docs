@@ -3,32 +3,22 @@
 A list of builds for the current Zano testnet
 
 ```
------BEGIN PGP SIGNED MESSAGE-----
-Hash: SHA512
-
 Windows:
-INST: https://build.zano.org/builds/zano-win-x64-develop-testnet-v2.2.0.459[d3912ff]-installer.exe
-sha256: ee31419b2630a3818ee814f57d8568b284a12b21739ac008ab5f2bd0a82da873
+INST: https://build.zano.org/builds/zano-win-x64-develop-testnet-v2.2.0.472[[testnet]241af27[develop]]-installer.exe
+sha256: e7f7df51b48ec98e1d11520fe0cfd2d0d93a4318c3a12f483687347f4c44256d
 
-ZIP: https://build.zano.org/builds/zano-win-x64-develop-testnet-v2.2.0.459[d3912ff].zip
-sha256: 83459f3c1e237f53f09d6b2bbe2b6d3399fab50862a8689c07692a12ce400d89
+ZIP: https://build.zano.org/builds/zano-win-x64-develop-testnet-v2.2.0.472[[testnet]241af27[develop]].zip
+sha256: 8691dabc62423aa54b4ec22710d8c8ca9209e4e6c312fe0b354aa49ce3cd5589
 
 macOS:
-https://build.zano.org/builds/zano-macos-x64-develop-testnet-v2.2.0.459[d3912ff].dmg
-sha256: a85539ef52aac7198dc9808b606aaf5221547397d9c0e25b0d84b6c53b4b9564
+https://build.zano.org/builds/zano-macos-x64-develop-testnet-v2.2.0.472[[testnet]241af27[develop]].dmg
+sha256: 6cb3b36d0e45303efe4b0cdc956814c8990eea81e11058efc466de8552a90aee
 
 Linux:
-https://build.zano.org/builds/zano-linux-x64-develop-testnet-devtools-v2.2.0.459[d3912ff].AppImage
-sha256: 60ba8b220488b75b47c1876526d5f867d0f8b9d5abf19649937c2839ae27ad11
------BEGIN PGP SIGNATURE-----
+https://build.zano.org/builds/zano-linux-x64-develop-testnet-devtools-v2.2.0.472[[testnet]241af27[develop]].AppImage
+sha256: 74c25217e06899fdd55799afcf34653b3ecb9bdd855b4c410af0048c67bf34af
 
-iHUEARYKAB0WIQSAlUHSyV95S5huh5+pK4bC95+XGgUCaaOKhAAKCRCpK4bC95+X
-Goh7AQCZCujHxawJGp/RtNapaePRc5dwYLR7i8r0dCzcOHmmIQEA++5xi0n4+VHQ
-7W+5AxLnMI86riWwUarJVVRi0ZHKCQM=
-=XZJ5
------END PGP SIGNATURE-----
-
-updated at 2026-03-01 00:40 UTC
+updated at 2026-04-22 02:24 UTC
 ```
 
 [How to verify downloaded builds](https://docs.zano.org/docs/build/how-to-verify-downloaded-builds/)
