@@ -8,7 +8,7 @@ In order to provide more security it's possible to sign transactions offline usi
 
 Zano as a CryptoNote coin uses two key pairs (4 keys) per wallet: view key (secret+public) and spend key (secret+public)
 
-So-called "hot wallet" (or watch-only wallet) uses only view secret key. This allows it to distinguish its transactions among others in the blockchain. To spend coins a wallet needs to spend secret key. It is required to sign a tx. Watch-only wallet doesn't have access to spend secret key and thus it can't spend coins.
+So-called "hot wallet" (or watch-only wallet) uses only view secret key. This allows it to distinguish its transactions among others in the blockchain. To spend coins a wallet needs a spend secret key. It is required to sign a tx. Watch-only wallet doesn't have access to spend secret key and thus it can't spend coins.
 
 If someone has your spend secret key, he can spend your coins. Master keys should be handled with care.
 
@@ -23,11 +23,11 @@ If someone has your spend secret key, he can spend your coins. Master keys shoul
     iv. In the wallet console, type the following command:<br/>`save_watch_only zano_wallet_watch_only WATCH_PASSWORD`<br/> where WATCH_PASSWORD is the password for the watch-only wallet. You should see: `Watch-only wallet has been stored to zano_wallet_watch_only`<br/>
     v. Type `exit` to quit simplewallet.<br/>
 
-2. Copy zano_wallet_watch_only file from the secure environment to your production environment where daemons and the hot wallet is supposed to be run.
+2. Copy zano_wallet_watch_only file from the secure environment to your production environment where daemons and the hot wallet are supposed to be run.
 
 **CAUTION: zano_wallet_master file contains master wallet's private keys! You may want to ensure it never leaves the secure environment.**
 
-3. In the production environment start the daemon. Let it sync with the network if running for the first time and make sure it gets synchronized. Then, start the watch-only wallet:<br /> `simplewallet --wallet-file=zano_wallet_watch_only --password=WATCH_PASSWORD --rpc-bind-ip=RPC_IP --rpc-bind-port=RPC_PORT --daemon-address=DEAMON_ADDR:DAEMON_PORT --log-file=LOG_FILE_NAME` (see also the Introduction; for the first run you may add `--log-level=0`  to avoid too verbose messages, for subsequent runs you may want to use `--log-level=1` or `--log-level=2`)
+3. In the production environment start the daemon. Let it sync with the network if running for the first time and make sure it gets synchronized. Then, start the watch-only wallet:<br /> `simplewallet --wallet-file=zano_wallet_watch_only --password=WATCH_PASSWORD --rpc-bind-ip=RPC_IP --rpc-bind-port=RPC_PORT --daemon-address=DEAMON_ADDR:DAEMON_PORT --log-level=1 --log-file=LOG_FILE_NAME` (see also the Introduction; for the first run you may use `--log-level=0` to avoid too verbose messages)
 
 The setup is complete.
 
@@ -59,9 +59,12 @@ $ curl http://127.0.0.1:12233/json_rpc -s -H 'content-type:application/json;' --
 
 Unsigned transaction data retrieved in `tx_unsigned_hex` field should be passed to the secure environment for cold-signing by the master wallet.
 
-5. Run then master wallet in RPC mode within a secure environment:<br />`simplewallet --wallet-file=zano_wallet_master --offline-mode --rpc-bind-port=RPC_PORT --rpc-bind-ip=RPC_IP` (note that the master wallet is running in offline mode and doesn't need access to the Internet or Zano daemon).
+NOTE. For testing purpose, you may also create a transaction using `transfer` command in simplewallet's CLI (command-line interface). The unsigned transaction will be saved into `zano_tx_unsigned` file.
 
-6. Using RPC [sign_transfer](https://docs.zano.org/docs/build/rpc-api/wallet-rpc-api/sign_transfer) sing the transaction using the master wallet.
+5. Run the master wallet in RPC mode within a **secure environment**:<br />
+`simplewallet --wallet-file=zano_wallet_master --offline-mode --rpc-bind-port=RPC_PORT --rpc-bind-ip=RPC_IP` (note that the master wallet is running in offline mode and shouldn't have access to the Internet or Zano daemon).
+
+6. Using RPC [sign_transfer](https://docs.zano.org/docs/build/rpc-api/wallet-rpc-api/sign_transfer) sign the transaction using the master wallet.
 
 RPC example:
 
@@ -80,8 +83,9 @@ $ curl http://127.0.0.1:12233/json_rpc -s -H 'content-type:application/json;' --
 }
 ```
 
-A signed transaction retrieved in `tx_signed_hex` field should be passed back to the production environment to be broadcasted by the watch-only hot wallet.
-NOTE: Please, don't sign more then one time the same "tx_unsigned_hex", as you'll get two transactions with different tx_id but spending the same key_images, which will lead to errors. 
+A signed transaction retrieved in `tx_signed_hex` field should be passed back to the production environment to be broadcasted by the watch-only hot wallet. <br />
+NOTE: Please, don't sign more than one time the same "tx_unsigned_hex", as you'll get two transactions with different tx_id but spending the same key_images, which will lead to errors. <br />
+NOTE2: For testing purpose, you may also sign a transaction using `sign_transfer` command in simplewallet's CLI.
 
 7. Using RPC [submit_transfer](https://docs.zano.org/docs/build/rpc-api/wallet-rpc-api/submit_transfer) broadcast the transaction via watch-only wallet.
 
@@ -103,6 +107,8 @@ $ curl http://127.0.0.1:12233/json_rpc -s -H 'content-type:application/json;' --
 
 The transaction is successfully broadcasted over the network.
 
+NOTE: For testing purpose, you may also submit a signed transaction using `submit_transfer` command in simplewallet's CLI.
+
 ### Important note on watch-only wallets
 
 Watch-only wallet is not able naturally to calculate a balance using only a tracking view secret key and an access to the blockchain. This happens because it can't distinguish spending its own coins as it requires knowing key images for own coins, which are unknown, as key image calculation requires spend secret key.
@@ -111,21 +117,26 @@ To workaround this difficulty watch-only wallet extracts and stores key images f
 
 It's important to keep this data safe and not to delete watch-only wallet's files (including .outkey2ki). Otherwise, watch-only wallet won't be able to calculate its balance correctly and **the master wallet may be required to be connected online** for recovering funds.
 
-Please make sure, whenever you shutdown the watch only wallet - **close it gracefull**, use SIGINT, SIGTERM or ctrl+c and let it store the wallet state, or close ["store"] (https://docs.zano.org/docs/build/rpc-api/wallet-rpc-api/store/) wallet RPC method before you kill the simplewallet process.
+Please make sure, whenever you shutdown the watch only wallet - **close it gracefully**, use SIGINT, SIGTERM or ctrl+c and let it store the wallet state, or close ["store"] (https://docs.zano.org/docs/build/rpc-api/wallet-rpc-api/store/) wallet RPC method before you kill the simplewallet process.
 
-If it's happen that you lost or damaged outkey2ki, try restoring the watch only wallet:
-### Restoring the watch only wallet
+If it happens that you lost or damaged outkey2ki or you see `UNRECOVERABLE ERROR, wallet stops: m_pending_key_images > m_pending_key_images_file_container` in the log, try restoring the watch only wallet as follows:
+### Restoring key images in the watch only wallet
 
-1. Make sure you're running build 2.1.8.414 or more recent.
-2. Stop *all* simplewallet processes in *all* environments.
-3. Move watch-only wallet file (`zano_wallet_watch_only`) to the secure environment, where the master wallet file is located.
-4. In the secure environment run the following command:
+1. Make sure you're running build 2.1.18.471 or more recent.
+2. Backup all wallet files.
+3. Stop *all* simplewallet processes in *all* environments.
+4. Reset watch-only wallet using the following command:
+
+    `simplewallet --wallet-file=zano_wallet_watch_only --resync-and-exit` <br/>
+   Make sure it finished correctly.
+6. Move watch-only wallet file (`zano_wallet_watch_only`) to the secure environment, where the master wallet file is located.
+7. In the **secure environment** run the following command (note the offline mode parameter):
 
    `simplewallet --offline-mode --wallet-file=zano_wallet_master --restore-ki-in-wo-wallet=zano_wallet_watch_only`
-6. Enter master wallet's password and watch-only wallet password when prompted.
-7. Make sure it finished successfully.
-8. Move `zano_wallet_watch_only` and `zano_wallet_watch_only.outkey2ki` files to the production environment.
+8. Enter master wallet's password and watch-only wallet password when prompted.
+9. Make sure it finished successfully. You should see `Missing key images have been successfully repaired`.
+10. Move `zano_wallet_watch_only` **and** `zano_wallet_watch_only.outkey2ki` files back to the production environment. Double-check you have moved both wallet file and .outkey2ki file.
 
 Now watch-only wallet, once fully synced, should show the correct balance.
 
-As a last resort you can always move you master wallet to the production environment, run it online (skipping `--offline-mode`), sync it and transfer all the funds manually to a newly created cold/hot wallet as described above.
+As a last resort you can always move your master wallet to the production environment, run it online (skipping `--offline-mode`), sync it and transfer all the funds manually to a newly created cold/hot wallets as described above.
