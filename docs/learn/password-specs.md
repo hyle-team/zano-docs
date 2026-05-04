@@ -29,7 +29,6 @@ Length requirements depend on the specific use case:
 | -------------------- | ---------- | ---------- |
 | Wallet File Password |      1     |     40     |
 | Master Password      |      1     |    256     |
-| Master Password      |      1     |    256     |
 
 ## 3. Validation Logic
 
