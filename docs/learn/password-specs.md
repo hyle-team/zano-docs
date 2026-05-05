@@ -25,12 +25,12 @@ Unified Regular Expression:
 
 Length requirements depend on the specific use case:
 
-| Password Type        | Min Length | Max Length |
-| -------------------- | ---------- | ---------- |
-| Wallet File Password |     15     |     40     |
-| Seed Passphrase      |     15     |     40     |
-| Master Password      |     15     |    256     |
-| PIN code             |      4     |      8     |
+| Password Type        | Min Length | Recommended Length | Max Length |
+| -------------------- | ---------- | ------------------ | ---------- |
+| Wallet File Password |      8     |         15         |    256     |
+| Seed Passphrase      |      8     |         15         |    256     |
+| Master Password      |      8     |         15         |    256     |
+| PIN code             |      4     |          6         |      8     |
 
 PIN code may be set up to access master password stored in hardware secure storage.
 
