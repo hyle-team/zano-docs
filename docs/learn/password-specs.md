@@ -27,13 +27,20 @@ Length requirements depend on the specific use case:
 
 | Password Type        | Min Length | Max Length |
 | -------------------- | ---------- | ---------- |
-| Wallet File Password |      1     |     40     |
-| Master Password      |      1     |    256     |
+| Wallet File Password |     15     |     40     |
+| Seed Passphrase      |     15     |     40     |
+| Master Password      |     15     |    256     |
+| PIN code             |      4     |      8     |
+
+PIN code may be set up to access master password stored in hardware secure storage.
 
 ## 3. Validation Logic
 
 To prevent the "lock-out" scenario the following logic must be implemented:
 
-- __New Password Creation:__ Must strictly adhere to the regex and length limits.
-- __Existing Password Entry (Login/Unlock):__ The UI must not block input. If a user has an old password that doesn't meet the new standard, they must still be able to enter it.
-- __Password Change/Reset:__ The new password must follow the standard. The current password field should not be constraint.
+- __[New Password Creation]__ Must strictly adhere to the regex and length limits.
+- __[Existing Password Entry (Login/Unlock)]__ The UI must not block input. If a user has an old password that doesn't meet the new standard, they must still be able to enter it.
+- __[Password Change/Reset]__ The new password must follow the standard. The current password field should not be constraint.
+- __[All cases]__ Password should not be truncated in any way.
+- __[Existing Password Entry (Login/Unlock)]__ Pasting passwords should be supported, as well as autocomplete from system defined password manager.
+- __[New Password Creation]__ Password creation assist from system defined password manager must be supported.
