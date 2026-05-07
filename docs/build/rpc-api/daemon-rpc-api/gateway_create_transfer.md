@@ -2,7 +2,11 @@
 This RPC method is currently available only on testnet. It will be included in a future mainnet release.
 :::
 
-Initiates a transfer from gateway address. Create tx that need to be signed.
+:::warning Admin API - run your own daemon
+This is an **admin-level** method and is **disabled by default**. Start `zanod` with `--rpc-enable-admin-api` to enable it. Always run **your own daemon**, bound to localhost (`--rpc-bind-ip=127.0.0.1`); never expose admin RPC publicly.
+:::
+
+Initiates a transfer from gateway address. Creates an unsigned tx blob and a domain-separated hash that must be signed by the current owner with their secret key.
 
 URL: ```http:://127.0.0.1:11211/json_rpc```
 ### Request: 
@@ -58,16 +62,23 @@ URL: ```http:://127.0.0.1:11211/json_rpc```
   "jsonrpc": "2.0",
   "result": {
     "status": "OK",
-    "tx_blob": "0100000001...",
-    "tx_hash_to_sign": "a6e8da986858e6825fce7a192097e6afae4e889cabe853a9c29b964985b23da8"
+    "tx_id": "a6e8da986858e6825fce7a192097e6afae4e889cabe853a9c29b964985b23da8",
+    "tx_hash_to_sign": "b1c3d4e5f60718293a4b5c6d7e8f90123456789abcdef0123456789abcdef012",
+    "tx_blob": "0100000001..."
   }
 }
 ```
 ### Response description: 
 ```
     "status": Status of the call.
-    "tx_blob": Hex representation of the transaction blob.
-    "tx_hash_to_sign": Hash of the transaction created for the gateway transfer.
+    "tx_id": Actual hash of the constructed transaction. Used as a sanity-check parameter in gateway_sign_transfer and for tx tracking.
+    "tx_hash_to_sign": Domain-separated hash to be signed by the current owner for the gateway input. Computed as H(CRYPTO_HDS_GW_INPUT_SIGNATURE || prepare_prefix_hash_for_sign(tx)). NOT equal to tx_id — sign exactly these bytes.
+    "tx_blob": Hex representation of the unsigned transaction blob. Pass back to gateway_sign_transfer unchanged.
 
 ```
+
+### Domain separation
+
+The `tx_hash_to_sign` field is **not** the transaction id. It is a domain-separated hash that explicitly binds the signature to the role "spend the gateway input". This prevents signature reuse across different cryptographic contexts. The corresponding consensus verification in the daemon also uses the same DSS-wrapped value, so signing exactly the bytes returned in `tx_hash_to_sign` is mandatory.
+
 <sub>Auto-doc built with: 2.2.0.461[d830c07]</sub>
