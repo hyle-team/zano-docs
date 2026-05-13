@@ -2,7 +2,13 @@
 This RPC method is currently available only on testnet. It will be included in a future mainnet release.
 :::
 
-Creates a transaction to change the owner of a gateway address. Returns unsigned tx blob and tx hash that must be signed by the current owner.
+:::danger Admin API - run your own daemon
+This is an **admin-level** method and is **disabled by default**, you also sould start `zanod` with `--rpc-enable-admin-api` to enable it.
+
+Owner change is a highly sensitive operation. The response includes `tx_secret_key` - the per-transaction one-time secret - which can be used to decrypt encrypted parts of the unsigned transaction. **Never call this method on a third-party daemon**; always run your **OWN** `zanod` bound to localhost.
+:::
+
+Creates a transaction to change the owner of a gateway address. Returns the unsigned tx blob and **two** domain-separated hashes that must be signed independently by the current owner with the same secret key.
 
 URL: ```http:://127.0.0.1:11211/json_rpc```
 ### Request:
@@ -41,15 +47,30 @@ URL: ```http:://127.0.0.1:11211/json_rpc```
   "jsonrpc": "2.0",
   "result": {
     "status": "OK",
-    "tx_hash_to_sign": "a6e8da986858e6825fce7a192097e6afae4e889cabe853a9c29b964985b23da8",
-    "tx_blob": "0100000001..."
+    "tx_id": "a6e8da986858e6825fce7a192097e6afae4e889cabe853a9c29b964985b23da8",
+    "hash_to_sign_transfer": "b1c3d4e5f60718293a4b5c6d7e8f90123456789abcdef0123456789abcdef012",
+    "hash_to_sign_ownership": "dc2a4459e7369633a52b1bf277839a00201009a3efbf3ecb69bea2186c26b589",
+    "tx_blob": "0100000001...",
+    "tx_secret_key": "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcd0f"
   }
 }
 ```
 ### Response description:
 ```
   "status": Status of the call.
-  "tx_hash_to_sign": Hash of the transaction to be signed by the current owner (for both gateway input and ownership proof).
-  "tx_blob": Hex representation of the unsigned transaction blob.
+  "tx_id": Actual hash of the transaction. Used as a sanity-check parameter in gateway_submit_owner_change and for tx tracking.
+  "hash_to_sign_transfer": Domain-separated hash to be signed by the current owner for the gateway input (fee). Computed as H(CRYPTO_HDS_GW_INPUT_SIGNATURE || prepare_prefix_hash_for_sign(tx)).
+  "hash_to_sign_ownership": Domain-separated hash to be signed by the current owner for the ownership change proof. Computed as H(CRYPTO_HDS_GW_CHANGE_OWNER_SIGNATURE || tx_id). Distinct from hash_to_sign_transfer so a signature for one role cannot be substituted for the other.
+  "tx_blob": Hex representation of the unsigned transaction blob. Pass back to gateway_submit_owner_change unchanged.
+  "tx_secret_key": Per-transaction one-time secret. Required if you want to verify the constructed tx via gateway_decrypt_tx_outs_and_update_op before signing. SENSITIVE - never log or send over insecure channels.
 
 ```
+
+### Domain separation
+
+Owner change requires **two** independent signatures by the current owner — one for spending the gateway input (fee), one for owner descriptor change. Both are produced by the same secret key but over **different** hashes (the two `hash_to_sign_*` values returned here). This domain-separation binding ensures a signature collected for one role cannot be substituted in the other context.
+
+The corresponding consensus verification in the daemon also verifies each signature against its own DSS-wrapped hash, so signing exactly the bytes returned in each `hash_to_sign_*` field is mandatory.
+
+See also: `gateway_submit_owner_change` to attach the signatures and broadcast.
+
