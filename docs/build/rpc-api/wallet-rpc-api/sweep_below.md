@@ -10,9 +10,10 @@ URL: ```http:://127.0.0.1:11211/json_rpc```
   "params": {
     "address": "ZxBvJDuQjMG9R2j4WnYUhBYNrwZPwuyXrC7FHdVmWqaESgowDvgfWtiXeNGu8Px9B24pkmjsA39fzSSiEQG1ekB225ZnrMTBp",
     "amount": 1000000000000,
+    "asset_id": "f74bb56a5b4fa562e679ccaadd697463498a66de4f1760b2cd40f11c3a00a7a8",
     "fee": 10000000000,
     "mixin": 15,
-    "payment_id_hex": "1dfe5a88ff9effb3"
+    "payment_id_hex": ""
   }
 }
 ```
@@ -20,9 +21,10 @@ URL: ```http:://127.0.0.1:11211/json_rpc```
 ```
     "address": Public address for sending or receiving native coins.
     "amount": Threshold amount of native coins to sweep.
+    "asset_id": [optional] Asset ID to filter outputs. Native coin if not specified.
     "fee": Transaction fee required for processing the transaction.
     "mixin": Number of outputs from the blockchain to mix with when sending a transaction to improve privacy.
-    "payment_id_hex": Payment ID associated with the transaction in hexadecimal format.
+    "payment_id_hex": [deprecated] Legacy tx-wide hex-encoded payment_id, that normally used for user database by exchanges
 
 ```
 ### Response: 
@@ -33,6 +35,7 @@ URL: ```http:://127.0.0.1:11211/json_rpc```
   "result": {
     "amount_swept": 101000000000,
     "amount_total": 100000000000,
+    "asset_id": "f74bb56a5b4fa562e679ccaadd697463498a66de4f1760b2cd40f11c3a00a7a8",
     "outs_swept": 112,
     "outs_total": 10,
     "tx_hash": "01220e8304d46b940a86e383d55ca5887b34f158a7365bbcdd17c5a305814a93",
@@ -44,10 +47,11 @@ URL: ```http:://127.0.0.1:11211/json_rpc```
 ```
     "amount_swept": Amount of native coins swept in the transaction.
     "amount_total": Total amount of native coins involved in the transaction.
+    "asset_id": Asset ID used to filter outputs.
     "outs_swept": Number of outputs swept in the transaction.
     "outs_total": Total number of outputs in the transaction.
     "tx_hash": Transaction ID (hash) format.
     "tx_unsigned_hex": Unsigned transaction data in hexadecimal format.
 
 ```
-<sub>Auto-doc built with: 2.2.0.461[d830c07]</sub>
+<sub>Auto-doc built with: 2.1.19.477[1761256]</sub>
