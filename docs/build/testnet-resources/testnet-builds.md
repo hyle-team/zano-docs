@@ -6,29 +6,29 @@ A list of builds for the current Zano testnet
 -----BEGIN PGP SIGNED MESSAGE-----
 Hash: SHA512
 
-Windows:
-INST: https://build.zano.org/builds/zano-win-x64-develop-testnet-v2.2.0.475[testnet-98c1d6e-develop]-installer.exe
-sha256: ea20b75edc08872d46826102226a7a70af85dcbea76c1836935d2c730055c6e6
+﻿Windows:
+INST: https://build.zano.org/builds/zano-win-x64-release-testnet-v2.2.0.489[testnet-6b71892]-installer.exe
+sha256: ba02023985ce1a8200667d16da07ffd33a64e9fa1959580ee0aa46dc02a4da72
 
-ZIP: https://build.zano.org/builds/zano-win-x64-develop-testnet-v2.2.0.475[testnet-98c1d6e-develop].zip
-sha256: df22ae538407bc6d5d16c84d0966ab538c34b2fe0a9c74569f151c2b1f05e9ac
+ZIP: https://build.zano.org/builds/zano-win-x64-release-testnet-v2.2.0.489[testnet-6b71892].zip
+sha256: e481aaf0d15380eac28d8698a00e384d6290d6c429559f6db610c3ccf24f3a2c
 
 macOS:
-https://build.zano.org/builds/zano-macos-x64-develop-testnet-v2.2.0.475[testnet-98c1d6e-develop].dmg
-sha256: 8b9bf2996bde22555cbf1b3b1a7eee185bdcaa574c6200f743562528c3e33cea
+https://build.zano.org/builds/zano-macos-x64-release-testnet-v2.2.0.489[testnet-6b71892].dmg
+sha256: 56da8ed5c0952ad36cc2bc486ea80c4d51b8c53be5698e0e7bcd9b06f65a2a9d
 
 Linux:
-https://build.zano.org/builds/zano-linux-x64-develop-testnet-devtools-v2.2.0.475[testnet-98c1d6e-develop].AppImage
-sha256: 7a5acf7192f465079650a0616c68dbf35a7cdfe8bf080fe1ab8b8ef47b305652
+https://build.zano.org/builds/zano-linux-x64-release-testnet-devtools-v2.2.0.489[testnet-6b71892].AppImage
+sha256: fee5201458ac0af6e89dd8ec75808e8158410cab5f7a857bf10a6c7a5f18b657
 -----BEGIN PGP SIGNATURE-----
 
-iHUEARYKAB0WIQSAlUHSyV95S5huh5+pK4bC95+XGgUCafs6IAAKCRCpK4bC95+X
-GsaUAQCmLr7iBidwFLtvRupFsC/V7Yh1/IYZ1Ilq5nUk/NzEBgD+NQ1Mcnd9IPPd
-2PFhTjYaEreFBaz3CojwRB7AZtL3JA0=
-=wrX5
+iHUEARYKAB0WIQSAlUHSyV95S5huh5+pK4bC95+XGgUCajFqQwAKCRCpK4bC95+X
+GrrpAPwOisZoAgn597imDALa1WTEWivBaOBJReR0O4fgn799mQEAvMmzLWKLe1Cj
+jjoYYI52JHqAnNDv71e6xdFarRrcfg8=
+=CrA/
 -----END PGP SIGNATURE-----
 
-updated at 2026-05-06 13:57 UTC
+updated at 2026-06-16 15:26 UTC
 ```
 
 [How to verify downloaded builds](https://docs.zano.org/docs/build/how-to-verify-downloaded-builds/)
