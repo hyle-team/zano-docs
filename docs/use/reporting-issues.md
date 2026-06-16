@@ -4,13 +4,15 @@ sidebar_position: 98
 
 # Reporting issues
 
-Zano team puts a lot of hard work to bring you the best blockchain experience possible and it's highly unlikeable you will face any troubles using our product. However if you experience any technical issues we suggest you make a report to our development team.
+If you run into a problem with Zano, the best way to get help is to open a support ticket at [zano.org/support](https://zano.org/support). It goes straight to the Zano support team and we reply by email, so you have a record and don't need to chase anyone in chat.
 
-All you need to do is to follow the [report link](https://github.com/hyle-team/zano/issues), describe your situation and submit a request. Or join our [Discord](https://discord.gg/wE3rmYY) and post it in the #support channel.
+Use the ticket form for wallet and sync problems, transactions, Zano Trade, Wrapped Zano, exchange deposits, and anything else you need a hand with. If it's a wallet issue, attaching your log file helps us debug much faster (see below).
 
-For Zano Trade related issues, join: **[@zano_trade_support](https://t.me/zano_trade_support)**
+:::caution Watch out for scams
+Zano support will never DM you first, and never asks for your seed phrase, private keys, or wallet password. Discord and Telegram are run by the community, not the dev team. For anything involving your wallet or funds, use the support ticket above.
+:::
 
-For critical network updates (hard forks, urgent upgrades): **[@zano_critical](https://t.me/zano_critical)**
+If you're a developer and found a bug in the code, you can also open a [GitHub issue](https://github.com/hyle-team/zano/issues). For critical network updates like hard forks and urgent upgrades, follow [@zano_critical](https://t.me/zano_critical).
 
 ## Log files
 

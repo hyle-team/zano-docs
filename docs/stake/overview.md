@@ -6,6 +6,10 @@ sidebar_position: 1
 
 Welcome to the Zano staking documentation! This section will guide you through everything you need to know about staking Zano and earning rewards through Proof-of-Stake mining.
 
+:::caution Staking needs a full, synced node
+The Lite wallet can't stake. Staking requires a full node that's fully synced and kept online, so use the desktop wallet (or a CLI node) and leave it running and connected. Your wallet only earns while its node is online and synced, and staking pauses whenever it goes offline.
+:::
+
 ## What is Staking?
 
 Staking in Zano is a way to earn rewards by participating in the network's consensus mechanism. Unlike traditional Proof-of-Work mining that requires expensive hardware, staking allows you to earn rewards simply by keeping your Zano wallet running and connected to the network.

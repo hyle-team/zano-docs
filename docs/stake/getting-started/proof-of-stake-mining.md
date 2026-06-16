@@ -6,6 +6,10 @@ sidebar_position: 1
 
 Proof-of-stake mining or staking is typically implemented in such a way that a random coin owner obtains the right to sign a new block. Zano PoS implementation keeps miners in full anonymity and is as simple as a push of a button.
 
+:::caution Staking needs a full, synced node
+The Lite wallet can't stake. Staking requires a full node that's fully synced and kept online, so use the desktop wallet (or a CLI node) and leave it running and connected. Your wallet only earns while its node is online and synced, and staking pauses whenever it goes offline.
+:::
+
 ## Benefits of Zano Staking
 
 - 100% Anonymous: Your staked balance always remains hidden thanks to our [Zarcanum Technology.](https://docs.zano.org/docs/learn/zano-features/overview#zarcanum-anonymous-proof-of-stake)
