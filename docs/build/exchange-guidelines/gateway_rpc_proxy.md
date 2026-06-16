@@ -23,7 +23,7 @@ BEFORE:
 AFTER (gateway_rpc_proxy):
 
   ┌─ your trust boundary (key never leaves) ─────────────┐
-  │  Exchange - gateway_get_address_history2 -> PROXY    │    DAEMON
+  │  Exchange - gateway_get_address_history -> PROXY     │    DAEMON
   │            { gateway_address, offset, count }        │ -> keyless
   │  Exchange <- decrypted history - decrypt             │ <- public + raw txs
   └──────────────────────────────────────────────────────┘
@@ -33,19 +33,20 @@ The view secret key lives only inside the proxy process. The daemon only ever se
 
 ---
 
-## 2. Two endpoints: v1(daemon decrypt) vs v2 (keyless)
+## 2. One method, key optional
 
-To avoid breaking existing integrations, the original method is kept untouched and a new keyless one is added.
+No new method was added. The existing `gateway_get_address_history` simply branches on whether you pass the view secret key, so old integrations keep working unchanged.
 
-| Method | Where | Takes view key? | Decrypts? | Returns `raw_txs`? | Use it when |
-|---|---|---|---|---|---|
-| `gateway_get_address_history`  (v1) | daemon | **yes** | daemon-side | no | legacy; only if you run your OWN daemon and accept sending the key to it |
-| `gateway_get_address_history2` (v2) | daemon | no | no | **yes** | the keyless source the proxy consumes (raw data for client-side decryption) |
-| `gateway_get_address_history2` (v2) | **proxy** | no (proxy holds it) | **locally, in the proxy** | no (stripped) | **recommended** - what your integration should call |
+| `gateway_view_secret_key` | Where | Decrypts? | Returns `raw_txs`? | Use it when |
+|---|---|---|---|---|
+| **provided** | daemon | daemon-side | no | legacy; only if you run your OWN daemon and accept sending the key to it |
+| **omitted** | daemon | no | **yes** | the keyless source the proxy consumes (raw data for client-side decryption) |
+| held by the proxy | **proxy** | **locally, in the proxy** | no (stripped) | **recommended** - what your integration should call |
 
-The proxy and the daemon expose the **same** method name `gateway_get_address_history2`. The difference is where you point it:
-- point it at the **daemon** -> you get public history + raw txs (undecrypted),
-- point it at the **proxy** -> you get fully decrypted history.
+Same method name everywhere - `gateway_get_address_history`. What changes is the key and where you point it:
+- daemon **with** key -> decrypted history (key on the wire, insecure unless it is your own node),
+- daemon **without** key -> public history + raw txs (undecrypted),
+- **proxy** (you send no key) -> fully decrypted history, and the key never leaves the proxy.
 
 ---
 
@@ -64,11 +65,11 @@ gateway_rpc_proxy --gateway-view-secret-key-file=/secure/gw_view.key --daemon-ad
 | `--jwt-secret` | - | enable JWT (HS256) auth on the proxy's RPC (recommended if not loopback) |
 | `--unsecure-no-auth` | off | explicitly acknowledge running without auth |
 
-The view secret key can also be provided via the `ZANO_GATEWAY_VIEW_SECRET_KEY` environment variable (the proxy scrubs it from its environment right after reading). **Never pass the key as a plain command-line argument** - it would land in shell history and process listings.
+The view secret key can also be provided via the `ZANO_GATEWAY_VIEW_SECRET_KEY` environment variable (note: env vars are visible to process inspection, e.g. `/proc/<pid>/environ`, and are inherited by child processes, so the key-file is preferred). **Never pass the key as a plain command-line argument** - it would land in shell history and process listings.
 
 ---
 
-## 4. Reading history — `gateway_get_address_history2`
+## 4. Reading history — `gateway_get_address_history`
 
 Point your existing integration at the proxy and **drop the `gateway_view_secret_key` from the request** - the proxy holds it.
 
@@ -78,7 +79,7 @@ Point your existing integration at the proxy and **drop the `gateway_view_secret
 {
   "jsonrpc": "2.0",
   "id": 0,
-  "method": "gateway_get_address_history2",
+  "method": "gateway_get_address_history",
   "params": {
     "gateway_address": "gwZ5spcFbYUS2o6A6WWMyzYFRGH8YAZXWSXZ2wBzCtdp8PkBLGoM6fK4W",
     "offset": 0,
@@ -149,9 +150,9 @@ This is exactly the same shape the legacy `gateway_get_address_history` returned
 
 ---
 
-## 5. What the daemon returns (and why the proxy is needed)
+## 5. What the daemon returns without a key (and why the proxy is needed)
 
-You get the public history **plus** `raw_txs`, but the transactions are **not** decrypted:
+Call the daemon's `gateway_get_address_history` **without** `gateway_view_secret_key` and you get the public history **plus** `raw_txs`, but the transactions are **not** decrypted:
 
 ```json
 {
@@ -193,7 +194,7 @@ const history = await callDaemonRpc('gateway_get_address_history', {
 Switch to the proxy — same response, no key in the request:
 
 ```javascript
-// NEW: point at the local proxy, method v2, NO key
+// NEW: point at the local proxy, same method, NO key
 const PROXY_RPC_URL = 'http://127.0.0.1:12333/json_rpc';
 
 async function callProxyRpc(method, params = {}) {
@@ -202,7 +203,7 @@ async function callProxyRpc(method, params = {}) {
   return r.data.result;
 }
 
-const history = await callProxyRpc('gateway_get_address_history2', {
+const history = await callProxyRpc('gateway_get_address_history', {
   gateway_address: gwAddress,   // the proxy already holds the view secret key
   offset: 0, count: 50,
 });
@@ -234,6 +235,6 @@ Same convention as the rest of the gateway API - `status` is `"OK"` on success, 
 | `ARG_OUT_OF_LIMITS` | `count` exceeds the limit (200) |
 | `INTERNAL_ERROR` | upstream daemon unreachable, returned no `raw_txs`, or a tx failed to decrypt (see `status_error`) |
 
-If the proxy returns `INTERNAL_ERROR` with `"upstream daemon did not return raw txs..."`, your daemon is too old - need supports `gateway_get_address_history2`.
+If the proxy returns `INTERNAL_ERROR` with `"upstream daemon did not return raw txs..."`, your daemon is too old - it must return `raw_txs` for a keyless `gateway_get_address_history`.
 
 ---
