@@ -1,4 +1,4 @@
-Validates a Schnorr signature for arbitrary data. The public key for verification is provided directly or retrieved using an associated alias.
+Validates a Zano-style Schnorr signature for arbitrary data. The public key for verification is provided directly or retrieved using an associated alias.
 
 URL: ```http:://127.0.0.1:11211/json_rpc```
 ### Request: 
@@ -17,10 +17,10 @@ URL: ```http:://127.0.0.1:11211/json_rpc```
 ```
 ### Request description: 
 ```
-    "alias": Alias to retrieve the associated public spend key if no explicit public key is provided for verification.
-    "buff": Base64 encoded data for which the signature is to be validated.
-    "pkey": Public key used for signature verification, encoded as a hexadecimal string. If null or not set, the public key is retrieved using the provided alias.
-    "sig": Schnorr signature to validate, encoded as a hexadecimal string.
+    "alias": [optional] Alias to retrieve the associated public spend key if no explicit public key is provided for verification. Either pkey or alias must be provided.
+    "buff": Base64-encoded data for which the signature is to be validated.
+    "pkey": [optional] Public key used for signature verification, encoded as a hexadecimal string. If null or not set, the public key is retrieved using the provided alias.
+    "sig": Zano-style Schnorr signature to validate, encoded as a hexadecimal string.
 
 ```
 ### Response: 
@@ -29,13 +29,15 @@ URL: ```http:://127.0.0.1:11211/json_rpc```
   "id": 0,
   "jsonrpc": "2.0",
   "result": {
+    "sig_format": "v2",
     "status": "OK"
   }
 }
 ```
 ### Response description: 
 ```
+    "sig_format": Format of the provided signature if validation was successful. Either 'v2' (newer version with domain separation), 'legacy', or '' if validation failed. This build can only produce v2 via 'sign_message'.
     "status": Status of the call.
 
 ```
-<sub>Auto-doc built with: 2.1.19.477[1761256]</sub>
+<sub>Auto-doc built with: 2.2.1.501[fc57729]</sub>

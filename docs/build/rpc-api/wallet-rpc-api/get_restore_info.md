@@ -38,4 +38,4 @@ URL: ```http:://127.0.0.1:11211/json_rpc```
     "seed_phrase": Wallet's seed(secured with password if it was provided in argument)
 
 ```
-<sub>Auto-doc built with: 2.1.19.477[1761256]</sub>
+<sub>Auto-doc built with: 2.2.1.501[fc57729]</sub>

@@ -46,6 +46,8 @@ URL: ```http:://127.0.0.1:11211/json_rpc```
           "total": 100000000000000,
           "unlocked": 50000000000000
         }],
+        "current_pos_attempts": 12344,
+        "est_iterations_per_pos_block": 464400000,
         "has_bare_unspent_outputs": false,
         "is_auditable": false,
         "is_watch_only": false,
@@ -81,6 +83,8 @@ URL: ```http:://127.0.0.1:11211/json_rpc```
           "outs_count": Number of total unspent outputs (including locked)
           "total": Total coins available(including locked)
           "unlocked": Unlocked coins available(the ones that could be used right now)
+        "current_pos_attempts": Current POS iterations that reset after PoS block found, used to calculate estimation of the next PoS block time(attempt is happening every 2 seconds)
+        "est_iterations_per_pos_block": Estimated iterations needed to find PoS block with given balance, valid only if balances valid
         "has_bare_unspent_outputs": Flag indicating whether the wallet has bare unspent outputs(pre-zarcanum outputs)
         "is_auditable": Flag indicating whether the wallet is auditable
         "is_watch_only": Flag indicating whether the wallet is watch-only
@@ -89,4 +93,4 @@ URL: ```http:://127.0.0.1:11211/json_rpc```
         "view_sec_key": View secret key
 
 ```
-<sub>Auto-doc built with: 2.1.19.477[1761256]</sub>
+<sub>Auto-doc built with: 2.2.1.501[fc57729]</sub>

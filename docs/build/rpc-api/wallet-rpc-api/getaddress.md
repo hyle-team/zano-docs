@@ -30,4 +30,4 @@ URL: ```http:://127.0.0.1:11211/json_rpc```
     "address": string; standard public address of the wallet.
 
 ```
-<sub>Auto-doc built with: 2.1.19.477[1761256]</sub>
+<sub>Auto-doc built with: 2.2.1.501[fc57729]</sub>

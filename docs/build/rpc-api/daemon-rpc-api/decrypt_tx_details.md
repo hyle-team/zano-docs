@@ -9,6 +9,7 @@ URL: ```http:://127.0.0.1:11211/json_rpc```
   "method": "decrypt_tx_details",
   "params": {
     "outputs_addresses": ["ZxDNaMeZjwCjnHuU5gUNyrP1pM3U5vckbakzzV6dEHyDYeCpW8XGLBFTshcaY8LkG9RQn7FsQx8w2JeJzJwPwuDm2NfixPAXf","ZxBvJDuQjMG9R2j4WnYUhBYNrwZPwuyXrC7FHdVmWqaESgowDvgfWtiXeNGu8Px9B24pkmjsA39fzSSiEQG1ekB225ZnrMTBp"],
+    "strict_output_addresses_match": false,
     "tx_blob": "ewogICJ2ZXJzaW9uIjogMSwgC....iAgInZpbiI6IFsgewogICAgIC",
     "tx_id": "a6e8da986858e6825fce7a192097e6afae4e889cabe853a9c29b964985b23da8",
     "tx_secret_key": "2e0b840e70dba386effd64c5d988622dea8c064040566e6bf035034cbb54a5c08"
@@ -17,7 +18,8 @@ URL: ```http:://127.0.0.1:11211/json_rpc```
 ```
 ### Request description: 
 ```
-    "outputs_addresses": Address of each of tx's output. Order is important and should correspond to order of tx's outputs. Empty strings are ignored.
+    "outputs_addresses": Destination addresses. Must correspond to tx outputs if strict_output_addresses_match is true, order/count are not important otherwise.
+    "strict_output_addresses_match": If true, then outputs_addresses is expected to strictly match tx outputs in order and size. Otherwise all outputs will be attempted to be decoded against all provided address.
     "tx_blob": [or] base64-encoded or hex-encoded tx blob. Can be ommited if tx_id is provided.
     "tx_id": [either] ID for a transaction if it is already in the blockchain. Can be ommited if tx_blob is provided.
     "tx_secret_key": Hex-encoded transaction secret key.
@@ -33,7 +35,8 @@ URL: ```http:://127.0.0.1:11211/json_rpc```
       "address": "ZxBvJDuQjMG9R2j4WnYUhBYNrwZPwuyXrC7FHdVmWqaESgowDvgfWtiXeNGu8Px9B24pkmjsA39fzSSiEQG1ekB225ZnrMTBp",
       "amount": 10000000000000,
       "asset_id": "cc608f59f8080e2fbfe3c8c80eb6e6a953d47cf2d6aebd345bada3a1cab99852",
-      "out_index": 1
+      "out_index": 1,
+      "payment_id": 0
     }],
     "status": "OK",
     "tx_in_json": "ewogICJ2ZXJzaW9uIjogMSwgC....iAgInZpbiI6IFsgewogICAgIC",
@@ -48,9 +51,10 @@ URL: ```http:://127.0.0.1:11211/json_rpc```
       "amount": Amount begin transferred.
       "asset_id": Asset id.
       "out_index": Index of the corresponding output in the transaction.
+      "payment_id": [optional] Intrinsic per-output 8 byte long payment id
     "status": Status code of operation, OK if success
     "tx_in_json": Serialized transaction represented in JSON, encoded in Base64.
     "verified_tx_id": (Re)calculated transaction id. Can be used in third-party proof generation.
 
 ```
-<sub>Auto-doc built with: 2.1.19.477[1761256]</sub>
+<sub>Auto-doc built with: 2.2.1.501[fc57729]</sub>

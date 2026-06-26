@@ -16,7 +16,7 @@ URL: ```http:://127.0.0.1:11211/json_rpc```
 ### Request description: 
 ```
     "allow_locked_transactions": Says to wallet if locked transfers should be included or not (false is strongly recomennded)
-    "payment_id": Payment id that is used to identify transfers
+    "payment_id": Hex-encoded payment ID that is used to identify transfers
 
 ```
 ### Response: 
@@ -40,9 +40,9 @@ URL: ```http:://127.0.0.1:11211/json_rpc```
     "payments": Array of payments that connected to given payment_id
       "amount": Amount of native coins transfered
       "block_height": Block height that holds transaction
-      "payment_id": Payment id that related to this payment
+      "payment_id": Hex-encoded payment ID that related to this payment
       "tx_hash": Transaction ID that is holding this payment
       "unlock_time": Timestamp/blocknumber after which this money would become availabe, recommended don't count transfers that has this field not 0
 
 ```
-<sub>Auto-doc built with: 2.1.19.477[1761256]</sub>
+<sub>Auto-doc built with: 2.2.1.501[fc57729]</sub>

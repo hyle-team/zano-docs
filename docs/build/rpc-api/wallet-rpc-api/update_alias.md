@@ -41,4 +41,4 @@ URL: ```http:://127.0.0.1:11211/json_rpc```
     "tx_id": If success - transactions that performs registration(alias becomes available after few confirmations)
 
 ```
-<sub>Auto-doc built with: 2.1.19.477[1761256]</sub>
+<sub>Auto-doc built with: 2.2.1.501[fc57729]</sub>

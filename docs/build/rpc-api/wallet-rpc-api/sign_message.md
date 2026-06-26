@@ -1,4 +1,4 @@
-Trivially sign base64 encoded data message using wallet spend key
+Sign a base64-encoded message using the wallet's spend key.
 
 URL: ```http:://127.0.0.1:11211/json_rpc```
 ### Request: 
@@ -14,7 +14,7 @@ URL: ```http:://127.0.0.1:11211/json_rpc```
 ```
 ### Request description: 
 ```
-    "buff": base64 encoded data message to be signed
+    "buff": Base64-encoded message to be signed.
 
 ```
 ### Response: 
@@ -34,4 +34,4 @@ URL: ```http:://127.0.0.1:11211/json_rpc```
     "sig": Signature represented as a hexadecimal string
 
 ```
-<sub>Auto-doc built with: 2.1.19.477[1761256]</sub>
+<sub>Auto-doc built with: 2.2.1.501[fc57729]</sub>

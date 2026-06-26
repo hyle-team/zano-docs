@@ -44,4 +44,4 @@ URL: ```http:://127.0.0.1:11211/json_rpc```
     "transfers_count": Represent number of transactions that happened to this wallet(basically tx history)
 
 ```
-<sub>Auto-doc built with: 2.1.19.477[1761256]</sub>
+<sub>Auto-doc built with: 2.2.1.501[fc57729]</sub>

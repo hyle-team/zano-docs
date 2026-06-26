@@ -12,6 +12,8 @@ URL: ```http:://127.0.0.1:11211/json_rpc```
     "amount": 1000000000000,
     "asset_id": "f74bb56a5b4fa562e679ccaadd697463498a66de4f1760b2cd40f11c3a00a7a8",
     "fee": 10000000000,
+    "max_inputs": 5,
+    "min_outputs": 3,
     "mixin": 15,
     "payment_id_hex": ""
   }
@@ -23,6 +25,8 @@ URL: ```http:://127.0.0.1:11211/json_rpc```
     "amount": Threshold amount of native coins to sweep.
     "asset_id": [optional] Asset ID to filter outputs. Native coin if not specified.
     "fee": Transaction fee required for processing the transaction.
+    "max_inputs": [optional] Maximum number of inputs in sweeping transaction. Default is the maximum possible.
+    "min_outputs": [optional] Minimum number of outputs in sweeping transaction. Default is the minimum possible.
     "mixin": Number of outputs from the blockchain to mix with when sending a transaction to improve privacy.
     "payment_id_hex": [deprecated] Legacy tx-wide hex-encoded payment_id, that normally used for user database by exchanges
 
@@ -54,4 +58,4 @@ URL: ```http:://127.0.0.1:11211/json_rpc```
     "tx_unsigned_hex": Unsigned transaction data in hexadecimal format.
 
 ```
-<sub>Auto-doc built with: 2.1.19.477[1761256]</sub>
+<sub>Auto-doc built with: 2.2.1.501[fc57729]</sub>

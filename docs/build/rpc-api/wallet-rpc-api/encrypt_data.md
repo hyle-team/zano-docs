@@ -1,4 +1,4 @@
-Trivially encrypt base64 encoded data message with chacha using wallet spend key
+Encrypt arbitrary data with chacha using wallet view secret key
 
 URL: ```http:://127.0.0.1:11211/json_rpc```
 ### Request: 
@@ -14,7 +14,7 @@ URL: ```http:://127.0.0.1:11211/json_rpc```
 ```
 ### Request description: 
 ```
-    "buff": base64 encoded data message to be encrypted
+    "buff": base64-encoded data message to be encrypted
 
 ```
 ### Response: 
@@ -29,7 +29,7 @@ URL: ```http:://127.0.0.1:11211/json_rpc```
 ```
 ### Response description: 
 ```
-    "res_buff": base64 encoded resulted data message
+    "res_buff": base64-encoded ciphertext
 
 ```
-<sub>Auto-doc built with: 2.1.19.477[1761256]</sub>
+<sub>Auto-doc built with: 2.2.1.501[fc57729]</sub>
