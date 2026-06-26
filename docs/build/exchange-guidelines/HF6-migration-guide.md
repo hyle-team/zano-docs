@@ -35,6 +35,8 @@ Old tx-wide payment IDs will still be usable even after HF6, although with some 
 
 The most important change to note: a single transaction **may contain multiple payments** with different payment ID and different asset. From user's perspective it looks like sending a tx to multiple integrated addresses — which is not allowed before HF6 (multiple destinations are allowed, but an integrated address must be the first and only one) — but becomes possible after HF6 activation.
 
+Legacy tx-wide PIDs and intrinsic per-output PIDs shouldn't be used together: such a transaction cannot be created by the wallet, and if one is encountered anyway, the wallet prioritizes the legacy tx-wide PID and ignores any intrinsic PIDs.
+
 ## API changes (important!)
 
 
@@ -76,8 +78,8 @@ When a PID is not specified, an empty string is used as the value of `payment_id
 
 | API method | Before HF6 | After HF6 | data fields |
 |---|---|---|---|
-| get_recent_txs_and_info (deprecated) | works | fails on txs with intrinsic PID | subtransfers, payment_id |
-| get_recent_txs_and_info2 (deprecated) | works | fails on txs with intrinsic PID | subtransfers, payment_id |
+| <code style={{color: 'var(--ifm-color-danger)'}}>get_recent_txs_and_info</code> _(deprecated)_ | works | fails on txs with intrinsic PID | subtransfers, payment_id |
+| <code style={{color: 'var(--ifm-color-danger)'}}>get_recent_txs_and_info2</code> _(deprecated)_ | works | fails on txs with intrinsic PID | subtransfers, payment_id |
 | get_recent_txs_and_info3 | works | works | subtransfers_by_pid |
 | make_integrated_address | up to 8-byte PID by default | up to 8-byte PID by default | legacy sizes (up to 128 bytes) require `--allow-legacy-payment-id-size` |
 
@@ -87,11 +89,11 @@ When a PID is not specified, an empty string is used as the value of `payment_id
 
   1\) Zano daemon and wallet binaries (zanod and simplewallet) are updated to v2.2.1.501 or more recent;
 
-  2\) API: we don't use deprecated `get_recent_txs_and_info`, `get_recent_txs_and_info2` (`get_recent_txs_and_info3` should be used instead);
+  2\) API: we don't use deprecated `get_recent_txs_and_info`, `get_recent_txs_and_info2`. Instead `get_recent_txs_and_info3` is used;
 
   3\) we use 8-byte-long PIDs when generating a deposit integrated address for a user;
 
-  4\) we generate integrated addresses for depositing and don't provide a user with a standalone plaintext PID.
+  4\) we generate integrated addresses for depositing and don't provide a user with a standalone plaintext PID;
 
-  5\) we expect that a single incoming tx may correspond to multiple payments/deposits with different PIDs;
+  5\) we expect that a single incoming tx may correspond to multiple payments/deposits with different PIDs.
 
