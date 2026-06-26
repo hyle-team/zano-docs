@@ -44,27 +44,28 @@ The data structure `wallet_transfer_info` that is exposed in some API responses 
 
 Example:
 
-    "subtransfers_by_pid": [{
-        "payment_id": "",
-        "subtransfers": [{
-          "amount": 6,
-          "asset_id": "45eab91922c86ae056a849b39a439112cc2d4819262c24acd4bb4bb0b6c56696",
-          "is_income": true
-        }]
-      },{
-        "payment_id": "ec2d180100000000",
-        "subtransfers": [{
-          "amount": 600000000000,
-          "asset_id": "45eab91922c86ae056a849b39a439112cc2d4819262c24acd4bb4bb0b6c56696",
-          "is_income": true
-         },
-         {
-          "amount": 137,
-          "asset_id": "cc608f59f8080e2fbfe3c8c80eb6e6a953d47cf2d6aebd345bada3a1cab99852",
-          "is_income": true
-        }]
-      }]
-
+```json
+"subtransfers_by_pid": [{
+    "payment_id": "",
+    "subtransfers": [{
+      "amount": 6,
+      "asset_id": "45eab91922c86ae056a849b39a439112cc2d4819262c24acd4bb4bb0b6c56696",
+      "is_income": true
+    }]
+  },{
+    "payment_id": "ec2d180100000000",
+    "subtransfers": [{
+      "amount": 600000000000,
+      "asset_id": "45eab91922c86ae056a849b39a439112cc2d4819262c24acd4bb4bb0b6c56696",
+      "is_income": true
+     },
+     {
+      "amount": 137,
+      "asset_id": "cc608f59f8080e2fbfe3c8c80eb6e6a953d47cf2d6aebd345bada3a1cab99852",
+      "is_income": true
+    }]
+  }]
+```
 
 As shown, `subtransfers_by_pid` may contain multiple elements with different `payment_id` values, each containing multiple subtransfers (e.g. native coins and an asset).
 
@@ -90,7 +91,7 @@ When a PID is not specified, an empty string is used as the value of `payment_id
 
   3\) we use 8-byte-long PIDs when generating a deposit integrated address for a user;
 
-  4\) we generate integrated addresses for depositing and don't provide a user with a standalone plaintext PID;
+  4\) we generate integrated addresses for depositing and don't provide a user with a standalone plaintext PID.
 
   5\) we expect that a single incoming tx may correspond to multiple payments/deposits with different PIDs;
 
