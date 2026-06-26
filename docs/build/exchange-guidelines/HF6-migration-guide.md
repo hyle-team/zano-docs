@@ -15,7 +15,7 @@ Gateway addresses are described in a separate [guide](https://docs.zano.org/docs
 
 Payment ID (a.k.a. PID) is arbitrary data that can be attached to a transaction and it is mainly intended to help the receiver distinguish between different payments (e.g. an exchange receiving deposits on the same hot wallet address from different users).
 This data is encrypted in such a way that only the sender and the receiver can decode it.
-Before HF6, the PID is stored in the transaction's `extra` or (encrypted) `attachment` section and thus it's tx-wide by nature — you can put only one PID into a transaction regardless of the number of outputs.
+Before HF6, the PID is stored in the transaction's `extra/attachment` section and thus it's tx-wide by nature — you can put only one PID into a transaction regardless of the number of outputs.
 A PID can be packed together with a normal Zano address into an *integrated address*. When someone sends funds to an integrated address, the sender's wallet extracts PID from the address and then makes a standard transaction to the stripped address with PID included into tx's extra.
 
 Since HF6 we introduce so-called *intrinsic payment ID* — 8 bytes of arbitrary data that is put into each transaction's output. This data is encrypted similarly to outputs' amounts, and it is always present even if no payment ID is actually used for a particular output, making a transaction more uniform.
