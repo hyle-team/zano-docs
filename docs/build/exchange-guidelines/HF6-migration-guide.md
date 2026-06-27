@@ -40,9 +40,9 @@ Legacy tx-wide PIDs and intrinsic per-output PIDs shouldn't be used together: su
 ## API changes (important!)
 
 
-#### Data structure: `wallet_transfer_info`
+#### Data structure
 
-The data structure `wallet_transfer_info` that is exposed in some API responses is changing: it doesn't have `payment_id` and `subtransfers` anymore, instead new field `subtransfers_by_pid` should be used.
+Fields `payment_id` (the tx-wide one) and `subtransfers` are deprecated in API responses. Instead new field `subtransfers_by_pid` should be used.
 
 Example:
 
@@ -81,6 +81,8 @@ When a PID is not specified, an empty string is used as the value of `payment_id
 | <code style={{color: 'var(--ifm-color-danger)'}}>get_recent_txs_and_info</code> _(deprecated)_ | works | fails on txs with intrinsic PID | subtransfers, payment_id |
 | <code style={{color: 'var(--ifm-color-danger)'}}>get_recent_txs_and_info2</code> _(deprecated)_ | works | fails on txs with intrinsic PID | subtransfers, payment_id |
 | get_recent_txs_and_info3 | works | works | subtransfers_by_pid |
+| <code style={{color: 'var(--ifm-color-danger)'}}>search_for_transactions</code> _(deprecated)_ | works | fails on txs with intrinsic PID | subtransfers, payment_id |
+| search_for_transactions2 | works | works | subtransfers_by_pid |
 | make_integrated_address | up to 8-byte PID by default | up to 8-byte PID by default | legacy sizes (up to 128 bytes) require `--allow-legacy-payment-id-size` |
 
 
@@ -89,11 +91,9 @@ When a PID is not specified, an empty string is used as the value of `payment_id
 
   1\) Zano daemon and wallet binaries (zanod and simplewallet) are updated to v2.2.1.501 or more recent;
 
-  2\) API: we don't use deprecated `get_recent_txs_and_info`, `get_recent_txs_and_info2`. Instead `get_recent_txs_and_info3` is used;
+  2\) API: `get_recent_txs_and_info3` and `search_for_transactions2` are used instead of deprecated `get_recent_txs_and_info`, `get_recent_txs_and_info2`, `search_for_transactions`;
 
-  3\) we use 8-byte-long PIDs when generating a deposit integrated address for a user;
+  3\) 8-byte-long PIDs are used when generating a deposit integrated address for a user;
 
-  4\) we generate integrated addresses for depositing and don't provide a user with a standalone plaintext PID;
-
-  5\) we expect that a single incoming tx may correspond to multiple payments/deposits with different PIDs.
+  4\) it is expected that a single incoming tx may correspond to multiple payments/deposits with different PIDs and different assets.
 
