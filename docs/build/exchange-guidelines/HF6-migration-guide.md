@@ -1,13 +1,13 @@
 # Zano Hard Fork 6 (v2.1 -> v2.2) services migration guide
 
-This document is intended for services / exchanges and describes how to prepare for the upcoming HF6.
+This document is intended for services / exchanges and describes how to prepare for the upcoming HF6. All current API will keep working without any changes for another 2 months, est until August 26 2026. You have aproximately 2 months to implemented changes that require. 
 
 ## Key features in HF6
 Hard Fork 6 will bring to life two major features among others:
 
   1\) gateway addresses;
 
-  2\) intrinsic payment IDs.
+  2\) intrinsic payment IDs. (per-output payment id)
 
 Gateway addresses are described in a separate [guide](https://docs.zano.org/docs/build/exchange-guidelines/gateway_addresses). Here we focus on payment IDs.
 
