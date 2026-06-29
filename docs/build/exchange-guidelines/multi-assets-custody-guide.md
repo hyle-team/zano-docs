@@ -36,21 +36,25 @@ Some exchanges and custody services use their own frameworks for working with cr
 
 To create a new wallet, you need to run the following command (you will be prompted to enter a new password for the wallet; do not use simple passwords and make sure to remember this password):
 
-    ~/zano/build # src/simplewallet --generate-new-wallet=custody_wallet.zan
-    Zano simplewallet v2.0.0.333
-    password: *******
-    Generated new wallet: ZxCk74TxaFsRvbHrvebi5fgBLXDWukJ3VRXk6PENQ4orUTRfh11EHjCgCBxokeg5FEPHumvqJ76ikKHnD43iGjsE1cVfgebFa
-    view key: f665686bbc719569e9f6c1e36058dcda011ddd55a584443b64c1e7bca5bbdd04
-    **********************************************************************
-    Your wallet has been generated.
-    **********************************************************************
+```
+~/zano/build # src/simplewallet --generate-new-wallet=custody_wallet.zan
+Zano simplewallet v2.0.0.333
+password: *******
+Generated new wallet: ZxCk74TxaFsRvbHrvebi5fgBLXDWukJ3VRXk6PENQ4orUTRfh11EHjCgCBxokeg5FEPHumvqJ76ikKHnD43iGjsE1cVfgebFa
+view key: f665686bbc719569e9f6c1e36058dcda011ddd55a584443b64c1e7bca5bbdd04
+**********************************************************************
+Your wallet has been generated.
+**********************************************************************
+```
 
 A wallet can operate in two modes - command line interface mode, when it is started only with the **--wallet-file** parameter, or RPC server mode, when in addition it has the **--rpc-bind-port=port_number** parameter. When the wallet is in command line mode, you can do various commands to it, such as **transfer** or **deploy_new_asset**, and thus work with the wallet. You can view the list of commands by typing **help** in command line mode.
 
 ### Creating a Wallet from custom seed phrase
 If you want generate private keys from manually chosen words, you can pick 24 words from the list of words in this ([source file](https://github.com/hyle-team/zano/blob/master/src/common/mnemonic-encoding.cpp)) (keep in mind that this words are not compatible with bip39). Then you can use simplewallet to extend this seed to standard Zano seed phrase by using "--derive_custom_seed" command line option:
 
-    ~/zano/build # src/simplewallet --derive_custom_seed
+```
+~/zano/build # src/simplewallet --derive_custom_seed
+```
     
 
 ## Seed phrase backup
@@ -88,7 +92,9 @@ heart eat cost little goodbye arrive commit dreamer stick  reason freeze left ok
 
 Once you’ve backed up your seed phrase, you can launch the wallet in server mode for future operations:
 
-    src/simplewallet --wallet-file=custody_wallet.zan --rpc-bind-port=12345 --daemon-address=192.168.1.3:11211
+```
+src/simplewallet --wallet-file=custody_wallet.zan --rpc-bind-port=12345 --daemon-address=192.168.1.3:11211
+```
 
 ## Receiving Money with Payment ID
 
@@ -236,7 +242,7 @@ IMPORTANT:
 - Do not account deposits for transactions that have not reached 10 confirmations. Sometimes the network undergoes reorganisation among the last 2-3 blocks. This is normal, and within this number of confirmations, the transaction sequence may change, including the removal of transactions that previously appeared with 2-3 confirmations. Read the history only until those transactions that got 10 confirmations, when it comes to transactions that haven't mach this number of transactions - re-read **get_recent_txs_and_info2** until you see those transactions in response with 10 confirmations. Make your code fully aware of such situations and re-read history for those transactions.
 - Do not count on **"remote_addresses"** or **"remote_aliases"** fields, as those fields are optional and might be or **might not be present** in transactions, due to privacy nature of transactions.
 - Consider only those **asset_id** that you know, and ignore any others.
-- When depositing an asset, ensure the correct interpretation of the decimal point, as it may differ for each asset. You can request asset details via the DAEMON RPC API [get_asset_info](/docs/build/rpc-api/daemon-rpc-api/get_asset_info/). Native coins have the asset_id d6329b5b1f7c0805b5c345f4957554002a2f557845f64d7645dae0e051a6498a and should always be deposited for.
+- When depositing an asset, ensure the correct interpretation of the decimal point, as it may differ for each asset. You can request asset details via the DAEMON RPC API [get_asset_info](/docs/build/rpc-api/daemon-rpc-api/get_asset_info/). Native coins have the asset_id `d6329b5b1f7c0805b5c345f4957554002a2f557845f64d7645dae0e051a6498a` and should always be deposited for.
 - A transaction may contain both incoming and outgoing subtransfers. Check the **is_income** field for each element.
 - We also recommend specifying the **"exclude_unconfirmed": true** field in your request, as unconfirmed transactions are not important in the context of custody.
 - Do not deposit transactions where the "**unlock_time**" field is different from 0, as such transactions may be locked for a long period.
