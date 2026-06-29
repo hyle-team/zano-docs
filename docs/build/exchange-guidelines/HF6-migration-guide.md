@@ -1,6 +1,18 @@
 # Zano Hard Fork 6 (v2.1 -> v2.2) services migration guide
 
-This document is intended for services / exchanges and describes how to prepare for the upcoming HF6. All current API will keep working without any changes for another 2 months, est until August 26 2026. You have aproximately 2 months to implemented changes that require. 
+This document is intended for services / exchanges and describes how to prepare for the upcoming HF6. The current API will keep working without any changes for another 2 months, est. until August 26 2026. You have approximately 2 months to implement the required changes. 
+
+## TL;DR
+
+If you use any of these deprecated API methods, switch to the replacement before HF6 — the old ones will start failing on transactions that carry an intrinsic (per-output) payment ID:
+
+| If you use… | …switch to | Why |
+|---|---|---|
+| `get_recent_txs_and_info` | `get_recent_txs_and_info3` | new method returns `subtransfers_by_pid` and handles intrinsic PIDs |
+| `get_recent_txs_and_info2` | `get_recent_txs_and_info3` | same |
+| `search_for_transactions` | `search_for_transactions2` | same |
+
+Also: read the per-transaction payment data from the new `subtransfers_by_pid` field instead of the deprecated `payment_id` / `subtransfers` fields, and expect a single tx to carry **multiple** payments (different PIDs and assets). See [API changes](#api-changes) for details.
 
 ## Key features in HF6
 Hard Fork 6 will bring to life two major features among others:
@@ -37,12 +49,12 @@ The most important change to note: a single transaction **may contain multiple p
 
 Legacy tx-wide PIDs and intrinsic per-output PIDs shouldn't be used together: such a transaction cannot be created by the wallet, and if one is encountered anyway, the wallet prioritizes the legacy tx-wide PID and ignores any intrinsic PIDs.
 
-## API changes (important!)
+## API changes (important!) {#api-changes}
 
 
 #### Data structure
 
-Fields `payment_id` (the tx-wide one) and `subtransfers` are deprecated in API responses. Instead new field `subtransfers_by_pid` should be used.
+The fields `payment_id` (the tx-wide one) and `subtransfers`, which are returned in responses to the deprecated API methods (`get_recent_txs_and_info`, `get_recent_txs_and_info2`, `search_for_transactions`), should no longer be used. Instead, the new field `subtransfers_by_pid` should be used.
 
 Example:
 
@@ -96,4 +108,6 @@ When a PID is not specified, an empty string is used as the value of `payment_id
   3\) 8-byte-long PIDs are used when generating a deposit integrated address for a user;
 
   4\) it is expected that a single incoming tx may correspond to multiple payments/deposits with different PIDs and different assets.
+
+
 
