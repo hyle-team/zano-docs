@@ -149,7 +149,7 @@ Request:​
  "jsonrpc": "2.0",
  "method": "get_recent_txs_and_info3",
  "params": {
-   "count": 100,
+   "count": 2,
    "exclude_mining_txs": false,
    "exclude_unconfirmed": true,
    "offset": 0,
@@ -162,38 +162,27 @@ Response:​
   "id": 0,
   "jsonrpc": "2.0",
   "result": {
-    "last_item_index": 11,
+    "last_item_index": 1,
     "pi": {
-      "balance": 0,
-      "curent_height": 0,
-      "transfer_entries_count": 0,
-      "transfers_count": 0,
-      "unlocked_balance": 0
+      "balance": 12000000000000,
+      "curent_height": 89513,
+      "transfer_entries_count": 3,
+      "transfers_count": 2,
+      "unlocked_balance": 12000000000000
     },
-    "total_transfers": 16,
+    "total_transfers": 2,
     "transfers": [{
       "comment": "",
       "employed_entries": {
         "receive": [{
-          "amount": 179000000000,
-          "asset_id": "d6329b5b1f7c0805b5c345f4957554002a2f557845f64d7645dae0e051a6498a",
-          "index": 0,
-          "payment_id": 0
-        },{
-          "amount": 291000000000,
-          "asset_id": "d6329b5b1f7c0805b5c345f4957554002a2f557845f64d7645dae0e051a6498a",
-          "index": 1,
-          "payment_id": 0
-        }],
-        "spent": [{
-          "amount": 480000000000,
+          "amount": 1000000000000,
           "asset_id": "d6329b5b1f7c0805b5c345f4957554002a2f557845f64d7645dae0e051a6498a",
           "index": 0,
           "payment_id": 0
         }]
       },
       "fee": 10000000000,
-      "height": 3660913,
+      "height": 89485,
       "is_mining": false,
       "is_mixing": false,
       "is_service": false,
@@ -201,15 +190,57 @@ Response:​
       "subtransfers_by_pid": [{
         "payment_id": "",
         "subtransfers": [{
-          "amount": 10000000000,
+          "amount": 1000000000000,
           "asset_id": "d6329b5b1f7c0805b5c345f4957554002a2f557845f64d7645dae0e051a6498a",
-          "is_income": false
+          "is_income": true
         }]
       }],
-      "timestamp": 1777404853,
-      "transfer_internal_index": 11,
-      "tx_blob_size": 3188,
-      "tx_hash": "6955a6909282c372cf72c9686f98a8bcd7b6a7059d7a65db7a437de1cedb562a",
+      "timestamp": 1783427677,
+      "transfer_internal_index": 0,
+      "tx_blob_size": 3206,
+      "tx_hash": "62792c3f629797d00b176e1b3561fbf57773a8857e746f5836cccbd93910a353",
+      "tx_type": 0,
+      "unlock_time": 0
+    },{
+      "comment": "",
+      "employed_entries": {
+        "receive": [{
+          "amount": 137,
+          "asset_id": "455f7a84e0ac8886c3c1fcf64411f8e9901642593b1e07f8ece4b81f51c04267",
+          "index": 1,
+          "payment_id": 4408250233360810730
+        },{
+          "amount": 11000000000000,
+          "asset_id": "d6329b5b1f7c0805b5c345f4957554002a2f557845f64d7645dae0e051a6498a",
+          "index": 2,
+          "payment_id": 1146447202350282245
+        }]
+      },
+      "fee": 10000000000,
+      "height": 89474,
+      "is_mining": false,
+      "is_mixing": false,
+      "is_service": false,
+      "show_sender": false,
+      "subtransfers_by_pid": [{
+        "payment_id": "0536d409a8ffe80f",
+        "subtransfers": [{
+          "amount": 11000000000000,
+          "asset_id": "d6329b5b1f7c0805b5c345f4957554002a2f557845f64d7645dae0e051a6498a",
+          "is_income": true
+        }]
+      },{
+        "payment_id": "ea0281383b402d3d",
+        "subtransfers": [{
+          "amount": 137,
+          "asset_id": "455f7a84e0ac8886c3c1fcf64411f8e9901642593b1e07f8ece4b81f51c04267",
+          "is_income": true
+        }]
+      }],
+      "timestamp": 1783427483,
+      "transfer_internal_index": 1,
+      "tx_blob_size": 7012,
+      "tx_hash": "66741c8259538a7053e1d1dbc8604c0b6e4983de1376bbd5fc7537f2530da2bc",
       "tx_type": 0,
       "unlock_time": 0
     }]
