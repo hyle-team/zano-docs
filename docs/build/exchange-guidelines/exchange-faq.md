@@ -28,8 +28,8 @@ To validate an address you can use [split_integrated_address](https://docs.zano.
 
 ### How to get all integrated addresses on a wallet?
 
-A wallet does not store all integrated addresses, thus it is impossible. Integrated address is just your wallet address PLUS encoded hex payment id you provided packed together.
-As you can provide ANY payment id you could imagine, you can generate unlimited number of integrated addresses for a wallet.
+A wallet does not store all integrated addresses, thus it is impossible. Integrated address is just your wallet address PLUS encoded 8-bytes long arbitrary payment id you provided packed together.
+Note: Since ver. 2.2 a payment id is 8 bytes (legacy sizes were up to 128 bytes). As you can pick any 8-byte payment id, you can still generate a practically unlimited number of integrated addresses for a wallet.
 
 ### Can we use random payment id when generating integrated address for a user?
 
@@ -49,4 +49,6 @@ Make sure you pass amounts as integers not strings.
 
 ### We can't see our own transfer when filtering by payment id with get_bulk_payments or get_payments RPC calls
 
-Make sure you're not sending coins to yourself (from an address to the very same address). Coins which were sent that way will safely reach their destination (and the balances will be correct) but such a transfer won't be seen when you filer transfers by payment id via [get_bulk_payments](https://docs.zano.org/reference/get_bulk_payments) or [get_payments](https://docs.zano.org/reference/get_payments-2).
+Make sure you're not sending coins to yourself (from an address to the very same address). Coins which were sent that way will safely reach their destination (and the balances will be correct), but such a transfer won't be seen when you filter transfers by payment id via [get_bulk_payments](https://docs.zano.org/docs/build/rpc-api/wallet-rpc-api/get_bulk_payments) or [get_payments](https://docs.zano.org/docs/build/rpc-api/wallet-rpc-api/get_payments).
+
+Note: `get_bulk_payments` and `get_payments` return only incoming payments matched by payment id. They are asset-aware — native-coin amounts are reported in `amount`, and any other assets are listed under `payment_subtransfers` (`asset_id` + `amount`) — and they match both tx-wide and HF6 intrinsic (per-output) payment ids. For full transaction context (incoming and outgoing transfers, fees, grouping), use [get_recent_txs_and_info3](https://docs.zano.org/docs/build/rpc-api/wallet-rpc-api/get_recent_txs_and_info3) and its `subtransfers_by_pid` field (see the [HF6 migration guide](https://docs.zano.org/docs/build/exchange-guidelines/HF6-migration-guide)).
