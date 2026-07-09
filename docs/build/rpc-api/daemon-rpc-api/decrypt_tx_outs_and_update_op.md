@@ -164,4 +164,4 @@ URL: ```http:://127.0.0.1:11211/json_rpc```
     "verified_tx_id": (Re)calculated transaction id. Can be used in third-party proof generation.
 
 ```
-<sub>Auto-doc built with: 2.2.1.501[fc57729]</sub>
+<sub>Auto-doc built with: 2.2.1.502[72b939e]</sub>
