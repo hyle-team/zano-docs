@@ -6,11 +6,11 @@ This document is intended for services / exchanges and describes how to prepare 
 
 If you use any of these deprecated API methods, switch to the replacement before HF6 — the old ones will start failing on transactions that carry an intrinsic (per-output) payment ID:
 
-| If you use… | …switch to | Why |
-|---|---|---|
-| `get_recent_txs_and_info` | `get_recent_txs_and_info3` | new method returns `subtransfers_by_pid` and handles intrinsic PIDs |
-| `get_recent_txs_and_info2` | `get_recent_txs_and_info3` | same |
-| `search_for_transactions` | `search_for_transactions2` | same |
+| If you use…                                                                                                    | …switch to                                                                                                     | Why                                                                 |
+| -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| [`get_recent_txs_and_info`](https://docs.zano.org/docs/build/rpc-api/wallet-rpc-api/get_recent_txs_and_info)   | [`get_recent_txs_and_info3`](https://docs.zano.org/docs/build/rpc-api/wallet-rpc-api/get_recent_txs_and_info3) | new method returns `subtransfers_by_pid` and handles intrinsic PIDs |
+| [`get_recent_txs_and_info2`](https://docs.zano.org/docs/build/rpc-api/wallet-rpc-api/get_recent_txs_and_info2) | [`get_recent_txs_and_info3`](https://docs.zano.org/docs/build/rpc-api/wallet-rpc-api/get_recent_txs_and_info3) | same                                                                |
+| [`search_for_transactions`](https://docs.zano.org/docs/build/rpc-api/wallet-rpc-api/search_for_transactions)   | [`search_for_transactions2`](https://docs.zano.org/docs/build/rpc-api/wallet-rpc-api/search_for_transactions2) | same                                                                |
 
 Also: read the per-transaction payment data from the new `subtransfers_by_pid` field instead of the deprecated `payment_id` / `subtransfers` fields, and expect a single tx to carry **multiple** payments (different PIDs and assets). See [API changes](#api-changes) for details.
 
@@ -54,9 +54,7 @@ Legacy tx-wide PIDs and intrinsic per-output PIDs shouldn't be used together: su
 
 #### Data structure
 
-The fields `payment_id` (the tx-wide one) and `subtransfers`, which are returned in responses to the deprecated API methods (`get_recent_txs_and_info`, `get_recent_txs_and_info2`, `search_for_transactions`), should no longer be used. Instead, the new field `subtransfers_by_pid` should be used.
-
-Example:
+Newer API methods ([`get_recent_txs_and_info3`](https://docs.zano.org/docs/build/rpc-api/wallet-rpc-api/get_recent_txs_and_info3) and [`search_for_transactions2`](https://docs.zano.org/docs/build/rpc-api/wallet-rpc-api/search_for_transactions2)) return a `subtransfers_by_pid` list, which has the same structure across different methods and looks as follows:
 
 ```json
 "subtransfers_by_pid": [{
@@ -81,21 +79,23 @@ Example:
   }]
 ```
 
-As shown, `subtransfers_by_pid` may contain multiple elements with different `payment_id` values, each containing multiple subtransfers (e.g. native coins and an asset).
+Note that `subtransfers_by_pid` may contain multiple elements with different `payment_id` values, each containing multiple `subtransfers` (e.g. native coins and an asset).
 
-When a PID is not specified, an empty string is used as the value of `payment_id`.
+Deprecated methods ([`get_recent_txs_and_info`](https://docs.zano.org/docs/build/rpc-api/wallet-rpc-api/get_recent_txs_and_info), [`get_recent_txs_and_info2`](https://docs.zano.org/docs/build/rpc-api/wallet-rpc-api/get_recent_txs_and_info2), [`search_for_transactions`](https://docs.zano.org/docs/build/rpc-api/wallet-rpc-api/search_for_transactions)) return different fields that resemble a single element of the `subtransfers_by_pid` list above. You shouldn't use them anymore.
+
+When a PID is not specified, an empty string is used as the value of `payment_id` (see the first element in the example above).
 
 
 #### API methods
 
 | API method | Before HF6 | After HF6 | data fields |
 |---|---|---|---|
-| <code style={{color: 'var(--ifm-color-danger)'}}>get_recent_txs_and_info</code> _(deprecated)_ | works | fails on txs with intrinsic PID | subtransfers, payment_id |
-| <code style={{color: 'var(--ifm-color-danger)'}}>get_recent_txs_and_info2</code> _(deprecated)_ | works | fails on txs with intrinsic PID | subtransfers, payment_id |
-| get_recent_txs_and_info3 | works | works | subtransfers_by_pid |
-| <code style={{color: 'var(--ifm-color-danger)'}}>search_for_transactions</code> _(deprecated)_ | works | fails on txs with intrinsic PID | subtransfers, payment_id |
-| search_for_transactions2 | works | works | subtransfers_by_pid |
-| make_integrated_address | up to 8-byte PID by default | up to 8-byte PID by default | legacy sizes (up to 128 bytes) require `--allow-legacy-payment-id-size` |
+| <a href="https://docs.zano.org/docs/build/rpc-api/wallet-rpc-api/get_recent_txs_and_info"><code style={{color: 'var(--ifm-color-danger)'}}>get_recent_txs_and_info</code></a> _(deprecated)_ | works | fails on txs with intrinsic PID | subtransfers, payment_id |
+| <a href="https://docs.zano.org/docs/build/rpc-api/wallet-rpc-api/get_recent_txs_and_info2"><code style={{color: 'var(--ifm-color-danger)'}}>get_recent_txs_and_info2</code></a> _(deprecated)_ | works | fails on txs with intrinsic PID | subtransfers, payment_id |
+| [get_recent_txs_and_info3](https://docs.zano.org/docs/build/rpc-api/wallet-rpc-api/get_recent_txs_and_info3) | works | works | subtransfers_by_pid |
+| <a href="https://docs.zano.org/docs/build/rpc-api/wallet-rpc-api/search_for_transactions"><code style={{color: 'var(--ifm-color-danger)'}}>search_for_transactions</code></a> _(deprecated)_ | works | fails on txs with intrinsic PID | subtransfers, payment_id |
+| [search_for_transactions2](https://docs.zano.org/docs/build/rpc-api/wallet-rpc-api/search_for_transactions2) | works | works | subtransfers_by_pid |
+| [make_integrated_address](https://docs.zano.org/docs/build/rpc-api/wallet-rpc-api/make_integrated_address) | up to 8-byte PID by default | up to 8-byte PID by default | legacy sizes (up to 128 bytes) require `--allow-legacy-payment-id-size` |
 
 
 
@@ -103,7 +103,7 @@ When a PID is not specified, an empty string is used as the value of `payment_id
 
   1\) Zano daemon and wallet binaries (zanod and simplewallet) are updated to v2.2.1.501 or more recent;
 
-  2\) API: `get_recent_txs_and_info3` and `search_for_transactions2` are used instead of deprecated `get_recent_txs_and_info`, `get_recent_txs_and_info2`, `search_for_transactions`;
+  2\) API: [`get_recent_txs_and_info3`](https://docs.zano.org/docs/build/rpc-api/wallet-rpc-api/get_recent_txs_and_info3) and [`search_for_transactions2`](https://docs.zano.org/docs/build/rpc-api/wallet-rpc-api/search_for_transactions2) are used instead of deprecated [`get_recent_txs_and_info`](https://docs.zano.org/docs/build/rpc-api/wallet-rpc-api/get_recent_txs_and_info), [`get_recent_txs_and_info2`](https://docs.zano.org/docs/build/rpc-api/wallet-rpc-api/get_recent_txs_and_info2), [`search_for_transactions`](https://docs.zano.org/docs/build/rpc-api/wallet-rpc-api/search_for_transactions);
 
   3\) 8-byte-long PIDs are used when generating a deposit integrated address for a user;
 
