@@ -6,13 +6,15 @@ This document is intended for services / exchanges and describes how to prepare 
 
 If you use any of these deprecated API methods, switch to the replacement before HF6 — the old ones will start failing on transactions that carry an intrinsic (per-output) payment ID:
 
+##### Table 1. TL;DR summary
+
 | If you use…                                                                                                    | …switch to                                                                                                     | Why                                                                 |
 | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | [`get_recent_txs_and_info`](https://docs.zano.org/docs/build/rpc-api/wallet-rpc-api/get_recent_txs_and_info)   | [`get_recent_txs_and_info3`](https://docs.zano.org/docs/build/rpc-api/wallet-rpc-api/get_recent_txs_and_info3) | new method returns `subtransfers_by_pid` and handles intrinsic PIDs |
 | [`get_recent_txs_and_info2`](https://docs.zano.org/docs/build/rpc-api/wallet-rpc-api/get_recent_txs_and_info2) | [`get_recent_txs_and_info3`](https://docs.zano.org/docs/build/rpc-api/wallet-rpc-api/get_recent_txs_and_info3) | same                                                                |
 | [`search_for_transactions`](https://docs.zano.org/docs/build/rpc-api/wallet-rpc-api/search_for_transactions)   | [`search_for_transactions2`](https://docs.zano.org/docs/build/rpc-api/wallet-rpc-api/search_for_transactions2) | same                                                                |
 
-Also: read the per-transaction payment data from the new `subtransfers_by_pid` field instead of the deprecated `payment_id` / `subtransfers` fields, and expect a single tx to carry **multiple** payments (different PIDs and assets). See [API changes](#api-changes) for details.
+Also: read the per-transaction payment data from the new `subtransfers_by_pid` field, and expect a single tx to carry **multiple** payments (different PIDs and assets). See [API changes](#api-changes) for details.
 
 ## Key features in HF6
 Hard Fork 6 will bring to life two major features among others:
@@ -33,7 +35,7 @@ A PID can be packed together with a normal Zano address into an *integrated addr
 Since HF6 we introduce so-called *intrinsic payment ID* — 8 bytes of arbitrary data that is put into each transaction's output. This data is encrypted similarly to outputs' amounts, and it is always present even if no payment ID is actually used for a particular output, making a transaction more uniform.
 Old tx-wide payment IDs will still be usable even after HF6, although with some limitations.
 
-#### Table 1. Difference between tx-wide payment IDs and intrinsic payment IDs
+##### Table 2. Difference between tx-wide payment IDs and intrinsic payment IDs
 
 | Aspect | Legacy tx-wide Payment ID | Intrinsic Payment ID |
 |--------|------------------------------------|----------------------|
@@ -87,6 +89,7 @@ When a PID is not specified, an empty string is used as the value of `payment_id
 
 
 #### API methods
+##### Table 3. API methods change summary
 
 | API method | Before HF6 | After HF6 | data fields |
 |---|---|---|---|
