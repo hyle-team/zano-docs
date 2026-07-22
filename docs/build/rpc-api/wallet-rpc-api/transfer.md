@@ -70,7 +70,7 @@ URL: ```http:://127.0.0.1:11211/json_rpc```
 ```
 ### Response description: 
 ```
-    "tx_hash": Has of the generated transaction(if succeded)
+    "tx_hash": Has of the generated transaction (if succeeded)
     "tx_size": Transaction size in bytes
     "tx_unsigned_hex": Has unsigned tx blob in hex encoding
     "used_out_ids": Output IDs that were actually spent.
