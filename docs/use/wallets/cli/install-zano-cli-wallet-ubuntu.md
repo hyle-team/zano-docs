@@ -25,6 +25,17 @@ sha256sum zano-linux-x64-release-v*.AppImage
 
 Compare the output against the SHA256 hash published in the [release notes](https://github.com/hyle-team/zano/releases). If they don't match, re-download the file.
 
+Run the CLI tools directly from the AppImage,
+you can launch the daemon or CLI wallet without extracting the AppImage:
+
+```bash
+chmod +x zano-linux-x64-release-v*.AppImage
+./zano-linux-x64-release-v*.AppImage --zanod
+./zano-linux-x64-release-v*.AppImage --simplewallet --generate-new-wallet name.wallet
+```
+
+Any arguments after `--zanod` or `--simplewallet` are passed to the selected CLI tool.
+
 ## 3. Extract the CLI binaries
 
 The AppImage contains both the GUI wallet and CLI tools. To extract the CLI binaries:
