@@ -6,7 +6,7 @@ sidebar_position: 1
 
 This section covers how to use Zano day-to-day.
 
-**Wallets** — Set up a [desktop or mobile wallet](/docs/use/wallets/overview). Back up your [seed phrase](/docs/use/seed-phrase) and understand [password types](/docs/use/zano-passwords.md).
+**Wallets** — Set up a [desktop or mobile wallet](/docs/use/wallets/overview). Back up your [seed phrase](/docs/use/seed-phrase) and understand [password types](/docs/use/zano-passwords).
 
 **Features** — [Aliases](/docs/use/aliases) (@username addresses), [Auditable Wallets](/docs/use/auditable-wallets), [Wrapped Zano](/docs/use/wrapped-zano) (ERC-20 bridge).
 

@@ -44,6 +44,6 @@ Aliases can be used for more than just Zano transactions. Think of them as a dec
 
 :::note
 
-You will be able to trade your aliases on a upcoming Alias Auction Platform.
+Aliases can be traded on the [Alias Auction](https://auction.zano.org) platform.
 
 :::

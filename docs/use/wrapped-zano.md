@@ -1,5 +1,5 @@
 ---
-sidebar_position: 4
+sidebar_position: 7
 ---
 
 # Wrapped Zano
@@ -38,7 +38,7 @@ The process of swapping ZANO to WZANO is referred to as “wrapping”. You can 
 
 ## How to unwrap WZANO
 
-Go to [https://wrapped.zano.org/app/](https://wrapped.zano.org/app/) connect your metamask wallet and specify the Zano address to which you want to receive ZANO. After that, you will be able to unwrap WZANO to ZANO. The process takes around 15 minutes and you will receive ZANO to your Zano address.
+Go to [https://wrapped.zano.org](https://wrapped.zano.org), connect your MetaMask wallet and specify the Zano address to which you want to receive ZANO. After that, you will be able to unwrap WZANO to ZANO. The process takes around 15 minutes and you will receive ZANO to your Zano address.
 
 <figure style={{textAlign: 'center'}}>
   <img

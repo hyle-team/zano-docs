@@ -8,13 +8,13 @@ For independent third-party audits of these protocols, see [Security Reviews](/d
 
 ### Zano Whitepaper (2019)
 
-Original Zano whitepaper, describes general concepts used in project.
+The original Zano whitepaper, describing the general concepts used in the project.
 
 [https://github.com/hyle-team/docs/blob/master/zano/Zano_WP_latest.pdf](https://github.com/hyle-team/docs/blob/master/zano/Zano_WP_latest.pdf)
 
 ### PoS Analysis and improvements proposal (2019)
 
-With help of Maxwell Sanches we come up with more effective PoS model and upgraded the network, this document hold details of this research and improvement.
+With the help of Maxwell Sanches we came up with a more effective PoS model and upgraded the network; this document holds the details of that research and improvement.
 
 [https://github.com/hyle-team/docs/blob/master/zano/arch/PoS_Analysis_and_improvements_proposal.pdf](https://github.com/hyle-team/docs/blob/master/zano/arch/PoS_Analysis_and_improvements_proposal.pdf)
 
@@ -40,7 +40,7 @@ Zarcanum, a Proof-of-Stake scheme for transaction with hidden amounts
 
 [https://hyle-team.github.io/docs/zano/CA_paper/Zano_CA_for_RingCT_and_Zarcanum_v1.1.pdf](https://hyle-team.github.io/docs/zano/CA_paper/Zano_CA_for_RingCT_and_Zarcanum_v1.1.pdf)
 
-### d/v-CLSAG: Extension for Concise Linkable Spontaneous Anonymous Group Signatures (2024)
+### d/v-CLSAG: Extension for Concise Linkable Spontaneous Anonymous Group Signatures (2025)
 
 Extension for the CLSAG (Concise Linkable Spontaneous Anonymous Group Signatures)
 
@@ -56,7 +56,7 @@ Extension for the CLSAG (Concise Linkable Spontaneous Anonymous Group Signatures
 
 Introducing a solution that allows users to issue tokens that work inside Zano blockchain, which have the same properties as transactions with a native token—namely hidden amounts and hidden addresses, as well as auditable wallets.
 
-Note: this paper used one of the early approach to implementing assets, when each asset has unique scalar identifier but common asset-type generator, it's now oudated.
+Note: this paper used one of the early approaches to implementing assets, where each asset has a unique scalar identifier but a common asset-type generator; it is now outdated.
 
 [https://raw.githubusercontent.com/hyle-team/docs/master/zano/arch/Zano_tokenization_platform.pdf](https://raw.githubusercontent.com/hyle-team/docs/master/zano/arch/Zano_tokenization_platform.pdf)
 

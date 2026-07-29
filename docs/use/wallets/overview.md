@@ -18,12 +18,12 @@ You can use Zano Companion on Chrome (Connects to your desktop wallet)
 
 ### Download Links
 
-Available on the [Zano Website](https://new.zano.org/downloads) and [Github](https://github.com/hyle-team/zano/releases)
+Available on the [Zano Website](https://zano.org/wallets) and [Github](https://github.com/hyle-team/zano/releases)
 
 ### Third-Party Wallets
 
-Zano has also been integrated into other multi-coin wallets [available here](https://zano.org/ecosystem/wallets)
+Zano has also been integrated into other multi-coin wallets [available here](https://zano.org/wallets)
 
 ### Testnet builds and Resources
 
-For development purposes we provide a pre-built Testnet apps available [Testnet Resources](https://docs.zano.org/docs/build/testnet-resources/testnet-builds) section
+For development purposes we provide pre-built Testnet apps, available in the [Testnet Resources](/docs/build/testnet-resources/testnet-builds) section

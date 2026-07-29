@@ -12,6 +12,8 @@ Use the ticket form for wallet and sync problems, transactions, Zano Trade, Wrap
 Zano support will never DM you first, and never asks for your seed phrase, private keys, or wallet password. Discord and Telegram are run by the community, not the dev team. For anything involving your wallet or funds, use the support ticket above.
 :::
 
+For general questions and discussion, there's also the official [Zano Forum](https://forum.zano.org).
+
 If you're a developer and found a bug in the code, you can also open a [GitHub issue](https://github.com/hyle-team/zano/issues). For critical network updates like hard forks and urgent upgrades, follow [@zano_critical](https://t.me/zano_critical).
 
 ## Log files

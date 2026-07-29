@@ -4,11 +4,11 @@ sidebar_position: 2
 
 # Create and Manage Wallets (GUI)
 
-Zano Wallet lets you manage multiple ZANO wallets, which can be easily created, restored, and removed from the app. The core of each wallet is a seed phrase, a sequence of 24 words that can be used to recover your wallet's private and public keys. A unique sequence is generated every time you create a new wallet within the app. **It's important to always keep it safe and accessible.**
+Zano Wallet lets you manage multiple ZANO wallets, which can be easily created, restored, and removed from the app. The core of each wallet is a seed phrase, a sequence of 24–26 words (26 for wallets created in current versions) that can be used to recover your wallet's private and public keys. A unique sequence is generated every time you create a new wallet within the app. **It's important to always keep it safe and accessible.**
 
 For your convenience, it's not necessary to use a seed phrase to manage your wallet. In the official Zano Wallet apps, when you create a wallet, a wallet file is generated as well. This file is secured with an additional password, granting access to wallet features and the seed phrase. It can be copied to another device and used with another app.
 
-Zano is available for mobile (Android/iOS) and desktop (Windows, Linux and MacOS). It can be downloaded [here](https://zano.org/downloads).
+Zano is available for mobile (Android/iOS) and desktop (Windows, Linux and MacOS). It can be downloaded [here](https://zano.org/wallets).
 
 ## Desktop Wallet Guide
 
@@ -55,7 +55,7 @@ When the wallet file is created, you can continue with `Create wallet`. This fil
 
 To finalise wallet creation, generate and store the wallet's seed phrase.
 
-You will be prompted to add an extra password to further secure the seed, known as a passphrase ([Learn more about what this means here](https://docs.zano.org/docs/use/seed-phrase)). If you choose to generate it without it, you can still later add it in the `Wallet options` menu.
+You will be prompted to add an extra password to further secure the seed, known as a passphrase ([Learn more about what this means here](/docs/use/seed-phrase)). If you choose to generate it without it, you can still later add it in the `Wallet options` menu.
 
 :::danger
 
@@ -75,13 +75,14 @@ You can remove a wallet from the Zano app by clicking `Close wallet` in the same
 
 ### Changing wallet password
 
-In case you want to change the wallet file password, you need to use `Restore from backup`. The following steps will be required:
+In case you want to change the wallet file password, you need to use `Restore from backup`. Do **not** delete your existing wallet file until the restored wallet is verified and working:
 
-1. Make sure you have the seed phrase saved
-2. Click `Close wallet` from wallet `Details`
-3. Delete the wallet file
+1. Make sure you have the seed phrase saved (and the seed passphrase, if you set one)
+2. Copy the current wallet file to a separate location as a backup
+3. Click `Close wallet` from wallet `Details`
 4. Click `+Add` from `Wallets` menu and choose `Restore from backup`
-5. Enter new wallet info
+5. Enter new wallet info with the new password
 6. Recover and enter the previously stored seed phrase
-7. Click `Select wallet location` to choose the wallet file location and name
+7. Click `Select wallet location` and choose a **new** file name, so the old wallet file is not overwritten
 8. Continue with `Create wallet`
+9. Verify the restored wallet shows the expected address and, after syncing, the expected balance — only then archive or remove the old wallet file
