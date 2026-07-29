@@ -4,7 +4,7 @@ sidebar_position: 5
 
 # Zano Trade
 
-A decentralized exchange to trade native Zano and all the Confidential Assets launched on Zano’s ecosystem. Zano Trade requires no user registration and uses an on-chain order matching system to facilitate [Ionic Swaps](/docs/learn/frequently-asked-questions#what-are-ionic-swaps) between native Zano and the Confidential Assets. It is impossible to see what asset type, amount, or address was involved in the transaction.
+A decentralized exchange to trade native Zano and all the Confidential Assets launched on Zano’s ecosystem, with no user registration. You post orders on the site, the Zano Trade coordinator matches compatible buy and sell orders, and each trade settles on-chain as an [Ionic Swap](/docs/learn/frequently-asked-questions#what-are-ionic-swaps) signed by both parties from their own wallets. The site never takes custody of funds, and outside observers cannot see what asset type, amount, or address was involved in a settled trade.
 
 ## How to use
 
@@ -135,7 +135,7 @@ When users publish their orders to Zano Trade, our DEX coordinator combines sell
 
 ### Is Zano Trade decentralized?
 
-Zano trade is simply a forum for users to find each other's orders, at no point does it hold any custody of funds.&#x20;
+Zano Trade is a non-custodial matching venue: the site helps buyers and sellers find each other and coordinates the swap transaction, but at no point does it hold funds. Settlement always happens on-chain, signed by the two traders.
 
 You can even do trades without the site by simply using the "Swap" function available in the official Zano wallets, in a fully self-hosted manner.
 

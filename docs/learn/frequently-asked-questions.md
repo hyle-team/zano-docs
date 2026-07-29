@@ -75,10 +75,9 @@ Zano staking is done through the desktop wallet only, since it requires running 
 
 The Zano Trade DEX (Decentralized Exchange) is a platform for trading Zano and Confidential Assets within the Zano ecosystem, offering peer-to-peer trading without custodial risks. It leverages Ionic Swaps to maintain privacy during trades.
 
-- **Decentralized:** No central authority controls the exchange.
+- **Non-custodial:** Users retain control of their funds at all times; the site never takes custody.
 - **Privacy:** Trades are conducted with confidentiality through Ionic Swaps.
-- **Non-custodial:** Users retain control of their funds.
-- **Peer-to-peer:** Direct trading between users.
+- **Peer-to-peer settlement:** Orders are matched by the Zano Trade coordinator, but every trade settles on-chain as an Ionic Swap signed by both traders. You can also arrange a swap directly from the wallet, without the site.
 
 Learn more: [Zano Trade](/docs/use/zano-trade)
 
@@ -150,7 +149,9 @@ A Ring Signature is a type of digital signature that can be performed by any mem
 
 ### What is a mixin and what is it used for?
 
-The mixin count refers to the number of signatures (apart from yours) in the ring signature that authorizes the transaction. A higher mixin value will typically provide more privacy because it will provide greater plausible deniability. It is impossible for any observer to know which is the real source of the funds.
+The mixin (or decoy) count refers to the number of outputs, apart from yours, included in the ring signature that authorizes a transaction. The decoys give you plausible deniability: an observer cannot tell which ring member is the real source of the funds.
+
+On Zano, the ring size is enforced by the protocol at 15, so every regular transaction gets the same level of privacy. It is not a setting you need to choose or tune. (The one exception is [auditable wallets](/docs/use/auditable-wallets), which deliberately spend without decoys so their history stays verifiable.)
 
 ### Can I create auditable wallets on Zano for transparency when needed?
 
@@ -186,11 +187,11 @@ But if someone accepts ZANO or its Confidential Assets, you don't have to worry 
 
 ### Was Zano pre-mined, and how was it structured?
 
-Yes, the premine consisted of 3.6M ZANO; it was set aside for ongoing project expenses, marketing, partnerships, and to pay a loan to fund initial development back in 2018.
+Yes, the premine consisted of 3.69M ZANO; it was set aside for ongoing project expenses, marketing, partnerships, and to pay a loan to fund initial development back in 2018.
 
-As of July 2025, considering what has already been spent for development, the foundation fund sits at just ~4.4% of the total ZANO supply.
+Most of it has been spent on development over the years; the current foundation-fund figure is maintained on the [Emission page](/docs/learn/emission#the-premine-and-how-zano-will-be-funded).
 
-You can track the amount of the foundation fund via our [explorer](https://explorer.zano.org/) or by importing its tracking seed into your wallet:
+You can verify the fund's balance yourself at any time by importing its public tracking seed into your wallet:
 
 `aZxat4HAWriVQ3enkGcVsrZRdMseAJswG3CSEwTqZS246VsFQ53w26eZstYsu1jWE74Atz9ajLxFnBsVTafncWNH5SMv4zHFaTS:1780c4d5dd7e97cc4a75ea8baa7977d12ef948b9a6dddc2a9a37e5e22ac7180e:1599495055`
 
@@ -204,11 +205,11 @@ A premine was seen as a necessary step to ensure that Zano has the resources nee
 
 ### Can the Zano team dump on the market, or are their funds locked?
 
-No funds are locked; however, all foundation fund transactions are public, and as of July 2025, the fund represents less than 5% of the total supply.
+No funds are locked; however, the foundation fund is an [auditable wallet](/docs/use/auditable-wallets), so its balance and every transaction are publicly verifiable, and it represents only a small share of the total supply (current figure on the [Emission page](/docs/learn/emission#the-premine-and-how-zano-will-be-funded)).
 
 ### How does Zano ensure decentralization if the devs hold some supply?
 
-Besides the fact that the foundation fund sits below 5% of the supply, Proof of Stake incentives ensure that all holders remain honest, if they were to harm the network, they would be attacking their own investment.
+Besides the fact that the foundation fund is a small share of the supply (see the [Emission page](/docs/learn/emission#the-premine-and-how-zano-will-be-funded)), Proof of Stake incentives ensure that all holders remain honest, if they were to harm the network, they would be attacking their own investment.
 
 ### Is there a public breakdown of the ZANO token distribution?
 
@@ -248,7 +249,7 @@ Unlike mixers, which obscure your transaction flow at a certain point (and you s
 
 ### How are the wrapped assets stored?
 
-In Zano wallets, both the official wallet and multicoin wallets like Edge, Cake Wallet, and Bitcoin.com.
+In Zano wallets. The official apps support all Confidential Assets, and among multicoin wallets, Edge and Bitcoin.com support them too. Cake Wallet currently supports native ZANO.
 
 ### How does unwrapping work?
 

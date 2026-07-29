@@ -11,7 +11,7 @@ This section covers how to use Zano day-to-day.
 **Features** — [Aliases](/docs/use/aliases) (@username addresses), [Auditable Wallets](/docs/use/auditable-wallets), [Wrapped Zano](/docs/use/wrapped-zano) (ERC-20 bridge).
 
 **dApps** — Most need [Zano Companion](/docs/use/companion) (browser extension) to connect your wallet:
-- [Zano Trade](/docs/use/zano-trade) — DEX and P2P trading
+- [Zano Trade](/docs/use/zano-trade) — decentralized exchange (DEX)
 - [Zano Matrix](/docs/use/zano-matrix-guide) — Encrypted messenger
 
 Having problems? See [Reporting Issues](/docs/use/reporting-issues).

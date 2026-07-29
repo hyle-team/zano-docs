@@ -53,13 +53,13 @@ simplewallet --wallet-file <your_wallet> \
 
 ### Relay transactions through Tor (HTTP)
 
-Same thing, but over plain HTTP (port 11121):
+Same thing, but over plain HTTP to a node that exposes its RPC port (default 11211). Note that the public `node.zano.org` serves RPC over HTTPS on port 443 only, so use this form with your own remote node:
 
 ```
 simplewallet --wallet-file <your_wallet> \
   --daemon-address http://127.0.0.1:11211 \
   --enable-tx-socks5-relay-proxy=127.0.0.1:9150 \
-  --tx-relay-url=http://node.zano.org:11121
+  --tx-relay-url=http://<your_remote_node>:11211
 ```
 
 ### Relay both transactions and PoS blocks
@@ -83,5 +83,5 @@ For testnet, just point to a testnet node (default RPC port is 12111):
 simplewallet --wallet-file <your_wallet> \
   --daemon-address http://127.0.0.1:12111 \
   --enable-tx-socks5-relay-proxy=127.0.0.1:9150 \
-  --tx-relay-url=<testnet_node_address>:11311
+  --tx-relay-url=http://<testnet_node_address>:12111
 ```

@@ -4,11 +4,17 @@ slug: /use/escrow-contracts
 
 # Escrow contracts
 
-Zano provides the framework for a secure and private transaction without the need for a trusted third party. Our Escrow system, as proposed, will require participants to make additional deposits, which they will forfeit if there is any attempt to act maliciously, or in a way that is contemptuous toward their counter party. For more information please refer to the "Escrow" section of the [whitepaper](/docs/learn/whitepaper).
+:::caution Legacy feature
+Escrow contracts are no longer available in current versions of Zano. The `Contracts` tab has been removed from the wallet, and escrow transactions are not supported under the current protocol rules (they predate the Zarcanum hard fork's transaction format). This page is kept for historical reference.
+:::
 
-### Propsal
+Zano provided a framework for secure and private transactions without the need for a trusted third party. The Escrow system required participants to make additional deposits, which they would forfeit on any attempt to act maliciously toward their counterparty. For more information please refer to the "Escrow" section of the [whitepaper](/docs/learn/whitepaper).
 
-Each escrow contract starts with the buyer proposal. Once it's sent the deposit amount will be locked for a `Time until response` period. If during the period seller accepts the terms, Escrow contract will be activated. To initiate the process navigate to wallet `Contracts` tab and choose `New Purchase`. Proposal details are the following.
+The sections below describe how the feature worked in pre-Zarcanum wallets.
+
+### Proposal
+
+Each escrow contract started with a buyer proposal. Once it was sent, the deposit amount was locked for a `Time until response` period. If the seller accepted the terms during that period, the escrow contract was activated. The process was initiated from the wallet's `Contracts` tab by choosing `New Purchase`. Proposal details were the following.
 
 - Description - title or description for contract subject
 - Seller - wallet address of merchant or seller
@@ -24,22 +30,22 @@ Each escrow contract starts with the buyer proposal. Once it's sent the deposit 
 
 ### Confirmation
 
-When the seller accepts the proposal a special multi signature transaction will be sent to the blockchain. Then after 10 confirmations a new contract will be started. The seller can now fulfil contract terms like shipping the item to the buyer.
+When the seller accepted the proposal, a special multisignature transaction was sent to the blockchain. After 10 confirmations the contract started, and the seller could fulfil the contract terms, such as shipping the item to the buyer.
 
 ![alt contract-response](/img/use/escrow-contracts/contract-response.png "contract-response")_<figcaption style={{textAlign: "center" }} >Contract response</figcaption>_
 
-The buyers contract window will get three options to continue with: `Cancel and return deposits`, `Terminate and burn deposits` and `Complete and release deposits`.
+The buyer's contract window then offered three options to continue with: `Cancel and return deposits`, `Terminate and burn deposits` and `Complete and release deposits`.
 
 ### Cancel and return deposits
 
-The buyer can send a cancellation offer to return both deposits and close the contract. The seller can accept or ignore this offer within a given response time. This option is useful when deal is mutually canceled.
+The buyer could send a cancellation offer to return both deposits and close the contract. The seller could accept or ignore this offer within a given response time. This option was useful when a deal was mutually canceled.
 
 ### Terminate and burn deposits
 
-When parties cannot find mutual agreement on any occasions one can decide to burn the deposits completely and close the contract. In that case deposits will not be returned ever.
+When the parties could not reach mutual agreement, either one could decide to burn the deposits completely and close the contract. In that case the deposits were never returned.
 
 ### Complete and release deposits
 
-If buyer is satisfied with the delivery or a provided service the contract can be closed. Releasing deposits will return both parties collaterals.
+If the buyer was satisfied with the delivery or the provided service, the contract could be closed. Releasing the deposits returned both parties' collateral.
 
 ![alt contract-confirmation](/img/use/escrow-contracts/contract-confirmation.png "contract-confirmation")_<figcaption style={{textAlign: "center" }} >Contract confirmation</figcaption>_
