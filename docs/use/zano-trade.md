@@ -1,10 +1,10 @@
 ---
-sidebar_position: 4
+sidebar_position: 5
 ---
 
 # Zano Trade
 
-A decentralized exchange to trade native Zano and all the Confidential Assets launched on Zano’s ecosystem. Zano Trade requires no user registration and uses an on-chain order matching system to facilitate [Ionic Swaps](https://docs.zano.org/docs/learn/frequently-asked-questions#what-are-ionic-swaps) between native Zano and the Confidential Assets. It is impossible to see what asset type, amount, or address was involved in the transaction.
+A decentralized exchange to trade native Zano and all the Confidential Assets launched on Zano’s ecosystem. Zano Trade requires no user registration and uses an on-chain order matching system to facilitate [Ionic Swaps](/docs/learn/frequently-asked-questions#what-are-ionic-swaps) between native Zano and the Confidential Assets. It is impossible to see what asset type, amount, or address was involved in the transaction.
 
 ## How to use
 
@@ -27,9 +27,9 @@ A decentralized exchange to trade native Zano and all the Confidential Assets la
 </div>
 ```
 
-1. Zano Trade, like all Zano dApps, requires using Zano Companion, [click here](https://docs.zano.org/docs/use/companion) if you haven't set it up already.
+1. Zano Trade, like all Zano dApps, requires using Zano Companion, [click here](/docs/use/companion) if you haven't set it up already.
 
-2. Once your Companion is ready (make sure to have your desktop wallet open and unlocked) head to [trade.zano.org](http://trade.zano.org) and click "Connect Wallet".
+2. Once your Companion is ready (make sure to have your desktop wallet open and unlocked) head to [trade.zano.org](https://trade.zano.org) and click "Connect Wallet".
 
 3. On the first time, a popup will appear on the Companion to authorize the connection, click "Accept".
 
@@ -131,7 +131,7 @@ And that's it! We just completed a peer-to-peer trade, made possible by Zano's I
 
 ### How do trades work?
 
-When users publish their orders to Zano Trade, our DEX coordinator combines sell and buy orders together in an [Ionic Swap](https://docs.zano.org/docs/learn/frequently-asked-questions#what-are-ionic-swaps) transaction that is then relayed by the app and executed by users, its content is only visible to the parties involved in the swap.
+When users publish their orders to Zano Trade, our DEX coordinator combines sell and buy orders together in an [Ionic Swap](/docs/learn/frequently-asked-questions#what-are-ionic-swaps) transaction that is then relayed by the app and executed by users, its content is only visible to the parties involved in the swap.
 
 ### Is Zano Trade decentralized?
 
@@ -147,7 +147,7 @@ However if there's a demand for an app like this and users are willing to opt-in
 
 ### Which currencies can I trade?
 
-All [confidential assets](https://docs.zano.org/docs/learn/frequently-asked-questions#what-are-confidential-assets) issued or bridged over to Zano are tradeable.
+All [confidential assets](/docs/learn/frequently-asked-questions#what-are-confidential-assets-and-how-are-they-used-on-zano) issued or bridged over to Zano are tradeable.
 
 ### How long does it take before my transaction is processed?
 

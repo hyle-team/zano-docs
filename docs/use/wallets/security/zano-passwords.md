@@ -1,5 +1,5 @@
 ---
-slug: /use/zano-passwords.md
+slug: /use/zano-passwords
 ---
 
 # Different Password Types in Zano Wallets

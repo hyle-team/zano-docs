@@ -49,7 +49,7 @@ On the consensus side, Zano runs a hybrid PoW/PoS model instead of Monero's pure
 
 ### How do I set up a Zano wallet?
 
-1. Go to the Apple/Play store or download from [zano.org/downloads](https://zano.org/downloads).
+1. Go to the Apple/Play store or download from [zano.org/wallets](https://zano.org/wallets).
 2. Create a wallet by following the steps in the app.
 3. Store your keys in a safe place.
 
@@ -306,6 +306,8 @@ Zano wallet is a full node application. Due to loading the blockchain and multip
 
 ### Where can I get support?
 
-- **General issues**: [GitHub Issues](https://github.com/hyle-team/zano/issues) or [Discord #support](https://discord.gg/wE3rmYY)
+- **Official support**: open a ticket at [zano.org/support](https://zano.org/support) — the support team replies by email. For anything involving your wallet or funds, use this channel. See [Reporting Issues](/docs/use/reporting-issues) for details and log locations.
+- **Community**: the [Zano Forum](https://forum.zano.org) and [Discord](https://discord.gg/wE3rmYY). These are community spaces — support will never DM you first, and no one legitimate will ever ask for your seed phrase.
+- **Developers**: reproducible code bugs go to [GitHub Issues](https://github.com/hyle-team/zano/issues).
 - **Zano Trade support**: [@zano_trade_support](https://t.me/zano_trade_support)
 - **Critical network updates**: [@zano_critical](https://t.me/zano_critical)
