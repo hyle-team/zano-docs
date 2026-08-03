@@ -41,12 +41,12 @@ An [MCP server](https://github.com/PRavaga/zano-mcp) that connects AI agents (Cl
 
 ## Wider ecosystem
 
-- **[Wrapped Zano](https://wrapped.zano.org)** — WZANO, an ERC-20 token on Ethereum. Exchangeable 1:1 for native ZANO.
-- **[Obscura](https://obscura.art)** — Private NFT minting and management.
-- **[Zano Messenger](/docs/use/zano-matrix-guide)** — Private messaging built on Matrix with end-to-end encryption support, linked to your Zano alias.
-- **[Bridgeless](https://bridgeless.com)** — Non-custodial bridge between public and privacy blockchains. Uses Zano gateway addresses with ETH-compatible signatures for cross-chain asset commands.
-- **[Zano Bay](https://zanobay.com)** — Private marketplace for buying and selling goods.
-- **[Bandit City](https://bandit.city)** — Community hub with its own token and staking.
-- **[Alias Auction](https://auction.zano.org)** — Bid on @usernames registered on-chain.
+- **[Wrapped Zano](https://wrapped.zano.org)**: WZANO, an ERC-20 token on Ethereum. Exchangeable 1:1 for native ZANO.
+- **[Obscura](https://obscura.art)**: private NFT minting and management.
+- **[Zano Messenger](/docs/use/zano-matrix-guide)**: private messaging built on Matrix with end-to-end encryption support, linked to your Zano alias.
+- **[Bridgeless](https://bridgeless.com)**: non-custodial bridge between public and privacy blockchains. Uses Zano gateway addresses with ETH-compatible signatures for cross-chain asset commands.
+- **[Zano Bay](https://zanobay.com)**: private marketplace for buying and selling goods.
+- **[Bandit City](https://bandit.city)**: community hub with its own token and staking.
+- **[Alias Auction](https://auction.zano.org)**: bid on @usernames registered on-chain.
 
 Full list at [zano.org/projects](https://zano.org/projects). Links on this page checked July 2026.

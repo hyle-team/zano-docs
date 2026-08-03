@@ -1,6 +1,6 @@
 # Hi-Load Servers (WARP-mode)
 
-To improve the efficiency of production servers under heavy loads—such as remote nodes for mobile wallets—we have implemented a special daemon mode called **WARP-mode**(derived from “full warm up”). This mode requires at least 64GB of physical RAM, but it can deliver up to a x20 performance boost compared to the standard mode.
+To improve the efficiency of production servers under heavy loads, such as remote nodes for mobile wallets, we have implemented a special daemon mode called **WARP-mode**(derived from “full warm up”). This mode requires at least 64GB of physical RAM, but it can deliver up to a x20 performance boost compared to the standard mode.
 
 To use WARP-mode, make sure your server has at least 64 GB of physical RAM.
 

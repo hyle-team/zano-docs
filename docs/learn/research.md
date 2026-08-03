@@ -63,7 +63,7 @@ Extension for the CLSAG (Concise Linkable Spontaneous Anonymous Group Signatures
 
 ### Zano Tokenization Platform (2022)
 
-Introducing a solution that allows users to issue tokens that work inside Zano blockchain, which have the same properties as transactions with a native token—namely hidden amounts and hidden addresses, as well as auditable wallets.
+Introducing a solution that allows users to issue tokens that work inside Zano blockchain, which have the same properties as transactions with a native token: hidden amounts and hidden addresses, as well as auditable wallets.
 
 Note: this paper used one of the early approaches to implementing assets, where each asset has a unique scalar identifier but a common asset-type generator; it is now outdated.
 

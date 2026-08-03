@@ -1,21 +1,138 @@
 .container {
-  margin: 3% 20% 3% 20%;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  width: 60%;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 64px 24px 96px;
 }
 
-@media (max-width: 600px) {
+/* === Hero === */
+
+.hero {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.title {
+  font-size: 44px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--ifm-heading-color);
+  margin-bottom: 14px;
+}
+
+.titleAccent {
+  color: var(--zano-primary);
+}
+
+.subtitle {
+  max-width: 640px;
+  margin: 0 auto;
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--ifm-font-color-base);
+}
+
+/* === Section cards === */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.card {
+  background-color: var(--ifm-card-background-color);
+  border: 1px solid var(--ifm-card-border-color);
+  border-radius: 12px;
+  padding: 24px;
+  transition: border-color 0.2s ease;
+}
+
+.card:hover {
+  border-color: var(--zano-primary);
+}
+
+.cardIcon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background-color: var(--zano-surface-2);
+  border: 1px solid var(--ifm-card-border-color);
+  color: var(--zano-primary);
+  margin-bottom: 14px;
+}
+
+.cardIcon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.cardTitle {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--ifm-heading-color);
+  margin-bottom: 6px;
+}
+
+.cardDescription {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--ifm-color-content-secondary);
+  margin-bottom: 12px;
+}
+
+.cardLinks {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.cardLinks li {
+  margin: 2px 0;
+}
+
+.cardLinks a {
+  display: inline-block;
+  padding: 6px 0;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ifm-link-color);
+  text-decoration: none;
+}
+
+.cardLinks a:hover {
+  color: var(--ifm-link-hover-color);
+  text-decoration: none;
+}
+
+.arrow {
+  display: inline-block;
+}
+
+/* === Responsive === */
+
+@media (max-width: 996px) {
   .container {
-    margin: 3% 10% 3% 10%;
-    width: 80%;
+    padding: 40px 20px 64px;
+  }
+  .title {
+    font-size: 32px;
+  }
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media (max-width: 460px) {
-  .container {
-    margin: 3% 5% 3% 5%;
-    width: 90%;
+@media (max-width: 600px) {
+  .title {
+    font-size: 28px;
+  }
+  .subtitle {
+    font-size: 15px;
+  }
+  .grid {
+    grid-template-columns: 1fr;
   }
 }

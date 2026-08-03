@@ -67,8 +67,8 @@ In order to interact with the Marketplace API, you must include the following fl
 
 ### Daemon flags
 
-- rpc-bind-ip — IP address to bind RPC server to (127.0.0.1 will be used if not specified);
-- rpc-bind-port — TCP port for RPC server (11211 is default);
+- rpc-bind-ip: IP address to bind RPC server to (127.0.0.1 will be used if not specified);
+- rpc-bind-port: TCP port for RPC server (11211 is default);
 
 ---
 

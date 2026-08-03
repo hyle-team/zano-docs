@@ -41,12 +41,12 @@ NOTE: RPC\_PORT\_NUMBER should be any port number not in use by your system. It 
 
 Some of the parameters are required, and some are optional. Here's what they mean:
 
-- `--wallet-file=PATH_TO_WALLET_FILE` (required) — sets the path to the wallet file where your coins are;
-- `--rpc-bind-port=RPC_PORT_NUMBER` (required) — sets the TCP listening port number of the simplewallet RPC server and switches simplewallet into RPC mode. You can use any free TCP port number you want from 0 to 65535, like 55555. If this option is not used, simplewallet will start in normal CLI mode and PoS mining won't be available;
-- `--do-pos-mining` (required) — starts PoS mining;
-- `--log-level=LOG_LEVEL` (optional) — sets the log level, possible values are from 0 (less verbose) to 4 (extremely verbose). May be useful for debugging. Default is 0;
-- `--log-file=PATH_TO_LOG` (optional) — sets path to the log file. Default is 'simplewallet.log' in the same folder where simplewallet binary is located;
-- `--deaf` (optional) — turns on so called 'deaf mode'. simplewallet's RPC server will reject any requests with error 500. This is useful if you just want to mine PoS and don't want that anyone would be able to do RPCs on your wallet. **Highly recommend**. Default: off;
+- `--wallet-file=PATH_TO_WALLET_FILE` (required): sets the path to the wallet file where your coins are;
+- `--rpc-bind-port=RPC_PORT_NUMBER` (required): sets the TCP listening port number of the simplewallet RPC server and switches simplewallet into RPC mode. You can use any free TCP port number you want from 0 to 65535, like 55555. If this option is not used, simplewallet will start in normal CLI mode and PoS mining won't be available;
+- `--do-pos-mining` (required): starts PoS mining;
+- `--log-level=LOG_LEVEL` (optional): sets the log level, possible values are from 0 (less verbose) to 4 (extremely verbose). May be useful for debugging. Default is 0;
+- `--log-file=PATH_TO_LOG` (optional): sets path to the log file. Default is 'simplewallet.log' in the same folder where simplewallet binary is located;
+- `--deaf` (optional): turns on so called 'deaf mode'. simplewallet's RPC server will reject any requests with error 500. This is useful if you just want to mine PoS and don't want that anyone would be able to do RPCs on your wallet. **Highly recommend**. Default: off;
 
 Here's a real-world example of the command using recommended options (**don't forget to tailor it to your needs**):
 

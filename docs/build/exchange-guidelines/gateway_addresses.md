@@ -88,7 +88,7 @@ The GW address view key is a point on the Ed25519 curve. The Ed25519 curve has o
 L = 2^252 + 27742317777372353535851937790883648493 
 ```
 
-If the secret scalar is chosen arbitrarily (without the restriction `< L`), the resulting point may contain a **torsion component** — a small multiplier of order 2, 4, or 8. Such points lie outside the main subgroup and create a vulnerability: two different scalars can generate the same point (address collision).
+If the secret scalar is chosen arbitrarily (without the restriction `< L`), the resulting point may contain a **torsion component**, a small multiplier of order 2, 4, or 8. Such points lie outside the main subgroup and create a vulnerability: two different scalars can generate the same point (address collision).
 
 During registration, Zano Core verifies that `view_pub_key` belongs to the main L-subgroup (no torsion). Therefore, when generating a view key, you need to:
 

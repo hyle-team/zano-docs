@@ -1,22 +1,602 @@
+/* Zano Docs theme — derived directly from zano.org's design system.
+ * Tokens mirror zano-org/src/styles/variables.scss (both themes).
+ * Design language: flat navy surfaces, solid-color two-tone headings (no
+ * gradient text), rounded-rectangle buttons with the brand radial gradient,
+ * quiet borders. Figtree + JetBrains Mono, matching the main site.
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+/* ============ Light theme (default token block) ============ */
+
 :root {
-  --ifm-color-primary: #1F8FEB;
-  --ifm-color-primary-dark: #1F8FEB;
-  --ifm-color-primary-darker: #1F8FEB;
-  --ifm-color-primary-darkest: #1F8FEB;
-  --ifm-color-primary-light: #1F8FEB
-  --ifm-color-primary-lighter: #1F8FEB;
-  --ifm-color-primary-lightest: #1F8FEB;
-  --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  /* zano.org light tokens */
+  --zano-bg: #ffffff;
+  --zano-surface: #f8f8ff;
+  --zano-surface-2: #f3f3ff;
+  --zano-border: #ededf4;
+  --zano-border-strong: #cee2f4;
+  --zano-menu-hover: #dce2ff;
+  --zano-text: #0c0c3a;
+  --zano-body: #4a4a66;
+  --zano-gray: #6e6e81;
+  --zano-headline-muted: #464676;
+  --zano-primary: #1f84ed;
+  --zano-primary-strong: #1670d6;
+  --zano-cyan: #18c8d9;
+  --zano-gradient: radial-gradient(100% 188.88% at 0% 0%, #16d1d6 0%, #274cff 100%);
+
+  /* Infima mapping */
+  --ifm-background-color: var(--zano-bg);
+  --ifm-background-surface-color: var(--zano-surface);
+  --ifm-color-primary: var(--zano-primary);
+  --ifm-color-primary-dark: #1670d6;
+  --ifm-color-primary-darker: #145fc0;
+  --ifm-color-primary-darkest: #274cff;
+  --ifm-color-primary-light: #2797ff;
+  --ifm-color-primary-lighter: #4da2ff;
+  --ifm-color-primary-lightest: #8ac5ff;
+
+  --ifm-font-family-base: 'Figtree', system-ui, -apple-system, sans-serif;
+  --ifm-heading-font-family: 'Figtree', system-ui, sans-serif;
+  --ifm-font-family-monospace: 'JetBrains Mono', 'Fira Code', monospace;
+  --ifm-code-font-size: 88%;
+  --ifm-heading-font-weight: 700;
+  --ifm-font-color-base: var(--zano-body);
+  --ifm-heading-color: var(--zano-text);
+
+  --ifm-link-color: var(--zano-primary);
+  --ifm-link-hover-color: var(--zano-primary-strong);
+
+  --ifm-navbar-background-color: rgba(255, 255, 255, 0.85);
+  --ifm-navbar-shadow: none;
+  --ifm-navbar-link-color: var(--zano-body);
+  --ifm-navbar-link-hover-color: var(--zano-text);
+  --ifm-navbar-height: 64px;
+
+  --ifm-footer-background-color: var(--zano-surface);
+  --ifm-footer-color: var(--zano-body);
+  --ifm-footer-link-color: var(--zano-gray);
+  --ifm-footer-link-hover-color: var(--zano-text);
+  --ifm-footer-title-color: var(--zano-headline-muted);
+
+  --ifm-toc-border-color: var(--zano-border);
+  --ifm-color-content-secondary: var(--zano-gray);
+  --ifm-hr-border-color: var(--zano-border);
+  --ifm-table-border-color: var(--zano-border);
+  --ifm-table-stripe-background: rgba(39, 151, 255, 0.03);
+  --ifm-code-background: var(--zano-surface-2);
+  --docusaurus-highlighted-code-line-bg: rgba(39, 151, 255, 0.1);
+
+  --ifm-menu-color: var(--zano-gray);
+  --ifm-menu-color-active: var(--zano-text);
+  --ifm-menu-color-background-active: var(--zano-menu-hover);
+  --ifm-menu-color-background-hover: var(--zano-surface-2);
+
+  --ifm-breadcrumb-color-active: var(--zano-text);
+  --ifm-breadcrumb-item-background-active: transparent;
+
+  --ifm-alert-background-color: var(--zano-surface);
+  --ifm-alert-border-color: var(--zano-border);
+  --ifm-card-background-color: var(--zano-surface);
+  --ifm-card-border-color: var(--zano-border);
 }
 
-[data-theme="dark"] {
-  --ifm-color-primary: #1F8FEB;
-  --ifm-color-primary-dark: #1F8FEB;
-  --ifm-color-primary-darker: #1F8FEB;
-  --ifm-color-primary-darkest: #1F8FEB;
-  --ifm-color-primary-light: #1F8FEB;
-  --ifm-color-primary-lighter: #1F8FEB;
-  --ifm-color-primary-lightest: #1F8FEB;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+/* ============ Dark theme (zano.org default look) ============ */
+
+html[data-theme='dark'] {
+  --zano-bg: #0c0c3a;
+  --zano-surface: #090933;
+  --zano-surface-2: #131a4f;
+  --zano-border: #2f2f56;
+  --zano-border-strong: #3d3d6b;
+  --zano-menu-hover: #1f1f4a;
+  --zano-text: #ffffff;
+  --zano-body: #bfbfd8;
+  --zano-gray: #adb3c9;
+  --zano-headline-muted: #adb3c9;
+  --zano-primary: #2797ff;
+  --zano-primary-strong: #4db2ff;
+  --zano-cyan: #18c8d9;
+
+  --ifm-background-color: var(--zano-bg);
+  --ifm-background-surface-color: var(--zano-surface);
+  --ifm-color-primary: var(--zano-primary);
+  --ifm-color-primary-dark: #1f84ed;
+  --ifm-color-primary-darker: #1670d6;
+  --ifm-color-primary-darkest: #274cff;
+  --ifm-color-primary-light: #4da2ff;
+  --ifm-color-primary-lighter: #6fb8ff;
+  --ifm-color-primary-lightest: #8ac5ff;
+
+  --ifm-font-color-base: var(--zano-body);
+  --ifm-heading-color: var(--zano-text);
+
+  --ifm-link-color: var(--zano-primary);
+  --ifm-link-hover-color: var(--zano-primary-strong);
+
+  --ifm-navbar-background-color: rgba(12, 12, 58, 0.85);
+  --ifm-navbar-link-color: var(--zano-body);
+  --ifm-navbar-link-hover-color: var(--zano-text);
+
+  --ifm-footer-background-color: var(--zano-surface);
+  --ifm-footer-color: var(--zano-body);
+  --ifm-footer-link-color: var(--zano-gray);
+  --ifm-footer-link-hover-color: var(--zano-text);
+  --ifm-footer-title-color: var(--zano-headline-muted);
+
+  --ifm-toc-border-color: var(--zano-border);
+  --ifm-color-content-secondary: var(--zano-gray);
+  --ifm-hr-border-color: var(--zano-border);
+  --ifm-table-border-color: var(--zano-border);
+  --ifm-table-stripe-background: rgba(39, 151, 255, 0.05);
+  --ifm-code-background: var(--zano-surface-2);
+  --docusaurus-highlighted-code-line-bg: rgba(39, 151, 255, 0.15);
+
+  --ifm-menu-color: var(--zano-gray);
+  --ifm-menu-color-active: var(--zano-text);
+  --ifm-menu-color-background-active: var(--zano-menu-hover);
+  --ifm-menu-color-background-hover: rgba(31, 31, 74, 0.6);
+
+  --ifm-breadcrumb-color-active: var(--zano-text);
+
+  --ifm-alert-background-color: var(--zano-surface);
+  --ifm-alert-border-color: var(--zano-border);
+  --ifm-card-background-color: var(--zano-surface);
+  --ifm-card-border-color: var(--zano-border);
+}
+
+/* ============ Base ============ */
+
+.markdown h1,
+.markdown h2,
+.markdown h3,
+.markdown h4 {
+  font-family: var(--ifm-heading-font-family);
+  color: var(--ifm-heading-color);
+}
+
+.markdown h1 {
+  font-size: 38px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.markdown h2 {
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  margin-top: 2.5rem;
+  border-bottom: 1px solid var(--zano-border);
+  padding-bottom: 10px;
+}
+
+.markdown h3 {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.markdown h4 {
+  font-weight: 600;
+}
+
+.markdown strong,
+.markdown li strong {
+  color: var(--ifm-heading-color);
+  font-weight: 600;
+}
+
+.markdown blockquote {
+  border-left: 2px solid var(--zano-primary);
+  background: var(--zano-surface);
+  padding: 12px 20px;
+  border-radius: 0 8px 8px 0;
+}
+
+.markdown img {
+  border-radius: 10px;
+  border: 1px solid var(--zano-border);
+  max-width: 100%;
+}
+
+article.theme-doc-markdown,
+.theme-doc-markdown {
+  font-size: 16px;
+  line-height: 1.75;
+}
+
+/* ============ Navbar ============ */
+
+.navbar {
+  border-bottom: 1px solid var(--zano-border);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.navbar__title {
+  font-weight: 600;
+  color: var(--ifm-heading-color);
+  font-size: 16px;
+}
+
+.navbar__logo {
+  height: 30px;
+  width: 30px;
+}
+
+.navbar__link {
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.navbar__link--active,
+.navbar__link:hover {
+  color: var(--ifm-heading-color);
+}
+
+/* ============ Sidebar ============ */
+
+.menu {
+  padding: 1rem 0.5rem;
+}
+
+.menu__link {
+  font-size: 13.5px;
+  font-weight: 500;
+  border-radius: 8px;
+}
+
+.menu__link--active:not(.menu__link--sublist) {
+  font-weight: 600;
+}
+
+.menu__list-item-collapsible .menu__link--sublist {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ifm-heading-color);
+}
+
+aside.theme-doc-sidebar-container {
+  border-right-color: var(--zano-border) !important;
+}
+
+/* ============ Code ============ */
+
+pre {
+  background-color: var(--zano-surface) !important;
+  border: 1px solid var(--zano-border);
+  border-radius: 10px;
+}
+
+code {
+  background-color: var(--ifm-code-background);
+  border: 1px solid var(--zano-border);
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-size: 88%;
+}
+
+pre code {
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+/* ============ Tables ============ */
+
+table {
+  border-collapse: collapse;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--zano-border);
+  /* Infima tables are display:block — shrink the frame to content width */
+  width: fit-content;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+table th {
+  background-color: var(--zano-surface);
+  color: var(--ifm-heading-color);
+  font-size: 13px;
+  font-weight: 600;
+  border-bottom: 1px solid var(--zano-border-strong);
+}
+
+table td {
+  border-color: var(--zano-border);
+}
+
+/* ============ Breadcrumbs ============ */
+
+.breadcrumbs {
+  margin-bottom: 1.25rem;
+}
+
+.breadcrumbs__link {
+  font-size: 13px;
+  color: var(--zano-gray);
+  background: none !important;
+}
+
+.breadcrumbs__link:hover {
+  color: var(--ifm-link-color);
+}
+
+.breadcrumbs__item--active .breadcrumbs__link {
+  color: var(--ifm-heading-color);
+  font-weight: 600;
+}
+
+.breadcrumbs__item {
+  white-space: nowrap;
+}
+
+.breadcrumbs__item--active .breadcrumbs__link {
+  display: inline-block;
+  max-width: min(60vw, 420px);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  vertical-align: bottom;
+}
+
+/* ============ Pagination ============ */
+
+.pagination-nav {
+  gap: 1.5rem;
+}
+
+.pagination-nav__link {
+  border: 1px solid var(--zano-border);
+  background-color: var(--zano-surface);
+  border-radius: 10px;
+}
+
+.pagination-nav__link:hover {
+  border-color: var(--zano-primary);
+}
+
+.pagination-nav__sublabel {
+  color: var(--zano-gray);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.pagination-nav__label {
+  color: var(--ifm-heading-color);
+  font-weight: 600;
+}
+
+/* ============ TOC ============ */
+
+.table-of-contents {
+  font-size: 13px;
+}
+
+.table-of-contents__link {
+  color: var(--zano-gray);
+}
+
+.table-of-contents__link:hover {
+  color: var(--ifm-link-color);
+}
+
+.table-of-contents__link--active,
+.table-of-contents__link--active:hover {
+  color: var(--ifm-link-color);
+  font-weight: 600;
+}
+
+/* ============ Footer ============ */
+/* zano.org pattern: footer sits on the page background (no grey band),
+ * bold heading-color column titles, body-color links */
+
+.footer,
+.footer--dark {
+  background-color: var(--zano-bg) !important;
+  border-top: 1px solid var(--zano-border);
+  padding: 3.5rem 0 2rem;
+}
+
+.footer__title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ifm-heading-color) !important;
+  margin-bottom: 0.75rem;
+}
+
+.footer__link-item {
+  font-size: 14px;
+  line-height: 2.1;
+  color: var(--zano-body) !important;
+}
+
+.footer__link-item:hover {
+  color: var(--zano-primary) !important;
+  text-decoration: none;
+}
+
+.footer__copyright {
+  color: var(--zano-gray);
+  font-size: 13px;
+  margin-top: 1.5rem;
+}
+
+/* ============ Admonitions ============ */
+
+.alert,
+[class*='alert_'] {
+  background-color: var(--ifm-alert-background-color) !important;
+  border: 1px solid var(--ifm-alert-border-color) !important;
+  border-left-width: 3px !important;
+  border-radius: 10px !important;
+  color: var(--ifm-font-color-base) !important;
+}
+
+.alert--info { border-left-color: var(--zano-primary) !important; }
+.alert--warning { border-left-color: #f0a03c !important; }
+.alert--danger { border-left-color: #e05c5c !important; }
+.alert--success { border-left-color: var(--zano-cyan) !important; }
+
+.alert [class*='admonitionHeading'] {
+  color: var(--ifm-heading-color) !important;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.alert a { color: var(--ifm-link-color) !important; }
+
+/* ============ Details / tabs / search ============ */
+
+details {
+  border-color: var(--zano-border) !important;
+  background-color: var(--zano-surface) !important;
+  border-radius: 10px !important;
+}
+
+details summary {
+  color: var(--ifm-heading-color);
+  font-weight: 500;
+}
+
+.tabs__item {
+  color: var(--zano-gray);
+  font-weight: 500;
+}
+
+.tabs__item--active {
+  color: var(--ifm-heading-color);
+  border-bottom-color: var(--zano-primary);
+}
+
+.DocSearch-Button {
+  background-color: var(--zano-surface) !important;
+  border: 1px solid var(--zano-border) !important;
+  border-radius: 8px !important;
+}
+
+.DocSearch-Button:hover {
+  border-color: var(--zano-primary) !important;
+  box-shadow: none !important;
+}
+
+/* ============ Scrollbar ============ */
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--zano-border);
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--zano-border-strong);
+}
+
+/* ============ Safari / mobile hardening ============ */
+
+html,
+body {
+  max-width: 100%;
+  overflow-x: clip;
+  -webkit-text-size-adjust: 100%;
+}
+
+.markdown,
+.markdown p,
+.markdown h1,
+.markdown h2,
+.markdown h3,
+.markdown h4,
+.markdown li,
+.markdown a,
+.markdown code {
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.navbar-sidebar {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  bottom: 0 !important;
+  height: 100vh;
+  height: 100dvh;
+  max-width: 100vw;
+  background-color: var(--zano-bg);
+  border-right: 1px solid var(--zano-border);
+  z-index: 200;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.navbar-sidebar__brand,
+.navbar-sidebar__items {
+  background-color: var(--zano-bg);
+}
+
+.navbar-sidebar__brand {
+  border-bottom: 1px solid var(--zano-border);
+}
+
+.navbar-sidebar__backdrop {
+  background-color: rgba(6, 6, 30, 0.6);
+  z-index: 199;
+}
+
+.navbar-sidebar__items {
+  z-index: 200;
+}
+
+@media (max-width: 996px) {
+  .markdown h1 {
+    font-size: 28px;
+  }
+  .markdown h2 {
+    font-size: 22px;
+    margin-top: 2rem;
+  }
+  .markdown h3 {
+    font-size: 18px;
+  }
+
+  .navbar {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .menu__link {
+    padding-block: 11px;
+  }
+
+  article.theme-doc-markdown,
+  .theme-doc-markdown {
+    font-size: 15.5px;
+    line-height: 1.7;
+  }
+
+  .pagination-nav {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .markdown h1 {
+    font-size: 26px;
+  }
 }

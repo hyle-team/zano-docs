@@ -88,9 +88,9 @@ We use the signature type `zano-schnorr` when referring to a Schnorr signature p
 
 In addition to the fields REQUIRED by `CAIP-122`, this implementation elevates the following OPTIONAL fields in abstract data model to REQUIRED:
 
-- `nonce` — MUST be present. It MUST be a randomized token of at least 8 characters, used to prevent replay attacks.
-- `statement` — MUST be present.
-- `expiration-time` — MUST be present.
+- `nonce`: MUST be present. It MUST be a randomized token of at least 8 characters, used to prevent replay attacks.
+- `statement`: MUST be present.
+- `expiration-time`: MUST be present.
 
 Verifiers MUST reject any message that omits a field marked REQUIRED by this specification.
 

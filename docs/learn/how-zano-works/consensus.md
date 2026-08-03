@@ -16,5 +16,5 @@ Zarcanum is the world's first Proof-of-Stake scheme with hidden amounts: you ear
 
 ## Take part
 
-- [Stake ZANO](/docs/stake/getting-started/proof-of-stake-mining) — earn PoS rewards with the desktop wallet
-- [Mine ZANO](/docs/mine/overview) — point ProgPowZ hashpower at the PoW side
+- [Stake ZANO](/docs/stake/getting-started/proof-of-stake-mining) to earn PoS rewards with the desktop wallet
+- [Mine ZANO](/docs/mine/overview) by pointing ProgPowZ hashpower at the PoW side

@@ -4,6 +4,7 @@ import rehypeKatex from 'rehype-katex';
 
 const config = {
   title: "Zano Docs",
+  titleDelimiter: "·",
   tagline: "Blockchain privacy for mass adoption",
   favicon: "img/favicon.ico",
 
@@ -69,6 +70,11 @@ const config = {
 
   themeConfig: {
     image: "img/zano_dev_meta.png",
+    colorMode: {
+      defaultMode: "dark",
+      disableSwitch: false,
+      respectPrefersColorScheme: true,
+    },
     navbar: {
       title: "Zano Docs",
       logo: {
@@ -111,7 +117,7 @@ const config = {
           sidebarId: "codeSidebar",
           position: "left",
           label: "Code",
-        },        
+        },
         {
           href: "https://github.com/hyle-team/zano",
           label: "GitHub",
@@ -170,6 +176,10 @@ const config = {
               label: "Wrapped Zano",
               to: "https://wrapped.zano.org",
             },
+            {
+              label: "Support",
+              to: "https://zano.org/support",
+            },
           ],
         },
         {
@@ -188,6 +198,10 @@ const config = {
         {
           title: "Community",
           items: [
+            {
+              label: "Forum",
+              to: "https://forum.zano.org",
+            },
             {
               label: "Discord",
               to: "https://discord.gg/wE3rmYY",
@@ -216,6 +230,7 @@ const config = {
     prism: {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
+      additionalLanguages: ["bash", "json", "diff"],
     },
     algolia: {
       appId: 'GZR5BV1JNU',

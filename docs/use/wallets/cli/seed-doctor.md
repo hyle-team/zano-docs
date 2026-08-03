@@ -27,9 +27,9 @@ No wallet file or daemon connection is needed. Just run:
 
 You'll get three prompts:
 
-1. **Enter your seed phrase** — type in the full (broken) seed phrase
-2. **Enter your wallet address** — the address you expect the seed to produce (optional but strongly recommended)
-3. **Enter your passphrase** — only if the seed was protected with a passphrase (Secured Seed)
+1. **Enter your seed phrase**: type in the full (broken) seed phrase
+2. **Enter your wallet address**: the address you expect the seed to produce (optional but strongly recommended)
+3. **Enter your passphrase**: only if the seed was protected with a passphrase (Secured Seed)
 
 ## What It Does
 
@@ -50,7 +50,7 @@ How Seed Doctor behaves depends on how many words your seed phrase has:
 | Word Count | Seed Version | Recovery Notes |
 |:---:|:---:|---|
 | 24 | Legacy (no timestamp) | A placeholder word is appended internally before recovery begins |
-| 25 | V1 | **Wallet address is required** — without it, recovery is not possible |
+| 25 | V1 | **Wallet address is required**: without it, recovery is not possible |
 | 26 | V2 (with checksum) | Can recover without a wallet address, thanks to the built-in checksum |
 
 ## Limitations
