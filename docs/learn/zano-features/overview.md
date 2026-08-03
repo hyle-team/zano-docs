@@ -12,7 +12,7 @@ A hybrid PoW/PoS consensus algorithm makes attacks on Zano infeasible. An attack
 
 ### Stability
 
-Zano's codebase has been live and tested since the Boolberry days, over a decade of production use. The network is stable, and new releases go through extensive testing before deployment.
+The Zano network has run in production since 2019, and the team's engineering lineage goes back further, through Boolberry to the original CryptoNote reference implementation. The network is stable, and new releases go through extensive testing before deployment.
 
 ### Decentralization
 
@@ -46,17 +46,9 @@ Transactions are hidden using **d/v-CLSAG Ring Signatures** (hide the sender) an
 
 **Bulletproofs+** hide the amounts in every transaction. The proofs verify that inputs and outputs balance (no coins created or destroyed) without revealing the actual numbers.
 
-### Escrow contracts
-
-Both parties lock a deposit into a contract. If either side tries to cheat, they lose their deposit. No intermediary needed. This is how Zano Trade’s P2P platform settles trades.
-
 ### Aliases
 
 Register a human-readable name like @username instead of using a long address. Aliases are on-chain and already used for the Zano Messenger, dApp authentication, and receiving payments.
-
-### Marketplace API
-
-Create, update, or deactivate on-chain offers. Once published, offers are visible to everyone on the network. Anyone can build a decentralized store on top of this.
 
 ### Ionic Swaps
 
@@ -78,21 +70,17 @@ Issue your own tokens on Zano. They get the same privacy as native ZANO: hidden 
 
 These are the products built on Zano's tech stack. Anyone can build on top of the same technologies.
 
-### Zano Trade: P2P trading
+### Zano Trade
 
-Peer-to-peer trading using escrow contracts. Both parties lock collateral, so neither can walk away. Trade any crypto or fiat without a middleman.
-
-### Zano Trade: DEX
-
-Trade ZANO and Confidential Assets with on-chain order matching and Ionic Swaps. No registration. The asset type, amount, and addresses involved are all hidden.
+The DEX. Trade ZANO and Confidential Assets: orders are matched by the Zano Trade coordinator and settle on-chain as Ionic Swaps signed by both parties. No registration, no custody. The asset type, amount, and addresses involved are all hidden.
 
 ### Zano Governance
 
-Anonymous on-chain voting for stakers. Network participants vote on protocol decisions without revealing their identity or stake.
+Anonymous on-chain voting for stakers, live at [vote.zano.org](https://vote.zano.org). Every PoS block you find during a voting window counts as one vote, so voting power follows real stake without revealing anyone's identity or balance. Proposals (ZAPs) and results are on the portal.
 
-### FUSD
+### fUSD (Freedom Dollar)
 
-A private stablecoin on Zano. Send dollars without anyone knowing how much, to whom, or when. Built as a Confidential Asset, FUSD has the same privacy guarantees as native ZANO.
+A private stablecoin on Zano, live at [freedomdollar.com](https://www.freedomdollar.com). Send dollars without anyone knowing how much, to whom, or when. Built as a Confidential Asset, fUSD has the same privacy guarantees as native ZANO.
 
 ### Zano Stats
 
@@ -122,4 +110,4 @@ An [MCP server](https://github.com/PRavaga/zano-mcp) that connects AI agents (Cl
 - **[Bandit City](https://bandit.city)** — Community hub with its own token and staking.
 - **[Alias Auction](https://auction.zano.org)** — Bid on @usernames registered on-chain.
 
-Full list at [zano.org/projects](https://zano.org/projects).
+Full list at [zano.org/projects](https://zano.org/projects). Links on this page checked July 2026.

@@ -14,6 +14,7 @@ See also: [Emission & Tokenomics](/docs/learn/emission) for supply details, [Fea
 | Hash algorithm            | ProgPowZ                                                               |
 | Language                  | C++                                                                    |
 | Blockchain                | PoS + PoW                                                              |
+| Ring size                 | 15 (protocol-enforced)                                                 |
 | **Emission**              |                                                                        |
 | Block Time                | 1 minute                                                               |
 | Block Reward              | 1 ZANO (fixed amount)                                                  |
@@ -28,4 +29,4 @@ See also: [Emission & Tokenomics](/docs/learn/emission) for supply details, [Fea
 | Explorer                  | [https://explorer.zano.org/](https://explorer.zano.org/)               |
 | **Requirements**          |                                                                        |
 | Wallet requirements       | 2 core x64 CPU, 3 GB RAM                                               |
-| Wallet platforms          | x64 Windows 10/11, Linux or Mac OS Big Sur 11.4                        |
+| Wallet platforms          | Windows 10/11 (x64), Linux (x64), macOS, Android, iOS                  |

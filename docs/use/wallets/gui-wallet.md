@@ -33,7 +33,7 @@ Zano is available for mobile (Android/iOS) and desktop (Windows, Linux and MacOS
 
 :::info
 
-Some antivirus programs do not recognize wallet software and automatically flag it as a virus, resulting in a false positive. In that case, you will need to add zano.exe to your exclusion list.
+Some antivirus programs do not recognize wallet software and automatically flag it as a virus, resulting in a false positive. Before adding any exclusion, make sure you downloaded the wallet from [zano.org/wallets](https://zano.org/wallets) or the official [GitHub releases](https://github.com/hyle-team/zano/releases), and that its SHA256 checksum matches the one published in the release notes. Only then add zano.exe to your antivirus exclusion list.
 
 :::
 
@@ -71,15 +71,15 @@ The wallet has been created. You can copy your wallet address to receive ZANO or
 
 Each Zano wallet can be identified by a custom name assigned upon creation. This name can be edited in `Wallet options` the section at any time. Information about the wallet file location and its seed phrase is available here. Note that you can copy the seed phrase by clicking the right mouse button over it and choosing `COPY` from the context menu.
 
-You can remove a wallet from the Zano app by clicking `Close wallet` in the same section. Note that the wallet file will remain unaffected, and you can import it again anytime if necessary.
+You can remove a wallet from the Zano app by clicking `Close` in the same section. Note that the wallet file will remain unaffected, and you can import it again anytime if necessary.
 
 ### Changing wallet password
 
-In case you want to change the wallet file password, you need to use `Restore from backup`. Do **not** delete your existing wallet file until the restored wallet is verified and working:
+The GUI has no built-in option to change a wallet file's password (the password field in Settings changes the app's master password, not the wallet file's). To change the wallet file password, you need to use `Restore from backup`. Do **not** delete your existing wallet file until the restored wallet is verified and working:
 
 1. Make sure you have the seed phrase saved (and the seed passphrase, if you set one)
 2. Copy the current wallet file to a separate location as a backup
-3. Click `Close wallet` from wallet `Details`
+3. Click `Close` from the wallet's `Details` section
 4. Click `+Add` from `Wallets` menu and choose `Restore from backup`
 5. Enter new wallet info with the new password
 6. Recover and enter the previously stored seed phrase

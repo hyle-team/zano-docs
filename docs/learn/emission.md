@@ -55,9 +55,9 @@ And so, a premine was seen as a necessary step to ensure that our next project, 
 
 #### Premine amount
 
-The premine consisted of 3.6M ZANO; it was set aside for ongoing project expenses, marketing, partnerships, and to pay a loan to fund initial development back in 2018.
+The premine consisted of 3.69M ZANO; it was set aside for ongoing project expenses, marketing, partnerships, and to pay a loan to fund initial development back in 2018.
 
-As of December 2024, considering what has already been spent for development, the foundation fund sits at just \~5,4% of the total ZANO supply.
+As of July 2026, considering what has already been spent for development, the foundation fund sits at about 2.9% of the total ZANO supply (roughly 440,000 ZANO).
 
 You can track the amount of the foundation fund via our [explorer](https://explorer.zano.org/) or by importing its tracking seed into your wallet:
 
@@ -75,11 +75,11 @@ Community Engagement: With the funds, we've supported various community initiati
 
 #### Decentralizing Zano's Foundation Fund
 
-Recognizing the importance of decentralization in cryptocurrency ethos, Zano is exploring ways to decentralize its development fund. One promising approach under consideration is the use of multisig wallets, where control over funds would be distributed among several keys, some of which could be held by community members or other trusted parties. This move would also tie well with our [upcoming governance voting system](https://zano.org/roadmap).
+Recognizing the importance of decentralization in cryptocurrency ethos, Zano is exploring ways to decentralize its development fund. One promising approach under consideration is the use of multisig wallets, where control over funds would be distributed among several keys, some of which could be held by community members or other trusted parties. This move also ties well with our on-chain governance voting system, live at [vote.zano.org](https://vote.zano.org).
 
 #### Future: Hybrid Sustainable Funding Model
 
-Understanding the constraints of solely depending on a premine, especially given that 78% has already been utilized, Zano is set to roll out a community crowdfunding initiative. This step is now practical due to our community's steady growth. By integrating this with the premine, we're establishing a hybrid funding model that, similar to our hybrid PoW/PoS consensus, capitalizes on the strengths of both approaches.
+Understanding the constraints of solely depending on a premine, especially given that about 88% of it has already been utilized, Zano is set to roll out a community crowdfunding initiative. This step is now practical due to our community's steady growth. By integrating this with the premine, we're establishing a hybrid funding model that, similar to our hybrid PoW/PoS consensus, capitalizes on the strengths of both approaches.
 
 #### What are the benefits of Community Crowdfunding?
 
@@ -89,4 +89,4 @@ Thanks to combining the existing premine reserves with funds sourced from the co
 
 #### Conclusion
 
-Zano's decision to implement a premine was grounded in both past experiences and the practical realities of cryptocurrency funding; it was essential for early development and growth, but with 78% spent, we are making steps towards decentralization, sustainability, and increasing community involvement. Zano is crafting a funding model that could serve as a blueprint for future crypto projects.
+Zano's decision to implement a premine was grounded in both past experiences and the practical realities of cryptocurrency funding; it was essential for early development and growth, but with most of it spent, we are making steps towards decentralization, sustainability, and increasing community involvement. Zano is crafting a funding model that could serve as a blueprint for future crypto projects.
