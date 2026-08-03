@@ -1,10 +1,27 @@
 ---
-sidebar_position: 3
+sidebar_position: 5
+slug: /learn/research
 ---
 
-# Research & Whitepapers
+# Research & Audits
 
-For independent third-party audits of these protocols, see [Security Reviews](/docs/learn/reviews).
+The papers behind Zano's cryptography, and the independent third-party audits of those protocols.
+
+## Third-party audits
+
+### Zarcanum review by [Cypher Stack](https://cypherstack.com/)
+
+Review of the [Zarcanum](/docs/learn/how-zano-works/consensus) Proof of Stake scheme with hidden amounts.
+
+https://github.com/cypherstack/zarcanum-review/releases/tag/final
+
+### Zano d/v-CLSAG review by [Cypher Stack](https://cypherstack.com/)
+
+Review of Zano's ring signature scheme used for [untraceable transactions](/docs/learn/how-zano-works/privacy-technology).
+
+https://github.com/cypherstack/zano-clsag-review/releases/tag/final
+
+## Research papers
 
 ### Zano Whitepaper (2019)
 
@@ -32,11 +49,7 @@ Presenting a Proof-of-Stake mining scheme that does not reveal amounts and is co
 
 ### Zano: Confidential Assets Scheme for RingCT and Zarcanum (2024)
 
-In this paper, we describe a practical way of implementing confidential assets (a.k.a. tokens or colored
-coins) in Zano with unlimited decoy mixing capability and hidden amounts, as an extension to the Ring
-Confidential Transactions scheme. Our approach preserves public verifiability that no transaction either
-creates or destroys coins. We further extend this approach to show how it can be combined with
-Zarcanum, a Proof-of-Stake scheme for transaction with hidden amounts
+In this paper, we describe a practical way of implementing confidential assets (a.k.a. tokens or colored coins) in Zano with unlimited decoy mixing capability and hidden amounts, as an extension to the Ring Confidential Transactions scheme. Our approach preserves public verifiability that no transaction either creates or destroys coins. We further extend this approach to show how it can be combined with Zarcanum, a Proof-of-Stake scheme for transaction with hidden amounts
 
 [https://hyle-team.github.io/docs/zano/CA_paper/Zano_CA_for_RingCT_and_Zarcanum_v1.1.pdf](https://hyle-team.github.io/docs/zano/CA_paper/Zano_CA_for_RingCT_and_Zarcanum_v1.1.pdf)
 
@@ -45,10 +58,6 @@ Zarcanum, a Proof-of-Stake scheme for transaction with hidden amounts
 Extension for the CLSAG (Concise Linkable Spontaneous Anonymous Group Signatures)
 
 [https://eprint.iacr.org/2025/2335](https://eprint.iacr.org/2025/2335)
-
-<br />
-<br />
-<br />
 
 ## Archive: drafts and legacy docs for history and context
 
@@ -65,8 +74,6 @@ Note: this paper used one of the early approaches to implementing assets, where 
 Paper describes a practical way of implementing confidential assets (a.k.a. tokens) in Zano with unlimited decoy mixing capability and hidden amounts as an extension to the Ring Confidential Transactions scheme
 
 [https://raw.githubusercontent.com/hyle-team/docs/master/zano/tokens_maths_paper/Zano__confidential_assets_with_hidden_amounts_DRAFT.pdf](https://raw.githubusercontent.com/hyle-team/docs/master/zano/tokens_maths_paper/Zano__confidential_assets_with_hidden_amounts_DRAFT.pdf)
-
-
 
 ## Additional research papers
 

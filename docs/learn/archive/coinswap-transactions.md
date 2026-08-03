@@ -1,8 +1,13 @@
 ---
-sidebar_position: 7
+sidebar_position: 1
+slug: /learn/coinswap-transactions
 ---
 
 # Coinswap transactions
+
+When Zano launched in 2019, holders of Boolberry (BBR), the team's previous project, could swap their coins for ZANO at a fixed rate. Of the 17,517,203 ZANO emitted in the genesis block, 13,827,203 were reserved for this swap; the rest formed the [foundation fund premine](/docs/learn/emission#the-premine-and-how-zano-will-be-funded).
+
+The table below is the complete public ledger of those swaps. Each row maps a BBR burn transaction to the ZANO transaction that fulfilled it, so the entire coinswap allocation remains independently verifiable. It is kept here as a historical record; the swap itself concluded long ago.
 
 | Amount         | BBR tx id                                                        | ZANO tx id                                                       | Block height |
 | -------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- | ------------ |

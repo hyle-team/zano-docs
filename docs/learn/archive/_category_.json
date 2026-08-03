@@ -1,0 +1,9 @@
+{
+  "label": "Archive",
+  "position": 7,
+  "link": {
+    "type": "generated-index",
+    "slug": "/learn/archive",
+    "description": "Historical records kept for reference. Superseded research drafts are listed in the archive section of the Research & Audits page."
+  }
+}

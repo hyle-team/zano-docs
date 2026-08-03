@@ -39,6 +39,24 @@ const config = {
     ],
   ],
 
+  plugins: [
+    [
+      "@docusaurus/plugin-client-redirects",
+      {
+        redirects: [
+          // Phase 3 IA restructure (2026-08): pages merged or moved between tabs
+          { from: "/docs/learn/zano-features/overview", to: "/docs/learn/how-zano-works" },
+          { from: "/docs/learn/specifications", to: "/docs/learn/emission" },
+          { from: "/docs/learn/whitepaper", to: "/docs/learn/research" },
+          { from: "/docs/learn/reviews", to: "/docs/learn/research" },
+          { from: "/docs/learn/password-specs", to: "/docs/build/password-specs" },
+          // pre-restructure slug fix debt: old .md-suffixed URL
+          { from: "/docs/use/zano-passwords.md", to: "/docs/use/zano-passwords" },
+        ],
+      },
+    ],
+  ],
+
   stylesheets: [
     {
       href: "https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css",

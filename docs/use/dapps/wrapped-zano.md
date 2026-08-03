@@ -1,5 +1,6 @@
 ---
-sidebar_position: 7
+sidebar_position: 4
+slug: /use/wrapped-zano
 ---
 
 # Wrapped Zano

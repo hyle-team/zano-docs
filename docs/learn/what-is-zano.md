@@ -18,20 +18,24 @@ Zano’s lead developer Andrey Sabelnikov wrote the original CryptoNote referenc
 
 ### Key technologies
 
-Each technology is covered in detail in the [Features Overview](/docs/learn/zano-features/overview). The research papers behind them are in [Whitepapers](/docs/learn/whitepaper).
+Each technology has its own page under [How Zano Works](/docs/learn/how-zano-works). The papers behind them are in [Research & Audits](/docs/learn/research).
 
-**Zarcanum** is the world’s first Proof of Stake scheme with hidden amounts. Stakers secure the network without revealing their balances.
+**[Hybrid PoW/PoS Consensus](/docs/learn/how-zano-works/consensus)** alternates Proof of Work and Proof of Stake blocks. Attacking Zano requires both hashpower and stake, so no single vector is enough. The PoS side is **Zarcanum**, the world's first Proof of Stake scheme with hidden amounts: stakers secure the network without revealing their balances, with no validator nodes, minimum amounts, or lock-ups.
 
-**Confidential Assets** let anyone issue privacy tokens on the Zano chain, with the same protections as native ZANO: hidden addresses and hidden amounts. You can create private stablecoins, shielded versions of existing assets, and more, without running your own blockchain.
+**[Privacy technology](/docs/learn/how-zano-works/privacy-technology)**: d/v-CLSAG ring signatures, stealth addresses, and Bulletproofs+ hide the sender, receiver, and amount of every transaction.
 
-**Ionic Swaps** improve on atomic swaps by enabling peer-to-peer asset exchange with full privacy. Neither party has an unfair advantage. This is what powers Zano Trade, the built-in DEX.
+**[Confidential Assets](/docs/learn/how-zano-works/confidential-assets)** let anyone issue privacy tokens on the Zano chain, with the same protections as native ZANO: hidden addresses and hidden amounts. You can create private stablecoins, shielded versions of existing assets, and more, without running your own blockchain.
 
-**Hybrid PoW/PoS Consensus** alternates Proof of Work and Proof of Stake blocks. Attacking Zano requires both hashpower and stake, so no single vector is enough.
+**[Ionic Swaps](/docs/learn/how-zano-works/ionic-swaps)** improve on atomic swaps by enabling peer-to-peer asset exchange with full privacy. Neither party has an unfair advantage. This is what powers Zano Trade, the ecosystem's DEX, and the Swap function built into the official wallets.
 
-**Auditable Wallets** are opt-in transparent wallets for situations where a third party needs to verify balances. Enabling them on one wallet doesn’t affect privacy for anyone else on the network.
+**[Auditable Wallets](/docs/learn/how-zano-works/auditable-wallets)** are opt-in transparent wallets for situations where a third party needs to verify balances. Enabling them on one wallet doesn’t affect privacy for anyone else on the network.
 
 **Fungibility**: every ZANO is identical. No coin has a "history" that can be traced, flagged, or blacklisted.
 
 **Uncensorable**: when transactions are invisible, they can’t be blocked, reversed, or selectively enforced.
 
-Check the [roadmap](https://zano.org/roadmap) for what’s coming next, or the [FAQ](/docs/learn/frequently-asked-questions) for common questions.
+### A stable, open network
+
+The Zano network has run in production since 2019, and the team's engineering lineage goes back further, through Boolberry to the original CryptoNote reference implementation. New releases go through extensive testing before deployment, and anyone can participate: mine, stake, build, or just use it.
+
+Check the [ecosystem](/docs/learn/ecosystem) for what's built on Zano, the [roadmap](https://zano.org/roadmap) for what’s coming next, or the [FAQ](/docs/learn/frequently-asked-questions) for common questions.

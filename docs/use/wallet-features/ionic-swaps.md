@@ -1,11 +1,11 @@
 ---
-sidebar_position: 4
+sidebar_position: 2
 slug: /use/ionic-swaps
 ---
 
 # Peer-to-Peer Ionic Swaps
 
-Ionic Swaps are a privacy-preserving evolution of traditional atomic swaps, enabling peer-to-peer exchange of cryptocurrencies and [Confidential Assets](/docs/learn/zano-features/overview#confidential-assets) directly on the Zano blockchain. They eliminate intermediaries, prevent unfair advantage between parties, and preserve user custody and transaction privacy throughout the swap process.
+Ionic Swaps are a privacy-preserving evolution of traditional atomic swaps, enabling peer-to-peer exchange of cryptocurrencies and [Confidential Assets](/docs/learn/how-zano-works/confidential-assets) directly on the Zano blockchain. They eliminate intermediaries, prevent unfair advantage between parties, and preserve user custody and transaction privacy throughout the swap process.
 
 You can perform Ionic Swaps on [Zano Trade](/docs/use/zano-trade), which provides a superior user experience with quality-of-life features. However, if you prefer a completely censorship-resistant and decentralized experience that does not rely on any website, you can perform swaps directly from your wallet app using the guide below.
 
