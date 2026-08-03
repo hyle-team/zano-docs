@@ -58,7 +58,7 @@ const sections = [
     links: [
       { label: "Getting Started", to: "/docs/use/overview" },
       { label: "Wallets", to: "/docs/use/wallets/overview" },
-      { label: "Security & Privacy", to: "/docs/use/seed-phrase" },
+      { label: "Security & Privacy", to: "/docs/use/security-privacy" },
       { label: "dApps & Bridges", to: "/docs/use/dapps/" },
       { label: "Troubleshooting", to: "/docs/use/troubleshooting/common-issues" },
     ],

@@ -41,7 +41,7 @@ To see your balance:
 balance
 ```
 
-To see balances for all assets (ZANO, confidential assets, etc.):
+To see balances for all assets (ZANO, Confidential Assets, etc.):
 
 ```
 balance raw
@@ -79,7 +79,7 @@ An optional **payment_id** can be appended at the end for services that require 
 
 ### Sending assets
 
-To send a confidential asset other than ZANO, prefix the address with the asset ID:
+To send a Confidential Asset other than ZANO, prefix the address with the asset ID:
 
 ```
 transfer 15 <asset_id>:<address> <amount>
@@ -274,7 +274,7 @@ These commands are used inside the wallet console after opening.
 | `sweep_below` | `<mixin> <address> <amount_limit> [payment_id]`: consolidate small outputs |
 | `sweep_bare_outs` | Transfer all bare (non-ZC) outputs to self |
 | `set_log` | `<level>`: change log verbosity (0-4) |
-| `deploy_new_asset` | `<json_file>`: deploy a new confidential asset |
+| `deploy_new_asset` | `<json_file>`: deploy a new Confidential Asset |
 | `emit_asset` | `<asset_id> <amount>`: mint more of an asset you own |
 | `burn_asset` | `<asset_id> <amount>`: burn asset tokens |
 | `check_all_tx_keys` | Verify one-time secret keys for all sent transactions |

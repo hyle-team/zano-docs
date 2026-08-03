@@ -21,7 +21,7 @@ Anonymous on-chain voting for stakers, live at [vote.zano.org](https://vote.zano
 
 A private stablecoin on Zano, live at [freedomdollar.com](https://www.freedomdollar.com). Send dollars without anyone knowing how much, to whom, or when. Built as a Confidential Asset, fUSD has the same privacy guarantees as native ZANO.
 
-### Zano Stats
+### ZanoStats
 
 Network statistics dashboard with staking data, analytics, and market insights. Available at [zanostats.com](https://zanostats.com). (The blockchain explorer itself is at [explorer.zano.org](https://explorer.zano.org).)
 
@@ -43,8 +43,8 @@ An [MCP server](https://github.com/PRavaga/zano-mcp) that connects AI agents (Cl
 
 - **[Wrapped Zano](https://wrapped.zano.org)**: WZANO, an ERC-20 token on Ethereum. Exchangeable 1:1 for native ZANO.
 - **[Obscura](https://obscura.art)**: private NFT minting and management.
-- **[Zano Messenger](/docs/use/zano-matrix-guide)**: private messaging built on Matrix with end-to-end encryption support, linked to your Zano alias.
-- **[Bridgeless](https://bridgeless.com)**: non-custodial bridge between public and privacy blockchains. Uses Zano gateway addresses with ETH-compatible signatures for cross-chain asset commands.
+- **[Zano Matrix](/docs/use/zano-matrix-guide)**: private messaging built on Matrix with end-to-end encryption support, linked to your Zano alias.
+- **[Confidential Layer](https://confidentiallayer.com)**: non-custodial bridge between public blockchains and Zano, built on the [Bridgeless](https://bridgeless.com) L1. Uses Zano gateway addresses with ETH-compatible signatures for cross-chain asset commands.
 - **[Zano Bay](https://zanobay.com)**: private marketplace for buying and selling goods.
 - **[Bandit City](https://bandit.city)**: community hub with its own token and staking.
 - **[Alias Auction](https://auction.zano.org)**: bid on @usernames registered on-chain.

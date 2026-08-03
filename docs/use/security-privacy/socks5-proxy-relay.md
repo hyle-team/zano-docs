@@ -13,7 +13,7 @@ You (wallet)                           The network sees only the proxy IP
      |
      |--- sync blockchain -------> your local daemon
      |
-     |--- send tx/PoS block ----> SOCKS5 proxy (Tor or any mixin Network) ----> remote node ----> network
+     |--- send tx/PoS block ----> SOCKS5 proxy (Tor or any anonymizing network) ----> remote node ----> network
 ```
 
 ## Prerequisites

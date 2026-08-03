@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# Staking Zano
+# Proof-of-Stake Guide
 
 Proof-of-stake mining or staking is typically implemented in such a way that a random coin owner obtains the right to sign a new block. Zano PoS implementation keeps miners in full anonymity and is as simple as a push of a button.
 

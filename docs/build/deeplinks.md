@@ -1,5 +1,5 @@
 ---
-slug: /use/deeplinks
+slug: /build/deeplinks
 ---
 
 # Deeplinks

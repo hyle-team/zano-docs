@@ -20,7 +20,7 @@ Zano’s lead developer Andrey Sabelnikov wrote the original CryptoNote referenc
 
 Each technology has its own page under [How Zano Works](/docs/learn/how-zano-works). The papers behind them are in [Research & Audits](/docs/learn/research).
 
-**[Hybrid PoW/PoS Consensus](/docs/learn/how-zano-works/consensus)** alternates Proof of Work and Proof of Stake blocks. Attacking Zano requires both hashpower and stake, so no single vector is enough. The PoS side is **Zarcanum**, the world's first Proof of Stake scheme with hidden amounts: stakers secure the network without revealing their balances, with no validator nodes, minimum amounts, or lock-ups.
+**[Hybrid PoW/PoS Consensus](/docs/learn/how-zano-works/consensus)** alternates Proof-of-Work and Proof-of-Stake blocks. Attacking Zano requires both hashpower and stake, so no single vector is enough. The PoS side is **Zarcanum**, the world's first Proof-of-Stake scheme with hidden amounts: stakers secure the network without revealing their balances, with no validator nodes, minimum amounts, or lock-ups.
 
 **[Privacy technology](/docs/learn/how-zano-works/privacy-technology)**: d/v-CLSAG ring signatures, stealth addresses, and Bulletproofs+ hide the sender, receiver, and amount of every transaction.
 
@@ -30,9 +30,13 @@ Each technology has its own page under [How Zano Works](/docs/learn/how-zano-wor
 
 **[Auditable Wallets](/docs/learn/how-zano-works/auditable-wallets)** are opt-in transparent wallets for situations where a third party needs to verify balances. Enabling them on one wallet doesn’t affect privacy for anyone else on the network.
 
+### Key properties
+
+Those technologies add up to two properties that set Zano apart:
+
 **Fungibility**: every ZANO is identical. No coin has a "history" that can be traced, flagged, or blacklisted.
 
-**Uncensorable**: when transactions are invisible, they can’t be blocked, reversed, or selectively enforced.
+**Censorship resistance**: when transactions are invisible, they can’t be blocked, reversed, or selectively enforced.
 
 ### A stable, open network
 

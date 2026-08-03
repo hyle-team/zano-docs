@@ -59,6 +59,20 @@ Extension for the CLSAG (Concise Linkable Spontaneous Anonymous Group Signatures
 
 [https://eprint.iacr.org/2025/2335](https://eprint.iacr.org/2025/2335)
 
+## Additional research papers
+
+The following papers represent research toward a novel logarithmic-sized linkable ring signature scheme.
+
+- Lin2-Xor Lemma and Log-size Linkable Ring Signature (2020)  
+  In this paper we introduce a novel method for constructing an efficient linkable ring signature without a trusted setup which is logarithmic in the size of the signer anonymity set, its verification complexity is linear in the anonymity set size  
+  [https://github.com/hyle-team/docs/blob/master/zano/arch/Lin2-Xor_Lemma_and-Log-size_Linkable_Ring_Signature.pdf](https://github.com/hyle-team/docs/blob/master/zano/arch/Lin2-Xor_Lemma_and-Log-size_Linkable_Ring_Signature.pdf)
+- Hidden amounts scheme on the base of a ring signature for independent generators (2021)  
+  Draft of a hidden amounts scheme based on Lin2-Xor Linkable Ring Signature  
+  [https://github.com/hyle-team/docs/blob/master/zano/arch/Hidden%20amounts%20scheme%20v6%20Sokolov.pdf](https://github.com/hyle-team/docs/blob/master/zano/arch/Hidden%20amounts%20scheme%20v6%20Sokolov.pdf)
+- Log-size Linkable Ring Signature and Hidden Amounts integrated listing (2021)  
+  Unified pseudo-code listing for the Lin2-Xor Signature and Hidden Amounts schemes  
+  [https://github.com/hyle-team/docs/blob/master/zano/arch/Log-size%20Linkable%20Ring%20Signature%20and%20Hid-den%20Amounts%20integrated%20listing%20v3.pdf](https://github.com/hyle-team/docs/blob/master/zano/arch/Log-size%20Linkable%20Ring%20Signature%20and%20Hid-den%20Amounts%20integrated%20listing%20v3.pdf)
+
 ## Archive: drafts and legacy docs for history and context
 
 ### Zano Tokenization Platform (2022)
@@ -74,17 +88,3 @@ Note: this paper used one of the early approaches to implementing assets, where 
 Paper describes a practical way of implementing confidential assets (a.k.a. tokens) in Zano with unlimited decoy mixing capability and hidden amounts as an extension to the Ring Confidential Transactions scheme
 
 [https://raw.githubusercontent.com/hyle-team/docs/master/zano/tokens_maths_paper/Zano__confidential_assets_with_hidden_amounts_DRAFT.pdf](https://raw.githubusercontent.com/hyle-team/docs/master/zano/tokens_maths_paper/Zano__confidential_assets_with_hidden_amounts_DRAFT.pdf)
-
-## Additional research papers
-
-The following papers represent research toward a novel logarithmic-sized linkable ring signature scheme.
-
-- Lin2-Xor Lemma and Log-size Linkable Ring Signature (2020)  
-  In this paper we introduce a novel method for constructing an efficient linkable ring signature without a trusted setup which is logarithmic in the size of the signer anonymity set, its verification complexity is linear in the anonymity set size  
-  [https://github.com/hyle-team/docs/blob/master/zano/arch/Lin2-Xor_Lemma_and-Log-size_Linkable_Ring_Signature.pdf](https://github.com/hyle-team/docs/blob/master/zano/arch/Lin2-Xor_Lemma_and-Log-size_Linkable_Ring_Signature.pdf)
-- Hidden amounts scheme on the base of a ring signature for independent generators (2021)  
-  Draft of a hidden amounts scheme based on Lin2-Xor Linkable Ring Signature  
-  [https://github.com/hyle-team/docs/blob/master/zano/arch/Hidden%20amounts%20scheme%20v6%20Sokolov.pdf](https://github.com/hyle-team/docs/blob/master/zano/arch/Hidden%20amounts%20scheme%20v6%20Sokolov.pdf)
-- Log-size Linkable Ring Signature and Hidden Amounts integrated listing (2021)  
-  Unified pseudo-code listing for the Lin2-Xor Signature and Hidden Amounts schemes  
-  [https://github.com/hyle-team/docs/blob/master/zano/arch/Log-size%20Linkable%20Ring%20Signature%20and%20Hid-den%20Amounts%20integrated%20listing%20v3.pdf](https://github.com/hyle-team/docs/blob/master/zano/arch/Log-size%20Linkable%20Ring%20Signature%20and%20Hid-den%20Amounts%20integrated%20listing%20v3.pdf)

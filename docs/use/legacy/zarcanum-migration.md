@@ -4,13 +4,13 @@ slug: /use/zarcanum-migration
 
 # Zarcanum Migration
 
-With the Zarcanum hardfork, Zano introduces an essential feature for all users: the Auto Migration process. This feature is designed to seamlessly transition your wallet to the post-Zarcanum era, ensuring that you can continue to stake and participate in the network without interruption.
+With the Zarcanum hard fork, Zano introduces an essential feature for all users: the Auto Migration process. This feature is designed to transition your wallet to the post-Zarcanum era, ensuring that you can continue to stake and participate in the network without interruption.
 
 ## What is Auto Migration?
 
 Auto Migration is an automated process within the Zano wallet that takes pre-Zarcanum outputs and consolidates them. Here's what it entails:
 
-**Collection**: The wallet automatically gathers all old outputs in your Zano wallet that were created before the Zarcanum hardfork.
+**Collection**: The wallet automatically gathers all old outputs in your Zano wallet that were created before the Zarcanum hard fork.
 
 **Consolidation**: These outputs are then consolidated into a few transactions. This step is crucial because it reduces the complexity and size of your wallet, making it more efficient.
 

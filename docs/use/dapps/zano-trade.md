@@ -148,7 +148,7 @@ However if there's a demand for an app like this and users are willing to opt-in
 
 ### Which currencies can I trade?
 
-All [confidential assets](/docs/learn/frequently-asked-questions#what-are-confidential-assets-and-how-are-they-used-on-zano) issued or bridged over to Zano are tradeable.
+All [Confidential Assets](/docs/learn/frequently-asked-questions#what-are-confidential-assets-and-how-are-they-used-on-zano) issued or bridged over to Zano are tradeable.
 
 ### How long does it take before my transaction is processed?
 

@@ -39,12 +39,12 @@ A **passphrase** is an additional layer of security that can be added to your se
 - Every time you restore your wallet, you will need to enter both the seed phrase and the passphrase.
 - If you forget the passphrase, you won’t be able to access your wallet, even with the seed phrase. Therefore, it’s essential to remember or securely store the passphrase.
 
-## Benefits
+## Passphrase benefits
 
 - **Enhanced Security:** The passphrase acts as a second required secret, making it significantly harder for someone to steal your funds.
 - **Privacy:** Even if someone sees your seed phrase, they cannot access your wallet without the passphrase.
 
-## Risks
+## Passphrase risks
 
 - **Loss of Passphrase:** If you forget or lose the passphrase, you will be permanently locked out of your wallet.
 - **Complexity:** Managing an additional passphrase can be cumbersome and may lead to user errors if not handled properly.
