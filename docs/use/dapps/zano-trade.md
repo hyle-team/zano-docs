@@ -1,5 +1,6 @@
 ---
-sidebar_position: 5
+sidebar_position: 2
+slug: /use/zano-trade
 ---
 
 # Zano Trade

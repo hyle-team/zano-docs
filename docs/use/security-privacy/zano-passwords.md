@@ -1,5 +1,6 @@
 ---
 slug: /use/zano-passwords
+sidebar_position: 2
 ---
 
 # Different Password Types in Zano Wallets

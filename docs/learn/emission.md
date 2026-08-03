@@ -1,8 +1,35 @@
 ---
-sidebar_position: 6
+sidebar_position: 4
 ---
 
-# Emission/Tokenomics
+# Emission, Funding & Specifications
+
+### Specifications at a glance
+
+| General info              |                                                                        |
+| :------------------------ | ---------------------------------------------------------------------- |
+| Release                   | 2019                                                                   |
+| Currency                  | Zano                                                                   |
+| Symbol                    | ZANO                                                                   |
+| Hash algorithm            | ProgPowZ                                                               |
+| Language                  | C++                                                                    |
+| Blockchain                | PoS + PoW                                                              |
+| Ring size                 | 15 (protocol-enforced)                                                 |
+| **Emission**              |                                                                        |
+| Block Time                | 1 minute                                                               |
+| Block Reward              | 1 ZANO (fixed amount)                                                  |
+| Initial total supply      | 17517203 ZANO                                                          |
+| Maximum Supply            | Uncapped                                                               |
+| Yearly Inflation          | Ever-decreasing trend towards 0% (asymptotic)                          |
+| **Fee on TXs** (flat fee) | 0.01 ZANO                                                              |
+| Fee burn                  | 100% (all fees are burned)                                             |
+| **Resources**             |                                                                        |
+| Website                   | [https://zano.org/](https://zano.org/)                                 |
+| Repository                | [https://github.com/hyle-team/zano](https://github.com/hyle-team/zano) |
+| Explorer                  | [https://explorer.zano.org/](https://explorer.zano.org/)               |
+| **Requirements**          |                                                                        |
+| Wallet requirements       | 2 core x64 CPU, 3 GB RAM                                               |
+| Wallet platforms          | Windows 10/11 (x64), Linux (x64), macOS, Android, iOS                  |
 
 ### Where does the emission come from?
 
@@ -12,16 +39,7 @@ Proof of Work (PoW) mining, which creates new ZANO coins to reward miners for co
 
 Proof of Stake (PoS) staking, which also creates new ZANO coins to reward users who stake their funds and therefore also contributing to the network's security.
 
-100% of the block reward goes to the miner or staker who found the block.
-
-| Emission specifications​ |                                               |
-| ------------------------ | --------------------------------------------- |
-| Block Time               | 1 minute                                      |
-| Block Reward             | 1 ZANO (fixed amount)                         |
-| Maximum Supply           | Uncapped                                      |
-| Yearly Inflation         | Ever-decreasing trend towards 0% (asymptotic) |
-| Fee on TXs (flat fee)    | 0.01 ZANO                                     |
-| Fee burn                 | 100% (all fees are burned)                    |
+100% of the block reward goes to the miner or staker who found the block. The key emission parameters are in the table above.
 
 ### Emission motivation
 
@@ -39,9 +57,7 @@ This combination of small, minimalistic daily emissions, together with daily bur
 
 ### Is the block reward enough to secure the network?
 
-Zano has a unique consensus system in which in order to perform the classic 51% attack, you need to have at least 51% PoW hashrate AND 51% PoS power (there can also be other ratios like 20%/90% and so on (see the [whitepaper](/docs/learn/whitepaper)).
-
-This way an attack becomes very expensive, in particular because the purchase of a significant portion of the coins on the market would dramatically increase the price. If you try to use a small percentage of PoS coins for the attack, then the PoW power necessary for the attack becomes 800% or more. This makes it possible to establish a relatively low block reward and at the same time provide a high security level for the transaction history.
+Yes. Zano's [hybrid PoW/PoS consensus](/docs/learn/how-zano-works/consensus) requires an attacker to control both the majority of the hashrate and a large share of the staked coins at the same time, which makes an attack expensive enough that the network stays secure on a relatively low block reward.
 
 ### The premine and how Zano will be funded
 

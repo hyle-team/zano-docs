@@ -1,5 +1,5 @@
 ---
-sidebar_position: 8
+sidebar_position: 6
 ---
 
 # Frequently Asked Questions
@@ -45,7 +45,7 @@ Zano and Monero share common roots in the CryptoNote protocol, and use similar c
 
 The biggest difference is in scope. Monero focuses on being private peer-to-peer digital cash. Zano is building a platform with a wider set of tools, including user-creatable privacy tokens, on-chain identity, and decentralized trading, all protected by the same privacy guarantees at the base layer.
 
-On the consensus side, Zano runs a hybrid PoW/PoS model instead of Monero's pure PoW. This makes the network harder to attack, since a bad actor would need to control both hash power and staked coins. It also gives us faster block times (1 minute vs. Monero's 2 minutes) and shorter lock-up periods (10 minutes vs. 20).
+On the consensus side, Zano runs a hybrid PoW/PoS model instead of Monero's pure PoW. This makes the network harder to attack, since a bad actor would need to control both hash power and staked coins. It also gives us faster block times (1 minute vs. Monero's 2 minutes) and shorter lock-up periods (10 minutes vs. 20). See [Hybrid PoW/PoS Consensus](/docs/learn/how-zano-works/consensus) for how the hybrid model works.
 
 ### How do I set up a Zano wallet?
 
@@ -107,13 +107,11 @@ Zano dApps can use alias-based authentication, as [Zano Matrix](/docs/use/zano-m
 
 ### What is Zarcanum?
 
-Zarcanum is the world's first Proof of Stake scheme that enhances traditional PoS with untraceability and hidden amounts, revolutionizing blockchain consensus. Thanks to this innovative approach, our stakers can stake in complete anonymity.
+Zarcanum is the world's first Proof of Stake scheme that enhances traditional PoS with untraceability and hidden amounts, revolutionizing blockchain consensus. Thanks to this innovative approach, our stakers can stake in complete anonymity. Read more on the [consensus page](/docs/learn/how-zano-works/consensus).
 
 ### How is the network secured?
 
-Zano uses a hybrid consensus algorithm that alternates between Proof-of-Work (PoW) and Proof-of-Stake (PoS) blocks.
-
-This approach combines the benefits of both mechanisms to enhance blockchain security and decentralization. If performing a 51% attack on Zano, one would need the majority of the hash rate **and** a significant amount of the total amount of staked coins, making the cost of an attack incredibly high, thus becoming infeasible.
+Zano uses a hybrid consensus algorithm that alternates between Proof-of-Work (PoW) and Proof-of-Stake (PoS) blocks. An attacker would need the majority of the hashrate **and** a large share of the staked coins at the same time, which makes an attack infeasible. See [Hybrid PoW/PoS Consensus](/docs/learn/how-zano-works/consensus) for how it works.
 
 ### What's the plan for scaling?
 
@@ -295,15 +293,15 @@ Zano is designed as a **decentralized, permissionless network**, which means it 
 
 ### When trying to send coins I get an error stating that the transaction is too large.
 
-This is due to sending many small inputs to the address. The solution is to split up the transaction and send smaller amounts.
+The amount is composed of too many small inputs; split it up and send smaller amounts. See [Common Issues](/docs/use/troubleshooting/common-issues) for details.
 
 ### What is a seed phrase?
 
-To access the wallet in the event of a loss, you need something called a mnemonic recovery phrase or seed. This group of words that you received while creating your wallet is designed to add an extra layer of security. With these phrases you can easily restore lost wallets if you don't have the passkey.
+To access the wallet in the event of a loss, you need something called a mnemonic recovery phrase or seed. This group of words that you received while creating your wallet is designed to add an extra layer of security. With these phrases you can easily restore lost wallets if you don't have the passkey. See the [seed phrase guide](/docs/use/seed-phrase) for how to store it safely.
 
 ### Why does the desktop wallet take so long to start?
 
-Zano wallet is a full node application. Due to loading the blockchain and multiple wallets synchronizing, start time depends on your system specifications and may be bottlenecked by internet connection speed.
+Zano wallet is a full node application: it loads the blockchain and synchronizes your wallets on startup, so start time depends on your system specifications and connection speed. See [Common Issues](/docs/use/troubleshooting/common-issues) for details.
 
 ### Where can I get support?
 

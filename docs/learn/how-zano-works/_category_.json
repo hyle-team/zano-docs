@@ -1,0 +1,9 @@
+{
+  "label": "How Zano Works",
+  "position": 2,
+  "link": {
+    "type": "generated-index",
+    "slug": "/learn/how-zano-works",
+    "description": "The technologies behind Zano, one page per feature: privacy tech, consensus, Confidential Assets, Ionic Swaps, aliases, and auditable wallets."
+  }
+}

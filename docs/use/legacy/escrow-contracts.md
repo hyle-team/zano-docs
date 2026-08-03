@@ -8,7 +8,7 @@ slug: /use/escrow-contracts
 Escrow contracts are no longer available in current versions of Zano. The `Contracts` tab has been removed from the wallet, and escrow transactions are not supported under the current protocol rules (they predate the Zarcanum hard fork's transaction format). This page is kept for historical reference.
 :::
 
-Zano provided a framework for secure and private transactions without the need for a trusted third party. The Escrow system required participants to make additional deposits, which they would forfeit on any attempt to act maliciously toward their counterparty. For more information please refer to the "Escrow" section of the [whitepaper](/docs/learn/whitepaper).
+Zano provided a framework for secure and private transactions without the need for a trusted third party. The Escrow system required participants to make additional deposits, which they would forfeit on any attempt to act maliciously toward their counterparty. For more information please refer to the "Escrow" section of the [whitepaper](/docs/learn/research).
 
 The sections below describe how the feature worked in pre-Zarcanum wallets.
 

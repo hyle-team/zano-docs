@@ -1,11 +1,11 @@
 ---
-sidebar_position: 4
+sidebar_position: 2
 slug: /use/locked-balance
 ---
 
 # Locked Balance
 
-On occasion, you may notice that part of your wallet balance is temporarily locked. The reason behind it is complex, but let us offer a simplified explanation here. For more details, please refer to the [whitepaper](/docs/learn/whitepaper).
+On occasion, you may notice that part of your wallet balance is temporarily locked. The reason behind it is complex, but let us offer a simplified explanation here. For more details, please refer to the [whitepaper](/docs/learn/research).
 
 As you may know already there’s no such thing as account balance in the blockchain. Instead each wallet consists of inputs and outputs. Due to the nature of incoming transactions, the amount in a wallet balance can get fragmented. When you try to send a particular amount, your transaction will be split in outgoing and change amounts. Here is example.
 

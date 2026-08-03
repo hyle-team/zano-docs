@@ -1,7 +1,3 @@
----
-sidebar_position: 9
----
-
 # Password Specification
 
 This specification defines the requirements for passwords within the Zano ecosystem to
