@@ -1,21 +1,210 @@
 .container {
-  margin: 3% 20% 3% 20%;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  width: 60%;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 64px 24px 96px;
 }
 
-@media (max-width: 600px) {
+/* === Hero === */
+
+.hero {
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+.kicker {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--zano-accent-bright);
+  margin-bottom: 16px;
+}
+
+.title {
+  font-size: 48px;
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  color: var(--ifm-heading-color);
+  margin-bottom: 16px;
+}
+
+.titleAccent {
+  background: linear-gradient(135deg, var(--zano-accent-soft) 0%, var(--zano-accent) 55%, var(--zano-accent-bright) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+  max-width: 620px;
+  margin: 0 auto;
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--ifm-font-color-base);
+}
+
+.heroDivider {
+  width: 240px;
+  height: 1px;
+  margin: 40px auto 0;
+  background: linear-gradient(90deg, transparent, var(--zano-accent), var(--zano-accent-bright), var(--zano-accent), transparent);
+  opacity: 0.6;
+}
+
+/* === Section cards === */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 56px;
+}
+
+.card {
+  background-color: var(--ifm-card-background-color);
+  border: 1px solid var(--ifm-card-border-color);
+  border-radius: 14px;
+  padding: 24px;
+  transition: border-color 0.25s ease, background-color 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
+}
+
+.card:hover {
+  border-color: rgba(39, 151, 255, 0.4);
+  background-color: #12123E;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px -12px rgba(39, 151, 255, 0.45);
+}
+
+.cardIcon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background: linear-gradient(135deg, rgba(39, 151, 255, 0.16), rgba(22, 209, 214, 0.08));
+  border: 1px solid rgba(39, 151, 255, 0.25);
+  color: var(--zano-accent-soft);
+  margin-bottom: 16px;
+}
+
+.cardIcon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.cardTitle {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: var(--ifm-heading-color);
+  margin-bottom: 6px;
+}
+
+.cardDescription {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--ifm-color-content-secondary);
+  margin-bottom: 14px;
+}
+
+.cardLinks {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.cardLinks li {
+  margin: 2px 0;
+}
+
+.cardLinks a {
+  display: inline-block;
+  padding: 6px 0;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--zano-accent-soft);
+  text-decoration: none;
+  transition: color 0.18s ease;
+}
+
+.cardLinks a:hover {
+  color: var(--zano-accent-glow);
+  text-decoration: none;
+}
+
+.arrow {
+  display: inline-block;
+  transition: transform 0.18s ease;
+}
+
+.cardLinks a:hover .arrow {
+  transform: translateX(3px);
+}
+
+/* === Resources row === */
+
+.resources {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.resource {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 16px 20px;
+  background-color: var(--ifm-card-background-color);
+  border: 1px solid var(--ifm-card-border-color);
+  border-radius: 12px;
+  text-decoration: none;
+  transition: border-color 0.22s ease, background-color 0.22s ease;
+}
+
+.resource:hover {
+  border-color: rgba(39, 151, 255, 0.4);
+  background-color: #12123E;
+  text-decoration: none;
+}
+
+.resourceLabel {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ifm-heading-color);
+}
+
+.resourceSub {
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 11px;
+  color: var(--ifm-color-content-secondary);
+}
+
+/* === Responsive === */
+
+@media (max-width: 996px) {
   .container {
-    margin: 3% 10% 3% 10%;
-    width: 80%;
+    padding: 40px 20px 64px;
+  }
+  .title {
+    font-size: 34px;
+  }
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .resources {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media (max-width: 460px) {
-  .container {
-    margin: 3% 5% 3% 5%;
-    width: 90%;
+@media (max-width: 600px) {
+  .title {
+    font-size: 28px;
+  }
+  .subtitle {
+    font-size: 15px;
+  }
+  .grid {
+    grid-template-columns: 1fr;
   }
 }

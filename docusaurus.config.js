@@ -4,6 +4,7 @@ import rehypeKatex from 'rehype-katex';
 
 const config = {
   title: "Zano Docs",
+  titleDelimiter: "·",
   tagline: "Blockchain privacy for mass adoption",
   favicon: "img/favicon.ico",
 
@@ -69,6 +70,11 @@ const config = {
 
   themeConfig: {
     image: "img/zano_dev_meta.png",
+    colorMode: {
+      defaultMode: "dark",
+      disableSwitch: true,
+      respectPrefersColorScheme: false,
+    },
     navbar: {
       title: "Zano Docs",
       logo: {
@@ -115,6 +121,11 @@ const config = {
         {
           href: "https://github.com/hyle-team/zano",
           label: "GitHub",
+          position: "right",
+        },
+        {
+          href: "https://zano.org/wallets",
+          label: "Get Wallet",
           position: "right",
         },
       ],
@@ -216,6 +227,7 @@ const config = {
     prism: {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
+      additionalLanguages: ["bash", "json", "diff"],
     },
     algolia: {
       appId: 'GZR5BV1JNU',

@@ -1,22 +1,831 @@
-:root {
-  --ifm-color-primary: #1F8FEB;
-  --ifm-color-primary-dark: #1F8FEB;
-  --ifm-color-primary-darker: #1F8FEB;
-  --ifm-color-primary-darkest: #1F8FEB;
-  --ifm-color-primary-light: #1F8FEB
-  --ifm-color-primary-lighter: #1F8FEB;
-  --ifm-color-primary-lightest: #1F8FEB;
-  --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+/* Zano Docs — dark navy theme matching zano.org
+ * Palette derived from the zano.org brand tokens (~/.claude/skills/zano-ui.md):
+ *   backgrounds: #08081E page → #0E0E36 surface (navy-black stack, from brand #0C0C3A)
+ *   accents:     #274CFF deep → #2797FF primary → #4DA2FF soft (brand blues)
+ *                #16D1D6 cyan (secondary accent / glow)
+ *   text:        #EDEFF7 headings / #A9ACC9 body / #8B96C4 muted
+ *   fonts:       Figtree (zano.org face) + JetBrains Mono
+ * Ported from the CL/Bridgeless facelift playbook (~/.claude/skills/learned/docusaurus-facelift.md)
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root,
+html[data-theme='light'],
+html[data-theme='dark'] {
+  /* Backgrounds */
+  --ifm-background-color: #08081E;
+  --ifm-background-surface-color: #0E0E36;
+
+  /* Zano blue — primary brand ramp */
+  --ifm-color-primary: #2797FF;
+  --ifm-color-primary-dark: #2E8AF0;
+  --ifm-color-primary-darker: #2064E0;
+  --ifm-color-primary-darkest: #274CFF;
+  --ifm-color-primary-light: #3D9EFF;
+  --ifm-color-primary-lighter: #6FB8FF;
+  --ifm-color-primary-lightest: #8AC5FF;
+
+  /* Extended Zano accent stack for custom styling */
+  --zano-accent-deep: #274CFF;
+  --zano-accent: #2797FF;
+  --zano-accent-bright: #16D1D6;
+  --zano-accent-soft: #4DA2FF;
+  --zano-accent-glow: #16D1D6;
+  --zano-blue-muted: #7A85B8;
+
+  /* Typography */
+  --ifm-font-family-base: 'Figtree', system-ui, -apple-system, sans-serif;
+  --ifm-heading-font-family: 'Figtree', system-ui, sans-serif;
+  --ifm-font-family-monospace: 'JetBrains Mono', 'Fira Code', monospace;
+  --ifm-code-font-size: 88%;
+  --ifm-heading-font-weight: 600;
+  --ifm-font-color-base: #A9ACC9;
+  --ifm-heading-color: #EDEFF7;
+
+  /* Emphasis scale — navy-tinted dark stack */
+  --ifm-color-emphasis-0: #08081E;
+  --ifm-color-emphasis-100: #0E0E36;
+  --ifm-color-emphasis-200: #14143C;
+  --ifm-color-emphasis-300: #23234C;
+  --ifm-color-emphasis-400: #32325E;
+  --ifm-color-emphasis-500: #8B96C4;
+  --ifm-color-emphasis-600: #A9ACC9;
+  --ifm-color-emphasis-700: #BFC2DC;
+  --ifm-color-emphasis-800: #EDEFF7;
+  --ifm-color-emphasis-900: #F2F4FB;
+  --ifm-color-emphasis-1000: #ffffff;
+
+  /* Links */
+  --ifm-link-color: #4DA2FF;
+  --ifm-link-hover-color: #16D1D6;
+
+  /* Navbar */
+  --ifm-navbar-background-color: rgba(8, 8, 30, 0.72);
+  --ifm-navbar-shadow: none;
+  --ifm-navbar-link-color: #A9ACC9;
+  --ifm-navbar-link-hover-color: #EDEFF7;
+  --ifm-navbar-height: 68px;
+
+  /* Footer */
+  --ifm-footer-background-color: #08081E;
+  --ifm-footer-color: #A9ACC9;
+  --ifm-footer-link-color: #8B96C4;
+  --ifm-footer-link-hover-color: #EDEFF7;
+  --ifm-footer-title-color: #8B96C4;
+
+  /* Borders & surfaces */
+  --ifm-toc-border-color: #23234C;
+  --ifm-color-content-secondary: #8B96C4;
+  --ifm-hr-border-color: #23234C;
+  --ifm-table-border-color: #23234C;
+  --ifm-table-stripe-background: rgba(39, 151, 255, 0.035);
+  --ifm-code-background: #0E0E36;
+  --ifm-code-border-color: #23234C;
+  --docusaurus-highlighted-code-line-bg: rgba(77, 162, 255, 0.12);
+
+  /* Sidebar */
+  --ifm-menu-color: #8B96C4;
+  --ifm-menu-color-active: #EDEFF7;
+  --ifm-menu-color-background-active: rgba(39, 151, 255, 0.12);
+  --ifm-menu-color-background-hover: rgba(39, 151, 255, 0.06);
+
+  /* Breadcrumbs */
+  --ifm-breadcrumb-color-active: #EDEFF7;
+  --ifm-breadcrumb-item-background-active: rgba(39, 151, 255, 0.12);
+
+  /* Cards & alerts */
+  --ifm-alert-background-color: #0E0E36;
+  --ifm-alert-border-color: #23234C;
+  --ifm-card-background-color: #0E0E36;
+  --ifm-card-border-color: #23234C;
 }
 
-[data-theme="dark"] {
-  --ifm-color-primary: #1F8FEB;
-  --ifm-color-primary-dark: #1F8FEB;
-  --ifm-color-primary-darker: #1F8FEB;
-  --ifm-color-primary-darkest: #1F8FEB;
-  --ifm-color-primary-light: #1F8FEB;
-  --ifm-color-primary-lighter: #1F8FEB;
-  --ifm-color-primary-lightest: #1F8FEB;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+/* === Atmosphere === */
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  background-color: #08081E;
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(39, 151, 255, 0.18), transparent 60%),
+    radial-gradient(ellipse 50% 40% at 100% 0%, rgba(22, 209, 214, 0.10), transparent 55%),
+    radial-gradient(ellipse 60% 40% at 0% 100%, rgba(39, 76, 255, 0.10), transparent 55%);
+  background-attachment: fixed;
+}
+
+/* === Markdown content === */
+
+.markdown li {
+  color: #A9ACC9;
+}
+
+.markdown li strong {
+  color: #EDEFF7;
+}
+
+.markdown li::marker {
+  color: var(--zano-accent-bright);
+}
+
+.markdown h1 {
+  font-family: var(--ifm-heading-font-family);
+  font-size: 40px;
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  /* fit-content makes the ramp span the actual text, so short titles still
+   * reach the accent endpoint and long ones don't dilute past the ramp */
+  width: fit-content;
+  max-width: 100%;
+  background: linear-gradient(100deg, #FFFFFF 0%, #B9DAFF 55%, #4DA2FF 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 1.25rem;
+}
+
+.markdown h2 {
+  font-family: var(--ifm-heading-font-family);
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  padding-bottom: 12px;
+  border-bottom: none;
+  position: relative;
+  margin-top: 2.5rem;
+}
+
+.markdown h2::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 64px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--zano-accent), var(--zano-accent-bright), transparent);
+}
+
+.markdown h3 {
+  font-family: var(--ifm-heading-font-family);
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: #EDEFF7;
+}
+
+.markdown h4 {
+  font-family: var(--ifm-heading-font-family);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: #EDEFF7;
+}
+
+.markdown a {
+  color: var(--zano-accent-soft);
+  text-decoration: none;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px;
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  transition: background-size 0.25s ease, color 0.2s ease;
+}
+
+.markdown a:hover {
+  color: var(--zano-accent-glow);
+  background-size: 100% 1px;
+  text-decoration: none;
+}
+
+.markdown strong {
+  color: #EDEFF7;
+  font-weight: 600;
+}
+
+.markdown blockquote {
+  border-left: 2px solid var(--zano-accent);
+  background: linear-gradient(90deg, rgba(39, 151, 255, 0.06), transparent 40%);
+  padding: 12px 20px;
+  border-radius: 0 8px 8px 0;
+  color: #BFC2DC;
+}
+
+/* === Navbar === */
+
+.navbar {
+  border-bottom: 1px solid rgba(35, 35, 76, 0.8);
+  backdrop-filter: blur(24px) saturate(140%);
+  -webkit-backdrop-filter: blur(24px) saturate(140%);
+}
+
+.navbar__title {
+  font-family: var(--ifm-heading-font-family);
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  color: #EDEFF7;
+  font-size: 16px;
+}
+
+.navbar__logo {
+  height: 30px;
+  width: 30px;
+  filter: drop-shadow(0 0 12px rgba(39, 151, 255, 0.45));
+  transition: filter 0.3s ease;
+}
+
+.navbar__logo:hover {
+  filter: drop-shadow(0 0 18px rgba(77, 162, 255, 0.7));
+}
+
+.navbar__link {
+  font-weight: 500;
+  font-size: 14px;
+  transition: color 0.2s ease;
+}
+
+.navbar__link--active,
+.navbar__link:hover {
+  color: #EDEFF7;
+}
+
+.navbar__items--right .navbar__link[href*='zano.org/wallets'] {
+  background: linear-gradient(135deg, var(--zano-accent-deep), var(--zano-accent));
+  color: #FFFFFF !important;
+  padding: 8px 18px;
+  border-radius: 100px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  box-shadow: 0 0 0 1px rgba(77, 162, 255, 0.25), 0 8px 24px -8px rgba(39, 151, 255, 0.5);
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.navbar__items--right .navbar__link[href*='zano.org/wallets']:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0 0 1px rgba(22, 209, 214, 0.35), 0 12px 32px -8px rgba(77, 162, 255, 0.7);
+}
+
+/* === Sidebar === */
+
+.menu {
+  padding: 1rem 0.5rem;
+  font-family: var(--ifm-font-family-base);
+}
+
+.menu__link {
+  font-size: 13.5px;
+  font-weight: 500;
+  border-radius: 8px;
+  padding: 6px 12px;
+  transition: background-color 0.18s ease, color 0.18s ease, padding 0.18s ease;
+}
+
+.menu__link:hover {
+  color: #EDEFF7;
+  background-color: rgba(39, 151, 255, 0.06);
+}
+
+.menu__link--active:not(.menu__link--sublist) {
+  background: linear-gradient(90deg, rgba(39, 151, 255, 0.22), rgba(39, 151, 255, 0.04));
+  color: #EDEFF7;
+  box-shadow: inset 2px 0 0 var(--zano-accent);
+  padding-left: 14px;
+}
+
+.menu__list-item-collapsible:hover {
+  background-color: rgba(39, 151, 255, 0.04);
+  border-radius: 8px;
+}
+
+.menu__caret::before,
+.menu__link--sublist-caret::after {
+  filter: invert(55%) sepia(30%) saturate(600%) hue-rotate(190deg) brightness(95%);
+}
+
+aside.theme-doc-sidebar-container {
+  border-right-color: #23234C !important;
+  background: linear-gradient(180deg, rgba(14, 14, 54, 0.4), transparent);
+}
+
+/* Sidebar category labels */
+.menu__list-item-collapsible .menu__link--sublist {
+  font-family: var(--ifm-heading-font-family);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: #BFC2DC;
+  text-transform: none;
+}
+
+/* === Code === */
+
+pre {
+  background-color: #0A0A28 !important;
+  border: 1px solid #23234C;
+  border-radius: 14px;
+  position: relative;
+}
+
+pre::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 16px;
+  right: 16px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--zano-accent), transparent);
+  opacity: 0.4;
+}
+
+code {
+  background-color: rgba(39, 151, 255, 0.08);
+  border: 1px solid rgba(39, 151, 255, 0.18);
+  color: #8AC5FF;
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-size: 88%;
+  font-weight: 500;
+}
+
+pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  color: inherit;
+}
+
+/* === Tables === */
+
+table {
+  border-collapse: collapse;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #23234C;
+  /* Infima renders tables as display:block — shrink the frame to the content
+   * so the border hugs the table, while max-width keeps wide tables scrollable */
+  width: fit-content;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+table th {
+  background-color: #0E0E36;
+  color: #A9ACC9;
+  font-family: var(--ifm-heading-font-family);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--zano-accent-deep);
+}
+
+table td {
+  border-color: #23234C;
+  color: #BFC2DC;
+}
+
+table tr:nth-child(even) {
+  background-color: rgba(39, 151, 255, 0.035);
+}
+
+table tr:hover {
+  background-color: rgba(39, 151, 255, 0.07);
+}
+
+/* === Breadcrumbs === */
+
+.breadcrumbs {
+  margin-bottom: 1.5rem;
+}
+
+/* keep each separator glued to its crumb when the trail wraps */
+.breadcrumbs__item {
+  white-space: nowrap;
+}
+
+/* but never let a long current-page chip push past the viewport */
+.breadcrumbs__item--active .breadcrumbs__link {
+  display: inline-block;
+  max-width: min(60vw, 420px);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  vertical-align: bottom;
+}
+
+.breadcrumbs__link {
+  color: #8B96C4;
+  font-size: 13px;
+  font-weight: 500;
+  transition: color 0.18s ease;
+}
+
+.breadcrumbs__link:hover {
+  color: var(--zano-accent-soft);
+}
+
+.breadcrumbs__item--active .breadcrumbs__link,
+.breadcrumbs__item:last-child .breadcrumbs__link {
+  background: linear-gradient(135deg, rgba(39, 151, 255, 0.18), rgba(77, 162, 255, 0.08));
+  color: #EDEFF7;
+  border: 1px solid rgba(39, 151, 255, 0.25);
+  padding: 4px 12px;
+  border-radius: 100px;
+}
+
+/* === Pagination === */
+
+.pagination-nav {
+  gap: 2rem; /* match the DocCard grid gutter above it */
+}
+
+.pagination-nav__link {
+  border: 1px solid #23234C;
+  background-color: #0E0E36;
+  border-radius: 14px;
+  transition: border-color 0.25s ease, background-color 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
+}
+
+.pagination-nav__link:hover {
+  border-color: rgba(39, 151, 255, 0.4);
+  background-color: #12123E;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px -12px rgba(39, 151, 255, 0.45);
+}
+
+.pagination-nav__sublabel {
+  color: #8B96C4;
+  font-family: var(--ifm-heading-font-family);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.pagination-nav__label {
+  color: #EDEFF7;
+  font-weight: 500;
+}
+
+/* === TOC === */
+
+.table-of-contents {
+  border-left-color: #23234C;
+  font-size: 13px;
+}
+
+.table-of-contents__link {
+  color: #8B96C4;
+  transition: color 0.18s ease;
+}
+
+.table-of-contents__link:hover {
+  color: var(--zano-accent-soft);
+}
+
+.table-of-contents__link--active,
+.table-of-contents__link--active:hover {
+  color: var(--zano-accent-bright);
+  font-weight: 600;
+}
+
+/* === Scrollbar === */
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #23234C;
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--zano-accent-deep);
+}
+
+/* === Footer === */
+
+.footer,
+.footer--dark {
+  border-top: none;
+  position: relative;
+  background-color: #08081E !important;
+  padding: 3rem 0 2rem;
+}
+
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--zano-accent), var(--zano-accent-bright), var(--zano-accent), transparent);
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.footer__title {
+  font-family: var(--ifm-heading-font-family);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #8B96C4 !important;
+  margin-bottom: 1rem;
+}
+
+.footer__link-item {
+  font-size: 14px;
+  color: #8B96C4 !important;
+  transition: color 0.18s ease;
+}
+
+.footer__link-item:hover {
+  color: var(--zano-accent-glow) !important;
+  text-decoration: none;
+}
+
+.footer__copyright {
+  color: #7E86B4;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+}
+
+/* === Admonitions === */
+
+.alert,
+[class*='alert_'] {
+  background-color: rgba(14, 14, 54, 0.7) !important;
+  border: 1px solid #23234C !important;
+  border-radius: 14px !important;
+  color: #BFC2DC !important;
+  backdrop-filter: blur(8px);
+}
+
+.alert [class*='admonitionHeading'] {
+  color: #EDEFF7 !important;
+  font-family: var(--ifm-heading-font-family);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+.alert--info {
+  border-color: rgba(39, 151, 255, 0.28) !important;
+  background: linear-gradient(135deg, rgba(39, 151, 255, 0.08), rgba(14, 14, 54, 0.7)) !important;
+}
+.alert--warning {
+  border-color: rgba(255, 186, 68, 0.25) !important;
+  background: linear-gradient(135deg, rgba(255, 186, 68, 0.05), rgba(14, 14, 54, 0.7)) !important;
+}
+.alert--danger {
+  border-color: rgba(255, 82, 82, 0.25) !important;
+  background: linear-gradient(135deg, rgba(255, 82, 82, 0.05), rgba(14, 14, 54, 0.7)) !important;
+}
+.alert--success {
+  border-color: rgba(84, 214, 155, 0.25) !important;
+  background: linear-gradient(135deg, rgba(84, 214, 155, 0.05), rgba(14, 14, 54, 0.7)) !important;
+}
+
+.alert p,
+.alert li { color: #BFC2DC !important; }
+.alert strong { color: #EDEFF7 !important; }
+.alert a { color: var(--zano-accent-soft) !important; }
+
+/* === Details / collapsibles === */
+
+details {
+  border-color: #23234C !important;
+  background-color: rgba(14, 14, 54, 0.6) !important;
+  border-radius: 14px !important;
+  backdrop-filter: blur(6px);
+}
+
+details summary {
+  color: #EDEFF7;
+  font-weight: 500;
+}
+
+/* === Tabs === */
+
+.tabs__item {
+  color: #8B96C4;
+  border-bottom-color: transparent;
+  font-weight: 500;
+  transition: color 0.18s ease, border-color 0.2s ease;
+}
+
+.tabs__item--active {
+  color: #EDEFF7;
+  border-bottom-color: var(--zano-accent);
+}
+
+.tabs__item:hover {
+  color: var(--zano-accent-soft);
+}
+
+/* === Search === */
+
+.DocSearch-Button {
+  background-color: rgba(14, 14, 54, 0.7) !important;
+  border: 1px solid #23234C !important;
+  border-radius: 100px !important;
+  transition: border-color 0.22s ease, background-color 0.22s ease !important;
+}
+
+.DocSearch-Button:hover {
+  border-color: rgba(39, 151, 255, 0.4) !important;
+  background-color: rgba(16, 16, 60, 0.9) !important;
+}
+
+/* === Images === */
+
+.markdown img {
+  border-radius: 12px;
+  border: 1px solid #23234C;
+  max-width: 100%;
+}
+
+/* === Selection === */
+
+::selection {
+  background-color: rgba(39, 151, 255, 0.35);
+  color: #FFFFFF;
+}
+
+/* === Doc card hover (theme DocCard component) === */
+
+article.theme-doc-markdown,
+.theme-doc-markdown {
+  font-size: 16px;
+  line-height: 1.75;
+}
+
+/* === Safari / WebKit hardening ===
+ * - overflow-wrap: anywhere > break-word (Safari respects this better on long tokens)
+ * - explicit z-index on navbar + hamburger so nothing can hit-test over them
+ * - prevent horizontal scroll that Safari triggers on 100vw elements
+ */
+
+html, body {
+  max-width: 100%;
+  overflow-x: clip;
+  -webkit-text-size-adjust: 100%;
+}
+
+.markdown,
+.markdown p,
+.markdown h1,
+.markdown h2,
+.markdown h3,
+.markdown h4,
+.markdown li,
+.markdown a,
+.markdown code {
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.navbar__toggle {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* The grain/gradient pseudo overlay (if any) must stay behind everything and non-interactive */
+body::before,
+body::after { pointer-events: none !important; }
+
+/* Mobile sidebar drawer — must span full viewport height.
+ * Default Docusaurus CSS gets clobbered by our overflow-x rules on some builds
+ * and the drawer collapses to its header height (~68px). Force top+bottom. */
+.navbar-sidebar {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  bottom: 0 !important;
+  height: 100vh;
+  height: 100dvh;
+  width: var(--ifm-navbar-sidebar-width, 83vw);
+  max-width: 100vw;
+  background-color: #08081E;
+  background-image:
+    radial-gradient(ellipse 80% 40% at 0% 0%, rgba(39, 151, 255, 0.22), transparent 60%);
+  border-right: 1px solid #23234C;
+  z-index: 200;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  -webkit-transform: translate3d(-100%, 0, 0);
+}
+.navbar-sidebar__brand {
+  background-color: #08081E;
+  border-bottom: 1px solid #23234C;
+}
+.navbar-sidebar__items {
+  background-color: #08081E;
+}
+.navbar-sidebar__backdrop {
+  background-color: rgba(2, 6, 23, 0.78);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(6px);
+}
+.navbar-sidebar--show {
+  transform: translate3d(0, 0, 0) !important;
+  -webkit-transform: translate3d(0, 0, 0) !important;
+}
+.navbar-sidebar__backdrop { z-index: 199; }
+.navbar-sidebar__items { z-index: 200; }
+
+/* === Mobile === */
+
+@media (max-width: 996px) {
+  /* Scale down H1 — Unbounded @40px was eating 2 lines */
+  .markdown h1 {
+    font-size: 28px;
+    letter-spacing: -0.025em;
+    margin-bottom: 1rem;
+  }
+  .markdown h2 {
+    font-size: 22px;
+    margin-top: 2rem;
+  }
+  .markdown h3 { font-size: 18px; }
+
+  /* Show "Get Wallet" CTA on mobile (Docusaurus hides right-side items by default) */
+  .navbar__items--right {
+    display: flex !important;
+    flex: initial;
+    align-items: center;
+    gap: 8px;
+  }
+  .navbar__items--right > * {
+    flex-shrink: 0;
+  }
+  /* DocSearch container is absolutely positioned on mobile (hashed class) and
+   * overlaps the CTA pill — put it back into the flex flow */
+  [class*='navbarSearchContainer'] {
+    position: static !important;
+  }
+  .navbar__items--right .navbar__link[href*="zano.org/wallets"] {
+    display: inline-flex !important;
+    padding: 6px 12px;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+  }
+  /* Hide the website link on mobile — keep just the CTA to save space */
+  .navbar__items--right .navbar__link[href*="github.com"]:not([href*="app."]) {
+    display: none !important;
+  }
+  /* Tighten navbar padding on mobile */
+  .navbar {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  .navbar__brand { margin-right: 0; }
+
+  /* Comfortable tap targets in the drawer and sidebar */
+  .menu__link {
+    padding-block: 11px;
+  }
+
+  /* Reduce body font a hair for mobile readability */
+  article.theme-doc-markdown,
+  .theme-doc-markdown {
+    font-size: 15.5px;
+    line-height: 1.7;
+  }
+
+  /* Breadcrumb: allow wrapping, smaller */
+  .breadcrumbs {
+    font-size: 12px;
+  }
+  .breadcrumbs__item--active .breadcrumbs__link,
+  .breadcrumbs__item:last-child .breadcrumbs__link {
+    padding: 3px 10px;
+  }
+
+  /* Pagination cards stack */
+  .pagination-nav {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .markdown h1 { font-size: 26px; }
+  /* free horizontal space so hamburger + logo + CTA + search all fit in flow */
+  .navbar__title { display: none; }
 }

@@ -1,0 +1,35 @@
+.cardContainer {
+  --ifm-link-color: var(--ifm-color-emphasis-800);
+  --ifm-link-hover-color: var(--ifm-color-emphasis-700);
+  --ifm-link-hover-decoration: none;
+
+  background-color: var(--ifm-card-background-color);
+  border: 1px solid var(--ifm-card-border-color);
+  border-radius: 12px;
+  box-shadow: none;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.cardContainer:hover {
+  border-color: rgba(39, 151, 255, 0.35);
+  background-color: #12123E;
+  box-shadow: none;
+}
+
+.cardContainer *:last-child {
+  margin-bottom: 0;
+}
+
+.cardTitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--ifm-heading-color);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cardDescription {
+  font-size: 0.8rem;
+  color: var(--ifm-color-content-secondary);
+}
