@@ -30,7 +30,7 @@ $$
 Where $C$ is the total amount of coins participating in PoS mining, and $D_{PoS} \thinspace$ is the current PoS difficulty.
 ```
 
-As you may know, the Zano network emits an average of 1 coin each minute with a 50-50 spread between PoS and PoW. That makes it 720 potential PoS reward coins per day. So if you owned all the coins in PoS, that could be your total daily earnings. And if you divide C*C* by 720, you will get the number of coins you need to mine 1 Zano coin a day. Now, you can estimate the number of coins you will earn as:
+As you may know, the Zano network emits an average of 1 coin each minute with a 50-50 spread between PoS and PoW. That makes it 720 potential PoS reward coins per day. So if you owned all the coins in PoS, that could be your total daily earnings. And if you divide C*C* by 720, you will get the number of coins you need to mine 1 ZANO a day. Now, you can estimate the number of coins you will earn as:
 
 ```mdx-code-block
 $$

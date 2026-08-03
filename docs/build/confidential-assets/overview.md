@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# Overview
+# Confidential Assets Overview
 
 Confidential Assets are privacy tokens with all the features of native Zano coin
 

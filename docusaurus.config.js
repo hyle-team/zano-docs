@@ -53,6 +53,8 @@ const config = {
           { from: "/docs/learn/password-specs", to: "/docs/build/password-specs" },
           // pre-restructure slug fix debt: old .md-suffixed URL
           { from: "/docs/use/zano-passwords.md", to: "/docs/use/zano-passwords" },
+          // deeplinks page lives in the Build tab but had a /use/ slug
+          { from: "/docs/use/deeplinks", to: "/docs/build/deeplinks" },
         ],
       },
     ],

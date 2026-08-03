@@ -28,7 +28,7 @@ It allows us access to the enormous existing infrastructure that exists around E
   />
 </div>
 
-The process of swapping ZANO to WZANO is referred to as “wrapping”. You can wrap ZANO from within any of the Zano mobile or desktop clients. Just go to the “Send” tab, enter the amount of ZANO you would like to receive and the Ethereum address to which you’d like the WZANO to be sent. You will be informed of how much Zano is required to cover the transaction fees before you finalize the transaction.
+The process of swapping ZANO to WZANO is referred to as “wrapping”. You can wrap ZANO from within any of the Zano mobile or desktop clients. Just go to the “Send” tab, enter the amount of ZANO you would like to receive and the Ethereum address to which you’d like the WZANO to be sent. You will be informed of how much ZANO is required to cover the transaction fees before you finalize the transaction.
 
 <figure style={{textAlign: 'center'}}>
   <img

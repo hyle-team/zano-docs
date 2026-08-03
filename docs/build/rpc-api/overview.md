@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# Overview
+# RPC API Overview
 
 Welcome to the Zano API documentation! As a digital currency enthusiast, developer, or end user, we know how important it is for you to have a clear, comprehensive guide to our API. That's why we've designed our documentation to be as accessible and easy to understand as possible.
 
@@ -78,9 +78,10 @@ In order to interact with the Marketplace API, you must include the following fl
 ./simplewallet --wallet-file example.wallet --password password --rpc-bind-ip 127.0.0.1 --rpc-bind-port 11212 --daemon-address 127.0.0.1:11211
 ```
 
-### Daemon flags
+### Wallet flags
 
 - wallet-file - name of wallet file to use
 - password - wallets password
 - rpc-bind-port - TCP port for wallet RPC server
-- rpc-bind-ip - IP and PORT of the daemon
+- rpc-bind-ip - IP address to bind the wallet RPC server to
+- daemon-address - IP and port of the daemon to connect to

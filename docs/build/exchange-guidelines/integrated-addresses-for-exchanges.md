@@ -1,7 +1,5 @@
 # Integrated addresses for exchanges
 
-### Starting the daemon and the wallet application as RPC server
-
 Unlike Bitcoin, CryptoNote family coins have different, more effective approach on how to handle user deposits.
 
 An exchange generates only one address for receiving coins and all users send coins to that address. To distinguish different deposits from different users the exchange generates random identifier (called **payment ID**) for each one and a user attaches this payment ID to his transaction while sending. Upon receiving, the exchange can extract payment ID and thus identify the user.<br/>

@@ -35,9 +35,9 @@ sidebar_position: 4
 
 Zano has a hybrid PoW/PoS consensus algorithm to secure the network and therefore emission is generated from two distinct sources:
 
-Proof of Work (PoW) mining, which creates new ZANO coins to reward miners for completing the calculations and therefore contributing to the network.
+Proof-of-Work (PoW) mining, which creates new ZANO coins to reward miners for completing the calculations and therefore contributing to the network.
 
-Proof of Stake (PoS) staking, which also creates new ZANO coins to reward users who stake their funds and therefore also contributing to the network's security.
+Proof-of-Stake (PoS) staking, which also creates new ZANO coins to reward users who stake their funds and therefore also contributing to the network's security.
 
 100% of the block reward goes to the miner or staker who found the block. The key emission parameters are in the table above.
 
@@ -83,7 +83,7 @@ You can track the amount of the foundation fund via our [explorer](https://explo
 
 The choice to implement a premine has enabled us to maintain a full-time, dedicated team on Zano from the start, even through the most brutal crypto winters. This strategic decision has allowed us to excel across multiple fronts:
 
-Development: We've continuously enhanced our blockchain technology with key upgrades like the Zarcanum hard fork, which introduced the world's first Private Proof of Stake model and support for issuing Confidential Assets.
+Development: We've continuously enhanced our blockchain technology with key upgrades like the Zarcanum hard fork, which introduced the world's first Private Proof-of-Stake model and support for issuing Confidential Assets.
 
 Marketing: The premine has funded efforts to boost our visibility, including securing listings on centralized exchanges and creating educational content.
 

@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# Zano Apps & Wallets
+# Zano Wallets
 
 ### Desktop Apps
 
@@ -18,7 +18,7 @@ You can use Zano Companion on Chrome (Connects to your desktop wallet)
 
 ### Download Links
 
-Available on the [Zano Website](https://zano.org/wallets) and [Github](https://github.com/hyle-team/zano/releases)
+Available on the [Zano Website](https://zano.org/wallets) and [GitHub](https://github.com/hyle-team/zano/releases)
 
 ### Third-Party Wallets
 

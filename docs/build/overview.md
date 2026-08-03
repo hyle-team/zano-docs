@@ -14,9 +14,9 @@ Start with the RPC API [Overview](rpc-api/overview.md) and [How to call the API]
 
 If launching your own project centered around private transactions is your goal, our [Confidential Assets](confidential-assets/overview.md) section provides detailed methods to give your initiative a solid foundation.
 
-## Exchange Listing Guidelines
+## Exchange Integration Guidelines
 
-If you're looking to list your project or Zano assets on exchanges, it's crucial to follow specific guidelines to ensure compliance and success in your listings. We provide a [detailed set of guidelines](https://docs.zano.org/docs/build/exchange-guidelines/multi-assets-custody-guide) that cover everything from technical requirements to compliance with financial regulations.
+Running a Zano deposit or withdrawal service? The [exchange integration guide](exchange-guidelines/multi-assets-custody-guide.md) covers wallet custody, payment IDs and integrated addresses, production node setup, and offline signing.
 
 ## Tools and Resources
 

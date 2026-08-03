@@ -57,6 +57,10 @@ On the consensus side, Zano runs a hybrid PoW/PoS model instead of Monero's pure
 
 See all compatible wallets: [zano.org/wallets](https://zano.org/wallets)
 
+### What is a seed phrase?
+
+To access the wallet in the event of a loss, you need something called a mnemonic recovery phrase or seed. This group of words that you received while creating your wallet is designed to add an extra layer of security. With these phrases you can easily restore lost wallets if you don't have the passkey. See the [seed phrase guide](/docs/use/seed-phrase) for how to store it safely.
+
 ### Where can I trade Zano?
 
 See all places where you can trade Zano: [zano.org/exchanges](https://zano.org/exchanges)
@@ -107,7 +111,7 @@ Zano dApps can use alias-based authentication, as [Zano Matrix](/docs/use/zano-m
 
 ### What is Zarcanum?
 
-Zarcanum is the world's first Proof of Stake scheme that enhances traditional PoS with untraceability and hidden amounts, revolutionizing blockchain consensus. Thanks to this innovative approach, our stakers can stake in complete anonymity. Read more on the [consensus page](/docs/learn/how-zano-works/consensus).
+Zarcanum is the world's first Proof-of-Stake scheme that enhances traditional PoS with untraceability and hidden amounts, revolutionizing blockchain consensus. Thanks to this innovative approach, our stakers can stake in complete anonymity. Read more on the [consensus page](/docs/learn/how-zano-works/consensus).
 
 ### How is the network secured?
 
@@ -115,7 +119,7 @@ Zano uses a hybrid consensus algorithm that alternates between Proof-of-Work (Po
 
 ### What's the plan for scaling?
 
-We'll continue to improve our dynamic blocksize (which our team pioneered initially with CryptoNote). Horizontal L1 scaling (sharding) is also on our radar as a long-term direction we're excited about.
+We'll continue to improve our dynamic blocksize (which our team pioneered initially with CryptoNote). Horizontal layer-1 scaling (sharding) is also on our radar as a long-term direction we're excited about.
 
 ---
 
@@ -207,7 +211,7 @@ No funds are locked; however, the foundation fund is an [auditable wallet](/docs
 
 ### How does Zano ensure decentralization if the devs hold some supply?
 
-Besides the fact that the foundation fund is a small share of the supply (see the [Emission page](/docs/learn/emission#the-premine-and-how-zano-will-be-funded)), Proof of Stake incentives ensure that all holders remain honest, if they were to harm the network, they would be attacking their own investment.
+Besides the fact that the foundation fund is a small share of the supply (see the [Emission page](/docs/learn/emission#the-premine-and-how-zano-will-be-funded)), Proof-of-Stake incentives ensure that all holders remain honest, if they were to harm the network, they would be attacking their own investment.
 
 ### Is there a public breakdown of the ZANO token distribution?
 
@@ -241,7 +245,7 @@ When bridging an asset to Zano using Confidential Layer, you receive its decentr
 
 ### How does Confidential Layer increase privacy? How is it different from mixers?
 
-It adds to bridged assets the same [technologies used by native Zano](#privacy-technologies).
+It adds to bridged assets the same [technologies used by native ZANO](#privacy-technologies).
 
 Unlike mixers, which obscure your transaction flow at a certain point (and you still need to watch your steps after), Confidential Layer cryptographically hides your balance, the data is never visible in the first place.
 
@@ -294,10 +298,6 @@ Zano is designed as a **decentralized, permissionless network**, which means it 
 ### When trying to send coins I get an error stating that the transaction is too large.
 
 The amount is composed of too many small inputs; split it up and send smaller amounts. See [Common Issues](/docs/use/troubleshooting/common-issues) for details.
-
-### What is a seed phrase?
-
-To access the wallet in the event of a loss, you need something called a mnemonic recovery phrase or seed. This group of words that you received while creating your wallet is designed to add an extra layer of security. With these phrases you can easily restore lost wallets if you don't have the passkey. See the [seed phrase guide](/docs/use/seed-phrase) for how to store it safely.
 
 ### Why does the desktop wallet take so long to start?
 

@@ -188,4 +188,4 @@ Refresh done, blocks received: 42776
 
 ```
 
-From Finalizer's wallet perspective same transaction c08522c94355524cc8a1fa1514419814e99989ba503382256cbffc39a733a186 sends 10 Zano and receives 2 CT tokens.
+From Finalizer's wallet perspective same transaction c08522c94355524cc8a1fa1514419814e99989ba503382256cbffc39a733a186 sends 10 ZANO and receives 2 CT tokens.

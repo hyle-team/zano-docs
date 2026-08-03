@@ -17,7 +17,7 @@ header.payload.signature
 
 ## Use Case in Our Project
 
-We use JWT authentication to secure HTTP requests to our local JSON-RPC API betweedn Zano desktop App and Zano Extension (Zano Companion). Each request includes a signed JWT in the `Zano-Access-Token` header, which is verified by the server.
+We use JWT authentication to secure HTTP requests to our local JSON-RPC API between the Zano desktop wallet and Zano Companion (browser extension). Each request includes a signed JWT in the `Zano-Access-Token` header, which is verified by the server.
 You can enable JWT authentification in simplewallet as well by adding `--jwt-secret=hsjejkcdskndspo230XASIijksk123i9x5` when simplewallet run in server mode (with --rpc-bind-port=PORT_NUM option).
 
 ---

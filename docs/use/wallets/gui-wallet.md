@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # Create and Manage Wallets (GUI)
 
-Zano Wallet lets you manage multiple ZANO wallets, which can be easily created, restored, and removed from the app. The core of each wallet is a seed phrase, a sequence of 24–26 words (26 for wallets created in current versions) that can be used to recover your wallet's private and public keys. A unique sequence is generated every time you create a new wallet within the app. **It's important to always keep it safe and accessible.**
+Zano Wallet lets you manage multiple Zano wallets, which can be easily created, restored, and removed from the app. The core of each wallet is a seed phrase, a sequence of 24–26 words (26 for wallets created in current versions) that can be used to recover your wallet's private and public keys. A unique sequence is generated every time you create a new wallet within the app. **It's important to always keep it safe and accessible.**
 
 For your convenience, it's not necessary to use a seed phrase to manage your wallet. In the official Zano Wallet apps, when you create a wallet, a wallet file is generated as well. This file is secured with an additional password, granting access to wallet features and the seed phrase. It can be copied to another device and used with another app.
 

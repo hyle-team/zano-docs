@@ -10,7 +10,7 @@ Zano alternates between Proof-of-Work and Proof-of-Stake blocks. The PoW side ru
 
 To perform a classic 51% attack on Zano, an attacker needs the majority of the PoW hashrate **and** a large share of the staked coins at the same time. Other ratios are possible (for example, roughly 20% of hashrate against 90% of stake), but every combination requires attacking both resources at once, and buying up a significant share of the coins would drive the price up against the attacker. This makes an attack expensive enough that the network can keep a relatively low block reward while staying secure. The exact math is covered in the [research papers](/docs/learn/research).
 
-## Zarcanum: anonymous Proof of Stake
+## Zarcanum: anonymous Proof-of-Stake
 
 Zarcanum is the world's first Proof-of-Stake scheme with hidden amounts: you earn staking rewards without exposing how much you hold. Staking is open to everyone. There are no validator or master nodes, no minimum staking amounts, and no lock-up periods.
 
