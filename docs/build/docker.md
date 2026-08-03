@@ -1,6 +1,6 @@
 ---
 sidebar_position: 3
-description: Official Zano full-node Docker image (zanoproject/zano-full-node) — how to run a Zano node in Docker, publish the P2P port, and secure the RPC endpoint.
+description: Official Zano full-node Docker image (zanoproject/zano-full-node). How to run a Zano node in Docker, publish the P2P port, and secure the RPC endpoint.
 keywords: [zano, docker, zano docker, zano full node, remote node, zanod, run a zano node, zanoproject/zano-full-node]
 ---
 
@@ -35,7 +35,7 @@ The blockchain lives in the mounted volume (`/home/zano/.Zano`), so it persists 
 
 | Port  | Purpose | Recommended exposure |
 |-------|---------|----------------------|
-| 11121 | P2P     | Keep reachable from the Internet — inbound peers help your node stay well-connected. |
+| 11121 | P2P     | Keep reachable from the Internet; inbound peers help your node stay well-connected. |
 | 11211 | RPC     | **Keep private.** In the example above it is published only to `127.0.0.1` on the host. |
 
 ## Managing the container
@@ -49,7 +49,7 @@ The blockchain lives in the mounted volume (`/home/zano/.Zano`), so it persists 
 :::danger Do not expose the RPC port (11211) to the Internet
 :::
 
-The image starts the daemon with `--rpc-bind-ip=0.0.0.0`, so it listens on all interfaces **inside the container**. That is required for Docker port publishing to work — it does **not** make the RPC safe to expose. Protecting it is your responsibility. Choose one of:
+The image starts the daemon with `--rpc-bind-ip=0.0.0.0`, so it listens on all interfaces **inside the container**. That is required for Docker port publishing to work, but it does **not** make the RPC safe to expose. Protecting it is your responsibility. Choose one of:
 
 - **Bind to loopback (as in the quick start):** publish RPC only to the host with `-p 127.0.0.1:11211:11211`, then use it locally. Do **not** use `-p 11211:11211` (which binds `0.0.0.0`) or `--network host` unless you intend to expose it.
 - **Firewall:** block inbound traffic to port `11211` from the Internet at the host firewall or cloud security-group level.

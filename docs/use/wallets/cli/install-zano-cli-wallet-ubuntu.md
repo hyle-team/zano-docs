@@ -9,7 +9,7 @@ Download Zano, extract the CLI binaries, sync the blockchain, and create your fi
 
 ## 1. Download
 
-Go to [zano.org](https://zano.org) and navigate to the downloads section. Download the Linux release — it's distributed as an **AppImage** file:
+Go to [zano.org](https://zano.org) and navigate to the downloads section. Download the Linux release; it's distributed as an **AppImage** file:
 
 ```
 zano-linux-x64-release-v<VERSION>[<hash>].AppImage
@@ -60,7 +60,7 @@ The daemon (`zanod`) connects to the Zano network and downloads the blockchain. 
 ./zanod
 ```
 
-Wait for the blockchain to fully sync — this can take a few hours on the first run, depending on your connection speed. Keep the daemon running; you'll need it for the next step.
+Wait for the blockchain to fully sync; the first run can take a few hours, depending on your connection speed. Keep the daemon running; you'll need it for the next step.
 
 ![Starting the daemon](/img/use/install-zano-cli-wallet-ubuntu/install-zanod-sync.png)
 
@@ -84,7 +84,7 @@ Once the daemon is synced (or if you're using a public node), open a new termina
 
 Replace `name` with whatever you'd like to call your wallet (e.g., `mywallet.wallet`).
 
-You'll be prompted to create a password. Use a strong one — a password manager like KeePass or Bitwarden is recommended.
+You'll be prompted to create a password. Use a strong one; a password manager like KeePass or Bitwarden helps.
 
 After the password is set, the wallet will display your receive address (starts with `Zx`). This is the address you'll use to receive ZANO.
 
@@ -100,7 +100,7 @@ Inside the wallet console, run:
 show_seed
 ```
 
-You'll be prompted for your wallet password, then asked to set a **seed password** (also called a [passphrase](/docs/use/seed-phrase#passphrase)). This is optional — if you set one, you'll need both the seed phrase and the passphrase to restore the wallet.
+You'll be prompted for your wallet password, then asked to set a **seed password** (also called a [passphrase](/docs/use/seed-phrase#passphrase)). This is optional. If you set one, you'll need both the seed phrase and the passphrase to restore the wallet.
 
 The wallet will display your **seed phrase** (26 words for current wallets). Write it down and store it somewhere safe and offline.
 

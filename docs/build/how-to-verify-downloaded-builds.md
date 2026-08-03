@@ -18,7 +18,7 @@
    uid                   Zano Build Signer <support@zano.org>
    sub   cv25519/E23B6116 2025-10-20 [E] [expires: 2027-10-20]
    ```
-   Make sure the fingerprint is **8095 41D2 C95F 794B 986E  879F A92B 86C2 F79F 971A**, if not — stop right there and remove the key file, don't import it!
+   Make sure the fingerprint is **8095 41D2 C95F 794B 986E  879F A92B 86C2 F79F 971A**, if not, stop right there and remove the key file, don't import it!
 
    3.2. Import the public key:
    ```
@@ -65,7 +65,7 @@
    CertUtil: -hashfile command completed successfully.
    ```
 
-   Carefully compare the calculated SHA256 checksum with the one provided. If they don't match — remove the downloaded file!
+   Carefully compare the calculated SHA256 checksum with the one provided. If they don't match, remove the downloaded file!
    
    If they do, you're good to go!
    

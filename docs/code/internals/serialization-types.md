@@ -1,3 +1,7 @@
+---
+slug: /code/serialization-types
+---
+
 # Serialization Types in the Zano Codebase
 
 In the Zano codebase you may encounter a concept called a **serialization map**. In fact, you will see three different serialization mechanisms used to store C++ objects, and some structures even contain all three maps side by side, each following a different principle.
@@ -69,7 +73,7 @@ The Zano project relies on three distinct serialization mechanisms, each chosen 
 
 ## 1  Deterministic Serialization
 
-**Deterministic serialization lies at the heart of the blockchain core.** (starts from BEGIN_VERSIONED_SERIALIZE) Every cryptographic object — whether it is a transaction, a block header or any other structures that is a part of currency protocol — is encoded with this method. The defining guarantee is simple yet crucial: if a structure is read from a byte buffer and immediately written back, the second buffer will be **bit‑for‑bit identical** to the first, regardless of the binary or software version that performed the operation. Because of this property, cryptographic hashes computed over the data remain stable across platforms and releases, ensuring consensus integrity.
+**Deterministic serialization lies at the heart of the blockchain core.** (starts from BEGIN_VERSIONED_SERIALIZE) Every cryptographic object (a transaction, a block header, or any other structure in the currency protocol) is encoded with this method. The defining guarantee is simple yet crucial: if a structure is read from a byte buffer and immediately written back, the second buffer will be **bit‑for‑bit identical** to the first, regardless of the binary or software version that performed the operation. Because of this property, cryptographic hashes computed over the data remain stable across platforms and releases, ensuring consensus integrity.
 
 Although the implementation borrows the conceptual pattern of *Boost.Serialization*, it deliberately supports only the handful of C++ types actually used inside Zano. This focused scope keeps the code compact, so serializing a block or transaction is quite fast. The very same serialization is also used by the on‑disk database, due to it's performance properties compared to boost serialization.
 
@@ -77,7 +81,7 @@ A small, developer‑friendly addition is a **one‑way JSON exporter**. When de
 
 ## 2  Key–Value Serialization
 
-**Key–value serialization powers all network protocols in Zano and the wider CryptoNote family.**(starts from BEGIN_KV_SERIALIZE_MAP) Its design revolves around a two‑stage pipeline. First, a C++ object is unpacked into an intermediate key–value store where every field is addressed by name. Only then is the store linearized into a byte stream for transport. The reverse path—byte stream → store → C++ object—follows the same steps in reverse order.
+**Key–value serialization powers all network protocols in Zano and the wider CryptoNote family.**(starts from BEGIN_KV_SERIALIZE_MAP) Its design revolves around a two‑stage pipeline. First, a C++ object is unpacked into an intermediate key–value store where every field is addressed by name. Only then is the store linearized into a byte stream for transport. The reverse path (byte stream → store → C++ object) follows the same steps in reverse order.
 
 This indirection pays dividends in compatibility. When a newer release introduces an extra field, older nodes simply skip the unfamiliar key during deserialization, while newer nodes treat missing keys as default values. Thanks to this behaviour, **forward and backward compatibility come for free**, without version gates or special‑case code.
 

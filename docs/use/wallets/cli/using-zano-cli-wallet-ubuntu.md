@@ -61,7 +61,7 @@ transfer <mixin_count> <address> <amount>
 - **address**: the recipient's Zano address (starts with `Zx` or `aZx`)
 - **amount**: the amount of ZANO to send
 
-Example — send 10 ZANO:
+Example: send 10 ZANO:
 
 ```
 transfer 15 ZxD4wSgHgE5TRVHQRbPKNthSpNSJoQp6DPLNaL4f3YT5dDQarAEHB2bVroPWhkCD59GDfVDjBBHmgLd2M1P92h5c21KwPZqg 10
@@ -153,7 +153,7 @@ If your seed phrase has a typo or swapped words, try the [Seed Doctor](/docs/use
 
 ## Auditable wallets
 
-Zano wallets are private by default — no third party can see balances or transactions on the blockchain. An **auditable wallet** lets a third party see your balances and transactions (e.g., for a public foundation or compliance).
+Zano wallets are private by default: no third party can see balances or transactions on the blockchain. An **auditable wallet** lets a third party see your balances and transactions (e.g., for a public foundation or compliance).
 
 For more details, see the [Auditable Wallets](/docs/use/auditable-wallets) page.
 
@@ -260,21 +260,21 @@ These commands are used inside the wallet console after opening.
 | `exit` | Close the wallet |
 | `help` | Show all available commands |
 | `transfer` | `transfer <mixin> <addr> <amount> [payment_id]` |
-| `list_recent_transfers` | `[offset] [count]` — show recent transactions (max 1000) |
-| `list_outputs` / `lo` | `[spent\|unspent] [ticker=ZANO]` — list UTXOs |
+| `list_recent_transfers` | `[offset] [count]`: show recent transactions (max 1000) |
+| `list_outputs` / `lo` | `[spent\|unspent] [ticker=ZANO]`: list UTXOs |
 | `show_seed` | Display seed recovery phrase (26 words for current wallets) |
 | `spendkey` | Display secret spend key |
 | `viewkey` | Display secret view key |
 | `tracking_seed` | Display tracking seed (auditable wallets) |
-| `save_watch_only` | `<file> <password>` — export a watch-only wallet |
-| `integrated_address` | `[payment_id]` — generate or decode an integrated address |
-| `show_staking_history` | `[days]` — show PoS staking rewards |
+| `save_watch_only` | `<file> <password>`: export a watch-only wallet |
+| `integrated_address` | `[payment_id]`: generate or decode an integrated address |
+| `show_staking_history` | `[days]`: show PoS staking rewards |
 | `export_history` | Export transaction history to CSV |
 | `export_recent_transfers` | Export recent transfers as JSON |
-| `sweep_below` | `<mixin> <address> <amount_limit> [payment_id]` — consolidate small outputs |
+| `sweep_below` | `<mixin> <address> <amount_limit> [payment_id]`: consolidate small outputs |
 | `sweep_bare_outs` | Transfer all bare (non-ZC) outputs to self |
-| `set_log` | `<level>` — change log verbosity (0-4) |
-| `deploy_new_asset` | `<json_file>` — deploy a new confidential asset |
-| `emit_asset` | `<asset_id> <amount>` — mint more of an asset you own |
-| `burn_asset` | `<asset_id> <amount>` — burn asset tokens |
+| `set_log` | `<level>`: change log verbosity (0-4) |
+| `deploy_new_asset` | `<json_file>`: deploy a new confidential asset |
+| `emit_asset` | `<asset_id> <amount>`: mint more of an asset you own |
+| `burn_asset` | `<asset_id> <amount>`: burn asset tokens |
 | `check_all_tx_keys` | Verify one-time secret keys for all sent transactions |

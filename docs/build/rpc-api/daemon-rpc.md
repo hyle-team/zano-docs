@@ -14,12 +14,12 @@ zanod --rpc-bind-ip RPC_IP --rpc-bind-port RPC_PORT
 
 where:
 
-**RPC_IP** — IP address to bind RPC server to (127.0.0.1 will be used if not specified);  
-**RPC_PORT** — TCP port for RPC server (11211 is default);
+**RPC_IP**: IP address to bind RPC server to (127.0.0.1 will be used if not specified);  
+**RPC_PORT**: TCP port for RPC server (11211 is default);
 
 All examples below are based on the assumption that the daemon is listening for RPC at 127.0.0.1:11211.
 
-All amounts and balances are represented as unsigned integers and measured in atomic units — the smallest fraction of a coin.
+All amounts and balances are represented as unsigned integers and measured in atomic units, the smallest fraction of a coin.
 
 One coin is equal to 10^12 atomic units.
 

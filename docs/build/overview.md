@@ -8,7 +8,7 @@ sidebar_position: 1
 
 ### RPC API Guide
 
-Kickstart your journey with our RPC API Guide [Overview](rpc-api/overview.md). Here, you'll gain a comprehensive understanding from the Overview, and delve deeper into the specifics of [How to call the API](rpc-api/how-to-call-api.md). Whether your focus is on the [Daemon RPC API](rpc-api/daemon-rpc-api/get_alias_by_address.md) or the [Wallet RPC API](rpc-api/wallet-rpc-api/get_bulk_payments.md), our guide ensures clarity at every step.
+Start with the RPC API [Overview](rpc-api/overview.md) and [How to call the API](rpc-api/how-to-call-api.md). From there, pick the [Daemon RPC API](rpc-api/daemon-rpc-api/get_alias_by_address.md) or the [Wallet RPC API](rpc-api/wallet-rpc-api/get_bulk_payments.md) depending on what you are integrating.
 
 ### Confidential Assets
 
@@ -23,12 +23,12 @@ If you're looking to list your project or Zano assets on exchanges, it's crucial
 We provide a variety of tools and [libraries](libraries/overview.md) to assist you in building robust applications:
 
 - **Zano Web3 TS**: This TypeScript library now includes a server component for RPC interactions, simplifying the connection to Zano wallets and handling transactions directly from web applications.
-- **Mobile Libraries** (Flutter/Android & iOS): These have been updated to offer more robust features for mobile developers, enabling seamless integration into a wider range of applications.
+- **Mobile Libraries** (Flutter/Android & iOS): Updated with fuller wallet functionality for building mobile apps.
 - **Native Crypto Library** for iOS/Android (C++): Updated to provide essential cryptographic functionalities needed for secure and reliable app development.
 
 ## Community and Support
 
-Join our vibrant community of developers and privacy enthusiasts:
+Questions? The developer community is active here:
 
 - **Discussions**: Engage with other developers, share your projects, and get feedback in community dev channels in [discord](https://discord.gg/wE3rmYY) and [telegram](https://t.me/zanocoin).
 - **Technical Support**: Our technical team is ready to assist you with any questions or challenges you may encounter.

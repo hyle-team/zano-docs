@@ -8,11 +8,11 @@ Practical server auth integration guide via Zano Companion message sign is provi
 
 The flow consists of three steps, split across two server endpoints:
 
-1. **Message Generation** (`requestAuth`) — the server builds a secure, single-use
+1. **Message Generation** (`requestAuth`): the server builds a secure, single-use
    message bound to the user's wallet address and returns it to the client.
-2. **Message Signing** — the client signs that message with the Zano Companion
+2. **Message Signing**: the client signs that message with the Zano Companion
    extension, producing a signature and the public key it was signed with.
-3. **Sign Validation** (`auth`) — the server re-validates the signature against the
+3. **Sign Validation** (`auth`): the server re-validates the signature against the
    original message, and issues a session token.
 
 Code provided in this guide is abstract and intentionally lacks of implementation of DB interaction methods, framework-specific code, ect.
@@ -29,8 +29,8 @@ zano_web3: ^10.1.0
 
 The integration uses two `zano_web3` submodules:
 
-- `zano_web3/shared` — `generateSecureMessageForSigning` for building the message.
-- `zano_web3/server` — `ServerWallet` for validating the signature.
+- `zano_web3/shared`: `generateSecureMessageForSigning` for building the message.
+- `zano_web3/server`: `ServerWallet` for validating the signature.
 
 ## Message Generation
 
@@ -41,7 +41,7 @@ The server turns these into a structured, secure message using
 `generateSecureMessageForSigning`, persists it together with an expiry, and returns it.
 
 The message is bound to the origin (`domain` / `uri`), the signing address, a single-use
-`nonce`, and a short `expirationTime` — so it cannot be replayed against another origin or
+`nonce`, and a short `expirationTime`, so it cannot be replayed against another origin or
 reused after it expires.
 
 ```js
@@ -84,14 +84,14 @@ for signing.
 
 ## Message Signing
 
-Signing happens entirely on the client with the Zano Companion extension — the server
+Signing happens entirely on the client with the Zano Companion extension; the server
 never sees the private key. The client passes the message returned from the
 Message Generation step to the wallet, which returns the signature and the pkey
 (the public key the signature was produced with). These are then sent back to the
 Sign Validation endpoint.
 
 For the client-side signing API, see the Zano Companion documentation:
-[Zano Companion — message signing](https://docs.zano.org/docs/build/zano-companion/message-sign/message-sign-companion-guide).
+[Zano Companion: message signing](https://docs.zano.org/docs/build/zano-companion/message-sign/message-sign-companion-guide).
 
 ## Signature Validation
 
@@ -99,8 +99,8 @@ Server should have an endpoint that finishes auth session, validates message and
 
 The client submits `address`, `message`, `signature`, and `pkey`. The server validates in two stages and only then issues a session token:
 
-- Message authenticity — the submitted message must match a record the server issued and must not be expired (single-use, time-bound).
-- Signature validity — `ServerWallet.validateSecureMessageSignature` cryptographically verifies the signature against the original message and address.
+- Message authenticity: the submitted message must match a record the server issued and must not be expired (single-use, time-bound).
+- Signature validity: `ServerWallet.validateSecureMessageSignature` cryptographically verifies the signature against the original message and address.
 
 ```js
 import { ServerWallet } from 'zano_web3/server';

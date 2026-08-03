@@ -1,8 +1,8 @@
 # Keeping Your Wallet's UTXO Set Healthy
 
-If you run a Zano wallet that processes many transactions — an exchange hot
+If you run a Zano wallet that processes many transactions (an exchange hot
 wallet, a payment processor, a high-volume merchant, or simply an
-individual who has received many small payments over time — your wallet's
+individual who has received many small payments over time), your wallet's
 UTXO set can drift toward an unhealthy shape: lots of small UTXOs and very
 few large ones.
 
@@ -12,7 +12,7 @@ small UTXOs, and eventually hits one of two hard limits:
 - The maximum number of inputs per transaction.
 - The maximum transaction size on the network.
 
-At that point, large withdrawals start failing — even though the wallet
+At that point, large withdrawals start failing, even though the wallet
 balance is plenty to cover them.
 
 This guide explains how to **inspect** and **maintain** a healthy UTXO
@@ -91,8 +91,8 @@ distribution:
 
 | Parameter | Recommendation |
 |---|---|
-| **`amount` (threshold)** | **5000 coins** for wallets with significant balance. If your total balance is low (e.g. under ~50,000 coins), use a smaller threshold so that consolidation still leaves you with multiple usable UTXOs — a good rule is `threshold = balance / 10`, capped at 5000. |
-| **`address`** | Your own wallet's primary address — you are consolidating into one new big UTXO for yourself. |
+| **`amount` (threshold)** | **5000 coins** for wallets with significant balance. If your total balance is low (e.g. under ~50,000 coins), use a smaller threshold so that consolidation still leaves you with multiple usable UTXOs; a good rule is `threshold = balance / 10`, capped at 5000. |
+| **`address`** | Your own wallet's primary address; you are consolidating into one new big UTXO for yourself. |
 | **`mixin`** | Use the same value you use for regular transfers (typically 15). |
 | **`fee`** | The current network minimum fee (0.01 ZANO at time of writing). |
 | **`asset_id`** | Omit for native ZANO. Set explicitly when consolidating a specific asset. |
@@ -110,19 +110,19 @@ distribution:
   may produce conflicting consolidations.
 - **Stop when there is nothing left to sweep.** Each `sweep_below`
   response includes two counters:
-  - `outs_total` — the total number of UTXOs below the threshold that
+  - `outs_total`: the total number of UTXOs below the threshold that
     the wallet found.
-  - `outs_swept` — how many of them were actually consolidated into the
+  - `outs_swept`: how many of them were actually consolidated into the
     transaction that was just built.
 
   When `outs_swept == outs_total`, the wallet swept **every**
-  sub-threshold UTXO in a single transaction — there is nothing left
+  sub-threshold UTXO in a single transaction; there is nothing left
   to consolidate and you should stop calling `sweep_below` until more
   small UTXOs accumulate (typically the next maintenance window).
 - **Treat a `sweep_below` error the same way.** If the call returns an
   error (for example because there are no spendable sub-threshold
   outputs left, or none that satisfy the mixin requirement), the
-  wallet has nothing to sweep — stop the current batch.
+  wallet has nothing to sweep, so stop the current batch.
 - After each batch, call `get_utxo_stats` again to check progress.
   Stop when the low-bucket count is under a few dozen.
 
@@ -166,7 +166,7 @@ this procedure to run **daily** during a low-traffic window. For wallets
 that are mostly idle, **weekly** is plenty.
 
 If your wallet is severely unhealthy when you start (tens of thousands of
-small UTXOs), the first full normalization will take many batches —
+small UTXOs), the first full normalization will take many batches,
 possibly spread over several days at the 10-per-30-min pacing. After
 that, daily/weekly maintenance keeps it healthy with very little work.
 
@@ -206,7 +206,7 @@ A few observations:
 - **Total transaction count is roughly the same** (125–141) regardless of
   threshold. The work is dominated by draining the ~10,000 tiny UTXOs
   through the per-transaction input cap.
-- **Higher thresholds give you fewer, larger output UTXOs** — i.e. a
+- **Higher thresholds give you fewer, larger output UTXOs**, i.e. a
   healthier-looking end state.
 - **Aggressive thresholds (sweep everything) collapse the wallet to very
   few outputs** (3–4), which works but sacrifices the ability to run
@@ -234,12 +234,12 @@ A few observations:
 - **Batch size**: at most 10 `sweep_below` transactions in a row.
 - **Pacing**: wait at least 30 minutes between batches.
 - **Stop condition**: when `outs_swept == outs_total` in a `sweep_below`
-  response (or the call returns an error) — the wallet has nothing
+  response (or the call returns an error); the wallet has nothing
   more to consolidate.
 - **Cadence**: daily for busy wallets, weekly for quiet ones.
 - **Assets**: pass `asset_id` to `sweep_below` to consolidate a specific
   confidential asset; omit it for native ZANO.
 
-A healthy wallet is one where any reasonable withdrawal — small or large —
+A healthy wallet is one where any reasonable withdrawal, small or large,
 can be built from 1–2 inputs. Running this procedure on a regular schedule
 keeps it that way with minimal overhead.

@@ -97,7 +97,7 @@ Anyone can easily issue user-creatable currencies and digital tokens on the Zano
 
 ### What are Ionic Swaps?
 
-Ionic Swaps are an improvement on Atomic Swaps, innovating seamless cryptocurrency exchanges while preserving user privacy. Ionic Swaps are a safe and consistent way to perform peer-to-peer swaps in which neither party has an unfair advantage. This technology is used by our DEX: Zano Trade.
+Ionic Swaps are an improvement on Atomic Swaps: a safe way to swap assets peer-to-peer, with privacy preserved and neither party holding an unfair advantage. This technology is used by our DEX: Zano Trade.
 
 ### What is an alias and how does it work?
 
@@ -231,7 +231,7 @@ Beyond making the foundation fund wallet publicly accessible and publishing mont
 
 ### Can I bridge assets like BTC or ETH to Zano?
 
-Yes. Zano supports cross-chain bridging, allowing users to move assets from other blockchains into the Zano ecosystem and benefit from its privacy features. One of the bridges that has integrated Zano is [Confidential Layer](https://confidentiallayer.com/), a protocol built on the [Bridgeless](https://bridgeless.com/) L1 blockchain that enables seamless, decentralized, and non-custodial bridging between various blockchains (like Ethereum and Bitcoin) and privacy chains like Zano. It allows users to move assets like BTC, BCH, and EVM tokens into privacy-focused environments.
+Yes. Zano supports cross-chain bridging, allowing users to move assets from other blockchains into the Zano ecosystem and benefit from its privacy features. One of the bridges that has integrated Zano is [Confidential Layer](https://confidentiallayer.com/), a protocol built on the [Bridgeless](https://bridgeless.com/) L1 blockchain that enables decentralized, non-custodial bridging between various blockchains (like Ethereum and Bitcoin) and privacy chains like Zano. It allows users to move assets like BTC, BCH, and EVM tokens into privacy-focused environments.
 
 This means users can upgrade their favorite crypto assets with the privacy and security of the Zano blockchain, bringing massive utility to Zano's ecosystem.
 
@@ -305,8 +305,8 @@ Zano wallet is a full node application: it loads the blockchain and synchronizes
 
 ### Where can I get support?
 
-- **Official support**: open a ticket at [zano.org/support](https://zano.org/support) — the support team replies by email. For anything involving your wallet or funds, use this channel. See [Reporting Issues](/docs/use/reporting-issues) for details and log locations.
-- **Community**: the [Zano Forum](https://forum.zano.org) and [Discord](https://discord.gg/wE3rmYY). These are community spaces — support will never DM you first, and no one legitimate will ever ask for your seed phrase.
+- **Official support**: open a ticket at [zano.org/support](https://zano.org/support); the support team replies by email. For anything involving your wallet or funds, use this channel. See [Reporting Issues](/docs/use/reporting-issues) for details and log locations.
+- **Community**: the [Zano Forum](https://forum.zano.org) and [Discord](https://discord.gg/wE3rmYY). These are community spaces. Support will never DM you first, and no one legitimate will ever ask for your seed phrase.
 - **Developers**: reproducible code bugs go to [GitHub Issues](https://github.com/hyle-team/zano/issues).
 - **Zano Trade support**: [@zano_trade_support](https://t.me/zano_trade_support)
 - **Critical network updates**: [@zano_critical](https://t.me/zano_critical)

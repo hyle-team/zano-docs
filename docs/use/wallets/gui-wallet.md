@@ -85,4 +85,4 @@ The GUI has no built-in option to change a wallet file's password (the password 
 6. Recover and enter the previously stored seed phrase
 7. Click `Select wallet location` and choose a **new** file name, so the old wallet file is not overwritten
 8. Continue with `Create wallet`
-9. Verify the restored wallet shows the expected address and, after syncing, the expected balance — only then archive or remove the old wallet file
+9. Verify the restored wallet shows the expected address and, after syncing, the expected balance. Only then archive or remove the old wallet file

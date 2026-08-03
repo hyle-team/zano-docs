@@ -4,7 +4,7 @@ This document is intended for services / exchanges and describes how to prepare 
 
 ## TL;DR
 
-If you use any of these deprecated API methods, switch to the replacement before HF6 — the old ones will start failing on transactions that carry an intrinsic (per-output) payment ID:
+If you use any of these deprecated API methods, switch to the replacement before HF6: the old ones will start failing on transactions that carry an intrinsic (per-output) payment ID:
 
 ##### Table 1. TL;DR summary
 
@@ -29,10 +29,10 @@ Gateway addresses are described in a separate [guide](https://docs.zano.org/docs
 
 Payment ID (a.k.a. PID) is arbitrary data that can be attached to a transaction and it is mainly intended to help the receiver distinguish between different payments (e.g. an exchange receiving deposits on the same hot wallet address from different users).
 This data is encrypted in such a way that only the sender and the receiver can decode it.
-Before HF6, the PID is stored in the transaction's `extra/attachment` section and thus it's tx-wide by nature — you can put only one PID into a transaction regardless of the number of outputs.
+Before HF6, the PID is stored in the transaction's `extra/attachment` section and thus it's tx-wide by nature: you can put only one PID into a transaction regardless of the number of outputs.
 A PID can be packed together with a normal Zano address into an *integrated address*. When someone sends funds to an integrated address, the sender's wallet extracts PID from the address and then makes a standard transaction to the stripped address with PID included into tx's extra.
 
-Since HF6 we introduce so-called *intrinsic payment ID* — 8 bytes of arbitrary data that is put into each transaction's output. This data is encrypted similarly to outputs' amounts, and it is always present even if no payment ID is actually used for a particular output, making a transaction more uniform.
+Since HF6 we introduce so-called *intrinsic payment ID*: 8 bytes of arbitrary data that is put into each transaction's output. This data is encrypted similarly to outputs' amounts, and it is always present even if no payment ID is actually used for a particular output, making a transaction more uniform.
 Old tx-wide payment IDs will still be usable even after HF6, although with some limitations.
 
 ##### Table 2. Difference between tx-wide payment IDs and intrinsic payment IDs
@@ -47,7 +47,7 @@ Old tx-wide payment IDs will still be usable even after HF6, although with some 
 | Supported after HF6? | Yes (with limitations) | Yes |
 | Can be used in a tx with gateway outputs? | No | Yes |
 
-The most important change to note: a single transaction **may contain multiple payments** with different payment ID and different asset. From user's perspective it looks like sending a tx to multiple integrated addresses — which is not allowed before HF6 (multiple destinations are allowed, but an integrated address must be the first and only one) — but becomes possible after HF6 activation.
+The most important change to note: a single transaction **may contain multiple payments** with different payment ID and different asset. From user's perspective it looks like sending a tx to multiple integrated addresses. This is not allowed before HF6 (multiple destinations are allowed, but an integrated address must be the first and only one), but it becomes possible after HF6 activation.
 
 Legacy tx-wide PIDs and intrinsic per-output PIDs shouldn't be used together: such a transaction cannot be created by the wallet, and if one is encountered anyway, the wallet prioritizes the legacy tx-wide PID and ignores any intrinsic PIDs.
 

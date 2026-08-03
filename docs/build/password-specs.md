@@ -5,8 +5,8 @@ ensure cross-platform compatibility and security.
 
 ## 1. Character Set Requirements
 
-To avoid encoding issues (such as NFC/NFD normalization conflicts) and ensure seamless
-migration between mobile and desktop, we use the standard ASCII printable character set.
+To avoid encoding issues (such as NFC/NFD normalization conflicts) and keep passwords
+portable between mobile and desktop, we use the standard ASCII printable character set.
 
 Allowed Characters:
 - Latin Alphabet: A-Z, a-z

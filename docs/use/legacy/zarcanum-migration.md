@@ -28,7 +28,7 @@ Using the Auto Migration feature is simple, thanks to the new wallet interface. 
 
 **Initiate Migration**: If your wallet detects pre-Zarcanum outputs, a popup will appear informing you of the number of outputs and the total ZANO amount they represent. For example, "There are 112 outputs with a total amount of 24 ZANO".
 
-**Understand the Details**: If you're unsure about what 'outputs' means, click on the "What does it mean?" link for a detailed explanation — this will be the article currently in progress.
+**Understand the Details**: If you're unsure about what 'outputs' means, click on the "What does it mean?" link for a detailed explanation (this will be the article currently in progress).
 
 **Review the Transaction Fee**: The popup will also display the transaction fee required to migrate your outputs. Ensure you have enough balance to cover this fee.
 
