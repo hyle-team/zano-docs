@@ -72,8 +72,8 @@ const config = {
     image: "img/zano_dev_meta.png",
     colorMode: {
       defaultMode: "dark",
-      disableSwitch: true,
-      respectPrefersColorScheme: false,
+      disableSwitch: false,
+      respectPrefersColorScheme: true,
     },
     navbar: {
       title: "Zano Docs",
@@ -117,15 +117,10 @@ const config = {
           sidebarId: "codeSidebar",
           position: "left",
           label: "Code",
-        },        
+        },
         {
           href: "https://github.com/hyle-team/zano",
           label: "GitHub",
-          position: "right",
-        },
-        {
-          href: "https://zano.org/wallets",
-          label: "Get Wallet",
           position: "right",
         },
       ],
@@ -181,6 +176,10 @@ const config = {
               label: "Wrapped Zano",
               to: "https://wrapped.zano.org",
             },
+            {
+              label: "Support",
+              to: "https://zano.org/support",
+            },
           ],
         },
         {
@@ -199,6 +198,10 @@ const config = {
         {
           title: "Community",
           items: [
+            {
+              label: "Forum",
+              to: "https://forum.zano.org",
+            },
             {
               label: "Discord",
               to: "https://discord.gg/wE3rmYY",

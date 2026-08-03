@@ -19,10 +19,11 @@ const IconCode = () => (
     <polyline points="8 6 2 12 8 18" />
   </svg>
 );
-const IconPick = () => (
+const IconChip = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M14 10 3 21" />
-    <path d="M9.5 3.5C13 2 18 3 21 6.5c-2 .5-5.5 2-8 4.5-2.5-2.5-4-6-3.5-7.5z" />
+    <rect x="5" y="5" width="14" height="14" rx="2" />
+    <rect x="9.5" y="9.5" width="5" height="5" />
+    <path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3" />
   </svg>
 );
 const IconCoins = () => (
@@ -58,12 +59,14 @@ const sections = [
       { label: "Getting Started", to: "/docs/use/overview" },
       { label: "Wallets", to: "/docs/use/wallets/overview" },
       { label: "Security & Privacy", to: "/docs/use/seed-phrase" },
+      { label: "dApps & Bridges", to: "/docs/use/dapps/" },
+      { label: "Troubleshooting", to: "/docs/use/troubleshooting/common-issues" },
     ],
   },
   {
     title: "Build",
     Icon: IconCode,
-    description: "APIs and integration guides for developers.",
+    description: "Integrate Zano into your app, service, or exchange.",
     links: [
       { label: "Build Overview", to: "/docs/build/overview" },
       { label: "RPC API", to: "/docs/build/rpc-api/overview" },
@@ -72,7 +75,7 @@ const sections = [
   },
   {
     title: "Mine",
-    Icon: IconPick,
+    Icon: IconChip,
     description: "Secure the PoW side with ProgPowZ hashpower.",
     links: [{ label: "Mining Overview", to: "/docs/mine/overview" }],
   },
@@ -88,32 +91,26 @@ const sections = [
   {
     title: "Code",
     Icon: IconTerminal,
-    description: "The Zano codebase and internals, explained.",
-    links: [{ label: "Code Overview", to: "/docs/code/overview" }],
+    description: "Inside the C++ core, for contributors.",
+    links: [
+      { label: "Codebase Overview", to: "/docs/code/overview" },
+      { label: "Serialization Types", to: "/docs/code/serialization-types" },
+    ],
   },
-];
-
-const resources = [
-  { label: "zano.org", sub: "project website", href: "https://zano.org" },
-  { label: "Explorer", sub: "explorer.zano.org", href: "https://explorer.zano.org" },
-  { label: "GitHub", sub: "hyle-team/zano", href: "https://github.com/hyle-team/zano" },
-  { label: "Blog", sub: "blog.zano.org", href: "https://blog.zano.org" },
 ];
 
 function StartPage() {
   return (
     <main className={styles.container}>
       <section className={styles.hero}>
-        <p className={styles.kicker}>Documentation</p>
         <h1 className={styles.title}>
-          The private economy, <span className={styles.titleAccent}>documented</span>
+          Zano <span className={styles.titleAccent}>Documentation</span>
         </h1>
         <p className={styles.subtitle}>
           Zano is a privacy-first layer-1: amounts, addresses, and asset types are
           hidden by default. Learn how it works, use the wallets and dApps, and
           build on the chain.
         </p>
-        <div className={styles.heroDivider} />
       </section>
 
       <section className={styles.grid}>
@@ -134,15 +131,6 @@ function StartPage() {
               ))}
             </ul>
           </div>
-        ))}
-      </section>
-
-      <section className={styles.resources}>
-        {resources.map(({ label, sub, href }) => (
-          <Link className={styles.resource} to={href} key={label}>
-            <span className={styles.resourceLabel}>{label}</span>
-            <span className={styles.resourceSub}>{sub}</span>
-          </Link>
         ))}
       </section>
     </main>
