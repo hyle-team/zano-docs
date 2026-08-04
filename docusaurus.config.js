@@ -192,7 +192,7 @@ const config = {
               to: "https://explorer.zano.org",
             },
             {
-              label: "Github",
+              label: "GitHub",
               to: "https://github.com/hyle-team/zano",
             },
           ],
@@ -217,7 +217,7 @@ const config = {
               to: "https://t.me/zanocoin",
             },
             {
-              label: "Youtube",
+              label: "YouTube",
               to: "https://www.youtube.com/@zanoproject",
             },
             {
