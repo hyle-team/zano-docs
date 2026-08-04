@@ -67,12 +67,12 @@ const config = {
         lastVersion: "current",
         versions: {
           current: {
-            label: "Mainnet (2.2.1)",
+            label: "Mainnet (2.2.1.502)",
             path: "",
           },
-          fixture: {
-            label: "Fixture (spike)",
-            path: "fixture",
+          testnet: {
+            label: "Testnet (2.2.1.502)",
+            path: "testnet",
             banner: "unreleased",
           },
         },
@@ -160,8 +160,7 @@ const config = {
           label: "Code",
         },
         {
-          type: "docsVersionDropdown",
-          docsPluginId: "api",
+          type: "custom-apiVersionDropdown",
           position: "right",
         },
         {
