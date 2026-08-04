@@ -32,6 +32,12 @@ const config = {
           sidebarPath: './sidebars.js',
           remarkPlugins: [remarkMath],
           rehypePlugins: [rehypeKatex],
+          // the RPC reference is served by the versioned "api" instance below
+          exclude: [
+            "**/_*.{js,jsx,ts,tsx,md,mdx}",
+            "**/_*/**",
+            "build/rpc-api/**",
+          ],
         },
         theme: {
           customCss: './src/css/custom.css',
@@ -41,6 +47,37 @@ const config = {
   ],
 
   plugins: [
+    [
+      // Versioned RPC API reference: own instance, same folder, same URLs.
+      // lastVersion "current" + path "" keeps the working folder (mainnet)
+      // at the clean base path even once snapshots exist — do not remove.
+      "@docusaurus/plugin-content-docs",
+      {
+        id: "api",
+        // content lives OUTSIDE docs/ — nesting it there makes both instances'
+        // webpack mdx rules chain and double-compile every page (spike finding).
+        // The route below still serves the original URLs unchanged.
+        // docs/build/rpc-api (if recreated by the build bot) stays excluded in
+        // the default instance and acts as staging input only.
+        path: "api-reference",
+        routeBasePath: "docs/build/rpc-api",
+        sidebarPath: "./sidebarsApi.js",
+        remarkPlugins: [remarkMath],
+        rehypePlugins: [rehypeKatex],
+        lastVersion: "current",
+        versions: {
+          current: {
+            label: "Mainnet (2.2.1)",
+            path: "",
+          },
+          fixture: {
+            label: "Fixture (spike)",
+            path: "fixture",
+            banner: "unreleased",
+          },
+        },
+      },
+    ],
     [
       "@docusaurus/plugin-client-redirects",
       {
@@ -97,8 +134,10 @@ const config = {
           label: "Use",
         },
         {
-          type: "docSidebar",
-          sidebarId: "buildSidebar",
+          // plain link with activeBaseRegex so the Build tab also highlights
+          // on the versioned API instance's pages (same /docs/build/ prefix)
+          to: "/docs/build/overview",
+          activeBaseRegex: "^/docs/build/",
           position: "left",
           label: "Build",
         },
@@ -119,6 +158,11 @@ const config = {
           sidebarId: "codeSidebar",
           position: "left",
           label: "Code",
+        },
+        {
+          type: "docsVersionDropdown",
+          docsPluginId: "api",
+          position: "right",
         },
         {
           href: "https://github.com/hyle-team/zano",

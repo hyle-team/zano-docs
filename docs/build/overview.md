@@ -8,7 +8,7 @@ sidebar_position: 1
 
 ### RPC API Guide
 
-Start with the RPC API [Overview](rpc-api/overview.md) and [How to call the API](rpc-api/how-to-call-api.md). From there, pick the [Daemon RPC API](rpc-api/daemon-rpc-api/get_alias_by_address.md) or the [Wallet RPC API](rpc-api/wallet-rpc-api/get_bulk_payments.md) depending on what you are integrating.
+Start with the RPC API [Overview](/docs/build/rpc-api/overview) and [How to call the API](/docs/build/rpc-api/how-to-call-api). From there, pick the [Daemon RPC API](/docs/build/rpc-api/daemon-rpc-api/get_alias_by_address) or the [Wallet RPC API](/docs/build/rpc-api/wallet-rpc-api/get_bulk_payments) depending on what you are integrating.
 
 ### Confidential Assets
 
