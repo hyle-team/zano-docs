@@ -4,11 +4,9 @@ sidebar_position: 1
 
 # RPC API Overview
 
-:::info Testnet API reference
-Generated from `2.2.1.502[testnet-76a791c]` on 2026-08-04 by scripts/api_version.py.
+:::info Archived API reference
+Generated from `2.2.1.502[72b939e]` on 2026-08-04 by scripts/api_version.py.
 :::
-
-
 
 
 Welcome to the Zano API documentation! As a digital currency enthusiast, developer, or end user, we know how important it is for you to have a clear, comprehensive guide to our API. That's why we've designed our documentation to be as accessible and easy to understand as possible.

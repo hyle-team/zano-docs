@@ -29,6 +29,21 @@ saying so in the commit message.
 5. Review `git diff` — the delta must match the release's expected API changes; update the changelog page
 6. Commit (signed), PR, merge
 
+## Build-machine integration
+
+The release build script's old doc section (rm + `--generate-rpc-autodoc` into
+`docs/build/rpc-api/` + commit) no longer works and must be replaced with
+`scripts/build-machine-docs.sh` (drop-in; same variables: `$daemon_path`,
+`$wallet_path`, `$version_str`, `$testnet`). What changes in behavior:
+
+- testnet builds update the **Testnet** snapshot instead of overwriting mainnet
+- mainnet builds roll the current version forward; crossing a release line
+  (e.g. 2.2.1 → 2.3.0) auto-archives the old release first
+- invariants are checked before committing; a no-change regen exits cleanly
+  instead of failing on an empty commit
+- requires python3 on the build machine (stdlib only)
+- builds with `$build_prefix` set (custom builds) skip the docs update entirely
+
 ## Invariants `check` enforces (also safe in CI)
 
 - four hand-written intro pages present in the working dir

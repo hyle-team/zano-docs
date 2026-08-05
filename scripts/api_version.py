@@ -165,10 +165,24 @@ def cmd_archive(args):
     print(f"archived current mainnet as version-{name} (label/path/banner use Docusaurus defaults)")
 
 
+def release_line(stamp):
+    """'2.2.1.502[72b939e]' -> '2.2.1' (MAJOR.MINOR.PATCH identifies a release line)."""
+    m = re.match(r"v?(\d+\.\d+\.\d+)", stamp or "")
+    return m.group(1) if m else None
+
+
 def cmd_rollover(args):
-    if not any(p.name.startswith("version-") and p.name != "version-testnet" for p in VDOCS.iterdir()):
-        die("no archive snapshot exists — run `archive` first (rollover refuses to destroy history)")
     d, w = generate_pair(args.zanod, args.simplewallet)
+    old_line = release_line(stamp_of(WORK / "daemon-rpc-api"))
+    new_line = release_line(stamp_of(d))
+    if old_line and new_line and old_line != new_line:
+        # crossing a release boundary: preserve the old release before replacing it
+        if not (VDOCS / f"version-{old_line}").exists():
+            print(f"release boundary {old_line} -> {new_line}: auto-archiving {old_line} first")
+            class _A: name = old_line
+            cmd_archive(_A)
+    elif not any(p.name.startswith("version-") and p.name != "version-testnet" for p in VDOCS.iterdir()):
+        die("no archive snapshot exists — run `archive` first (rollover refuses to destroy history)")
     replace_generated(WORK, d, w)
     for page in INTRO_PAGES:
         if not (WORK / page).exists():
