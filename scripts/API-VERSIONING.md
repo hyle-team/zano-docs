@@ -42,7 +42,12 @@ The release build script's old doc section (rm + `--generate-rpc-autodoc` into
 - invariants are checked before committing; a no-change regen exits cleanly
   instead of failing on an empty commit
 - requires python3 on the build machine (stdlib only)
-- builds with `$build_prefix` set (custom builds) skip the docs update entirely
+- only release-line builds update docs: the script skips unless `BRANCH_NAME`
+  is release/master/main (this Jenkins setup sets `build_prefix=$BRANCH_NAME`
+  on every build, so build_prefix cannot be used to tell builds apart)
+- mainnet vs testnet is detected from the binary's own version string, and no
+  variables need exporting from the calling script
+- `DRY_RUN=1` generates and validates without touching git
 
 ## Invariants `check` enforces (also safe in CI)
 
