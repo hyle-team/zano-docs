@@ -60,9 +60,23 @@ This design makes GW addresses suitable for use cases such as bridges, exchanges
 
 Registration of a GW address is done via **wallet RPC** (`register_gateway_address`), a Zano wallet with sufficient balance is required.
 
+:::danger Run your own daemon - admin API required
+
+All `gateway_*` daemon RPC methods used in this guide are **admin-level** and **disabled by default**. Start `zanod` with `--rpc-enable-admin-api`.
+
+**You MUST run your OWN daemon for any production gateway integration in your SECURE NETWORK**, for several reasons:
+
+1. **`tx_secret_key` exposure** - `gateway_create_owner_change` returns the per-transaction one-time secret key in its response. Combined with the unsigned tx blob, an operator of the daemon can decrypt outputs and learn payment IDs.
+2. **Owner-change intent leak** - submitting `gateway_create_owner_change` to a third-party daemon reveals that you are about to rotate keys for a specific gateway address.
+3. **`gateway_view_secret_key` exposure** - when calling `gateway_create_transfer` or `gateway_get_address_history` with the optional `gateway_view_secret_key`, that key is exposed to the daemon operator. They can then permanently decrypt all past and future payment IDs of the gateway address.
+4. **No firewall protects an exposed admin API** - never expose port 11211 (or any RPC port with `--rpc-enable-admin-api`) to the public internet. Bind to `127.0.0.1` only, or place behind a private VPC / authenticated proxy.
+
+**Recommended deployment**: run `zanod --rpc-enable-admin-api --rpc-bind-ip=127.0.0.1` on the same host as your integration service. Never expose the admin RPC port externally.
+:::
+
 ### Prerequisites
 #### **IMPORTANT**: You must use **YOUR OWN NODE**, as the `view key` will be transferred there.
-- Running and synced Zano daemon (`zanod`) on a network with hard fork 6+
+- Running and synced Zano daemon (`zanod`) on a network with hard fork 6+, started with `--rpc-enable-admin-api`
 - A wallet with RPC server enabled [(HOWTO)](https://docs.zano.org/docs/build/exchange-guidelines/starting-the-daemon-and-the-wallet-application-as-rpc-server)
 - Balance of at least **~100.01 ZANO** (100 ZANO - Registration fee + Default fee)
 
@@ -289,7 +303,8 @@ External service            Daemon (zanod)            Blockchain
       |    origin_gateway_id      | Checks balance        |
       |    destinations, fee      | Builds unsigned TX    |
       |                           |                       |
-      |  tx_hash_to_sign     <--- |                       |
+      |  tx_id              <---  |                       |
+      |  tx_hash_to_sign (DSS)    |                       |
       |  tx_blob                  |                       |
       |                           |                       |
       |  +--------------------+   |                       |
@@ -301,13 +316,16 @@ External service            Daemon (zanod)            Blockchain
       |                           |                       |
       |  gateway_sign_            |                       |
       |  transfer --------------> |                       |
-      |    tx_blob + signature    | Inserts signature     |
+      |    tx_blob + tx_id +      | Verifies tx_id and    |
+      |    signature              | inserts signature     |
       |                           |                       |
       |  signed_tx_blob      <--- |                       |
       |                           |                       |
       |  sendrawtransaction ----> | --------------------> |
       |                           |        Into block     |
 ```
+
+**Domain separation:** `tx_hash_to_sign` is **not** equal to `tx_id`. It is a domain-separated hash — `H(CRYPTO_HDS_GW_INPUT_SIGNATURE || prepare_prefix_hash_for_sign(tx))` - that explicitly binds the signature to the role "spend the gateway input". This prevents a signature collected for one purpose from being substituted in a different cryptographic context. Always sign **exactly the bytes returned in `tx_hash_to_sign`**; don't recompute it yourself.
 
 ### Step 1: Create transaction - `gateway_create_transfer`
 
@@ -343,11 +361,20 @@ Destinations can be both regular addresses (`Z...`) and other GW addresses (`gwZ
   "id": 0,
   "result": {
     "status": "OK",
+    "tx_id": "a6e8da986858e6825fce7a192097e6afae4e889cabe853a9c29b964985b23da8",
     "tx_hash_to_sign": "20e922b32dfe9b8b6bc6004e40f4198c9e966d5e228cd4830656ba967f8a205c",
-    "tx_blob": "040141004dbaa579daf3c4a91e6be2efde9568975f7b506b50d18bbefd6f03132b2ef18074c32d3eaafafc623bf483e858d42e8bf4ec7df064ada2e34934469cff6b626880988be49903000516787ebe13ed53f6e5225ef5c481024b7f331a42fefa6d859c785521116659150a1700000b0217ce0b0264e42700e40b5402000000023f00f2085ea66732a56db0771aefcaa9c9fcb7828bcf4275d45579c5921d13516df041eacba1733953ed9dd2d2672d20c866076477c32e061536deb1245cb2804137e64ba3acd47465143f7e568afc2c1c3add2b9ffc13520feec9cb8ee734dbd3a574c32d3eaafafc623bf483e858d42e8bf4ec7df064ada2e34934469cff6b6268d2ff9f07847d62ebc7202bc521e74f94003f007e5ad2eab4fb7f4a0b19177b593043e30640993e7c844397767c8a22e91521bb97c2d275ee1760109f93d2021cfebffd73aa1e0da75a3cbd737910de3fbe92fb4bbb7523374f82711e894d357b82283f5df7963769d77a80572c0612b0be151374c32d3eaafafc623bf483e858d42e8bf4ec7df064ada2e34934469cff6b6268e359da40dc207efd55f19663586410d00006000143004600000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000032e002f07b6039875cc562b68a034d3acd220672f7213dce03a425deba13c9a01759d65b1c4e06210da36d87f7c6a81c46cd43ec869018e0b2497f6adf79f06aaad6a3080793811d4059534b25449addbcaa1ac642cb9086dbf060d0a8cd685d05532ef23c7e85c9eac2533d21571249799722f491f4318c1426b2ee61cb9575e824302bb95a145a2cb71a682fb652d431f8f17dd66e0036decc89a17784a5d84f4000e36580e5e0bd1bca7d3d4575c2ecec56afdb85ab06986bb35613262fd12e8080482d68d09e8e9b43779f6f9913977935ce00dc2b47e8121ab24d17cf8999992b0c2075effe6cd4b0ad21ac3a310a94cc5b481373c05960cb1ae134d75f8184005e45fc1134f2bd4de031826856e494d4d06e4b2d3164e98b752b4f559df5169b986378c0fd4ddbada717875a15097773974fec4a8419dcdad4fdceb7d6fa5ad71072f36a5888dedc29c3beabcc0784c1035cde704d14d799ee794558b1bfb839537a6663da725062aaa83bee9896eceffaf1236799bb59c7b9bc98c4c20414f254fd151438a6f4208e02bfa6050414dfb1df3c2e41d1173ee9c1da2b60e1fbf84519bad7690be9d01c927da4aa3ee59a7b292caafba860fe1687c344994e80f6b18f5853acfac90be73993e4658de57d6e15b242c8774816433e3a13c1e385bb649efe87e18a75624bd47b25e8414a6b7c2a2deea6988576d8ddeae0be1f689bfe7679f77afe745cf1d819b0d18783aef1122fa1a22917b95a0495b965aad389907aaf96dd1744f4ad5d615e5f46c0853ac8f5a43d404e576db9112eb10182a55f8047b96f8bdb3d0c7b04a2fcef6faa4b732b74d142158bbaba42f32a4216e22a60f33a99867067d22fae284cbefd0e77116ab5274d6fd904725cb23736c4a6d020102932a7296485c475d663f3da145150687fd97f229cb875b0723fad6e9ff545cf90dfa73f05cfb4b90a784d3baea4314a9fc99bb0be5e1eb9bf14341fcb3178a5102fdf319fbafb71264060a697b4b312111ebe4eee25afb2c6c3e12bdda4ed7ea0e433d03150eae875856e1ccba6d70d804747b22b7961bd2a332364919d0d5380002e2f5cac81634c1d768b2a61bb39fda2016fb0bdb75dec9277baa70d4ade8b9069eb890a3c331fd1e45f16fb76adaeaa090a8aa3af3691c0a4c6127ae4213dd0ac55f3f8d223f7f7ee7151e12d4ba8367b2c2bc299b5d30fa8056e7a95c1eb40c30e72c83b96c57d3c13f804e58c20571ef9c934860cbf66746a780e9dfa2444f0221bb69bc9c2099d3672bb30d95b4d1299c57d1b1ad077ea53b9887fc401cf70ab29cdb7bd636d417506749ab6aaae4d00395d8aaa4d5d82ec596c60d850db10e"
+    "tx_blob": "0401..."
   }
 }
 ```
+
+Response fields:
+
+| Field | Description |
+|---|---|
+| `tx_id` | Actual hash of the constructed transaction. Used as a sanity-check parameter in the next step and for tx tracking. |
+| `tx_hash_to_sign` | **Domain-separated hash** to be signed by the current owner. This is `H(CRYPTO_HDS_GW_INPUT_SIGNATURE || prepare_prefix_hash_for_sign(tx))`, **not** equal to `tx_id`. Sign exactly these bytes. |
+| `tx_blob` | Hex blob of the unsigned transaction. Pass it back to `gateway_sign_transfer` unchanged. |
 
 The daemon checks:
 - The GW address exists in the blockchain
@@ -365,18 +392,20 @@ Take `tx_hash_to_sign` from the response and sign it with **your owner_secret_ke
   "id": 0,
   "method": "gateway_sign_transfer",
   "params": {
-    "tx_blob": "040141004dbaa579daf3c4a91e6be2efde9568975f7b506b50d18bbefd6f03132b2ef18074c32d3eaafafc623bf483e858d42e8bf4ec7df064ada2e34934469cff6b626880988be49903000516787ebe13ed53f6e5225ef5c481024b7f331a42fefa6d859c785521116659150a1700000b0217ce0b0264e42700e40b5402000000023f00f2085ea66732a56db0771aefcaa9c9fcb7828bcf4275d45579c5921d13516df041eacba1733953ed9dd2d2672d20c866076477c32e061536deb1245cb2804137e64ba3acd47465143f7e568afc2c1c3add2b9ffc13520feec9cb8ee734dbd3a574c32d3eaafafc623bf483e858d42e8bf4ec7df064ada2e34934469cff6b6268d2ff9f07847d62ebc7202bc521e74f94003f007e5ad2eab4fb7f4a0b19177b593043e30640993e7c844397767c8a22e91521bb97c2d275ee1760109f93d2021cfebffd73aa1e0da75a3cbd737910de3fbe92fb4bbb7523374f82711e894d357b82283f5df7963769d77a80572c0612b0be151374c32d3eaafafc623bf483e858d42e8bf4ec7df064ada2e34934469cff6b6268e359da40dc207efd55f19663586410d00006000143004600000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000032e002f07b6039875cc562b68a034d3acd220672f7213dce03a425deba13c9a01759d65b1c4e06210da36d87f7c6a81c46cd43ec869018e0b2497f6adf79f06aaad6a3080793811d4059534b25449addbcaa1ac642cb9086dbf060d0a8cd685d05532ef23c7e85c9eac2533d21571249799722f491f4318c1426b2ee61cb9575e824302bb95a145a2cb71a682fb652d431f8f17dd66e0036decc89a17784a5d84f4000e36580e5e0bd1bca7d3d4575c2ecec56afdb85ab06986bb35613262fd12e8080482d68d09e8e9b43779f6f9913977935ce00dc2b47e8121ab24d17cf8999992b0c2075effe6cd4b0ad21ac3a310a94cc5b481373c05960cb1ae134d75f8184005e45fc1134f2bd4de031826856e494d4d06e4b2d3164e98b752b4f559df5169b986378c0fd4ddbada717875a15097773974fec4a8419dcdad4fdceb7d6fa5ad71072f36a5888dedc29c3beabcc0784c1035cde704d14d799ee794558b1bfb839537a6663da725062aaa83bee9896eceffaf1236799bb59c7b9bc98c4c20414f254fd151438a6f4208e02bfa6050414dfb1df3c2e41d1173ee9c1da2b60e1fbf84519bad7690be9d01c927da4aa3ee59a7b292caafba860fe1687c344994e80f6b18f5853acfac90be73993e4658de57d6e15b242c8774816433e3a13c1e385bb649efe87e18a75624bd47b25e8414a6b7c2a2deea6988576d8ddeae0be1f689bfe7679f77afe745cf1d819b0d18783aef1122fa1a22917b95a0495b965aad389907aaf96dd1744f4ad5d615e5f46c0853ac8f5a43d404e576db9112eb10182a55f8047b96f8bdb3d0c7b04a2fcef6faa4b732b74d142158bbaba42f32a4216e22a60f33a99867067d22fae284cbefd0e77116ab5274d6fd904725cb23736c4a6d020102932a7296485c475d663f3da145150687fd97f229cb875b0723fad6e9ff545cf90dfa73f05cfb4b90a784d3baea4314a9fc99bb0be5e1eb9bf14341fcb3178a5102fdf319fbafb71264060a697b4b312111ebe4eee25afb2c6c3e12bdda4ed7ea0e433d03150eae875856e1ccba6d70d804747b22b7961bd2a332364919d0d5380002e2f5cac81634c1d768b2a61bb39fda2016fb0bdb75dec9277baa70d4ade8b9069eb890a3c331fd1e45f16fb76adaeaa090a8aa3af3691c0a4c6127ae4213dd0ac55f3f8d223f7f7ee7151e12d4ba8367b2c2bc299b5d30fa8056e7a95c1eb40c30e72c83b96c57d3c13f804e58c20571ef9c934860cbf66746a780e9dfa2444f0221bb69bc9c2099d3672bb30d95b4d1299c57d1b1ad077ea53b9887fc401cf70ab29cdb7bd636d417506749ab6aaae4d00395d8aaa4d5d82ec596c60d850db10e",
-    "tx_hash_to_sign": "20e922b32dfe9b8b6bc6004e40f4198c9e966d5e228cd4830656ba967f8a205c",
+    "tx_blob": "0401...",
+    "tx_id": "a6e8da986858e6825fce7a192097e6afae4e889cabe853a9c29b964985b23da8",
     "opt_ecdsa_signature": "c2b347b83da0a79637b74ad4b504030033b771ac8cb1f610757f82e88d112b1032ef615efb2cf3f2e70c15de9c63208ca80c1cea70f12785648c98a5ca3c7b40"
   }
 }
 ```
 
-Instead of `opt_ecdsa_signature` use:
-- `opt_custom_schnorr_signature` - if owner key is Schnorr
-- `opt_eddsa_signature` - if owner key is EdDSA
+Request fields:
 
-Exactly **one** signature must be specified.
+| Field | Description |
+|---|---|
+| `tx_blob` | The unsigned tx blob from `gateway_create_transfer`. Pass back unchanged. |
+| `tx_id` | The actual `tx_id` from the previous response - sanity check that the daemon received the same tx blob you signed. |
+| `opt_ecdsa_signature` / `opt_custom_schnorr_signature` / `opt_eddsa_signature` | Exactly **one** signature, matching the current owner key type. The signature is over the bytes of `tx_hash_to_sign` returned by `gateway_create_transfer`. |
 
 **Response:**
 
@@ -422,9 +451,10 @@ async function sendFromGateway(gatewayAddressId, recipientAddress, amount, owner
     comment: 'Payment from GW address',
   });
 
-  console.log('TX hash to sign:', createResult.tx_hash_to_sign);
+  console.log('tx_id :', createResult.tx_id);
+  console.log('hash to sign :', createResult.tx_hash_to_sign, '(DSS-wrapped)');
 
-  // sign with ETH private key
+  // sign tx_hash_to_sign (DSS-wrapped) with ETH private key
   const bytesToSign = ethers.getBytes('0x' + createResult.tx_hash_to_sign);
   const signature = ownerWallet.signingKey.sign(bytesToSign);
   const ethSignature = signature.r.slice(2) + signature.s.slice(2);
@@ -433,8 +463,8 @@ async function sendFromGateway(gatewayAddressId, recipientAddress, amount, owner
 
   const signResult = await callDaemonRpc('gateway_sign_transfer', {
     tx_blob: createResult.tx_blob,
-    tx_hash_to_sign: createResult.tx_hash_to_sign,
-    opt_ecdsa_signature: ethSignature,
+    tx_id: createResult.tx_id, // sanity check - actual tx hash
+    opt_ecdsa_signature: ethSignature, // signed over tx_hash_to_sign (DSS)
   });
 
   console.log('Transaction signed successfully');
@@ -444,7 +474,7 @@ async function sendFromGateway(gatewayAddressId, recipientAddress, amount, owner
   });
 
   console.log('Transaction broadcasted:', sendResult.status);
-  return createResult.tx_hash_to_sign;
+  return createResult.tx_id;
 }
 ```
 
@@ -840,9 +870,10 @@ async function main() {
       comment: 'Test transfer from GW',
     });
     assertOk(createResult, 'gateway_create_transfer');
-    console.log('TX hash to sign:', createResult.tx_hash_to_sign);
+    console.log('tx_id:', createResult.tx_id);
+    console.log('hash to sign :', createResult.tx_hash_to_sign, '(DSS-wrapped)');
 
-    // sign with ETH private key (ECDSA secp256k1, low-s normalized)
+    // sign tx_hash_to_sign (DSS) with ETH private key (ECDSA secp256k1, low-s normalized)
     const bytesToSign = ethers.getBytes('0x' + createResult.tx_hash_to_sign);
     const sig = ownerWallet.signingKey.sign(bytesToSign);
     const ethSignature = sig.r.slice(2) + sig.s.slice(2); // r||s, 128 hex = 64 bytes
@@ -850,7 +881,7 @@ async function main() {
 
     const signResult = await callDaemonRpc('gateway_sign_transfer', {
       tx_blob: createResult.tx_blob,
-      tx_hash_to_sign: createResult.tx_hash_to_sign,
+      tx_id: createResult.tx_id,
       opt_ecdsa_signature: ethSignature,
     });
     assertOk(signResult, 'gateway_sign_transfer');
@@ -927,6 +958,16 @@ After the owner change, only the holder of the **new** owner secret key can sign
 >
 > If any unconfirmed gateway transactions (transfers, other operations) from this GW address exist in the mempool, the owner change transaction will conflict with them. Wait until ALL pending GW transactions are confirmed (mined into a block) before submitting an owner change. Failing to do so may result in rejected transactions or undefined behavior.
 
+:::danger Run your own daemon
+Both `gateway_create_owner_change` and `gateway_submit_owner_change` are admin-API methods (require the daemon to be started with `--rpc-enable-admin-api`). The owner change flow is **highly sensitive** — it determines who controls the gateway address from now on.
+
+Submitting an owner-change request to a third-party daemon reveals:
+- the unsigned transaction blob and `tx_secret_key`, which together let the daemon operator decrypt outputs and payment IDs
+- that you are about to rotate keys (publicly visible once mined, but the *intent* is leaked earlier)
+
+Always run `zanod` yourself, on a machine you control, with the admin RPC port bound to localhost (`--rpc-bind-ip=127.0.0.1`).
+:::
+
 - The GW address must have sufficient **native coin** balance to pay the transaction fee
 - You need the **current owner's secret key** to sign the owner change transaction
 - You need the **new owner's public key** (generate a new keypair beforehand)
@@ -943,25 +984,37 @@ External service            Daemon (zanod)            Blockchain
       |    new_owner_pub_key      | Builds unsigned TX    |
       |    fee                    |                       |
       |                           |                       |
-      |  tx_hash_to_sign     <--- |                       |
-      |  tx_blob                  |                       |
+      |  tx_id                    |                       |
+      |  hash_to_sign_transfer    |                       |
+      |  hash_to_sign_ownership   |                       |
+      |  tx_blob, tx_secret_key  <--- |                   |
       |                           |                       |
-      |  +--------------------+   |                       |
-      |  | Signs               |  |                       |
-      |  | tx_hash_to_sign     |  |                       |
-      |  | with CURRENT        |  |                       |
-      |  | owner_key           |  |                       |
-      |  +--------------------+   |                       |
+      |  +-------------------------+ |                    |
+      |  | Sign hash_to_sign_       ||                    |
+      |  | transfer  with CURRENT   ||                    |
+      |  | owner_key                ||                    |
+      |  | Sign hash_to_sign_       ||                    |
+      |  | ownership with CURRENT   ||                    |
+      |  | owner_key                ||                    |
+      |  +-------------------------+ |                    |
       |                           |                       |
-      |  gateway_sign_            |                       |
+      |  gateway_submit_          |                       |
       |  owner_change ----------> |                       |
-      |    tx_blob + signature    | Inserts signature     |
-      |                           | Broadcasts TX         |
+      |    tx_blob, tx_id,        | Verifies tx_id,       |
+      |    transfer_sig,          | inserts signatures,   |
+      |    ownership_sig          | broadcasts TX         |
       |                           | --------------------> |
-      |  signed_tx_blob      <--- |        Into block     |
+      |  status: OK         <---  |        Into block     |
 ```
 
-Note: unlike `gateway_sign_transfer`, `gateway_sign_owner_change` **broadcasts the transaction automatically** - there is no need to call `sendrawtransaction` separately.
+**Domain separation (DSS).** Owner change requires **two distinct signatures** by the current owner — one for spending the gateway input (fee), and one for authorizing the descriptor change. Both are produced by the **same** secret key, but over **different** hashes:
+
+- `hash_to_sign_transfer = H(CRYPTO_HDS_GW_INPUT_SIGNATURE || prepare_prefix_hash_for_sign(tx))` — authorizes the gateway input spend (fee).
+- `hash_to_sign_ownership = H(CRYPTO_HDS_GW_CHANGE_OWNER_SIGNATURE || tx_id)` — authorizes the descriptor / owner key update.
+
+This binding ensures a signature produced for one role cannot be substituted in the other context.
+
+Note: `gateway_submit_owner_change` **broadcasts the transaction automatically** on success — there is no need to call `sendrawtransaction` separately.
 
 ### Step 1: Generate new owner keys
 
@@ -1033,15 +1086,27 @@ Optional field `meta_info` can be included in `new_descriptor_info` to update th
   "id": 0,
   "result": {
     "status": "OK",
-    "tx_hash_to_sign": "3cd7020bacebd3d7c06d4f80a5d5041f1700329ea4b3ea3104b1e65b49f0f4f0",
-    "tx_blob": "0401..."
+    "tx_id": "a6e8da986858e6825fce7a192097e6afae4e889cabe853a9c29b964985b23da8",
+    "hash_to_sign_transfer": "b1c3d4e5f60718293a4b5c6d7e8f90123456789abcdef0123456789abcdef012",
+    "hash_to_sign_ownership": "dc2a4459e7369633a52b1bf277839a00201009a3efbf3ecb69bea2186c26b589",
+    "tx_blob": "0401...",
+    "tx_secret_key": "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcd0f"
   }
 }
 ```
 
-### Step 3: Sign and broadcast - `gateway_sign_owner_change`
+### Step 3: Sign hashes — both with the CURRENT owner's secret key
 
-Sign `tx_hash_to_sign` with the **current** owner's secret key (not the new one), then submit the signature.
+Produce **two** signatures using the same current-owner secret key:
+
+1. Sign `hash_to_sign_transfer` -> `transfer_sig`
+2. Sign `hash_to_sign_ownership` -> `ownership_sig`
+
+The signatures use the same scheme (Schnorr / ECDSA / EdDSA) - whichever matches the current owner key type. Sign the **bytes** returned by the daemon, do not recompute.
+
+### Step 4: Submit signed owner change - `gateway_submit_owner_change`
+
+Submit both signatures back to the daemon. The daemon attaches them to the transaction and broadcasts it.
 
 **Request** (daemon JSON-RPC):
 
@@ -1049,20 +1114,26 @@ Sign `tx_hash_to_sign` with the **current** owner's secret key (not the new one)
 {
   "jsonrpc": "2.0",
   "id": 0,
-  "method": "gateway_sign_owner_change",
+  "method": "gateway_submit_owner_change",
   "params": {
     "tx_blob": "0401...",
-    "tx_hash_to_sign": "3cd7020bacebd3d7c06d4f80a5d5041f1700329ea4b3ea3104b1e65b49f0f4f0",
-    "opt_ecdsa_signature": "c2b347b83da0a79637b74ad4b504030033b771ac8cb1f610757f82e88d112b1032ef615efb2cf3f2e70c15de9c63208ca80c1cea70f12785648c98a5ca3c7b40"
+    "tx_id": "a6e8da986858e6825fce7a192097e6afae4e889cabe853a9c29b964985b23da8",
+    "opt_transfer_custom_schnorr_signature":  "0d73e0dc...",
+    "opt_ownership_custom_schnorr_signature": "1f88a420..."
   }
 }
 ```
 
-Instead of `opt_ecdsa_signature` use:
-- `opt_custom_schnorr_signature` - if current owner key is Schnorr
-- `opt_eddsa_signature` - if current owner key is EdDSA
+Request fields:
 
-Exactly **one** signature must be specified, matching the current owner's key type.
+| Field | Description |
+|---|---|
+| `tx_blob` | Unsigned tx blob from `gateway_create_owner_change`. |
+| `tx_id` | The actual `tx_id` from the previous response — sanity check. |
+| `opt_transfer_*_signature` | Exactly **one** of `opt_transfer_ecdsa_signature` / `opt_transfer_custom_schnorr_signature` / `opt_transfer_eddsa_signature` — signature over `hash_to_sign_transfer`. |
+| `opt_ownership_*_signature` | Exactly **one** of `opt_ownership_ecdsa_signature` / `opt_ownership_custom_schnorr_signature` / `opt_ownership_eddsa_signature` — signature over `hash_to_sign_ownership`. |
+
+Both signatures must match the current owner's key type and be produced by the same secret key.
 
 **Response:**
 
@@ -1079,7 +1150,7 @@ Exactly **one** signature must be specified, matching the current owner's key ty
 
 The transaction is broadcast automatically upon success. No `sendrawtransaction` call is needed.
 
-### Step 4: Verify the change
+### Step 5: Verify the change
 
 After the transaction is confirmed in a block, query `gateway_get_address_info` to verify the new owner:
 
@@ -1153,36 +1224,39 @@ const ethSignature = sig.r.slice(2) + sig.s.slice(2); // r||s, 128 hex
 ### Node.js - complete owner change flow
 
 ```javascript
-async function changeGatewayOwner(addressId, currentOwnerPubKey, currentOwnerSecretKey, newOwnerPubKey) {
+async function changeGatewayOwner(addressId, currentOwnerWallet, newOwnerPubKey) {
   // Step 1: create unsigned owner change transaction
   const createRes = await callDaemonRpc('gateway_create_owner_change', {
     address_id: addressId,
     new_descriptor_info: {
-      opt_owner_custom_schnorr_pub_key: newOwnerPubKey,
+      opt_owner_ecdsa_pub_key: newOwnerPubKey,
     },
     fee: 10_000_000_000,
   });
   assertOk(createRes, 'gateway_create_owner_change');
-  console.log('TX hash to sign:', createRes.tx_hash_to_sign);
+  console.log('tx_id :', createRes.tx_id);
+  console.log('hash_to_sign_transfer :', createRes.hash_to_sign_transfer);
+  console.log('hash_to_sign_ownership :', createRes.hash_to_sign_ownership);
 
-  // Step 2: sign with current owner's key
-  const signature = zanoSchnorrSign(
-    createRes.tx_hash_to_sign,
-    currentOwnerPubKey,
-    currentOwnerSecretKey
-  );
-  console.log('Signature:', signature);
+  // Step 2: produce TWO signatures with the same CURRENT owner secret key, each over the corresponding domain-separated hash.
+  const transferBytes  = ethers.getBytes('0x' + createRes.hash_to_sign_transfer);
+  const ownershipBytes = ethers.getBytes('0x' + createRes.hash_to_sign_ownership);
+  const sigT = currentOwnerWallet.signingKey.sign(transferBytes);
+  const sigO = currentOwnerWallet.signingKey.sign(ownershipBytes);
+  const transferSig = sigT.r.slice(2) + sigT.s.slice(2);  // 128 hex
+  const ownershipSig = sigO.r.slice(2) + sigO.s.slice(2);
 
-  // Step 3: submit signature (broadcasts automatically)
-  const signRes = await callDaemonRpc('gateway_sign_owner_change', {
+  // Step 3: submit both signatures + broadcast
+  const submitRes = await callDaemonRpc('gateway_submit_owner_change', {
     tx_blob: createRes.tx_blob,
-    tx_hash_to_sign: createRes.tx_hash_to_sign,
-    opt_custom_schnorr_signature: signature,
+    tx_id:   createRes.tx_id,
+    opt_transfer_ecdsa_signature:  transferSig,
+    opt_ownership_ecdsa_signature: ownershipSig,
   });
-  assertOk(signRes, 'gateway_sign_owner_change');
-  console.log('Owner change broadcast OK');
+  assertOk(submitRes, 'gateway_submit_owner_change');
+  console.log('Owner change submitted; tx will appear in the next block');
 
-  return createRes.tx_hash_to_sign;
+  return createRes.tx_id;
 }
 ```
 ---
@@ -1195,8 +1269,8 @@ async function changeGatewayOwner(addressId, currentOwnerPubKey, currentOwnerSec
 | [gateway_get_address_info](https://docs.zano.org/docs/build/rpc-api/daemon-rpc-api/gateway_get_address_info) | Daemon RPC | Get information and balances of a GW address |
 | [gateway_create_transfer](https://docs.zano.org/docs/build/rpc-api/daemon-rpc-api/gateway_create_transfer) | Daemon RPC | Create an unsigned transaction from a GW address |
 | [gateway_sign_transfer](https://docs.zano.org/docs/build/rpc-api/daemon-rpc-api/gateway_sign_transfer) | Daemon RPC | Sign a transaction with owner key |
-| [gateway_create_owner_change](https://docs.zano.org/docs/build/rpc-api/daemon-rpc-api/gateway_create_owner_change) | Daemon RPC | Create an unsigned owner change transaction |
-| [gateway_sign_owner_change](https://docs.zano.org/docs/build/rpc-api/daemon-rpc-api/gateway_sign_owner_change) | Daemon RPC | Sign and broadcast an owner change transaction |
+| [gateway_create_owner_change](https://docs.zano.org/docs/build/rpc-api/daemon-rpc-api/gateway_create_owner_change) | Daemon RPC | Create an unsigned owner change transaction; returns two domain-separated hashes to sign |
+| [gateway_submit_owner_change](https://docs.zano.org/docs/build/rpc-api/daemon-rpc-api/gateway_submit_owner_change) | Daemon RPC | Submit two signatures (transfer + ownership) and broadcast the owner change |
 | [sendrawtransaction](https://docs.zano.org/docs/build/rpc-api/daemon-rpc-api/sendrawtransaction) | Daemon RPC | Broadcast a signed transaction to the network |
 | [gateway_get_address_history](https://docs.zano.org/docs/build/rpc-api/daemon-rpc-api/gateway_get_address_history) | Daemon RPC | Get GW address transaction history (requires view key for decryption) |
 | [get_integrated_address](https://docs.zano.org/docs/build/rpc-api/daemon-rpc-api/get_integrated_address) | Daemon RPC | Create an integrated `gwiZ...` address with payment ID |
