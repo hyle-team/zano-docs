@@ -77,7 +77,7 @@ Or in the GUI wallet, choose `Restore from backup` and paste the tracking seed i
 
 ### Are there any restrictions on using auditable wallets?
 
-Only one: transactions sent from an auditable wallet don't use decoys, so the audit trail stays fully verifiable. Regular Zano wallets use the protocol-enforced ring size of 15. This is a property of the auditable wallet only; it doesn't affect anyone else's privacy.
+Only one: transactions sent from an auditable wallet don't use decoys, so the audit trail stays fully verifiable. Inputs spending non-auditable post-Zarcanum outputs—the standard outputs created by current wallets—use 15 decoys in official wallets, producing a ring size of 16. Legacy pre-HF4 outputs retain their historical mixin rules. This is a property of the auditable wallet only; it doesn't affect anyone else's privacy.
 
 ### Can I use integrated addresses with the auditable feature?
 
