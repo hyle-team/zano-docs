@@ -6,7 +6,7 @@ sidebar_position: 1
 
 Every transaction on Zano is private at the protocol level. Three technologies work together to hide the sender, the receiver, and the amount:
 
-- **d/v-CLSAG ring signatures** hide the sender. Your real output is signed together with decoy outputs from the chain, and an observer cannot tell which ring member is the real source. The ring size is enforced by the protocol at 15 for every regular transaction, so privacy is uniform across the network rather than a setting users choose.
+- **d/v-CLSAG ring signatures** hide the sender. Inputs spending non-auditable post-Zarcanum outputs—the standard outputs created by current wallets—require at least 15 decoys. Official wallets use 15, producing a ring size of 16, and an observer cannot tell which ring member is the real source. Legacy pre-HF4 outputs retain their historical mixin rules.
 - **Stealth addresses** hide the receiver. Every payment goes to a unique one-time address that only the recipient can recognize and spend from. Asset types are hidden as well, through the blinded asset tags of the [Confidential Assets](/docs/learn/how-zano-works/confidential-assets) scheme.
 - **Bulletproofs+** hide the amounts. Amounts live inside cryptographic commitments that let the network verify inputs and outputs balance without revealing any numbers, and Bulletproofs+ range proofs ensure no hidden overflow can create coins out of thin air.
 

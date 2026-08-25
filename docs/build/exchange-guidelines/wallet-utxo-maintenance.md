@@ -93,7 +93,7 @@ distribution:
 |---|---|
 | **`amount` (threshold)** | **5000 coins** for wallets with significant balance. If your total balance is low (e.g. under ~50,000 coins), use a smaller threshold so that consolidation still leaves you with multiple usable UTXOs; a good rule is `threshold = balance / 10`, capped at 5000. |
 | **`address`** | Your own wallet's primary address; you are consolidating into one new big UTXO for yourself. |
-| **`mixin`** | Use the same value you use for regular transfers (typically 15). |
+| **`mixin`** | Use the standard value of 15 decoys, which produces a ring size of 16 for each input after the real output is included. |
 | **`fee`** | The current network minimum fee (0.01 ZANO at time of writing). |
 | **`asset_id`** | Omit for native ZANO. Set explicitly when consolidating a specific asset. |
 

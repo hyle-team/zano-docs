@@ -14,7 +14,7 @@ sidebar_position: 4
 | Hash algorithm            | ProgPowZ                                                               |
 | Language                  | C++                                                                    |
 | Blockchain                | PoS + PoW                                                              |
-| Ring size                 | 15 (protocol-enforced)                                                 |
+| Ring size                 | 16 (standard: 1 real output + 15 decoys)                               |
 | **Emission**              |                                                                        |
 | Block Time                | 1 minute                                                               |
 | Block Reward              | 1 ZANO (fixed amount)                                                  |

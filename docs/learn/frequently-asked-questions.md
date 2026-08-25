@@ -153,7 +153,7 @@ A Ring Signature is a type of digital signature that can be performed by any mem
 
 The mixin (or decoy) count refers to the number of outputs, apart from yours, included in the ring signature that authorizes a transaction. The decoys give you plausible deniability: an observer cannot tell which ring member is the real source of the funds.
 
-On Zano, the ring size is enforced by the protocol at 15, so every regular transaction gets the same level of privacy. It is not a setting you need to choose or tune. (The one exception is [auditable wallets](/docs/use/auditable-wallets), which deliberately spend without decoys so their history stays verifiable.)
+Inputs spending non-auditable post-Zarcanum outputs—the standard outputs created by current wallets—require at least 15 decoys. Official wallets use 15, producing a ring size of 16. Legacy pre-HF4 outputs retain their historical mixin rules, while [auditable wallets](/docs/use/auditable-wallets) spend without decoys so their history stays verifiable.
 
 ### Can I create auditable wallets on Zano for transparency when needed?
 

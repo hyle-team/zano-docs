@@ -57,7 +57,7 @@ The `transfer` command takes a mixin count, destination address, and amount:
 transfer <mixin_count> <address> <amount>
 ```
 
-- **mixin_count**: the number of decoy outputs mixed with yours. Use **15** for standard wallets (this is the protocol-enforced ring size, so it is not a privacy dial you can tune) and **0** for auditable wallets, which always spend without decoys.
+- **mixin_count**: the number of decoy outputs mixed with yours, not the total ring size. Use **15** for standard wallets, which creates a ring of 16 members for each input when the real output is included. Use **0** for auditable wallets, which always spend without decoys.
 - **address**: the recipient's Zano address (starts with `Zx` or `aZx`)
 - **amount**: the amount of ZANO to send
 
