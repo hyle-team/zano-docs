@@ -1,7 +1,7 @@
 # Gateway Addresses (GW) in Zano
 
 :::warning Registration burns 100 ZANO
-Registering a GW address carries a **one-time registration fee of 100 native ZANO**, charged on top of the standard network fee. This fee is **permanently burned**, i.e. removed from circulating supply, and is therefore **non-refundable**.
+Registering a GW address requires a **one-time registration fee of 100 native ZANO**. This fee is the network fee of the registration transaction and, in line with Zano's post-HF4 fee policy, is **permanently burned**, i.e. removed from circulating supply, and is therefore **non-refundable**.
 
 The `register_gateway_address` wallet RPC call broadcasts this transaction **immediately, with no additional confirmation step**. When integrating or testing against the wallet RPC, please account for this: every successful registration irreversibly burns 100 ZANO from the calling wallet's balance. Please, use the testnet for your tests.
 :::
