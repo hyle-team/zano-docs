@@ -71,6 +71,10 @@ const sections = [
       { label: "Build Overview", to: "/docs/build/overview" },
       { label: "RPC API", to: "/docs/build/rpc-api/overview" },
       { label: "Confidential Assets", to: "/docs/build/confidential-assets/overview" },
+      {
+        label: "Exchange Integration Guide",
+        to: "/docs/build/exchange-guidelines/multi-assets-custody-guide",
+      },
     ],
   },
   {
