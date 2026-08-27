@@ -1,4 +1,4 @@
-Register gateway address to be used in further transfers.
+Register gateway address to be used in further transfers. WARNING: Registering a GW address requires a **one-time registration fee of 100 native ZANO**. This fee is the network fee of the registration transaction and is **permanently burned**, and is therefore **non-refundable**.
 
 URL: ```http:://127.0.0.1:11211/json_rpc```
 ### Request: 
@@ -51,4 +51,4 @@ URL: ```http:://127.0.0.1:11211/json_rpc```
     "tx_id": Transaction id
 
 ```
-<sub>Auto-doc built with: 2.2.1.506[eb86459]</sub>
+<sub>Auto-doc built with: 2.2.1.506[9aa6ac2]</sub>

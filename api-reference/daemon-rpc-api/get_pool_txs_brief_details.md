@@ -43,4 +43,4 @@ URL: ```http:://127.0.0.1:11211/json_rpc```
       "total_amount": Total amount transferred in the transaction (legacy, for pre-Zarcanum txs).
 
 ```
-<sub>Auto-doc built with: 2.2.1.506[eb86459]</sub>
+<sub>Auto-doc built with: 2.2.1.506[9aa6ac2]</sub>
