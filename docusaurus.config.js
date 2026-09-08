@@ -97,6 +97,13 @@ const config = {
           { from: "/docs/use/zano-passwords.md", to: "/docs/use/zano-passwords" },
           // deeplinks page lives in the Build tab but had a /use/ slug
           { from: "/docs/use/deeplinks", to: "/docs/build/deeplinks" },
+          // ZEL uses one documentation tree with a contextual network selector.
+          { from: "/docs/build/zel/current-status", to: "/docs/build/zel/overview" },
+          { from: "/docs/build/zel/testnet/overview", to: "/docs/build/zel/overview" },
+          { from: "/docs/build/zel/mainnet/overview", to: "/docs/build/zel/overview" },
+          { from: "/docs/build/zel/report-a-problem", to: "https://zano.org/support" },
+          { from: "/docs/build/zel/testnet/report-a-problem", to: "https://zano.org/support" },
+          { from: "/docs/build/zel/frequently-asked-questions", to: "https://zano.org/zel" },
         ],
         // API versions moved from networks (mainnet/testnet) to branches
         // (release/develop) in 2026-08: /rpc-api/testnet/** -> /rpc-api/develop/**.
@@ -105,6 +112,27 @@ const config = {
           const devBase = "/docs/build/rpc-api/develop/";
           if (existingPath.startsWith(devBase)) {
             return [existingPath.replace(devBase, "/docs/build/rpc-api/testnet/")];
+          }
+
+          const zelBase = "/docs/build/zel/";
+          const zelMovedSections = [
+            "architecture/",
+            "bridge-and-swaps/",
+            "build/",
+            "defi/",
+            "evm-and-contracts/",
+            "operate/",
+            "reference/",
+            "stake-and-govern/",
+          ];
+          if (existingPath.startsWith(zelBase)) {
+            const relativePath = existingPath.slice(zelBase.length);
+            const isFormerTestnetPage =
+              zelMovedSections.some((section) => relativePath.startsWith(section)) ||
+              relativePath === "status-and-access";
+            if (isFormerTestnetPage) {
+              return [`${zelBase}testnet/${relativePath}`];
+            }
           }
           return undefined;
         },
@@ -176,6 +204,10 @@ const config = {
         },
         {
           type: "custom-apiVersionDropdown",
+          position: "right",
+        },
+        {
+          type: "custom-zelNetworkDropdown",
           position: "right",
         },
         {

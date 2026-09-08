@@ -529,6 +529,13 @@ body {
   z-index: 100;
 }
 
+.zel-network-option-disabled {
+  color: var(--zano-gray) !important;
+  cursor: not-allowed;
+  opacity: 0.55;
+  pointer-events: none;
+}
+
 .navbar-sidebar {
   position: fixed !important;
   top: 0 !important;

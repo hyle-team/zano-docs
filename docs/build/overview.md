@@ -14,6 +14,10 @@ Start with the RPC API [Overview](/docs/build/rpc-api/overview) and [How to call
 
 If launching your own project centered around private transactions is your goal, our [Confidential Assets](confidential-assets/overview.md) section provides detailed methods to give your initiative a solid foundation.
 
+### Zano Execution Layer
+
+Build public EVM-compatible applications on the [Zano Execution Layer](/docs/build/zel/overview). ZEL is currently available on testnet with chain ID `9350`; Mainnet is not live.
+
 ## Exchange Integration Guidelines
 
 Running a Zano deposit or withdrawal service? The [exchange integration guide](exchange-guidelines/multi-assets-custody-guide.md) covers wallet custody, payment IDs and integrated addresses, production node setup, and offline signing.
