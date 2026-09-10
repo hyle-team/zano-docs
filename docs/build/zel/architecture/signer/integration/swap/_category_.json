@@ -1,0 +1,8 @@
+{
+  "label": "Swap Flow",
+  "position": 3,
+  "link": {
+    "type": "generated-index",
+    "description": "Detailed documentation on the Swap Flow process within ZEL TSS Signer"
+  }
+}

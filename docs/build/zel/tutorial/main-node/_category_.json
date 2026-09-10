@@ -1,0 +1,9 @@
+{
+  "label": "Launch a new chain",
+  "position": 2,
+  "link": {
+    "type": "generated-index",
+    "description": "Learn how to set up main node"
+
+  }
+}
