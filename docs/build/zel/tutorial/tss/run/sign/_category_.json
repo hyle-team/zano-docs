@@ -1,0 +1,5 @@
+{
+  "label": "Signing mode",
+  "description": "Running the TSS service signing mode",
+  "position": 2
+}

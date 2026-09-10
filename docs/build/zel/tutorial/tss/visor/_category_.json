@@ -1,0 +1,9 @@
+{
+  "label": "TSS Visor",
+  "description": "Running TSS through the Visor supervisor (auto-resharing, updates, migrate-up, timechanger)",
+  "position": 5,
+  "link": {
+    "type": "generated-index",
+    "description": "Launch and operate the TSS binary through Visor to enable event-driven task management (auto-resharing, updates, migrate-up, timechanger)."
+  }
+}

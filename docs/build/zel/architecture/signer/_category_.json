@@ -1,0 +1,8 @@
+{
+  "label": "Signer",
+  "position": 2,
+  "link": {
+    "type": "generated-index",
+    "description": "ZEL Signer (TSS) architecture specs and overview"
+  }
+}
