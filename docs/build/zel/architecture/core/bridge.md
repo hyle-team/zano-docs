@@ -875,21 +875,23 @@ transactions:
 ___
 
 #### QueryTransactionById
+
+Pass the source chain ID, deposit transaction hash, and deposit nonce as three separate arguments. For example, an Amoy deposit with event index `2`:
 ```
-zel-cored query bridge transaction 0x/2/0x
+zel-cored query bridge transaction 80002 0x8746c185266a81c240adf7293e656063a11ca1e43d3f81eb2a69a6a622e737d6 2
 ```
 
 Response example:
 
 ```
-transactions:
-- commission_amount: "0"
+transaction:
+  commission_amount: "0"
   deposit_amount: "00000"
   deposit_block: "0"
-  deposit_chain_id: "0000"
+  deposit_chain_id: "80002"
   deposit_token: "0x0000000000000000000000000000000000000000"
-  deposit_tx_hash: 0x0000000000000000000000000000000000000000
-  deposit_tx_index: "0"
+  deposit_tx_hash: "0x8746c185266a81c240adf7293e656063a11ca1e43d3f81eb2a69a6a622e737d6"
+  deposit_tx_index: "2"
   depositor: 0x0000000000000000000000000000000000000000
   is_wrapped: true
   receiver: 0x0000000000000000000000000000000000000000
@@ -933,5 +935,4 @@ txs_submissions:
 
 ```
 ___
-
 

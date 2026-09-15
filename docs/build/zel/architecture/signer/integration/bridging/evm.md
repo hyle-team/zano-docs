@@ -4,6 +4,10 @@ toc_max_heading_level: 5
 ---
 
 # EVM networks
+
+:::note Release scope
+These are implementation-reference examples, not a list of enabled routes or verified deployment instructions. Confirm the active route, service release, and contract ABI before integration. See [Bridge API](/docs/build/zel/bridge-and-swaps/api-and-status).
+:::
 Bridging from EVM-compatible chains (like Ethereum BNB Chain, etc.)
 
 ## Deposit
@@ -247,21 +251,13 @@ The details of the functions are described in the sections above.
   ```
   The **receiver_** field stands for the tokens receiver address on the target ZANO chain, **network_** stands for the
   corresponding target chain id (Zano), **token_** stands for the wETH address, and **isWrapped_** should be *false*.
-- After submitting the deposit transaction you have to request withdrawal on the
-  backend: https://tss1.testnet.zano.org/submit. Request example:
-  ```json
-  {
-    "tx_hash": "^0x[a-fA-F0-9]{64}$",
-    "chain_id": "same as chain identifier on core",
-    "tx_nonce": {an emitted **DepositedERC20** event index}
-  }
-  ```
-  Example:
+- Submit the deposit identifier to https://tss1.testnet.zano.org/submit. Set `chain_id` to the **source EVM chain** registered on Core, not the Zano destination. Set `tx_nonce` to the emitted deposit event index.
+  Example for an Amoy source deposit (`80002`):
   ```json
   {
     "tx_hash": "0x8746c185266a81c240adf7293e656063a11ca1e43d3f81eb2a69a6a622e737d6",
-    "chain_id": "2", // assuming the deposit was made on Amoy (Polygon testnet)
-    "tx_nonce": 2 // the EXAMPLE index of the DepositedERC20 event
+    "chain_id": "80002",
+    "tx_nonce": 2
   }
   ```
   For EVM to ZANO bridging the **tx_nonce** is the emitted **DepositedERC20** event index, containing the
@@ -302,24 +298,16 @@ Zano withdrawals are sent to the network by the TSS nodes automatically after th
         1 // some referral identifier
     ) // do not forget to attach the ETH deposit amount
   ```
-- After submitting the deposit transaction you have to request withdrawal on the
-  backend: https://tss1.testnet.zano.org/submit. Request example:
-  ```json
-  {
-    "tx_hash": "^0x[a-fA-F0-9]{64}$",
-    "chain_id": "same as ZANO chain identifier on core",
-    "tx_nonce": {an emitted **DepositedNative** event index}
-  }
-  ```
+- Submit the deposit identifier to https://tss1.testnet.zano.org/submit. Set `chain_id` to the **source EVM chain** registered on Core, not the Zano destination. Set `tx_nonce` to the emitted deposit event index.
   The **tx_nonce** is an emitted **DepositedNative** event index, containing the
   information about the deposit operation and transfer memo.
 
-  Example:
+  Example for an Amoy source deposit (`80002`):
   ```json
   {
     "tx_hash": "0x8746c185266a81c240adf7293e656063a11ca1e43d3f81eb2a69a6a622e737d6",
-    "chain_id": "80002", // assuming the deposit was made on Amoy (Polygon testnet)
-    "tx_nonce": 0 // the EXAMPLE index of the DepositedNative event
+    "chain_id": "80002",
+    "tx_nonce": 0
   }
   ```
 - You can request signing status using https://tss1.testnet.zano.org/check/:chainid/:txhash/:tx_nonce.

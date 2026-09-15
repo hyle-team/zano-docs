@@ -1,69 +1,54 @@
 ---
 sidebar_position: 4
+title: Approved validator setup
 ---
 
-# Become a validator
+# Approved validator setup
 
-:::warning
-Please, follow these instructions **ONLY** if you need to become a validator. If you want to set up only the RPC node or
-just validate the consensus rules you have already finished with it.
+:::warning Team approval required
+The testnet validator set is team-managed. This reference does not open validator applications. Continue only after the team has approved the node, assigned the required staking funds, and provided the release-specific transaction parameters.
 :::
 
-If you want to validate blocks and participate in consensus you have to make your node a validator.
+A full node does not need to become a validator to serve RPC or verify consensus. A consensus validator is also not automatically a bridge signer.
 
-:::info
-Please note that `app.toml` file contains the configuration for the minimum gas price acceptable by your validator. For
-example:
+## Prepare the account
 
-- `minimum-gas-prices = "1uzel"`
-
-:::
-
-## Step 1: Key generation
-
-First you have to generate keys for the `validator` account. Run the following commands to generate the key:
+Use an encrypted keyring on the approved operator host:
 
 ```bash
-zel-cored keys add validator_key --keyring-backend test --home=$ZEL_HOME
+zel-cored keys add validator_key --keyring-backend file --home="$ZEL_HOME"
 ```
 
-:::danger
-Please, backup the following files and folders:
+Back up the account recovery material securely. Share only the public address with the team; never share the mnemonic or consensus private key.
 
-- `$ZEL_HOME/keyring-test`
+## Create the validator
 
-:::
+The team must supply the approved stake amount in `ustake`, gas price in `uzel`, and target RPC. Do not use native gas tokens as the staking denomination or assume zero fees are accepted.
 
-Share your validator address (zel...) with our team to receive the tokens required for validator creation.
+After the node is synchronized, set `ZEL_STAKE_AMOUNT`, `ZEL_GAS_PRICES`, and `ZEL_NODE` to those reviewed values:
 
-After receiving confirmation about token accrual, execute the following command to stake tokens and become a validator.
+```bash
+: "${ZEL_STAKE_AMOUNT:?Set the approved amount including ustake}"
+: "${ZEL_GAS_PRICES:?Set the approved gas price including uzel}"
+: "${ZEL_NODE:?Set the approved consensus RPC}"
+zel-cored tx staking create-validator \
+  --amount "$ZEL_STAKE_AMOUNT" \
+  --commission-max-change-rate "0.01" \
+  --commission-max-rate "0.2" \
+  --commission-rate "0.1" \
+  --min-self-delegation "1" \
+  --pubkey "$(zel-cored tendermint show-validator --home="$ZEL_HOME")" \
+  --moniker "$MONIKER_NAME" \
+  --chain-id zel_9350-1 \
+  --from validator_key \
+  --keyring-backend file \
+  --home "$ZEL_HOME" \
+  --node "$ZEL_NODE" \
+  --gas auto --gas-adjustment 1.3 --gas-prices "$ZEL_GAS_PRICES"
+```
 
-1. **Stake Tokens**: You need to stake at least `1000000000000ustake` (the minimal delegation amount; the exact amount will be provided by our team together with the tokens).
+The commission settings above are examples and must also be approved for the operator. Review the transaction before confirming it. Verify successful inclusion and validator status afterward; broadcasting alone does not prove admission to the active set.
 
-2. **Run the Command**: Use the following command to stake your tokens and become a validator:
-    ```bash
-    zel-cored tx staking create-validator --amount 1000000000000ustake --commission-max-change-rate "0.01" --commission-max-rate "0.2" --commission-rate "0.1" --min-self-delegation "1" --details "Meet new ZEL validator" --pubkey $(zel-cored tendermint show-validator --home=$ZEL_HOME) --moniker $MONIKER_NAME --chain-id zel_9350-1 --fees 0uzel --from $(zel-cored keys show validator_key -a --home $ZEL_HOME --keyring-backend test) --home=$ZEL_HOME --node=$ZEL_NODE --keyring-backend=test --log_level="debug" --broadcast-mode="block" --trace --gas 10000000
-    ```
+## Preserve consensus state
 
-- `--amount`: The amount of staking tokens (`ustake`) you want to stake.
-- `--commission-max-change-rate`: The maximum rate at which your commission can change.
-- `--commission-max-rate`: The maximum commission rate you can charge.
-- `--commission-rate`: The commission rate you will charge.
-- `--min-self-delegation`: The minimum amount of tokens you must always stake.
-- `--details`: A description of your validator.
-- `--pubkey`: The public key of your validator (automatically filled in by the command).
-- `--moniker`: The name of your validator (replace `YOUR_VALIDATOR_NAME` with your chosen name).
-- `--chain-id`: The ID of the blockchain network.
-- `--fees`: The transaction fees (set to 0 uzel).
-- `--from`: The address of your validator (automatically filled in by the command).
-- `--home`: The path to your configuration files.
-- `--node`: The address of the node you are connecting to (replace `ZEL_NODE` with the actual node address).
-- `--keyring-backend`: The backend you are using for the keyring.
-- `--log_level`: The level of logging detail.
-- `--broadcast-mode`: The mode for broadcasting the transaction.
-- `--trace`: Enables tracing of the transaction.
-- `--gas`: The amount of gas to use for the transaction.
-
-:::info
-`$ZEL_NODE` is a node address that you can get from our team.
-:::
+Keep the consensus key and its latest signing state together in the approved recovery process. Never reset `data/priv_validator_state.json`, restore an older signing state, or start another node with the same consensus key.

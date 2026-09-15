@@ -4,6 +4,10 @@ sidebar_position: 4
 
 # NFT module
 
+:::note Module reference
+These data structures describe module capabilities, not an announcement of user-facing NFT staking or rewards. Release availability and participation rules must be confirmed separately; see [planned staking and governance](/docs/build/zel/core-concepts/network-security).
+:::
+
 The NFT module provides an opportunity to manage non-fungible tokens (NFTs) with token-owned native balance,
 incorporating features such as delegation, withdrawal, and delegation reward collection. The module is designed to
 ensure secure and efficient handling of tokens, with a focus on locking mechanisms, linear unlock periods, and adherence
@@ -121,36 +125,52 @@ There are several commands to update the NFT store:
 
 ### Owner
 
-The Owner struct matches the NFT holder (owner) address with the NFT address:
+Query the NFTs held by one owner address. This differs from `owners`, which lists holder addresses.
 
-```protobuf
-message Owner {
-  string address = 1;
-  string nft_address = 2;
-}
+#### CLI
+
+```text
+zel-cored query nft owner <owner-address> [flags]
 ```
 
-There are several commands to update the owner store:
+Example:
 
-- To add a new NFT owner, use
-  ```go
-    SetOwnerNFT(ctx sdk.Context, owner, nftAddress string)
-  ```
-  This function creates a new branch in the store where the key is the owner address, and the leaf in this branch is the
-  Owner object.
+```sh
+zel-cored query nft owner zel103n4cmjt2je8nqcxg9y9desyhy6m57u5nlve4m
+```
 
-- To remove the NFT owner, use
-  ```go
-    RemoveOwnerNft(ctx sdk.Context, owner string, nftAddress string)
-  ```
-- To get all NFTs by owner address, use
-  ```go
-    GetAllNFTsByOwnerWithPagination(ctx sdk.Context, ownerAddress string, pagination *query.PageRequest) ([]types.NFT, *query.PageResponse, error)
-  ```
-- To get all addresses that hold any NFT
-   ```go
-    GetAllOwnersWithPagination(ctx sdk.Context, pagination *query.PageRequest) ([]string, *query.PageResponse, error)
-  ```
+Example response for an owner with no NFTs:
+
+```yaml
+nft: []
+pagination:
+  next_key: null
+  total: "0"
+```
+
+#### HTTP
+
+```text
+/cosmos/nft/owners/{owner}/nfts
+```
+
+Example:
+
+```sh
+curl -X GET "https://rpc-api.node1.testnet.zano.org/cosmos/nft/owners/zel103n4cmjt2je8nqcxg9y9desyhy6m57u5nlve4m/nfts" -H "accept: application/json"
+```
+
+The response contains an `nft` array and pagination, not a single NFT object. For an owner with no NFTs:
+
+```json
+{
+  "nft": [],
+  "pagination": {
+    "next_key": null,
+    "total": "0"
+  }
+}
+```
 
 ---
 

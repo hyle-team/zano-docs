@@ -1,8 +1,8 @@
 {
-  "label": "Architecture",
-  "position": 4,
+  "label": "Architecture reference",
+  "position": 8,
   "link": {
     "type": "doc",
-    "id": "build/zel/architecture/intro"
+    "id": "build/zel/architecture/overview"
   }
 }

@@ -1,5 +1,5 @@
 ---
-sidebar_position: 5
+sidebar_position: 6
 ---
 
 # Multisig module
@@ -227,7 +227,7 @@ message MsgChangeGroup {
 
 The params command allow users to query `multisig` module params.
 ```
- simd query multisig params
+ zel-cored query multisig params
 ```
 Example output:
 ```
@@ -244,20 +244,20 @@ params:
 The list-all command lists all existing groups.
 
 ```
-simd query multisig groups list-all 
+zel-cored query multisig groups list-all
 ```
 Example output:
 ```
 group:
 - account: zel17fcahfu87uy6ejaapgx5xfsq3snrct6lq88km79zw9zckum70r4svh8v2r
   members:
-  - bridge1...
-  - bridge1...
+  - zel1...
+  - zel1...
   threshold: "1"
 - account: zel1n77flmf2dhxzv7wh2ekxzn4wuz7rna06yqyw6sqp0pqte0fjue3sjc442l
   members:
-  - bridge1...
-  - bridge1...
+  - zel1...
+  - zel1...
   threshold: "1"
 pagination:
   next_key: null
@@ -271,15 +271,15 @@ pagination:
 The group command lists info about certain group.
 
 ```
-simd query multisig groups group bridge1...
+zel-cored query multisig groups group zel1...
 ```
 Example output:
 ```
 group:
   account: zel1n77flmf2dhxzv7wh2ekxzn4wuz7rna06yqyw6sqp0pqte0fjue3sjc442l
   members:
-  - bridge1...
-  - bridge1...
+  - zel1...
+  - zel1...
   threshold: "1"
 ```
 
@@ -289,7 +289,7 @@ group:
 The list-all lists all existing proposals in multisig module.
 
 ```
-simd query multisig proposals list-all
+zel-cored query multisig proposals list-all
 ```
 Example output:
 
@@ -306,10 +306,10 @@ proposal:
     creator: zel15wm6yd4ktqsmr5gzccytsu3wdzamzl4gtst6r3d3jv5g53yk8m8q2cmddh
     group: zel15wm6yd4ktqsmr5gzccytsu3wdzamzl4gtst6r3d3jv5g53yk8m8q2cmddh
     members:
-    - bridge1...
-    - bridge1...
+    - zel1...
+    - zel1...
     threshold: "1"
-  proposer: bridge1...
+  proposer: zel1...
   status: SUBMITTED
   submitBlock: "1356"
   votingEndBlock: "1476"
@@ -321,10 +321,10 @@ proposal:
     creator: zel15wm6yd4ktqsmr5gzccytsu3wdzamzl4gtst6r3d3jv5g53yk8m8q2cmddh
     group: zel15wm6yd4ktqsmr5gzccytsu3wdzamzl4gtst6r3d3jv5g53yk8m8q2cmddh
     members:
-    - bridge1...
-    - bridge1...
+    - zel1...
+    - zel1...
     threshold: "1"
-  proposer: bridge1...
+  proposer: zel1...
   status: SUBMITTED
   submitBlock: "1357"
   votingEndBlock: "1477"
@@ -334,7 +334,7 @@ proposal:
 The proposal command lists info about proposal with given id.
 
 ```
-simd query multisig proposals proposal 1
+zel-cored query multisig proposals proposal 1
 ```
 Example output:
 ```
@@ -347,10 +347,10 @@ proposal:
     creator: zel15wm6yd4ktqsmr5gzccytsu3wdzamzl4gtst6r3d3jv5g53yk8m8q2cmddh
     group: zel15wm6yd4ktqsmr5gzccytsu3wdzamzl4gtst6r3d3jv5g53yk8m8q2cmddh
     members:
-    - bridge1...
-    - bridge1...
+    - zel1...
+    - zel1...
     threshold: "1"
-  proposer: bridge1...
+  proposer: zel1...
   status: SUBMITTED
   submitBlock: "1356"
   votingEndBlock: "1476"
@@ -362,7 +362,7 @@ proposal:
 The  list-all command list all votes made by users to proposals in multisig module.
 
 ```
-simd query multisig votes list-all
+zel-cored query multisig votes list-all
 ```
 Example output:
 ```
@@ -373,18 +373,18 @@ vote:
 - option: "YES"
   proposalId: "1"
   submitBlock: "1467"
-  voter: bridge1...
+  voter: zel1...
 - option: "YES"
   proposalId: "3"
   submitBlock: "1511"
-  voter: bridge1...
+  voter: zel1...
 
 ```
 ### Vote
 The vote command list info about votes to given proposal id.
 
 ```
-simd query multisig votes vote 3  
+zel-cored query multisig votes vote 3
 ```
 Example output:
 ```
@@ -395,13 +395,13 @@ vote:
 - option: "YES"
   proposalId: "3"
   submitBlock: "1511"
-  voter: bridge1...
+  voter: zel1...
 ```
 ### VoteDetailed
 The vote-detailed command gives info about vote with given proposal id and voter address.
 
 ```
-simd query multisig votes vote-detailed 3 bridge1...
+zel-cored query multisig votes vote-detailed 3 zel1...
 ```
 
 Example output:
@@ -411,7 +411,7 @@ vote:
   option: "YES"
   proposalId: "3"
   submitBlock: "1511"
-  voter: bridge1...
+  voter: zel1...
 ```
 
 ----
@@ -420,18 +420,18 @@ vote:
 
 ### Create
 
-The create command creates a multisig group with provided members and threshold.
+The create command creates a multisig group with the given members and threshold. Replace the placeholders with full ZEL addresses.
 
 ```
-simd tx tx multisig groups create bridge1... bridge1...,bridge1... 2 
+zel-cored tx multisig groups create <creator-address> <member-1>,<member-2> 2
 ```
 
 ### Update
 
-The update command allows to update group changing the list of it`s members and threshold. (_NOTE: this command is executed only from the group account. You have to create proposal to update group_)
+The update command takes four arguments: creator, group address, comma-separated members, and threshold. The creator must be the group account. Submit a group-change proposal through the multisig flow; a member cannot update the group directly.
 
 ```
-simd tx multisig groups update bridge1... bridge1...,bridge1... 1
+zel-cored tx multisig groups update <creator-address> <group-address> <member-1>,<member-2> 1
 ```
 
 ### SubmitProposal
@@ -439,21 +439,21 @@ simd tx multisig groups update bridge1... bridge1...,bridge1... 1
 The submit proposal command allows to create multisig proposals.
 
 ```
-simd tx multisig proposals submit-proposal /path/to/proposal.json --from mykey
+zel-cored tx multisig proposals submit-proposal /path/to/proposal.json --from mykey
 ```
 Proposal to change group example:
 
 ```
 {
-  "creator": "bridge1...",
-  "group": "bridge1...",
+  "creator": "zel1...",
+  "group": "zel1...",
   "messages": [{
     "@type": "/core.multisig.MsgChangeGroup",
-    "creator": "bridge1...", //creator and group must be equal
-    "group": "bridge1...",
-    "members": ["bridge1...",
-      "bridge1...",
-      "bridge1..."],
+    "creator": "zel1...", //creator and group must be equal
+    "group": "zel1...",
+    "members": ["zel1...",
+      "zel1...",
+      "zel1..."],
     "threshold": 3
   }]
 }
@@ -464,7 +464,7 @@ Proposal to change group example:
 The vote command submits the vote to proposal with given id.
 
 ```
-simd tx multisig votes vote bridge1... 1 0
+zel-cored tx multisig votes vote zel1... 1 0
 ```
 
 _NOTE: 0 - Yes, 1 - No_

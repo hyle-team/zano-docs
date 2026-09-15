@@ -1,8 +1,4 @@
 {
   "label": "Frontend Integration",
-  "position": 1,
-  "link": {
-    "type": "generated-index",
-    "description": "Helpful guides and documentation for integrating ZEL Signer into your frontend applications."
-  }
+  "position": 1
 }

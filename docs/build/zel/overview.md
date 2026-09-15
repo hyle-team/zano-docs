@@ -6,23 +6,23 @@ title: ZEL overview
 # Zano Execution Layer (ZEL)
 
 :::caution Testnet only
-ZEL is currently available only on testnet. Mainnet is not live. Do not use real assets or rely on testnet state remaining available.
+ZEL is currently available only on testnet. Mainnet is not live. Use test assets only; testnet state may be reset.
 :::
 
 Zano Execution Layer (ZEL) is a public, EVM-compatible Layer 1 connected to Zano. Zano remains the confidential base layer; ZEL provides public smart-contract execution.
 
 ## Network
 
-| Network | Chain ID | Short name | Status |
-| --- | ---: | --- | --- |
-| Testnet | `9350` (`0x2486`) | `zel` | Active development environment |
-| Mainnet | `935` (`0x3A7`) | `zel` | Not live |
+The network selector is set to Testnet; Mainnet is disabled. [Network access](/docs/build/zel/status-and-access) is the reference for chain identifiers and endpoints.
 
-Use the **Network** selector in the top navigation to confirm which environment the documentation describes. Testnet is the only selectable network; Mainnet remains disabled until a production release is confirmed.
+## Start here
 
-## Documentation structure
+- **Build an application:** follow the [developer quickstart](/docs/build/zel/build/quickstart), then review [EVM and contracts](/docs/build/zel/evm-and-contracts/overview).
+- **Integrate bridging:** read the [bridge overview](/docs/build/zel/bridge-and-swaps/overview) and [Bridge API](/docs/build/zel/bridge-and-swaps/api-and-status).
+- **Understand the boundary:** read [Zano and ZEL](/docs/build/zel/core-concepts/zano-and-zel), the [asset model](/docs/build/zel/core-concepts/asset-model), and the [privacy boundary](/docs/build/zel/core-concepts/privacy-boundary).
+- **Inspect the implementation:** use the [architecture reference](/docs/build/zel/architecture/overview) for core modules and signer internals.
+- **Operate infrastructure:** start with [operations](/docs/build/zel/operate/overview).
 
-- **Architecture:** how the system is built, including the [core modules](/docs/build/zel/architecture/core) (bridge, accumulator, multisig, NFT, tokenomics) and the [signer](/docs/build/zel/architecture/signer) with its TSS and per-chain bridging and swap integrations.
-- **Tutorial:** hands-on guides for running a local network, setting up a main node, joining testnet or mainnet as a validator, and operating a TSS node.
+Consensus validators and bridge signers on the active testnet are team-managed. Publishing operator documentation does not open validator applications or an external contribution process.
 
-Start with the [Architecture introduction](/docs/build/zel/architecture/intro), then follow the [Tutorial](/docs/build/zel/tutorial/intro) to run a node.
+Unconfirmed deployment details remain marked for the team to fill. See [network access](/docs/build/zel/status-and-access) for current connection information.

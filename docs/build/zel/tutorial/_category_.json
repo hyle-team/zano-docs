@@ -1,8 +1,8 @@
 {
-  "label": "Tutorial",
-  "position": 4,
+  "label": "Operator tutorials",
+  "position": 10,
   "link": {
     "type": "doc",
-    "id": "build/zel/architecture/intro"
+    "id": "build/zel/operate/overview"
   }
 }

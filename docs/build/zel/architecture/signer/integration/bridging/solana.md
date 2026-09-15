@@ -4,6 +4,10 @@ toc_max_heading_level: 5
 ---
 
 # Solana
+
+:::note Release scope
+These are implementation-reference examples, not a list of enabled routes or verified deployment instructions. Confirm the active route, service release, and contract ABI before integration. See [Bridge API](/docs/build/zel/bridge-and-swaps/api-and-status).
+:::
 Bridging from Solana
 
 ## Deposit
@@ -236,9 +240,11 @@ export async function hashWithdraw(
 }
 
 
-const uid = genUid(depositTxHash, depositTxNonce);
-const digest = hashWithdraw(bridgeId, amount, uid, receiver, mint);
+const uid = await genUid(depositTxHash, depositTxNonce);
+const digest = await hashWithdraw(bridgeId, amount, uid, receiver, mint);
 ```
+Run these calls inside an async function or a module that supports top-level `await`.
+
 **UId** is the unique identifier of the deposit transaction, created by hashing its hash and nonce. **Digest** is the hash of payload consisting of **bridgeId**, **amount**, **uid**, **receiver** address, and, for SPL tokens, Mint address.
 
 - Get signature from https://tss1.testnet.zano.org/check/:chainid/:txhash/:tx_nonce. Separate its last byte into recovery id (**recid**), present the rest as byte array.

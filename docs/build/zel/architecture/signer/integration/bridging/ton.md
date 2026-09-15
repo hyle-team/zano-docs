@@ -5,6 +5,10 @@ toc_max_heading_level: 5
 
 # TON
 
+:::note Release scope
+These are implementation-reference examples, not a list of enabled routes or verified deployment instructions. Confirm the active route, service release, and contract ABI before integration. See [Bridge API](/docs/build/zel/bridge-and-swaps/api-and-status).
+:::
+
 Bridging from the TON network.
 :::info
 Thought this piece of documentation we refer to the following terms: 

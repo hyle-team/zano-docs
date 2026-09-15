@@ -5,6 +5,10 @@ toc_max_heading_level: 5
 
 # EVM networks
 
+:::note Release scope
+These are implementation-reference examples, not a list of enabled routes or verified deployment instructions. Confirm the active route, service release, and contract ABI before integration. See [Bridge API](/docs/build/zel/bridge-and-swaps/api-and-status).
+:::
+
 Swap flow from EVM-compatible chains (Ethereum, BNB Chain, Polygon, etc.).
 
 The EVM swap flow starts with a swap-aware deposit on the source EVM Bridge contract. The TSS parses the emitted swap

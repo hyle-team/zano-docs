@@ -1,0 +1,8 @@
+{
+  "label": "EVM and contracts",
+  "position": 6,
+  "link": {
+    "type": "doc",
+    "id": "build/zel/evm-and-contracts/overview"
+  }
+}

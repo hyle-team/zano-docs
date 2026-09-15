@@ -5,6 +5,10 @@ toc_max_heading_level: 5
 
 # UTXO networks
 
+:::note Release scope
+These are implementation-reference examples, not a list of enabled routes or verified deployment instructions. Confirm the active route, service release, and contract ABI before integration. See [Bridge API](/docs/build/zel/bridge-and-swaps/api-and-status).
+:::
+
 Swap flow from UTXO networks (Bitcoin, Bitcoin Cash). UTXO source deposits are supported only for native source assets
 (BTC, BCH respectively).
 
@@ -119,6 +123,8 @@ Chunk outputs must immediately follow the `OP_RETURN` memo output. The TSS recon
 
 ### Example: BTC to EVM token
 
+Illustrative data only: use a future deadline for a real swap.
+
 Example data:
 
 - Destination chain id: <span style={{color: "green"}}>`123`</span>
@@ -137,7 +143,7 @@ Memo fields:
 <span style={{color: "red"}}>[0x03] [20] [190 239 212 117 167 110 195 18 80 43 167 181 102 169 180 206 169 26 176 48]</span>
 <span style={{color: "orange"}}>[0x03] [20] [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0]</span>
 <span style={{color: "cyan"}}>[5] [23 72 118 232 0]</span>
-<span style={{color: "pink"}}>[4] [104 232 222 128]</span>
+<span style={{color: "pink"}}>[4] [104 231 120 0]</span>
 </code></pre>
 
 `chunks-count` should be set to `0` if the whole memo fits into the `OP_RETURN` output. Otherwise, it should be set to
@@ -175,11 +181,12 @@ output 1: OP_RETURN memo output payload
 <span style={{color: "#BCCBD5"}}>ff030101</span><span style={{color: "green"}}>2831313131313131313131313131313131313131313131313131313131313131313131313131313131</span><span style={{color: "blue"}}>007b</span><span style={{color: "red"}}>0314beefd475a76ec312502ba7b566a9b4cea91ab030</span><span style={{color: "orange"}}>0314000000000000000000</span>
 
 output 1: full OP_RETURN scriptPubKey
-<span style={{color: "#BCCBD5"}}>6a50</span><span style={{color: "#BCCBD5"}}>ff030101</span><span style={{color: "green"}}>2831313131313131313131313131313131313131313131313131313131313131313131313131313131</span><span style={{color: "blue"}}>007b</span><span style={{color: "red"}}>0314beefd475a76ec312502ba7b566a9b4cea91ab030</span><span style={{color: "orange"}}>0314000000000000000000</span>
+<span style={{color: "#BCCBD5"}}>6a4c50</span><span style={{color: "#BCCBD5"}}>ff030101</span><span style={{color: "green"}}>2831313131313131313131313131313131313131313131313131313131313131313131313131313131</span><span style={{color: "blue"}}>007b</span><span style={{color: "red"}}>0314beefd475a76ec312502ba7b566a9b4cea91ab030</span><span style={{color: "orange"}}>0314000000000000000000</span>
 
 output 1: script opcode layout
 <span style={{color: "#BCCBD5"}}>6a</span>   OP_RETURN
-<span style={{color: "#BCCBD5"}}>50</span>   push 80 bytes
+<span style={{color: "#BCCBD5"}}>4c</span>   OP_PUSHDATA1
+<span style={{color: "#BCCBD5"}}>50</span>   payload length: 80 bytes
 ...  80-byte memo payload
 
 output 2: P2WSH memo chunk payload

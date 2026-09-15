@@ -4,10 +4,11 @@ sidebar_position: 3
 
 # Accumulator module
 
-The accumulator module is designed to be the primary storage and distributor of the native tokens in the system.
-According to ZEL [tokenomics](./tokenomics.md), all native tokens issued in the system will be minted to the
-accumulator module balance in the genesis block. By operating the module configuration and business logic, the module
-will be able to dispose of funds according to the configured parameters.
+The accumulator module manages configured balances and distributions. Its implementation does not define the current ZEL token supply, allocation, or reward policy. See [assets and reward configuration](./tokenomics.md).
+
+:::note Module reference
+The distribution requirements below describe the inherited module design. They are not a confirmed allocation schedule for ZANO or the planned staking asset. The team must map them to the active release before publishing economic claims.
+:::
 
 ![Accumulator](/img/scheme_2.png)
 
@@ -147,6 +148,5 @@ message MsgAddAdminResponse {}
 :::warning
 Note, that only module admin can add new admins.
 :::
-
 
 

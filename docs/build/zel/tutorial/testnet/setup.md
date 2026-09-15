@@ -1,238 +1,118 @@
 ---
 sidebar_position: 2
+title: Configure a testnet node
 ---
 
-# Configure and launch
+# Configure a testnet node
 
-## Step 1: Init config files
+This template covers full-node setup on ZEL testnet. Validator enrollment is a separate, team-approved operation.
 
-First, you need to install the necessary dependencies. You can download the latest binary file from
-the [GitHub release](https://github.com/Zano-Execution-Layer/zel-core/releases/tag/v12.2.0-rc11). Alternatively, you can
-build the core from the source code yourself.
-
-:::warning
-The binary is built under Alpine linux. If you are using Ubuntu linux, please install "musl-dev" package using the
-following command to be able to use Alpine binary on your machine:
-
-```shell
-sudo apt install musl-dev
-```
-
+:::note Setup package TBA
+Release downloads and the matching genesis, configuration, and peer details will be added when the ZEL operator package is ready. The steps below provide the setup structure; they are not a complete installation guide yet.
 :::
 
-To generate configs file download the core binary file (we will name it `ZEL Core` but you probably will
-download `zel-cored`). Then, set up the environment:
+## 1. Obtain the release and configuration
+
+Get the following from the ZEL team before initializing a node:
+
+- The approved `zel-cored` binary or source commit, its checksum, and platform requirements.
+- The matching testnet `genesis.json` and `app.toml`, with checksums.
+- Approved peers and, if using state sync, a recent trusted height, block hash, RPC servers, and trust period.
+- The supported Cosmovisor version and upgrade/recovery runbook.
+
+Use the ZEL release's genesis and configuration. Do not substitute another chain's files or construct a genesis from this template.
+
+Verify the binary and configuration before use. Install the executable under the consistent name `zel-cored`. A binary built for Alpine may require a compatible libc; confirm its runtime requirements with the release owner.
+
+## 2. Initialize a new home
+
+Set a new absolute data directory and your node name:
 
 ```bash
-export MONIKER_NAME=YOUR_VALIDATOR_NAME
-export ZEL_HOME=YOUR_CORE_HOME_PATH
-export ZEL_NODE=tcp://x.x.x.x:26657 # Node RPC address
+export ZEL_HOME=/absolute/path/to/zel-testnet
+export MONIKER_NAME=your-node-name
+zel-cored init "$MONIKER_NAME" --chain-id zel_9350-1 --home="$ZEL_HOME"
 ```
 
-To initialize the node struct and generate configs execute the following command:
+Do not initialize over an existing node. Install the approved genesis and application configuration in `$ZEL_HOME/config`. Confirm that the genesis Cosmos chain ID is `zel_9350-1`; the EVM chain ID is `9350`.
+
+Edit `config.toml` to use the supplied peers. State sync is optional and requires the release owner's current checkpoint. Do not copy a historical height or hash from another environment.
+
+Enable only the API listeners you need. Bind local APIs to loopback, and expose public RPC through the approved gateway and firewall policy. Port 26656 is P2P; 26657 is consensus RPC; 9090 is gRPC; 1317 is REST; 8545 and 8546 are EVM HTTP and WebSocket.
+
+Choose pruning and snapshot retention for the node's purpose and disk capacity. Archival history and unlimited snapshot retention are not required for every node.
+
+## 3. Initialize Cosmovisor
+
+Install the approved Cosmovisor version. Its daemon name must match the executable filename:
 
 ```bash
-zel-cored init $MONIKER_NAME --chain-id zel_9350-1  --home=$ZEL_HOME --keyring-backend test
+export DAEMON_NAME=zel-cored
+export DAEMON_HOME="$ZEL_HOME"
+export DAEMON_ALLOW_DOWNLOAD_BINARIES=false
+export UNSAFE_SKIP_BACKUP=false
+cosmovisor init "$(command -v zel-cored)"
 ```
 
-- `--chain-id` specifies the chain ID of the network. Use `zel_9350-1` for the Testnet.
-- `--home` specifies the path to the configuration files.
-- `--keyring-backend` specifies the backend you are using for the keyring. It is okay to use `test` keyring.
+This installs the binary at `$DAEMON_HOME/cosmovisor/genesis/bin/zel-cored`. Keep automatic binary downloads disabled and retain upgrade backups. Stage reviewed upgrades through the team's release procedure.
 
-Replace the generated `app.toml` and `genesis.json` file with the downloaded
-from [here](https://github.com/Zano-Execution-Layer/zel-core/blob/chains/testnet/config).
+For a foreground check:
 
-:::info
-The **config.toml** file contains the following useful properties that you may want to configure:
-
-```toml
-# Maximum number of unique clientIDs that can /subscribe
-# If you're using /broadcast_tx_commit, set to the estimated maximum number
-# of broadcast_tx_commit calls per block.
-max_subscription_clients = 100
-
-# Maximum number of unique queries a given client can /subscribe to
-# If you're using GRPC (or Local RPC client) and /broadcast_tx_commit, set to
-# the estimated # maximum number of broadcast_tx_commit calls per block.
-max_subscriptions_per_client = 5
+```bash
+cosmovisor run start --home="$ZEL_HOME" --rpc.laddr=tcp://127.0.0.1:26657
 ```
 
-In turn, **app.toml** contains necessary API configuration that you may want to enable:
+Stop the foreground process before starting a service against the same home.
 
-```toml
-[api]
+## 4. Optional systemd service
 
-# Enable defines if the API server should be enabled.
-enable = true
+Use a dedicated non-root account that owns the data directory. The following example assumes Cosmovisor is installed at `/usr/local/bin/cosmovisor`. Set `ZEL_USER` to that account and verify the absolute home path before creating the unit.
 
-# Swagger defines if swagger documentation should automatically be registered.
-swagger = true
+```bash
+: "${ZEL_USER:?Set the dedicated service account}"
+: "${ZEL_HOME:?Set the absolute node home}"
+sudo tee /etc/systemd/system/zel.service > /dev/null <<EOF
+[Unit]
+Description=ZEL testnet node
+After=network-online.target
+Wants=network-online.target
 
-# Address defines the API server to listen on.
-address = "tcp://0.0.0.0:1317"
+[Service]
+User=${ZEL_USER}
+Environment="DAEMON_NAME=zel-cored"
+Environment="DAEMON_HOME=${ZEL_HOME}"
+Environment="DAEMON_ALLOW_DOWNLOAD_BINARIES=false"
+Environment="UNSAFE_SKIP_BACKUP=false"
+ExecStart=/usr/local/bin/cosmovisor run start --home=${ZEL_HOME} --rpc.laddr=tcp://127.0.0.1:26657
+Restart=on-failure
+RestartSec=10
+LimitNOFILE=10000
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+sudo systemctl daemon-reload
+sudo systemctl enable --now zel
 ```
 
-Also, in  **app.toml** you can find some necessary configs for state syncing of other nodes in the future:
+Use an absolute home path without whitespace in this unit, or apply systemd argument escaping.
 
-```toml
-[state-sync]
-# snapshot-interval specifies the block interval at which local state sync snapshots are
-# taken (0 to disable).
-snapshot-interval = 500
+## 5. Verify the node
 
-# snapshot-keep-recent specifies the number of recent snapshots to keep and serve (0 to keep all).
-snapshot-keep-recent = 0
+```bash
+zel-cored status --node tcp://127.0.0.1:26657
+sudo journalctl -u zel -n 100 --no-pager
 ```
 
-Finally, **app.toml** contains the blocks pruning configuration that is responsible for storing all blocks history. We recommend usage
-of the `nothing` mode that will activate all RPC features.
-```toml
-# default: the last 362880 states are kept, pruning at 10 block intervals
-# nothing: all historic states will be saved, nothing will be deleted (i.e. archiving node)
-# everything: 2 latest states will be kept; pruning at 10 block intervals.
-# custom: allow pruning options to be manually specified through 'pruning-keep-recent', and 'pruning-interval'
-pruning = "nothing"
+Confirm the chain identity, peers, advancing block height, and synchronization state before relying on the node. A running full node is not automatically a consensus validator or bridge signer.
 
-# These are applied if and only if the pruning strategy is custom.
-pruning-keep-recent = "2"
-pruning-keep-every = "0"
-pruning-interval = "10"
-```
+## Recovery
+
+Stop the service, preserve the home directory, and inspect the failure before modifying data. Ask the team for the recovery procedure for that release.
+
+:::danger Preserve consensus signing history
+Never zero, delete, or roll back `data/priv_validator_state.json` for a key that has signed on the same chain. This state prevents double-signing. Never run two nodes with the same consensus key. Coordinate validator recovery before restarting.
 :::
 
-## Step 2: Connect to the network
-
-To connect to the existing network you may need to update the **config.toml** file.
-
-Firstly, you have to update the `seeds`and `persistent_peers` fields.
-You can get the list of seeds and persistent peers by sent request to our team.
-
-Get the node id:
-
-```bash
-zel-cored tendermint show-node-id --home=$ZEL_HOME
-```
-
-Find a `persistent_peers` field and set up here at least your node info and one or two other nodes.
-
-:::tip
-It's good to have at least 3 peers.
-
-It should look as follows:
-
-```toml
-persistent_peers="node1_id@node1_ip:26656,node2_id@node2_ip:26656,..., my_node_id@my_node_ip:26656"
-```
-
-:::
-
-Also, you have to set up information for fast catchup from trusted height in **config.toml**:
-
-```toml
-enable = true
-
-rpc_servers = "node1_ip:26657,node2_ip:26657"
-trust_height = 625927
-trust_hash = "E0F14C24CB3C9D88F7E4C3BE23A9A1322AE53D2AC88AFA231DF76C4F437BEB8B"
-```
-
-:::info
-Please, use ONLY the RPC servers provided by our team. Also, at least two `rpc_servers` required.
-:::
-
-## Step 3: Run the node
-
-To run you have to define the following environment variables:
-
-```bash
-export DAEMON_NAME="ZEL Core"
-export DAEMON_HOME=$ZEL_HOME
-export DAEMON_ALLOW_DOWNLOAD_BINARIES="true"
-export UNSAFE_SKIP_BACKUP="true"
-```
-
-:::info
-Note, that your node has several ports that is required to be opened on your machine:
-
-- "26656" - P2P port
-- "26657" and "9090" - Cosmos RPC
-- "1317" - REST Swagger API
-- "8545" - EVM HTTP RPC
-- "8546" - EVM WS RPC
-
-:::
-
-### Cosmovisor
-
-To enable the automatic blockchain upgrades you may need to install "cosmovisor". To download the cosmovisor binary file
-for your architecture follow: https://github.com/cosmos/cosmos-sdk/releases/tag/cosmovisor%2Fv1.5.0
-
-Then, execute the following commands:
-
-```bash
-mv <path_to_cosmovisor_binary_file> /usr/local/bin/cosmovisor
-chmod u+x /usr/local/bin/cosmovisor
-mkdir -p $DAEMON_HOME/cosmovisor/genesis/bin && cp zel-cored $DAEMON_HOME/cosmovisor/genesis/bin
-```
-
-1. You can start the cosmovisor as the system service (best practise):
-    ```bash
-    sudo tee /etc/systemd/system/zel.service > /dev/null << EOF
-    ```
-    ```text
-    [Unit]
-    Description=ZEL Node
-    After=network-online.target
-    [Service]
-    Environment="DAEMON_NAME=ZEL Core"
-    Environment="DAEMON_HOME=${ZEL_HOME}" 
-    Environment="DAEMON_ALLOW_DOWNLOAD_BINARIES=true"
-    User=root
-    ExecStart=/usr/local/bin/cosmovisor run start --home=${ZEL_HOME} --rpc.laddr tcp://0.0.0.0:26657
-    Restart=on-failure
-    RestartSec=10
-    LimitNOFILE=10000
-    [Install]
-    EOF
-    ```
-
-   And start the system service:
-
-    ```shell
-    sudo systemctl daemon-reload
-    sudo systemctl enable zel
-    sudo systemctl start zel
-    ```
-
-   Check logs:
-
-    ```bash
-    sudo journalctl -u zel -f --no-hostname -o cat
-    ```
-
-2. Or, simply start with command:
-    ```bash
-    cosmovisor run start --home=$ZEL_HOME --rpc.laddr tcp://0.0.0.0:26657
-    ```
-
-## Common questions
-
-### How to clean node data?
-
-If you failed to run node for some reason, it is required to clean data before re-lunch with fixed configuration:
-
-- Clean `$ZEL_HOME/data` files except of `priv_validator_state.json`
-- Edit `priv_validator_state.json` as follows:
-   ```json
-   {
-   "height": "0",
-   "round": 0,
-   "step": 0
-   }
-   ```
-
-### Node failed to catchup
-
-Check the peers and rpc_servers you specified for catchup or probably change them to other if possible. Also, first
-launch of the node may require several restarts.
-  
+For a sync failure, first check the approved peers, checkpoint freshness, genesis, and binary version. Do not repeatedly reset a validator's data as a general troubleshooting step.

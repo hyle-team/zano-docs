@@ -1,25 +1,30 @@
 ---
-sidebar position: 5
+sidebar_position: 5
+title: Launch package
 ---
 
-# Launch scripts
+# Launch package
 
-To run Visor, TSS, ZEL Core and other services together, the [launch scripts repository](https://github.com/Zano-Execution-Layer/launch-scripts) can be used.
+:::note TBA
+The ZEL launch package is not ready yet. This page is a template for the release and setup instructions that will be added when it is available.
+:::
 
-It provides a set of scripts to run the stack in Docker containers, with a commands to launch everything together. 
-The repo also includes a sample configurations for all required services, which can be used as a reference for your own setup.
-Launch script allows to set up the local environment, configure required parameters and run the stack with a single command.
+## Release and requirements
 
-It also provides commands to stop the stack and clean up resources when they are no longer needed.
+To be added: download links, supported platforms, Core/TSS/Visor versions, checksums, and hardware requirements.
 
-To run the stack in a docker environment, use the following command:
+## Configuration
 
-```bash
-./run-docker.sh
-```
+To be added: ZEL genesis and application settings, peers, synchronization inputs, service listeners, storage paths, database migrations, and Vault/TLS configuration.
 
-To clean up the environment, use the following command:
+## Launch and verification
 
-```bash
-./clean-all-docker.sh
-```
+To be added: installation and startup commands, chain and synchronization checks, observer progress, and Visor task checks.
+
+## Updates and recovery
+
+To be added: upgrade steps, backups, recovery procedures, and cleanup scope.
+
+Preserve consensus signing history, database state, and signer recovery material. Do not use another network's deployment values or cleanup scripts.
+
+Related templates: [node setup](/docs/build/zel/tutorial/testnet/setup) and [advanced signer operations](/docs/build/zel/tutorial/tss/overview).

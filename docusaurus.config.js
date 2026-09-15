@@ -1,6 +1,8 @@
 import {themes as prismThemes} from 'prism-react-renderer';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
+import zelSidebar from './sidebarsZel.js';
+import zelRedirects from './zelRedirects.js';
 
 const config = {
   title: "Zano Docs",
@@ -30,6 +32,15 @@ const config = {
       {
         docs: {
           sidebarPath: './sidebars.js',
+          async sidebarItemsGenerator(args) {
+            const items = await args.defaultSidebarItemsGenerator(args);
+            const replaceZel = (item) => {
+              if (item.type !== "category") return item;
+              if (item.link?.type === "doc" && item.link.id === "build/zel/overview") return zelSidebar;
+              return {...item, items: item.items.map(replaceZel)};
+            };
+            return items.map(replaceZel);
+          },
           remarkPlugins: [remarkMath],
           rehypePlugins: [rehypeKatex],
           // the RPC reference is served by the versioned "api" instance below
@@ -37,6 +48,8 @@ const config = {
             "**/_*.{js,jsx,ts,tsx,md,mdx}",
             "**/_*/**",
             "build/rpc-api/**",
+            // Mainnet remains unavailable; keep operator drafts out of routes and navigation.
+            "build/zel/tutorial/mainnet/**",
           ],
         },
         theme: {
@@ -97,6 +110,22 @@ const config = {
           { from: "/docs/use/zano-passwords.md", to: "/docs/use/zano-passwords" },
           // deeplinks page lives in the Build tab but had a /use/ slug
           { from: "/docs/use/deeplinks", to: "/docs/build/deeplinks" },
+          ...Object.entries(zelRedirects).flatMap(([from, to]) => [{
+            from: ["/docs/build/zel/" + from, "/docs/build/zel/testnet/" + from],
+            to: "/docs/build/zel/" + to,
+          }]),
+          ...Object.entries({
+            "bridging-flow": "bridge-and-swaps/end-to-end-flow",
+            "connect-to-testnet": "operate/overview",
+            core: "architecture/core/",
+            "frontend-integration": "bridge-and-swaps/api-and-status",
+            "launch-a-new-chain": "operate/overview",
+            "launch-a-tss-node": "tutorial/tss/overview",
+            "run-in-docker": "tutorial/localstart/info",
+            signer: "architecture/signer/tss",
+            "swap-flow": "architecture/signer/integration/swap/general_flow",
+            "tss-visor": "tutorial/tss/visor/intro",
+          }).map(([from, to]) => ({from: "/docs/category/" + from, to: "/docs/build/zel/" + to})),
           // ZEL uses one documentation tree with a contextual network selector.
           { from: "/docs/build/zel/current-status", to: "/docs/build/zel/overview" },
           { from: "/docs/build/zel/testnet/overview", to: "/docs/build/zel/overview" },

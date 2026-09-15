@@ -16,7 +16,8 @@ The TSS service:
 There is an example of how to generate self-signed certificates for the TSS service using `openssl`:
 
 ```bash title="gen-certs.sh"
-export DAYS_VALID=365
+: "${DAYS_VALID:?Set the team-approved certificate lifetime in days}"
+umask 077
 export COMMON_NAME="tss"
 export PARTY_KEY="tss.key"
 export PARTY_CERT="tss.crt"
@@ -71,6 +72,6 @@ Also, it is possible to use both DNS and IP names in the same config file
 (suitable for connecting to the TSS service using both DNS and IP names).
 :::
 
-:::tip
-Although this is not a best practice, you can set the `DAYS_VALID` variable to a very long period (e.g. 10 years) to avoid generating and rotating certificates too often.
+:::note Certificate rotation
+Use the team-approved lifetime and renewal procedure. Coordinate replacement certificates with the other parties before expiry; do not extend certificate lifetimes to avoid rotation.
 :::

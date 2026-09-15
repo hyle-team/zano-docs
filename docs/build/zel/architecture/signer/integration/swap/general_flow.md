@@ -5,6 +5,10 @@ toc_max_heading_level: 5
 
 # General Flow
 
+:::note Release scope
+These are implementation-reference examples, not a list of enabled routes or verified deployment instructions. Confirm the active route, service release, and contract ABI before integration. See [Bridge API](/docs/build/zel/bridge-and-swaps/api-and-status).
+:::
+
 Basic swap flow description for all supported networks.
 
 The swap flow reuses the regular bridging flow and adds an internal swap step between two bridge operations:

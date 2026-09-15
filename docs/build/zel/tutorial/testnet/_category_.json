@@ -1,8 +1,4 @@
 {
   "label": "Connect to Testnet",
-  "position": 3,
-  "link": {
-    "type": "generated-index",
-    "description": "Learn how to start a new validator node on the Testnet"
-  }
+  "position": 3
 }

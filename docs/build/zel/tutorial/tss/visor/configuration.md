@@ -12,7 +12,7 @@ working directory.
 This file is **Visor's own configuration** — it is separate from the TSS
 binary's `tss.yaml`. The TSS binary config (`tss.yaml`), party TLS
 certificates and Vault secrets are the artifacts you produced by following
-the previous guide in `docs/tutorial/tss/`. Visor only points at them.
+the previous [signer setup guide](/docs/build/zel/tutorial/tss/overview). Visor only points at them.
 :::
 
 ## Field reference
@@ -43,7 +43,7 @@ Fields marked **required** must be present.
 - **`tendermint_connector.tendermint_grpc`** (required) — Tendermint gRPC
   URL of the ZEL Core node.
 
-See [Nodes](../prerequisites/nodes.md) for how to obtain these
+See [Nodes](/docs/build/zel/tutorial/tss/overview) for how to obtain these
 endpoints.
 
 ### `tss`
@@ -81,7 +81,11 @@ Each entry in `events.list` binds a ZEL Core event to a TSS task.
 - `events.list[].prestart` — if `true`, the task is also executed once,
   before Visor starts the binary's default mode.
 
-## Minimal working example
+## Configuration template
+
+:::note Operator package TBA
+Replace the database DSN, Core endpoints, and node address with the values approved for your deployment. The launch package and endpoint authentication details are still TBA.
+:::
 
 ```yaml title="config.yaml"
 log:
@@ -89,23 +93,23 @@ log:
   disable_sentry: true
 
 db:
-  url: postgres://db:db@localhost:5435/db?sslmode=disable
+  url: "REPLACE_WITH_VISOR_POSTGRES_DSN"
 
 listeners:
-  api_grpc_addr: "0.0.0.0:9090"
-  api_http_addr: "0.0.0.0:8080"
+  api_grpc_addr: "127.0.0.1:9090"
+  api_http_addr: "127.0.0.1:8080"
 
 tendermint_connector:
-  tendermint_rpc:  "https://rpc.node1.testnet.zano.org:443"
-  tendermint_grpc: "core-api.node1.testnet.zano.org:443"
+  tendermint_rpc:  "REPLACE_WITH_APPROVED_CORE_RPC_URL"
+  tendermint_grpc: "REPLACE_WITH_APPROVED_CORE_GRPC_ADDRESS"
 
 tss:
-  binary_path: "path/to/tss/binary/"
-  binary_params: ""
+  binary_path: "/opt/tss-wrapper/binary/tss"
+  binary_params: "service run sign --config /opt/tss-wrapper/binary/configs/tss.yaml"
   api_params: ""
-  config_path: "path/to/tss/configs/tss.yaml"
-  certificates_path: "path/to/tss/configs/certs"
-  core_address: "zel1t8xw56.....ylx"
+  config_path: "/opt/tss-wrapper/binary/configs/tss.yaml"
+  certificates_path: "/opt/tss-wrapper/binary/configs/certs"
+  core_address: "REPLACE_WITH_ZEL_NODE_ADDRESS"
 
 events:
   list:
@@ -117,9 +121,13 @@ events:
       task_type: "migrate_up"
 ```
 
+The default launch uses `binary_params` as written; Visor does not append `config_path` to it. Keep the `--config` argument and `config_path` identical. For Docker, use the mounted paths in [Run Visor in Docker](./run-docker.md).
+
+Keep the database DSN in a protected configuration file readable only by the service account. The example listeners are loopback-only; remote access requires an approved network and authentication setup.
+
 ## Event-to-task mapping
 
-A typical production setup wires the three core lifecycle events to their
+The template wires the three core lifecycle events to their
 respective task types:
 
 - `STARTED_NEW_EPOCH` → `auto_resharing` — starts the multi-step autoresharing

@@ -1,8 +1,4 @@
 {
   "label": "Launch a TSS node",
-  "position": 4,
-  "link": {
-    "type": "generated-index",
-    "description": "Learn how to launch a Threshold Signature Scheme (TSS) node for validating and processing bridge transactions"
-  }
+  "position": 4
 }

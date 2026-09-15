@@ -5,6 +5,10 @@ toc_max_heading_level: 5
 
 # ZEL network
 
+:::note Release scope
+These are implementation-reference examples, not a list of enabled routes or verified deployment instructions. Confirm the active route, service release, and contract ABI before integration. See [Bridge API](/docs/build/zel/bridge-and-swaps/api-and-status).
+:::
+
 The regular swap flow has three stages: bridge the source asset to the ZEL network, swap it, and bridge the
 destination asset to the target network. When the ZEL network is the source or target network, the assets are
 already on the chain where the swap is executed. The corresponding bridge stage and TSS iteration are therefore
@@ -23,8 +27,8 @@ function swapAndRoute(
 ```
 
 The Swapper contract transfers the source token from the user, executes the swap, and deposits the resulting asset into
-the Bridge contract for routing to the target network. This behavior is implemented in
-[Swapper.sol](https://github.com/Zano-Execution-Layer/bridge-contracts/blob/main/contracts/bridge/Swapper.sol).
+the Bridge contract for routing to the target network. Confirm this behavior against the Swapper implementation and ABI recorded in the
+[contract registry](/docs/build/zel/evm-and-contracts/contract-registry) for the active release.
 
 The resulting two-stage flow is:
 

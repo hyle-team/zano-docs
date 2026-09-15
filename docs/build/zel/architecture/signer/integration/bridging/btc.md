@@ -4,6 +4,10 @@ toc_max_heading_level: 5
 ---
 
 # UTXO networks
+
+:::note Release scope
+These are implementation-reference examples, not a list of enabled routes or verified deployment instructions. Confirm the active route, service release, and contract ABI before integration. See [Bridge API](/docs/build/zel/bridge-and-swaps/api-and-status).
+:::
 Bridging from UTXO networks (Bitcoin, Bitcoin Cash) is supported only for the native tokens (BTC, BCH respectively).
 
 ## Deposit
@@ -110,7 +114,7 @@ However, the commission for the withdrawal transaction will be taken from the wi
     "depositIdentifier": {
         "txHash": "0x227097add7e057f157724dd6ef5f4e233705d1ae3da077e2ed8089dbf12ae9bf",
         "txNonce": 2,
-        "chainId": "35442"
+        "chainId": "<source-chain-id>"
     },
     "transferData": {
         "sender": "0xbeefD475A76Ec312502ba7B566a9B4CEA91ab030",

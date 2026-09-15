@@ -4,6 +4,10 @@ sidebar_position: 3
 
 # Run Visor on a Linux host
 
+:::note Operator package TBA
+This is a deployment template. The team still needs to confirm the release, Core endpoints, and environment-specific configuration before it can be used.
+:::
+
 Run Visor directly on the host as a regular process. Postgres can still come
 from Docker or any managed provider — only Visor itself runs as a native
 binary here.
@@ -14,7 +18,7 @@ binary here.
 - A reachable **PostgreSQL** instance whose DSN matches `db.url` — see
   [Set up database](../prerequisites/db.md).
 - A reachable **ZEL Core node** (RPC + gRPC) — see
-  [Nodes](../prerequisites/nodes.md).
+  [Nodes](/docs/build/zel/tutorial/tss/overview).
 - The **TSS binary** itself plus its YAML config, TLS certificates and
   Vault secrets, prepared by following the previous guide:
     - [Install binary](../prerequisites/binary.md)
@@ -57,12 +61,12 @@ Matching `config.yaml` snippet:
 
 ```yaml title="config.yaml"
 tss:
-  binary_path: "path/to/binary/tss"
-  binary_params: ""
+  binary_path: "/opt/tss-wrapper/binary/tss"
+  binary_params: "service run sign --config /opt/tss-wrapper/binary/configs/tss.yaml"
   api_params: ""
-  config_path: "path/to/binary/tss/tss.yaml"
-  certificates_path: "path/to/binary/tss/certs"
-  core_address: "bridge1..."
+  config_path: "/opt/tss-wrapper/binary/configs/tss.yaml"
+  certificates_path: "/opt/tss-wrapper/binary/configs/certs"
+  core_address: "REPLACE_WITH_ZEL_NODE_ADDRESS"
 ```
 
 See [Configuration file](./configuration.md) for the full field reference.
@@ -76,41 +80,17 @@ go build -o tss-wrapper-svc .
 install -m 0755 tss-wrapper-svc /opt/tss-wrapper/tss-wrapper-svc
 ```
 
-## 2. Start Postgres (if you don't already have one)
+## 2. Prepare a dedicated Visor database
 
-Any Postgres instance works; the upstream repo bundles one for convenience:
+Use the [database template](../prerequisites/db.md) with the Visor values: a separate `visor-db` Compose project, database and role, and loopback port `5435`. A managed PostgreSQL instance with equivalent isolation is also suitable.
 
-```bash
-docker compose -f build/docker-compose.yaml up -d db
-```
+Set `db.url` in `/opt/tss-wrapper/config.yaml` to that database's DSN. Do not reuse the TSS database or its credentials. Keep the configuration file readable only by the service account.
 
-This exposes Postgres on `localhost:5435` with:
+## 3. Configure Visor
 
-- user: `tss-wrapper`
-- password: `tss-wrapper`
-- db: `db`
+Fill in the [configuration template](./configuration.md), including approved Core endpoints and the ZEL node address. Keep the HTTP and gRPC listeners on loopback unless the team has approved remote access.
 
-Make sure `db.url` in your `config.yaml` matches, for example:
-
-```yaml title="config.yaml"
-db:
-  url: postgres://tss-wrapper:tss-wrapper@localhost:5435/db?sslmode=disable
-```
-
-For alternative Postgres setups, see
-[Set up database](../prerequisites/db.md).
-
-## 3. Passing the config file
-
-Every `tss-wrapper-svc` subcommand accepts `-c` / `--config` and defaults to
-`./config.yaml`:
-
-```bash
-tss-wrapper-svc service run --config /opt/tss-wrapper/config.yaml
-tss-wrapper-svc service run -c /opt/tss-wrapper/config.yaml
-tss-wrapper-svc service migrate up   -c /opt/tss-wrapper/config.yaml
-tss-wrapper-svc service migrate down -c /opt/tss-wrapper/config.yaml
-```
+The commands below pass Visor's config with `-c` (`--config` is equivalent). The TSS process needs its own explicit `--config` argument in `binary_params`; Visor does not add it automatically.
 
 ## 4. Apply DB migrations
 
@@ -152,6 +132,8 @@ grpcurl -plaintext localhost:9090 list
 
 ## 7. Run Visor as a systemd unit
 
+Replace the service-user placeholder with a dedicated account. Before enabling the unit, give that account read access to the protected configuration and write access to the TSS binary, its directory, and the configuration and certificate directories used by update tasks. Keep the Visor binary and systemd unit root-owned.
+
 ```ini title="/etc/systemd/system/tss-wrapper.service"
 [Unit]
 Description=TSS Visor service
@@ -160,6 +142,7 @@ Wants=network-online.target
 
 [Service]
 Type=simple
+User=REPLACE_WITH_DEDICATED_SERVICE_USER
 WorkingDirectory=/opt/tss-wrapper
 ExecStart=/opt/tss-wrapper/tss-wrapper-svc service run -c /opt/tss-wrapper/config.yaml
 Restart=on-failure
