@@ -88,3 +88,12 @@ Note: this paper used one of the early approaches to implementing assets, where 
 Paper describes a practical way of implementing confidential assets (a.k.a. tokens) in Zano with unlimited decoy mixing capability and hidden amounts as an extension to the Ring Confidential Transactions scheme
 
 [https://raw.githubusercontent.com/hyle-team/docs/master/zano/tokens_maths_paper/Zano__confidential_assets_with_hidden_amounts_DRAFT.pdf](https://raw.githubusercontent.com/hyle-team/docs/master/zano/tokens_maths_paper/Zano__confidential_assets_with_hidden_amounts_DRAFT.pdf)
+
+### Zano Pure PoS: Zenith
+
+A detailed description of Zenith, a pure Proof-ofStake (PoS) protocol based on Zarcanum.
+ 
+[https://github.com/hyle-team/docs/blob/master/zano/Zenith.pdf](https://github.com/hyle-team/docs/blob/master/zano/Zenith.pdf)
+
+
+
