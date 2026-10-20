@@ -18,7 +18,13 @@ header.payload.signature
 ## Use Case in Our Project
 
 We use JWT authentication to secure HTTP requests to our local JSON-RPC API between the Zano desktop wallet and Zano Companion (browser extension). Each request includes a signed JWT in the `Zano-Access-Token` header, which is verified by the server.
-You can enable JWT authentification in simplewallet as well by adding `--jwt-secret=hsjejkcdskndspo230XASIijksk123i9x5` when simplewallet run in server mode (with --rpc-bind-port=PORT_NUM option).
+To enable JWT authentication in simplewallet server mode, first generate a secret and export it for the wallet server and Node.js client:
+
+```bash
+export ZANO_JWT_SECRET="$(node -e "console.log(require('node:crypto').randomBytes(32).toString('hex'))")"
+```
+
+Start simplewallet with `--rpc-bind-port=PORT_NUM --jwt-secret="${ZANO_JWT_SECRET:?ZANO_JWT_SECRET is empty or unset}"`. Use the same secret for the client. If the client runs in another shell, export `ZANO_JWT_SECRET` there with the same value instead of generating a second secret. Keep it private.
 
 ---
 
@@ -45,7 +51,10 @@ npm install axios node-forge
 
 Define your shared JWT secret (must match the server's configuration):
 ```js
-const JWT_SECRET = 'hiwejkcddkndspo230XASIijksk123i9x5';
+const JWT_SECRET = process.env.ZANO_JWT_SECRET;
+if (!JWT_SECRET) {
+  throw new Error('Set ZANO_JWT_SECRET to the same secret used by simplewallet.');
+}
 ```
 
 ### 2. Create JWT Token
