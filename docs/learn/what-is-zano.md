@@ -12,6 +12,23 @@ You can send funds, stake, issue your own tokens, trade peer-to-peer, and build 
 
 The sender and receiver can verify transactions through transaction IDs, but none of the data is publicly exposed.
 
+<div style={{ position: 'relative', paddingBottom: '56.25%', height: 0 }}>
+  <iframe
+    src="https://www.youtube.com/embed/Lo3Rsj687GE"
+    title="Why Financial Privacy Matters"
+    style={{
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      width: '100%',
+      height: '100%'
+    }}
+    frameBorder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowFullScreen
+  />
+</div>
+
 ### Origin
 
 Zano’s lead developer Andrey Sabelnikov wrote the original CryptoNote reference implementation, the codebase that Monero and hundreds of other projects forked from. Zano is his next evolution of that work, built from scratch with a wider scope: not just private payments, but a private economy.
@@ -37,6 +54,23 @@ Those technologies add up to two properties that set Zano apart:
 **Fungibility**: every ZANO is identical. No coin has a "history" that can be traced, flagged, or blacklisted.
 
 **Censorship resistance**: when transactions are invisible, they can’t be blocked, reversed, or selectively enforced.
+
+<div style={{ position: 'relative', paddingBottom: '56.25%', height: 0 }}>
+  <iframe
+    src="https://www.youtube.com/embed/JWnIwFcOlOw"
+    title="What Is Fungibility?"
+    style={{
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      width: '100%',
+      height: '100%'
+    }}
+    frameBorder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowFullScreen
+  />
+</div>
 
 ### A stable, open network
 

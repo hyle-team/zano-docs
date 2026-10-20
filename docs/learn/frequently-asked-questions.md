@@ -171,6 +171,23 @@ When privacy isn't built into the base layer from the start and instead depends 
 
 On Zano, you don't need to be an expert to enjoy instant privacy, simply using the network is enough. Everything is built so you don't have to worry, and this comes with an added benefit: true *fungibility*. Every asset you receive is just as private and indistinguishable as any other.
 
+<div style={{ position: 'relative', paddingBottom: '56.25%', height: 0 }}>
+  <iframe
+    src="https://www.youtube.com/embed/NC9-_n4JZGg"
+    title="Opt-In Privacy vs Privacy-by-Default"
+    style={{
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      width: '100%',
+      height: '100%'
+    }}
+    frameBorder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowFullScreen
+  />
+</div>
+
 ### What is fungibility, and why is it important?
 
 Fungibility is one of the basic properties of money, it means that any unit is replaceable by another identical one; mutually interchangeable. Just like when you lend someone a \$100 bill and they return a different \$100 bill, it makes no difference.
