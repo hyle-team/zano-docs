@@ -17,6 +17,23 @@ The DEX. Trade ZANO and Confidential Assets: orders are matched by the Zano Trad
 
 Anonymous on-chain voting for stakers, live at [vote.zano.org](https://vote.zano.org). Every PoS block you find during a voting window counts as one vote, so voting power follows real stake without revealing anyone's identity or balance. Proposals (ZAPs) and results are on the portal.
 
+<div style={{ position: 'relative', paddingBottom: '56.25%', height: 0 }}>
+  <iframe
+    src="https://www.youtube.com/embed/hM4buw4WLWU"
+    title="On-Chain Voting"
+    style={{
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      width: '100%',
+      height: '100%'
+    }}
+    frameBorder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowFullScreen
+  />
+</div>
+
 ### fUSD (Freedom Dollar)
 
 A private stablecoin on Zano, live at [freedomdollar.com](https://www.freedomdollar.com). Send dollars without anyone knowing how much, to whom, or when. Built as a Confidential Asset, fUSD has the same privacy guarantees as native ZANO.

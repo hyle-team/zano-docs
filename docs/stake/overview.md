@@ -23,6 +23,23 @@ Staking in Zano is a way to earn rewards by participating in the network's conse
 - **No Slashing**: No penalties for going offline
 - **Easy to Use**: Just flip a switch to start staking
 
+<div style={{ position: 'relative', paddingBottom: '56.25%', height: 0 }}>
+  <iframe
+    src="https://www.youtube.com/embed/3-VX94QpL0s"
+    title="Zarcanum: World's First Private PoS"
+    style={{
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      width: '100%',
+      height: '100%'
+    }}
+    frameBorder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowFullScreen
+  />
+</div>
+
 ## Getting Started
 
 If you're new to staking, start with our **[Getting Started](./getting-started/proof-of-stake-mining.md)** guide, which covers:

@@ -8,6 +8,23 @@ The `register_gateway_address` wallet RPC call broadcasts this transaction **imm
 
 ## 1. What are Gateway Addresses?
 
+<div style={{ position: 'relative', paddingBottom: '56.25%', height: 0 }}>
+  <iframe
+    src="https://www.youtube.com/embed/WBj4uxIb9Nk"
+    title="Gateway Addresses"
+    style={{
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      width: '100%',
+      height: '100%'
+    }}
+    frameBorder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowFullScreen
+  />
+</div>
+
 A Gateway Address (GW) is a new type of address in the Zano blockchain that will be introduced starting with Hard Fork 6. Unlike classic addresses, which operate under the UTXO model, GW addresses use an **account-based model**, meaning that the balance is stored directly on the blockchain rather than being represented as a set of separate UTXOs.
 
 GW addresses are designed to simplify integration with external systems such as cross-chain bridges, DEXs, exchanges, and payment gateways. They follow an approach that is more familiar to these services and provide a simple API that is, in some respects, closer to those used by more traditional blockchain platforms such as Bitcoin and Ethereum. This makes it easier for such services to use established custody frameworks, including MPC, and helps make the integration process more transparent and reliable.
