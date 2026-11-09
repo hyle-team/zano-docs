@@ -39,6 +39,14 @@ const response = await zanoWallet.getWallet({ timeoutMs: 60_000 });
                 "amount": "",
                 "assetId": "",
                 "incoming": false
+            }],
+            "subtransfersByPid": [{
+                "paymentId": "",
+                "subtransfers": [{
+                    "amount": "",
+                    "assetId": "",
+                    "incoming": false
+                }]
             }]
         }],
         "assets": [{
@@ -89,6 +97,14 @@ where:
                 "amount": "",
                 "assetId": "",
                 "incoming": false
+            }],
+            "subtransfersByPid": [{
+                "paymentId": "",
+                "subtransfers": [{
+                    "amount": "",
+                    "assetId": "",
+                    "incoming": false
+                }]
             }]
         }],
         "assets": [{
